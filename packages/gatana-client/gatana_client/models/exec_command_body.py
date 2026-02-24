@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +16,29 @@ class ExecCommandBody:
     """
     Attributes:
         command (str):
-        workdir (str | Unset):
-        timeout (float | Unset):
+        workdir (None | str | Unset):
+        timeout (float | None | Unset):
     """
 
     command: str
-    workdir: str | Unset = UNSET
-    timeout: float | Unset = UNSET
+    workdir: None | str | Unset = UNSET
+    timeout: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         command = self.command
 
-        workdir = self.workdir
+        workdir: None | str | Unset
+        if isinstance(self.workdir, Unset):
+            workdir = UNSET
+        else:
+            workdir = self.workdir
 
-        timeout = self.timeout
+        timeout: float | None | Unset
+        if isinstance(self.timeout, Unset):
+            timeout = UNSET
+        else:
+            timeout = self.timeout
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -51,9 +59,23 @@ class ExecCommandBody:
         d = dict(src_dict)
         command = d.pop("command")
 
-        workdir = d.pop("workdir", UNSET)
+        def _parse_workdir(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        timeout = d.pop("timeout", UNSET)
+        workdir = _parse_workdir(d.pop("workdir", UNSET))
+
+        def _parse_timeout(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        timeout = _parse_timeout(d.pop("timeout", UNSET))
 
         exec_command_body = cls(
             command=command,

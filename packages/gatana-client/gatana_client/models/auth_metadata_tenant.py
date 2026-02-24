@@ -1,39 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
+if TYPE_CHECKING:
+    from ..models.auth_metadata_tenant_abilities import AuthMetadataTenantAbilities
 
 
 T = TypeVar("T", bound="AuthMetadataTenant")
 
 
-
 @_attrs_define
 class AuthMetadataTenant:
-    """ 
-        Attributes:
-            id (str):
-            is_mcp_authorization_api_key_enabled (bool):
-            grant_users_install_servers_policy (bool):
-            display_name (str):
-            is_trial (bool):
-            subscription_plan (str):
-            subscription_seats (float):
-            free_credits (float):
-            paid_credits (float):
-            number_of_enabled_users (float | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        is_mcp_authorization_api_key_enabled (bool):
+        grant_users_install_servers_policy (bool):
+        display_name (str):
+        is_trial (bool):
+        subscription_plan (str):
+        subscription_seats (float):
+        free_credits (float):
+        paid_credits (float):
+        abilities (AuthMetadataTenantAbilities):
+        number_of_enabled_users (float | Unset):
+    """
 
     id: str
     is_mcp_authorization_api_key_enabled: bool
@@ -44,11 +40,8 @@ class AuthMetadataTenant:
     subscription_seats: float
     free_credits: float
     paid_credits: float
+    abilities: AuthMetadataTenantAbilities
     number_of_enabled_users: float | Unset = UNSET
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -69,31 +62,35 @@ class AuthMetadataTenant:
 
         paid_credits = self.paid_credits
 
-        number_of_enabled_users = self.number_of_enabled_users
+        abilities = self.abilities.to_dict()
 
+        number_of_enabled_users = self.number_of_enabled_users
 
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "id": id,
-            "isMcpAuthorizationApiKeyEnabled": is_mcp_authorization_api_key_enabled,
-            "grantUsersInstallServersPolicy": grant_users_install_servers_policy,
-            "displayName": display_name,
-            "isTrial": is_trial,
-            "subscriptionPlan": subscription_plan,
-            "subscriptionSeats": subscription_seats,
-            "freeCredits": free_credits,
-            "paidCredits": paid_credits,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "isMcpAuthorizationApiKeyEnabled": is_mcp_authorization_api_key_enabled,
+                "grantUsersInstallServersPolicy": grant_users_install_servers_policy,
+                "displayName": display_name,
+                "isTrial": is_trial,
+                "subscriptionPlan": subscription_plan,
+                "subscriptionSeats": subscription_seats,
+                "freeCredits": free_credits,
+                "paidCredits": paid_credits,
+                "abilities": abilities,
+            }
+        )
         if number_of_enabled_users is not UNSET:
             field_dict["numberOfEnabledUsers"] = number_of_enabled_users
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.auth_metadata_tenant_abilities import AuthMetadataTenantAbilities
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -113,6 +110,8 @@ class AuthMetadataTenant:
 
         paid_credits = d.pop("paidCredits")
 
+        abilities = AuthMetadataTenantAbilities.from_dict(d.pop("abilities"))
+
         number_of_enabled_users = d.pop("numberOfEnabledUsers", UNSET)
 
         auth_metadata_tenant = cls(
@@ -125,8 +124,8 @@ class AuthMetadataTenant:
             subscription_seats=subscription_seats,
             free_credits=free_credits,
             paid_credits=paid_credits,
+            abilities=abilities,
             number_of_enabled_users=number_of_enabled_users,
         )
 
         return auth_metadata_tenant
-

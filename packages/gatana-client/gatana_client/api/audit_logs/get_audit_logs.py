@@ -1,60 +1,30 @@
+import datetime
 from http import HTTPStatus
-from typing import Any, cast
-from urllib.parse import quote
+from typing import Any
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
-from ...models.paginated_audit_logs import PaginatedAuditLogs
-from ...types import UNSET, Unset
-from dateutil.parser import isoparse
-from typing import cast
-import datetime
-
+from ...client import AuthenticatedClient, Client
+from ...models.sandbox_audit_log import SandboxAuditLog
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     page: str | Unset = UNSET,
     limit: str | Unset = UNSET,
-    user_id: str | Unset = UNSET,
-    entity_types: list[str] | str | Unset = UNSET,
-    entity_id: str | Unset = UNSET,
-    tenant_id: str | Unset = UNSET,
+    event_name: str | Unset = UNSET,
     start_date: datetime.datetime | Unset = UNSET,
     end_date: datetime.datetime | Unset = UNSET,
-    search: str | Unset = UNSET,
-
 ) -> dict[str, Any]:
-    
-
-    
-
     params: dict[str, Any] = {}
 
     params["page"] = page
 
     params["limit"] = limit
 
-    params["userId"] = user_id
-
-    json_entity_types: list[str] | str | Unset
-    if isinstance(entity_types, Unset):
-        json_entity_types = UNSET
-    elif isinstance(entity_types, list):
-        json_entity_types = entity_types
-
-
-    else:
-        json_entity_types = entity_types
-    params["entityTypes"] = json_entity_types
-
-    params["entityId"] = entity_id
-
-    params["tenantId"] = tenant_id
+    params["eventName"] = event_name
 
     json_start_date: str | Unset = UNSET
     if not isinstance(start_date, Unset):
@@ -66,11 +36,7 @@ def _get_kwargs(
         json_end_date = end_date.isoformat()
     params["endDate"] = json_end_date
 
-    params["search"] = search
-
-
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
 
     _kwargs: dict[str, Any] = {
         "method": "get",
@@ -78,16 +44,12 @@ def _get_kwargs(
         "params": params,
     }
 
-
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> PaginatedAuditLogs | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> SandboxAuditLog | None:
     if response.status_code == 200:
-        response_200 = PaginatedAuditLogs.from_dict(response.json())
-
-
+        response_200 = SandboxAuditLog.from_dict(response.json())
 
         return response_200
 
@@ -97,7 +59,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[PaginatedAuditLogs]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[SandboxAuditLog]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -111,47 +73,32 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     page: str | Unset = UNSET,
     limit: str | Unset = UNSET,
-    user_id: str | Unset = UNSET,
-    entity_types: list[str] | str | Unset = UNSET,
-    entity_id: str | Unset = UNSET,
-    tenant_id: str | Unset = UNSET,
+    event_name: str | Unset = UNSET,
     start_date: datetime.datetime | Unset = UNSET,
     end_date: datetime.datetime | Unset = UNSET,
-    search: str | Unset = UNSET,
-
-) -> Response[PaginatedAuditLogs]:
-    """ 
+) -> Response[SandboxAuditLog]:
+    """
     Args:
         page (str | Unset):
         limit (str | Unset):
-        user_id (str | Unset):
-        entity_types (list[str] | str | Unset):
-        entity_id (str | Unset):
-        tenant_id (str | Unset):
+        event_name (str | Unset):
         start_date (datetime.datetime | Unset):
         end_date (datetime.datetime | Unset):
-        search (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedAuditLogs]
-     """
-
+        Response[SandboxAuditLog]
+    """
 
     kwargs = _get_kwargs(
         page=page,
-limit=limit,
-user_id=user_id,
-entity_types=entity_types,
-entity_id=entity_id,
-tenant_id=tenant_id,
-start_date=start_date,
-end_date=end_date,
-search=search,
-
+        limit=limit,
+        event_name=event_name,
+        start_date=start_date,
+        end_date=end_date,
     )
 
     response = client.get_httpx_client().request(
@@ -160,154 +107,112 @@ search=search,
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     *,
     client: AuthenticatedClient | Client,
     page: str | Unset = UNSET,
     limit: str | Unset = UNSET,
-    user_id: str | Unset = UNSET,
-    entity_types: list[str] | str | Unset = UNSET,
-    entity_id: str | Unset = UNSET,
-    tenant_id: str | Unset = UNSET,
+    event_name: str | Unset = UNSET,
     start_date: datetime.datetime | Unset = UNSET,
     end_date: datetime.datetime | Unset = UNSET,
-    search: str | Unset = UNSET,
-
-) -> PaginatedAuditLogs | None:
-    """ 
+) -> SandboxAuditLog | None:
+    """
     Args:
         page (str | Unset):
         limit (str | Unset):
-        user_id (str | Unset):
-        entity_types (list[str] | str | Unset):
-        entity_id (str | Unset):
-        tenant_id (str | Unset):
+        event_name (str | Unset):
         start_date (datetime.datetime | Unset):
         end_date (datetime.datetime | Unset):
-        search (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedAuditLogs
-     """
-
+        SandboxAuditLog
+    """
 
     return sync_detailed(
         client=client,
-page=page,
-limit=limit,
-user_id=user_id,
-entity_types=entity_types,
-entity_id=entity_id,
-tenant_id=tenant_id,
-start_date=start_date,
-end_date=end_date,
-search=search,
-
+        page=page,
+        limit=limit,
+        event_name=event_name,
+        start_date=start_date,
+        end_date=end_date,
     ).parsed
+
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     page: str | Unset = UNSET,
     limit: str | Unset = UNSET,
-    user_id: str | Unset = UNSET,
-    entity_types: list[str] | str | Unset = UNSET,
-    entity_id: str | Unset = UNSET,
-    tenant_id: str | Unset = UNSET,
+    event_name: str | Unset = UNSET,
     start_date: datetime.datetime | Unset = UNSET,
     end_date: datetime.datetime | Unset = UNSET,
-    search: str | Unset = UNSET,
-
-) -> Response[PaginatedAuditLogs]:
-    """ 
+) -> Response[SandboxAuditLog]:
+    """
     Args:
         page (str | Unset):
         limit (str | Unset):
-        user_id (str | Unset):
-        entity_types (list[str] | str | Unset):
-        entity_id (str | Unset):
-        tenant_id (str | Unset):
+        event_name (str | Unset):
         start_date (datetime.datetime | Unset):
         end_date (datetime.datetime | Unset):
-        search (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PaginatedAuditLogs]
-     """
-
+        Response[SandboxAuditLog]
+    """
 
     kwargs = _get_kwargs(
         page=page,
-limit=limit,
-user_id=user_id,
-entity_types=entity_types,
-entity_id=entity_id,
-tenant_id=tenant_id,
-start_date=start_date,
-end_date=end_date,
-search=search,
-
+        limit=limit,
+        event_name=event_name,
+        start_date=start_date,
+        end_date=end_date,
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     page: str | Unset = UNSET,
     limit: str | Unset = UNSET,
-    user_id: str | Unset = UNSET,
-    entity_types: list[str] | str | Unset = UNSET,
-    entity_id: str | Unset = UNSET,
-    tenant_id: str | Unset = UNSET,
+    event_name: str | Unset = UNSET,
     start_date: datetime.datetime | Unset = UNSET,
     end_date: datetime.datetime | Unset = UNSET,
-    search: str | Unset = UNSET,
-
-) -> PaginatedAuditLogs | None:
-    """ 
+) -> SandboxAuditLog | None:
+    """
     Args:
         page (str | Unset):
         limit (str | Unset):
-        user_id (str | Unset):
-        entity_types (list[str] | str | Unset):
-        entity_id (str | Unset):
-        tenant_id (str | Unset):
+        event_name (str | Unset):
         start_date (datetime.datetime | Unset):
         end_date (datetime.datetime | Unset):
-        search (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PaginatedAuditLogs
-     """
+        SandboxAuditLog
+    """
 
-
-    return (await asyncio_detailed(
-        client=client,
-page=page,
-limit=limit,
-user_id=user_id,
-entity_types=entity_types,
-entity_id=entity_id,
-tenant_id=tenant_id,
-start_date=start_date,
-end_date=end_date,
-search=search,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            client=client,
+            page=page,
+            limit=limit,
+            event_name=event_name,
+            start_date=start_date,
+            end_date=end_date,
+        )
+    ).parsed

@@ -5,6 +5,7 @@ from .auth_metadata import AuthMetadata
 from .auth_metadata_quota import AuthMetadataQuota
 from .auth_metadata_quota_enabled_servers import AuthMetadataQuotaEnabledServers
 from .auth_metadata_tenant import AuthMetadataTenant
+from .auth_metadata_tenant_abilities import AuthMetadataTenantAbilities
 from .auth_metadata_user import AuthMetadataUser
 from .aws_secrets_manager_configuration import AwsSecretsManagerConfiguration
 from .aws_secrets_manager_configuration_output import AwsSecretsManagerConfigurationOutput
@@ -82,6 +83,8 @@ from .get_profiles_profile_id_response_200 import GetProfilesProfileIdResponse20
 from .get_profiles_profile_id_tools_response_200 import GetProfilesProfileIdToolsResponse200
 from .get_profiles_profile_id_tools_response_200_tools import GetProfilesProfileIdToolsResponse200Tools
 from .get_profiles_response_200 import GetProfilesResponse200
+from .get_sandbox_id_audit_logs_id_response_200 import GetSandboxIdAuditLogsIdResponse200
+from .get_sandbox_id_audit_logs_id_response_200_pagination import GetSandboxIdAuditLogsIdResponse200Pagination
 from .get_sandbox_response import GetSandboxResponse
 from .get_subscription_response import GetSubscriptionResponse
 from .get_subscription_response_subscription_type_0 import GetSubscriptionResponseSubscriptionType0
@@ -110,8 +113,6 @@ from .infisical_configuration import InfisicalConfiguration
 from .infisical_configuration_output import InfisicalConfigurationOutput
 from .list_sandboxes_response import ListSandboxesResponse
 from .mcp_audit_log_verbosity import McpAuditLogVerbosity
-from .paginated_audit_logs import PaginatedAuditLogs
-from .paginated_audit_logs_pagination import PaginatedAuditLogsPagination
 from .patch_secret_stores_id_body import PatchSecretStoresIdBody
 from .patch_secret_stores_store_id_mappings_mapping_name_body import PatchSecretStoresStoreIdMappingsMappingNameBody
 from .patch_users_user_sub_personal_access_tokens_pat_id_response_200 import (
@@ -186,6 +187,8 @@ from .put_teams_team_id_body import PutTeamsTeamIdBody
 from .put_teams_team_id_members_user_id_body import PutTeamsTeamIdMembersUserIdBody
 from .put_teams_team_id_members_user_id_response_200 import PutTeamsTeamIdMembersUserIdResponse200
 from .put_users_me_response_200 import PutUsersMeResponse200
+from .sandbox_audit_log import SandboxAuditLog
+from .sandbox_audit_log_details import SandboxAuditLogDetails
 from .sandbox_dto import SandboxDto
 from .sandbox_with_status_dto import SandboxWithStatusDto
 from .sandbox_with_status_dto_status import SandboxWithStatusDtoStatus
@@ -280,6 +283,7 @@ __all__ = (
     "AuthMetadataQuota",
     "AuthMetadataQuotaEnabledServers",
     "AuthMetadataTenant",
+    "AuthMetadataTenantAbilities",
     "AuthMetadataUser",
     "AwsSecretsManagerConfiguration",
     "AwsSecretsManagerConfigurationOutput",
@@ -329,6 +333,8 @@ __all__ = (
     "GetProfilesProfileIdToolsResponse200",
     "GetProfilesProfileIdToolsResponse200Tools",
     "GetProfilesResponse200",
+    "GetSandboxIdAuditLogsIdResponse200",
+    "GetSandboxIdAuditLogsIdResponse200Pagination",
     "GetSandboxResponse",
     "GetSubscriptionResponse",
     "GetSubscriptionResponseSubscriptionType0",
@@ -357,8 +363,6 @@ __all__ = (
     "InfisicalConfigurationOutput",
     "ListSandboxesResponse",
     "McpAuditLogVerbosity",
-    "PaginatedAuditLogs",
-    "PaginatedAuditLogsPagination",
     "PatchSecretStoresIdBody",
     "PatchSecretStoresStoreIdMappingsMappingNameBody",
     "PatchUsersUserSubPersonalAccessTokensPatIdResponse200",
@@ -413,6 +417,8 @@ __all__ = (
     "PutTeamsTeamIdMembersUserIdBody",
     "PutTeamsTeamIdMembersUserIdResponse200",
     "PutUsersMeResponse200",
+    "SandboxAuditLog",
+    "SandboxAuditLogDetails",
     "SandboxDto",
     "SandboxWithStatusDto",
     "SandboxWithStatusDtoStatus",
