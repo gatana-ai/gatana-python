@@ -1,0 +1,84 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
+T = TypeVar("T", bound="GetMcpServersServerSlugCredentialsUserApikeysResponse200")
+
+
+
+@_attrs_define
+class GetMcpServersServerSlugCredentialsUserApikeysResponse200:
+    """ 
+        Attributes:
+            apikeys (list[list[str]]):
+     """
+
+    apikeys: list[list[str]]
+
+
+
+
+
+    def to_dict(self) -> dict[str, Any]:
+        apikeys = []
+        for apikeys_item_data in self.apikeys:
+            apikeys_item = []
+            for apikeys_item_item_data in apikeys_item_data:
+                apikeys_item_item: str
+                apikeys_item_item = apikeys_item_item_data
+                apikeys_item.append(apikeys_item_item)
+
+
+            apikeys.append(apikeys_item)
+
+
+
+
+        field_dict: dict[str, Any] = {}
+
+        field_dict.update({
+            "apikeys": apikeys,
+        })
+
+        return field_dict
+
+
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        apikeys = []
+        _apikeys = d.pop("apikeys")
+        for apikeys_item_data in (_apikeys):
+            apikeys_item = []
+            _apikeys_item = apikeys_item_data
+            for apikeys_item_item_data in (_apikeys_item):
+                def _parse_apikeys_item_item(data: object) -> str:
+                    return cast(str, data)
+
+                apikeys_item_item = _parse_apikeys_item_item(apikeys_item_item_data)
+
+                apikeys_item.append(apikeys_item_item)
+
+            apikeys.append(apikeys_item)
+
+
+        get_mcp_servers_server_slug_credentials_user_apikeys_response_200 = cls(
+            apikeys=apikeys,
+        )
+
+        return get_mcp_servers_server_slug_credentials_user_apikeys_response_200
+
