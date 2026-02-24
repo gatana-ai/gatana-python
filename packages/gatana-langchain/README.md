@@ -1,5 +1,7 @@
 # gatana-langchain
 
+Current version: **v0.1.0**
+
 [![PyPI](https://img.shields.io/pypi/v/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![Python](https://img.shields.io/pypi/pyversions/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

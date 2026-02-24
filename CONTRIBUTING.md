@@ -17,7 +17,7 @@ packages/
 ├── gatana-client/      # Auto-generated API SDK (from OpenAPI spec)
 │   └── gatana_client/
 └── gatana-langchain/   # LangChain integration (hand-written)
-    └── gatana/
+    └── gatana_langchain/
 tests/                  # Integration / end-to-end tests
 ```
 

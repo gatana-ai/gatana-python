@@ -28,37 +28,56 @@ test:
 test-cov:
     uv run pytest tests/ --cov --cov-report=term-missing
 
-# Build both packages (sdist + wheel)
-build:
-    uv build --package gatana-client
-    uv build --package gatana-langchain
+# Build a specific package (sdist + wheel)
+build pkg:
+    uv build --package {{ pkg }}
 
-# Publish both packages to PyPI
-publish:
-    uv publish dist/gatana_client*
-    uv publish dist/gatana_langchain*
+# Build all packages
+build-all:
+    just build gatana-client
+    just build gatana-langchain
 
-# Release: bump version, run checks, build, tag, and optionally publish
-release bump publish="":
+# Publish a specific package to PyPI
+publish pkg:
     #!/usr/bin/env bash
     set -euo pipefail
+    PKG_UNDER=$(echo "{{ pkg }}" | tr '-' '_')
+    uv publish dist/${PKG_UNDER}*
+
+# Publish all packages to PyPI
+publish-all:
+    just publish gatana-client
+    just publish gatana-langchain
+
+# Release a specific package: bump version, run checks, build, tag, and optionally publish
+release pkg bump publish="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    PKG_DIR="packages/{{ pkg }}"
     echo "🔍 Running checks before release..."
     just lint
     just typecheck
     just test
-    echo "✅ All checks passed. Bumping {{ bump }} version..."
+    echo "✅ All checks passed. Bumping {{ bump }} version for {{ pkg }}..."
+    pushd "$PKG_DIR" > /dev/null
     bumpsemver --no-commit --no-tag {{ bump }}
     NEW_VERSION=$(grep 'current_version = ' .bumpsemver.cfg | cut -d= -f2 | tr -d '[:space:]')
-    echo "🏷️  Version bumped to $NEW_VERSION"
+    popd > /dev/null
+    echo "🏷️  {{ pkg }} version bumped to $NEW_VERSION"
     just clean
-    just build
-    git commit -am "release: ${NEW_VERSION}"
-    git tag "v${NEW_VERSION}" -m "release: v${NEW_VERSION}"
-    echo "✅ Released v${NEW_VERSION}"
+    just build {{ pkg }}
+    git commit -am "release({{ pkg }}): v${NEW_VERSION}"
+    git tag "{{ pkg }}/v${NEW_VERSION}" -m "release: {{ pkg }} v${NEW_VERSION}"
+    echo "✅ Released {{ pkg }} v${NEW_VERSION}"
     if [[ "{{ publish }}" == "publish" ]]; then
-      echo "📦 Publishing to PyPI..."
-      just publish
+      echo "📦 Publishing {{ pkg }} to PyPI..."
+      just publish {{ pkg }}
     fi
+
+# Release all packages with the same bump level
+release-all bump publish="":
+    just release gatana-client {{ bump }} {{ publish }}
+    just release gatana-langchain {{ bump }} {{ publish }}
 
 # Regenerate the Python SDK from the OpenAPI spec
 generate-sdk openapi_url="https://acme.s.gatana.ai/api/v1/openapi.json":
