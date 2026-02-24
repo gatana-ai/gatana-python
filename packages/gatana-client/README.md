@@ -1,6 +1,6 @@
 # gatana-client
 
-Current version: **v0.1.2**
+Current version: **v1.0.0**
 
 A client library for accessing Gatana
 
