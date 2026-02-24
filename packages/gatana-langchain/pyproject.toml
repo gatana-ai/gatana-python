@@ -30,10 +30,6 @@ Repository = "https://github.com/gatana-ai/gatana-langchain-sandbox"
 Issues = "https://github.com/gatana-ai/gatana-langchain-sandbox/issues"
 Changelog = "https://github.com/gatana-ai/gatana-langchain-sandbox/blob/main/CHANGELOG.md"
 
-[project.optional-dependencies]
-openai = ["langchain-openai>=0.3"]
-anthropic = ["langchain-anthropic>=0.3"]
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

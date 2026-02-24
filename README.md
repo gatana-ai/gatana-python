@@ -29,16 +29,6 @@ uv add gatana-langchain
 
 This will also install `gatana-client` as a dependency.
 
-### Optional dependencies
-
-```bash
-# OpenAI support
-pip install gatana-langchain[openai]
-
-# Anthropic support
-pip install gatana-langchain[anthropic]
-```
-
 ## Quick Start
 
 ```python
@@ -54,7 +44,7 @@ packages/
 ├── gatana-client/      # Auto-generated API SDK (from OpenAPI spec)
 │   └── gatana_client/
 └── gatana-langchain/   # LangChain integration (hand-written)
-    └── gatana/
+    └── gatana_langchain/
 tests/                  # Integration tests
 ```
 

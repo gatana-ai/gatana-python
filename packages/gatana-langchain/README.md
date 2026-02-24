@@ -24,16 +24,6 @@ Or with [uv](https://docs.astral.sh/uv/):
 uv add gatana-langchain
 ```
 
-### Optional dependencies
-
-```bash
-# OpenAI support
-pip install gatana-langchain[openai]
-
-# Anthropic support
-pip install gatana-langchain[anthropic]
-```
-
 ## Quick Start
 
 ```python
