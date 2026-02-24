@@ -1,38 +1,8 @@
 [project]
-name = "gatana"
-version = "0.1.0"
-description = "A toolkit for building LangChain applications"
-readme = "README.md"
-license = "MIT"
-authors = [
-    { name = "Gatana", email = "engineering@gatana.ai" },
-]
+name = "gatana-langchain-workspace"
+version = "0.0.0"
+description = "Workspace root for gatana-langchain packages"
 requires-python = ">=3.10"
-keywords = ["langchain", "llm", "ai", "agents", "gatana"]
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Typing :: Typed",
-]
-dependencies = [
-    "langchain-core>=0.3",
-]
-
-[project.urls]
-Homepage = "https://github.com/gatana-ai/gatana-langchain-sandbox"
-Repository = "https://github.com/gatana-ai/gatana-langchain-sandbox"
-Issues = "https://github.com/gatana-ai/gatana-langchain-sandbox/issues"
-Changelog = "https://github.com/gatana-ai/gatana-langchain-sandbox/blob/main/CHANGELOG.md"
-
-[project.optional-dependencies]
-openai = ["langchain-openai>=0.3"]
-anthropic = ["langchain-anthropic>=0.3"]
 
 [dependency-groups]
 dev = [
@@ -44,9 +14,8 @@ lint = ["ruff>=0.9", "pre-commit>=4"]
 test = ["pytest>=8", "pytest-cov>=6", "pytest-asyncio>=0.24"]
 type = ["mypy>=1.14"]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.uv.workspace]
+members = ["packages/*"]
 
 # ---------------------------------------------------------------------------
 # Tool configuration
@@ -55,7 +24,7 @@ build-backend = "hatchling.build"
 [tool.ruff]
 target-version = "py310"
 line-length = 88
-src = ["src"]
+src = ["packages/gatana-langchain"]
 
 [tool.ruff.lint]
 select = [

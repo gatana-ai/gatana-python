@@ -2,10 +2,9 @@
 
 [![PyPI](https://img.shields.io/pypi/v/gatana)](https://pypi.org/project/gatana/)
 [![Python](https://img.shields.io/pypi/pyversions/gatana)](https://pypi.org/project/gatana/)
-[![CI](https://github.com/gatana-ai/gatana-langchain-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/gatana-ai/gatana-langchain-sandbox/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A toolkit for building LangChain applications.
+A toolkit for building with LangChain applications with Gatana.
 
 ## Features
 

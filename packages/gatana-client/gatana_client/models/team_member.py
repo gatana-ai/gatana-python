@@ -1,0 +1,94 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
+from ..models.schema_68 import Schema68
+
+
+
+
+
+
+T = TypeVar("T", bound="TeamMember")
+
+
+
+@_attrs_define
+class TeamMember:
+    """ 
+        Attributes:
+            team_id (str):
+            user_id (float):
+            role (Schema68):
+            created_at (str):
+            updated_at (str):
+     """
+
+    team_id: str
+    user_id: float
+    role: Schema68
+    created_at: str
+    updated_at: str
+
+
+
+
+
+    def to_dict(self) -> dict[str, Any]:
+        team_id = self.team_id
+
+        user_id = self.user_id
+
+        role = self.role.value
+
+        created_at = self.created_at
+
+        updated_at = self.updated_at
+
+
+        field_dict: dict[str, Any] = {}
+
+        field_dict.update({
+            "teamId": team_id,
+            "userId": user_id,
+            "role": role,
+            "createdAt": created_at,
+            "updatedAt": updated_at,
+        })
+
+        return field_dict
+
+
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        team_id = d.pop("teamId")
+
+        user_id = d.pop("userId")
+
+        role = Schema68(d.pop("role"))
+
+
+
+
+        created_at = d.pop("createdAt")
+
+        updated_at = d.pop("updatedAt")
+
+        team_member = cls(
+            team_id=team_id,
+            user_id=user_id,
+            role=role,
+            created_at=created_at,
+            updated_at=updated_at,
+        )
+
+        return team_member
+
