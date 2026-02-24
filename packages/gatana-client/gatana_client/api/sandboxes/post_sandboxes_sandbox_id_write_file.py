@@ -7,14 +7,17 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.post_sandboxes_sandbox_id_write_file_response_200 import PostSandboxesSandboxIdWriteFileResponse200
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     sandbox_id: str,
     *,
+    body: Any | Unset = UNSET,
     path: str,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
+
     params: dict[str, Any] = {}
 
     params["path"] = path
@@ -29,6 +32,12 @@ def _get_kwargs(
         "params": params,
     }
 
+    if not isinstance(body, Unset):
+        _kwargs["content"] = body.payload
+
+    headers["Content-Type"] = "application/octet-stream"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -61,12 +70,14 @@ def sync_detailed(
     sandbox_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: Any | Unset = UNSET,
     path: str,
 ) -> Response[PostSandboxesSandboxIdWriteFileResponse200]:
     """
     Args:
         sandbox_id (str):
         path (str):
+        body (Any | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -78,6 +89,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         sandbox_id=sandbox_id,
+        body=body,
         path=path,
     )
 
@@ -92,12 +104,14 @@ def sync(
     sandbox_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: Any | Unset = UNSET,
     path: str,
 ) -> PostSandboxesSandboxIdWriteFileResponse200 | None:
     """
     Args:
         sandbox_id (str):
         path (str):
+        body (Any | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -110,6 +124,7 @@ def sync(
     return sync_detailed(
         sandbox_id=sandbox_id,
         client=client,
+        body=body,
         path=path,
     ).parsed
 
@@ -118,12 +133,14 @@ async def asyncio_detailed(
     sandbox_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: Any | Unset = UNSET,
     path: str,
 ) -> Response[PostSandboxesSandboxIdWriteFileResponse200]:
     """
     Args:
         sandbox_id (str):
         path (str):
+        body (Any | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -135,6 +152,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         sandbox_id=sandbox_id,
+        body=body,
         path=path,
     )
 
@@ -147,12 +165,14 @@ async def asyncio(
     sandbox_id: str,
     *,
     client: AuthenticatedClient | Client,
+    body: Any | Unset = UNSET,
     path: str,
 ) -> PostSandboxesSandboxIdWriteFileResponse200 | None:
     """
     Args:
         sandbox_id (str):
         path (str):
+        body (Any | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -166,6 +186,7 @@ async def asyncio(
         await asyncio_detailed(
             sandbox_id=sandbox_id,
             client=client,
+            body=body,
             path=path,
         )
     ).parsed

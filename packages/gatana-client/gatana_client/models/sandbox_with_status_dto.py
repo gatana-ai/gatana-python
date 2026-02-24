@@ -19,7 +19,6 @@ class SandboxWithStatusDto:
     Attributes:
         id (str):
         tenant_id (str):
-        kubernetes_deployment_name (str):
         last_activity_at (str):
         created_at (str):
         updated_at (str):
@@ -29,7 +28,6 @@ class SandboxWithStatusDto:
 
     id: str
     tenant_id: str
-    kubernetes_deployment_name: str
     last_activity_at: str
     created_at: str
     updated_at: str
@@ -40,8 +38,6 @@ class SandboxWithStatusDto:
         id = self.id
 
         tenant_id = self.tenant_id
-
-        kubernetes_deployment_name = self.kubernetes_deployment_name
 
         last_activity_at = self.last_activity_at
 
@@ -59,7 +55,6 @@ class SandboxWithStatusDto:
             {
                 "id": id,
                 "tenantId": tenant_id,
-                "kubernetesDeploymentName": kubernetes_deployment_name,
                 "lastActivityAt": last_activity_at,
                 "createdAt": created_at,
                 "updatedAt": updated_at,
@@ -80,8 +75,6 @@ class SandboxWithStatusDto:
 
         tenant_id = d.pop("tenantId")
 
-        kubernetes_deployment_name = d.pop("kubernetesDeploymentName")
-
         last_activity_at = d.pop("lastActivityAt")
 
         created_at = d.pop("createdAt")
@@ -95,7 +88,6 @@ class SandboxWithStatusDto:
         sandbox_with_status_dto = cls(
             id=id,
             tenant_id=tenant_id,
-            kubernetes_deployment_name=kubernetes_deployment_name,
             last_activity_at=last_activity_at,
             created_at=created_at,
             updated_at=updated_at,

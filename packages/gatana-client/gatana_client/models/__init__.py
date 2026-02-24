@@ -130,8 +130,6 @@ from .post_profiles_body import PostProfilesBody
 from .post_profiles_profile_id_claim_mappings_body import PostProfilesProfileIdClaimMappingsBody
 from .post_profiles_profile_id_claim_mappings_response_200 import PostProfilesProfileIdClaimMappingsResponse200
 from .post_profiles_response_200 import PostProfilesResponse200
-from .post_sandboxes_sandbox_id_exec_response_200 import PostSandboxesSandboxIdExecResponse200
-from .post_sandboxes_sandbox_id_read_file_response_200 import PostSandboxesSandboxIdReadFileResponse200
 from .post_sandboxes_sandbox_id_write_file_response_200 import PostSandboxesSandboxIdWriteFileResponse200
 from .post_secret_stores_body import PostSecretStoresBody
 from .post_secret_stores_body_type import PostSecretStoresBodyType
@@ -373,8 +371,6 @@ __all__ = (
     "PostProfilesProfileIdClaimMappingsBody",
     "PostProfilesProfileIdClaimMappingsResponse200",
     "PostProfilesResponse200",
-    "PostSandboxesSandboxIdExecResponse200",
-    "PostSandboxesSandboxIdReadFileResponse200",
     "PostSandboxesSandboxIdWriteFileResponse200",
     "PostSecretStoresBody",
     "PostSecretStoresBodyType",

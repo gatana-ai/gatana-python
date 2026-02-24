@@ -11,7 +11,7 @@ dependencies = [
 
 [tool.poetry]
 name = "gatana-client"
-version = "v1.4.3-next.20260224091944"
+version = "0.0.0"
 description = "A client library for accessing Gatana"
 authors = []
 readme = "README.md"
