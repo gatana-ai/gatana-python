@@ -2,6 +2,10 @@
 default:
     @just --list
 
+# Set up the full development environment
+init: install
+    .venv/bin/pre-commit install
+
 # Install all dependencies (including dev)
 install:
     uv sync --all-groups --all-packages
@@ -37,12 +41,12 @@ build-all:
     just build gatana-client
     just build gatana-langchain
 
-# Publish a specific package to PyPI
-publish pkg:
+# Publish a specific package to PyPI (builds first if needed)
+publish pkg: (build pkg)
     #!/usr/bin/env bash
     set -euo pipefail
     PKG_UNDER=$(echo "{{ pkg }}" | tr '-' '_')
-    uv publish dist/${PKG_UNDER}*
+    uv publish --username __token__ dist/${PKG_UNDER}*
 
 # Publish all packages to PyPI
 publish-all:
