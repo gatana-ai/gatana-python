@@ -1,42 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_65 import Schema65
-
-
-
-
-
+from ..models.schema_66 import Schema66
 
 T = TypeVar("T", bound="GetMembersResponseUsersItem")
 
 
-
 @_attrs_define
 class GetMembersResponseUsersItem:
-    """ 
-        Attributes:
-            role (Schema65):
-            sub (str):
-            name (str):
-            email (str):
-     """
+    """
+    Attributes:
+        role (Schema66):
+        sub (str):
+        name (str):
+        email (str):
+    """
 
-    role: Schema65
+    role: Schema66
     sub: str
     name: str
     email: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         role = self.role.value
@@ -47,27 +34,23 @@ class GetMembersResponseUsersItem:
 
         email = self.email
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "role": role,
-            "sub": sub,
-            "name": name,
-            "email": email,
-        })
+        field_dict.update(
+            {
+                "role": role,
+                "sub": sub,
+                "name": name,
+                "email": email,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        role = Schema65(d.pop("role"))
-
-
-
+        role = Schema66(d.pop("role"))
 
         sub = d.pop("sub")
 
@@ -83,4 +66,3 @@ class GetMembersResponseUsersItem:
         )
 
         return get_members_response_users_item
-

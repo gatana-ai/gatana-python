@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_75 import Schema75
+from ..models.schema_76 import Schema76
 
 if TYPE_CHECKING:
     from ..models.aws_secrets_manager_configuration_output import AwsSecretsManagerConfigurationOutput
@@ -24,7 +24,7 @@ class SecretStoreDetailResponse:
     Attributes:
         id (str):
         name (str):
-        type_ (Schema75):
+        type_ (Schema76):
         is_enabled (bool):
         created_at (str):
         updated_at (str):
@@ -34,7 +34,7 @@ class SecretStoreDetailResponse:
 
     id: str
     name: str
-    type_: Schema75
+    type_: Schema76
     is_enabled: bool
     created_at: str
     updated_at: str
@@ -105,7 +105,7 @@ class SecretStoreDetailResponse:
 
         name = d.pop("name")
 
-        type_ = Schema75(d.pop("type"))
+        type_ = Schema76(d.pop("type"))
 
         is_enabled = d.pop("isEnabled")
 

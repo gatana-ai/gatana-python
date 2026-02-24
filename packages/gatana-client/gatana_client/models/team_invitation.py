@@ -1,57 +1,43 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_68 import Schema68
-from typing import cast
-
-
-
-
-
+from ..models.schema_69 import Schema69
 
 T = TypeVar("T", bound="TeamInvitation")
 
 
-
 @_attrs_define
 class TeamInvitation:
-    """ 
-        Attributes:
-            id (str):
-            team_id (str):
-            tenant_id (str):
-            inviter_user_id (float | None):
-            email (str):
-            role (Schema68):
-            token (str):
-            expires_at (str):
-            accepted_at (None | str):
-            created_at (str):
-            updated_at (str):
-     """
+    """
+    Attributes:
+        id (str):
+        team_id (str):
+        tenant_id (str):
+        inviter_user_id (float | None):
+        email (str):
+        role (Schema69):
+        token (str):
+        expires_at (str):
+        accepted_at (None | str):
+        created_at (str):
+        updated_at (str):
+    """
 
     id: str
     team_id: str
     tenant_id: str
     inviter_user_id: float | None
     email: str
-    role: Schema68
+    role: Schema69
     token: str
     expires_at: str
     accepted_at: None | str
     created_at: str
     updated_at: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -78,26 +64,25 @@ class TeamInvitation:
 
         updated_at = self.updated_at
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "id": id,
-            "teamId": team_id,
-            "tenantId": tenant_id,
-            "inviterUserId": inviter_user_id,
-            "email": email,
-            "role": role,
-            "token": token,
-            "expiresAt": expires_at,
-            "acceptedAt": accepted_at,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "teamId": team_id,
+                "tenantId": tenant_id,
+                "inviterUserId": inviter_user_id,
+                "email": email,
+                "role": role,
+                "token": token,
+                "expiresAt": expires_at,
+                "acceptedAt": accepted_at,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -115,13 +100,9 @@ class TeamInvitation:
 
         inviter_user_id = _parse_inviter_user_id(d.pop("inviterUserId"))
 
-
         email = d.pop("email")
 
-        role = Schema68(d.pop("role"))
-
-
-
+        role = Schema69(d.pop("role"))
 
         token = d.pop("token")
 
@@ -133,7 +114,6 @@ class TeamInvitation:
             return cast(None | str, data)
 
         accepted_at = _parse_accepted_at(d.pop("acceptedAt"))
-
 
         created_at = d.pop("createdAt")
 
@@ -154,4 +134,3 @@ class TeamInvitation:
         )
 
         return team_invitation
-

@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 from attrs import define as _attrs_define
 
 from ..models.mcp_audit_log_verbosity import McpAuditLogVerbosity
-from ..models.schema_65 import Schema65
+from ..models.schema_66 import Schema66
 
 if TYPE_CHECKING:
     from ..models.tenant_oidc_configuration import TenantOidcConfiguration
@@ -33,7 +33,7 @@ class TenantDto:
         allow_member_add_local_servers (bool):
         allow_member_add_hosted_servers (bool):
         is_google_refresh_token_saving_enabled (bool):
-        member_default_role (Literal['none'] | Schema65):
+        member_default_role (Literal['none'] | Schema66):
         mcp_audit_log_level (McpAuditLogVerbosity):
     """
 
@@ -50,7 +50,7 @@ class TenantDto:
     allow_member_add_local_servers: bool
     allow_member_add_hosted_servers: bool
     is_google_refresh_token_saving_enabled: bool
-    member_default_role: Literal["none"] | Schema65
+    member_default_role: Literal["none"] | Schema66
     mcp_audit_log_level: McpAuditLogVerbosity
 
     def to_dict(self) -> dict[str, Any]:
@@ -92,7 +92,7 @@ class TenantDto:
         is_google_refresh_token_saving_enabled = self.is_google_refresh_token_saving_enabled
 
         member_default_role: Literal["none"] | str
-        if isinstance(self.member_default_role, Schema65):
+        if isinstance(self.member_default_role, Schema66):
             member_default_role = self.member_default_role.value
         else:
             member_default_role = self.member_default_role
@@ -181,11 +181,11 @@ class TenantDto:
 
         is_google_refresh_token_saving_enabled = d.pop("isGoogleRefreshTokenSavingEnabled")
 
-        def _parse_member_default_role(data: object) -> Literal["none"] | Schema65:
+        def _parse_member_default_role(data: object) -> Literal["none"] | Schema66:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                member_default_role_type_0 = Schema65(data)
+                member_default_role_type_0 = Schema66(data)
 
                 return member_default_role_type_0
             except (TypeError, ValueError, AttributeError, KeyError):

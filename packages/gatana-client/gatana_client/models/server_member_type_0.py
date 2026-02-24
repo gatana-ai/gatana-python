@@ -1,48 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_65 import Schema65
-
-
-
-
-
+from ..models.schema_66 import Schema66
 
 T = TypeVar("T", bound="ServerMemberType0")
 
 
-
 @_attrs_define
 class ServerMemberType0:
-    """ 
-        Attributes:
-            tenant_id (str):
-            server_id (float):
-            role (Schema65):
-            created_at (str):
-            updated_at (str):
-            user_id (float):
-            team_id (None):
-     """
+    """
+    Attributes:
+        tenant_id (str):
+        server_id (float):
+        role (Schema66):
+        created_at (str):
+        updated_at (str):
+        user_id (float):
+        team_id (None):
+    """
 
     tenant_id: str
     server_id: float
-    role: Schema65
+    role: Schema66
     created_at: str
     updated_at: str
     user_id: float
     team_id: None
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         tenant_id = self.tenant_id
@@ -59,22 +46,21 @@ class ServerMemberType0:
 
         team_id = self.team_id
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "tenantId": tenant_id,
-            "serverId": server_id,
-            "role": role,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-            "userId": user_id,
-            "teamId": team_id,
-        })
+        field_dict.update(
+            {
+                "tenantId": tenant_id,
+                "serverId": server_id,
+                "role": role,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+                "userId": user_id,
+                "teamId": team_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -83,10 +69,7 @@ class ServerMemberType0:
 
         server_id = d.pop("serverId")
 
-        role = Schema65(d.pop("role"))
-
-
-
+        role = Schema66(d.pop("role"))
 
         created_at = d.pop("createdAt")
 
@@ -107,4 +90,3 @@ class ServerMemberType0:
         )
 
         return server_member_type_0
-

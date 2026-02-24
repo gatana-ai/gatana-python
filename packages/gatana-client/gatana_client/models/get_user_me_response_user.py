@@ -1,54 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_39 import Schema39
-
-
-
-
-
+from ..models.schema_40 import Schema40
 
 T = TypeVar("T", bound="GetUserMeResponseUser")
 
 
-
 @_attrs_define
 class GetUserMeResponseUser:
-    """ 
-        Attributes:
-            id (float):
-            sub (str):
-            tenant_id (str):
-            name (str):
-            email (str):
-            role (Schema39):
-            is_disabled (bool):
-            is_service_account (bool):
-            created_at (str):
-            updated_at (str):
-     """
+    """
+    Attributes:
+        id (float):
+        sub (str):
+        tenant_id (str):
+        name (str):
+        email (str):
+        role (Schema40):
+        is_disabled (bool):
+        is_service_account (bool):
+        created_at (str):
+        updated_at (str):
+    """
 
     id: float
     sub: str
     tenant_id: str
     name: str
     email: str
-    role: Schema39
+    role: Schema40
     is_disabled: bool
     is_service_account: bool
     created_at: str
     updated_at: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -71,25 +58,24 @@ class GetUserMeResponseUser:
 
         updated_at = self.updated_at
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "id": id,
-            "sub": sub,
-            "tenantId": tenant_id,
-            "name": name,
-            "email": email,
-            "role": role,
-            "isDisabled": is_disabled,
-            "isServiceAccount": is_service_account,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "sub": sub,
+                "tenantId": tenant_id,
+                "name": name,
+                "email": email,
+                "role": role,
+                "isDisabled": is_disabled,
+                "isServiceAccount": is_service_account,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -104,10 +90,7 @@ class GetUserMeResponseUser:
 
         email = d.pop("email")
 
-        role = Schema39(d.pop("role"))
-
-
-
+        role = Schema40(d.pop("role"))
 
         is_disabled = d.pop("isDisabled")
 
@@ -131,4 +114,3 @@ class GetUserMeResponseUser:
         )
 
         return get_user_me_response_user
-

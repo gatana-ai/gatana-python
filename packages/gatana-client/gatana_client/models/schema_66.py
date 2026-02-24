@@ -1,9 +1,10 @@
 from enum import Enum
 
+
 class Schema66(str, Enum):
-    PROFILE = "profile"
-    SERVER = "server"
-    USER = "user"
+    ADMIN = "admin"
+    MAINTAINER = "maintainer"
+    MEMBER = "member"
 
     def __str__(self) -> str:
         return str(self.value)

@@ -1,66 +1,66 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
+if TYPE_CHECKING:
+    from ..models.server_dto import ServerDto
+    from ..models.server_file import ServerFile
 
 
 T = TypeVar("T", bound="Schema64")
 
 
-
 @_attrs_define
 class Schema64:
-    """ 
-        Attributes:
-            success (bool):
-            message (str):
-     """
+    """
+    Attributes:
+        server (ServerDto):
+        files (list[ServerFile]):
+    """
 
-    success: bool
-    message: str
-
-
-
-
+    server: ServerDto
+    files: list[ServerFile]
 
     def to_dict(self) -> dict[str, Any]:
-        success = self.success
+        server = self.server.to_dict()
 
-        message = self.message
-
+        files = []
+        for files_item_data in self.files:
+            files_item = files_item_data.to_dict()
+            files.append(files_item)
 
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "success": success,
-            "message": message,
-        })
+        field_dict.update(
+            {
+                "server": server,
+                "files": files,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        success = d.pop("success")
+        from ..models.server_dto import ServerDto
+        from ..models.server_file import ServerFile
 
-        message = d.pop("message")
+        d = dict(src_dict)
+        server = ServerDto.from_dict(d.pop("server"))
+
+        files = []
+        _files = d.pop("files")
+        for files_item_data in _files:
+            files_item = ServerFile.from_dict(files_item_data)
+
+            files.append(files_item)
 
         schema_64 = cls(
-            success=success,
-            message=message,
+            server=server,
+            files=files,
         )
 
         return schema_64
-

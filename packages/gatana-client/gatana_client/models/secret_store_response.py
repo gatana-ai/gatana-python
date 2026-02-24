@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_75 import Schema75
-
-
-
-
-
+from ..models.schema_76 import Schema76
 
 T = TypeVar("T", bound="SecretStoreResponse")
 
 
-
 @_attrs_define
 class SecretStoreResponse:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            type_ (Schema75):
-            is_enabled (bool):
-            created_at (str):
-            updated_at (str):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        type_ (Schema76):
+        is_enabled (bool):
+        created_at (str):
+        updated_at (str):
+    """
 
     id: str
     name: str
-    type_: Schema75
+    type_: Schema76
     is_enabled: bool
     created_at: str
     updated_at: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -55,21 +42,20 @@ class SecretStoreResponse:
 
         updated_at = self.updated_at
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "type": type_,
-            "isEnabled": is_enabled,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "type": type_,
+                "isEnabled": is_enabled,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -78,10 +64,7 @@ class SecretStoreResponse:
 
         name = d.pop("name")
 
-        type_ = Schema75(d.pop("type"))
-
-
-
+        type_ = Schema76(d.pop("type"))
 
         is_enabled = d.pop("isEnabled")
 
@@ -99,4 +82,3 @@ class SecretStoreResponse:
         )
 
         return secret_store_response
-

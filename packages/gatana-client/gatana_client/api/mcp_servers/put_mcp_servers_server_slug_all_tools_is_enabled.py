@@ -1,42 +1,32 @@
 from http import HTTPStatus
-from typing import Any, cast
+from typing import Any
 from urllib.parse import quote
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
+from ...client import AuthenticatedClient, Client
 from ...models.schema_25 import Schema25
-from ...models.schema_64 import Schema64
-from ...types import UNSET, Unset
-from typing import cast
-
+from ...models.schema_65 import Schema65
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
     *,
     body: Schema25 | Unset = UNSET,
-
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
-
-    
-
-    
-
     _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": "/mcp-servers/{server_slug}/all-tools-isEnabled".format(server_slug=quote(str(server_slug), safe=""),),
+        "url": "/mcp-servers/{server_slug}/all-tools-isEnabled".format(
+            server_slug=quote(str(server_slug), safe=""),
+        ),
     }
 
-    
     if not isinstance(body, Unset):
         _kwargs["json"] = body.to_dict()
-
 
     headers["Content-Type"] = "application/json"
 
@@ -44,12 +34,9 @@ def _get_kwargs(
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema64 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema65 | None:
     if response.status_code == 200:
-        response_200 = Schema64.from_dict(response.json())
-
-
+        response_200 = Schema65.from_dict(response.json())
 
         return response_200
 
@@ -59,7 +46,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema64]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema65]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,9 +60,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: Schema25 | Unset = UNSET,
-
-) -> Response[Schema64]:
-    """ 
+) -> Response[Schema65]:
+    """
     Args:
         server_slug (str):
         body (Schema25 | Unset):
@@ -85,14 +71,12 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema64]
-     """
-
+        Response[Schema65]
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-body=body,
-
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -101,14 +85,14 @@ body=body,
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
     body: Schema25 | Unset = UNSET,
-
-) -> Schema64 | None:
-    """ 
+) -> Schema65 | None:
+    """
     Args:
         server_slug (str):
         body (Schema25 | Unset):
@@ -118,25 +102,23 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema64
-     """
-
+        Schema65
+    """
 
     return sync_detailed(
         server_slug=server_slug,
-client=client,
-body=body,
-
+        client=client,
+        body=body,
     ).parsed
+
 
 async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
     body: Schema25 | Unset = UNSET,
-
-) -> Response[Schema64]:
-    """ 
+) -> Response[Schema65]:
+    """
     Args:
         server_slug (str):
         body (Schema25 | Unset):
@@ -146,30 +128,26 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema64]
-     """
-
+        Response[Schema65]
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-body=body,
-
+        body=body,
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
     body: Schema25 | Unset = UNSET,
-
-) -> Schema64 | None:
-    """ 
+) -> Schema65 | None:
+    """
     Args:
         server_slug (str):
         body (Schema25 | Unset):
@@ -179,13 +157,13 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema64
-     """
+        Schema65
+    """
 
-
-    return (await asyncio_detailed(
-        server_slug=server_slug,
-client=client,
-body=body,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            server_slug=server_slug,
+            client=client,
+            body=body,
+        )
+    ).parsed

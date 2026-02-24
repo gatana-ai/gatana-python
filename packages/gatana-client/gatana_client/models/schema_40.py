@@ -1,6 +1,7 @@
 from enum import Enum
 
-class Schema39(str, Enum):
+
+class Schema40(str, Enum):
     MEMBER = "member"
     OWNER = "owner"
 

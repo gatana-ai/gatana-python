@@ -46,7 +46,7 @@ publish pkg: (build pkg)
     #!/usr/bin/env bash
     set -euo pipefail
     PKG_UNDER=$(echo "{{ pkg }}" | tr '-' '_')
-    uv publish --username __token__ dist/${PKG_UNDER}*
+    UV_PUBLISH_TOKEN=$(uv auth token pypi) uv publish __token__ dist/${PKG_UNDER}*
 
 # Publish all packages to PyPI
 publish-all:

@@ -1,9 +1,50 @@
-from enum import Enum
+from __future__ import annotations
 
-class Schema65(str, Enum):
-    ADMIN = "admin"
-    MAINTAINER = "maintainer"
-    MEMBER = "member"
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
-    def __str__(self) -> str:
-        return str(self.value)
+from attrs import define as _attrs_define
+
+T = TypeVar("T", bound="Schema65")
+
+
+@_attrs_define
+class Schema65:
+    """
+    Attributes:
+        success (bool):
+        message (str):
+    """
+
+    success: bool
+    message: str
+
+    def to_dict(self) -> dict[str, Any]:
+        success = self.success
+
+        message = self.message
+
+        field_dict: dict[str, Any] = {}
+
+        field_dict.update(
+            {
+                "success": success,
+                "message": message,
+            }
+        )
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        success = d.pop("success")
+
+        message = d.pop("message")
+
+        schema_65 = cls(
+            success=success,
+            message=message,
+        )
+
+        return schema_65

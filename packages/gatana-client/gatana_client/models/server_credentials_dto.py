@@ -1,55 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_66 import Schema66
+from ..models.schema_67 import Schema67
 from ..models.server_credentials_dto_type import ServerCredentialsDtoType
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="ServerCredentialsDto")
 
 
-
 @_attrs_define
 class ServerCredentialsDto:
-    """ 
-        Attributes:
-            id (str):
-            tenant_id (str):
-            scope (Schema66):
-            user_id (float | None):
-            profile_id (None | str):
-            last_used_at (None | str):
-            authorized_at (str):
-            type_ (ServerCredentialsDtoType):
-            created_at (str):
-            updated_at (str):
-            user_sub (None | str):
-            user_email (None | str):
-            user_name (None | str):
-            profile_name (None | str):
-            apikeys_present (list[str] | None):
-            has_access_token (bool | None):
-            access_token_expiry (None | str):
-            has_refresh_token (bool | None):
-            subject (None | str):
-            email (None | str):
-     """
+    """
+    Attributes:
+        id (str):
+        tenant_id (str):
+        scope (Schema67):
+        user_id (float | None):
+        profile_id (None | str):
+        last_used_at (None | str):
+        authorized_at (str):
+        type_ (ServerCredentialsDtoType):
+        created_at (str):
+        updated_at (str):
+        user_sub (None | str):
+        user_email (None | str):
+        user_name (None | str):
+        profile_name (None | str):
+        apikeys_present (list[str] | None):
+        has_access_token (bool | None):
+        access_token_expiry (None | str):
+        has_refresh_token (bool | None):
+        subject (None | str):
+        email (None | str):
+    """
 
     id: str
     tenant_id: str
-    scope: Schema66
+    scope: Schema67
     user_id: float | None
     profile_id: None | str
     last_used_at: None | str
@@ -67,10 +57,6 @@ class ServerCredentialsDto:
     has_refresh_token: bool | None
     subject: None | str
     email: None | str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -112,7 +98,6 @@ class ServerCredentialsDto:
         if isinstance(self.apikeys_present, list):
             apikeys_present = self.apikeys_present
 
-
         else:
             apikeys_present = self.apikeys_present
 
@@ -131,35 +116,34 @@ class ServerCredentialsDto:
         email: None | str
         email = self.email
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "id": id,
-            "tenantId": tenant_id,
-            "scope": scope,
-            "userId": user_id,
-            "profileId": profile_id,
-            "lastUsedAt": last_used_at,
-            "authorizedAt": authorized_at,
-            "type": type_,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-            "userSub": user_sub,
-            "userEmail": user_email,
-            "userName": user_name,
-            "profileName": profile_name,
-            "apikeysPresent": apikeys_present,
-            "hasAccessToken": has_access_token,
-            "accessTokenExpiry": access_token_expiry,
-            "hasRefreshToken": has_refresh_token,
-            "subject": subject,
-            "email": email,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "tenantId": tenant_id,
+                "scope": scope,
+                "userId": user_id,
+                "profileId": profile_id,
+                "lastUsedAt": last_used_at,
+                "authorizedAt": authorized_at,
+                "type": type_,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+                "userSub": user_sub,
+                "userEmail": user_email,
+                "userName": user_name,
+                "profileName": profile_name,
+                "apikeysPresent": apikeys_present,
+                "hasAccessToken": has_access_token,
+                "accessTokenExpiry": access_token_expiry,
+                "hasRefreshToken": has_refresh_token,
+                "subject": subject,
+                "email": email,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -168,10 +152,7 @@ class ServerCredentialsDto:
 
         tenant_id = d.pop("tenantId")
 
-        scope = Schema66(d.pop("scope"))
-
-
-
+        scope = Schema67(d.pop("scope"))
 
         def _parse_user_id(data: object) -> float | None:
             if data is None:
@@ -180,14 +161,12 @@ class ServerCredentialsDto:
 
         user_id = _parse_user_id(d.pop("userId"))
 
-
         def _parse_profile_id(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         profile_id = _parse_profile_id(d.pop("profileId"))
-
 
         def _parse_last_used_at(data: object) -> None | str:
             if data is None:
@@ -196,13 +175,9 @@ class ServerCredentialsDto:
 
         last_used_at = _parse_last_used_at(d.pop("lastUsedAt"))
 
-
         authorized_at = d.pop("authorizedAt")
 
         type_ = ServerCredentialsDtoType(d.pop("type"))
-
-
-
 
         created_at = d.pop("createdAt")
 
@@ -215,14 +190,12 @@ class ServerCredentialsDto:
 
         user_sub = _parse_user_sub(d.pop("userSub"))
 
-
         def _parse_user_email(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         user_email = _parse_user_email(d.pop("userEmail"))
-
 
         def _parse_user_name(data: object) -> None | str:
             if data is None:
@@ -231,14 +204,12 @@ class ServerCredentialsDto:
 
         user_name = _parse_user_name(d.pop("userName"))
 
-
         def _parse_profile_name(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         profile_name = _parse_profile_name(d.pop("profileName"))
-
 
         def _parse_apikeys_present(data: object) -> list[str] | None:
             if data is None:
@@ -255,14 +226,12 @@ class ServerCredentialsDto:
 
         apikeys_present = _parse_apikeys_present(d.pop("apikeysPresent"))
 
-
         def _parse_has_access_token(data: object) -> bool | None:
             if data is None:
                 return data
             return cast(bool | None, data)
 
         has_access_token = _parse_has_access_token(d.pop("hasAccessToken"))
-
 
         def _parse_access_token_expiry(data: object) -> None | str:
             if data is None:
@@ -271,14 +240,12 @@ class ServerCredentialsDto:
 
         access_token_expiry = _parse_access_token_expiry(d.pop("accessTokenExpiry"))
 
-
         def _parse_has_refresh_token(data: object) -> bool | None:
             if data is None:
                 return data
             return cast(bool | None, data)
 
         has_refresh_token = _parse_has_refresh_token(d.pop("hasRefreshToken"))
-
 
         def _parse_subject(data: object) -> None | str:
             if data is None:
@@ -287,14 +254,12 @@ class ServerCredentialsDto:
 
         subject = _parse_subject(d.pop("subject"))
 
-
         def _parse_email(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         email = _parse_email(d.pop("email"))
-
 
         server_credentials_dto = cls(
             id=id,
@@ -320,4 +285,3 @@ class ServerCredentialsDto:
         )
 
         return server_credentials_dto
-

@@ -1,42 +1,32 @@
 from http import HTTPStatus
-from typing import Any, cast
+from typing import Any
 from urllib.parse import quote
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
-from ...models.schema_49 import Schema49
+from ...client import AuthenticatedClient, Client
+from ...models.schema_50 import Schema50
 from ...models.update_user_request import UpdateUserRequest
-from ...types import UNSET, Unset
-from typing import cast
-
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     user_sub: str,
     *,
     body: UpdateUserRequest | Unset = UNSET,
-
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
-
-    
-
-    
-
     _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": "/users/{user_sub}".format(user_sub=quote(str(user_sub), safe=""),),
+        "url": "/users/{user_sub}".format(
+            user_sub=quote(str(user_sub), safe=""),
+        ),
     }
 
-    
     if not isinstance(body, Unset):
         _kwargs["json"] = body.to_dict()
-
 
     headers["Content-Type"] = "application/json"
 
@@ -44,12 +34,9 @@ def _get_kwargs(
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema49 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema50 | None:
     if response.status_code == 200:
-        response_200 = Schema49.from_dict(response.json())
-
-
+        response_200 = Schema50.from_dict(response.json())
 
         return response_200
 
@@ -59,7 +46,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema49]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema50]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,9 +60,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-
-) -> Response[Schema49]:
-    """ 
+) -> Response[Schema50]:
+    """
     Args:
         user_sub (str):
         body (UpdateUserRequest | Unset):
@@ -85,14 +71,12 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema49]
-     """
-
+        Response[Schema50]
+    """
 
     kwargs = _get_kwargs(
         user_sub=user_sub,
-body=body,
-
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -101,14 +85,14 @@ body=body,
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     user_sub: str,
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-
-) -> Schema49 | None:
-    """ 
+) -> Schema50 | None:
+    """
     Args:
         user_sub (str):
         body (UpdateUserRequest | Unset):
@@ -118,25 +102,23 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema49
-     """
-
+        Schema50
+    """
 
     return sync_detailed(
         user_sub=user_sub,
-client=client,
-body=body,
-
+        client=client,
+        body=body,
     ).parsed
+
 
 async def asyncio_detailed(
     user_sub: str,
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-
-) -> Response[Schema49]:
-    """ 
+) -> Response[Schema50]:
+    """
     Args:
         user_sub (str):
         body (UpdateUserRequest | Unset):
@@ -146,30 +128,26 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema49]
-     """
-
+        Response[Schema50]
+    """
 
     kwargs = _get_kwargs(
         user_sub=user_sub,
-body=body,
-
+        body=body,
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     user_sub: str,
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-
-) -> Schema49 | None:
-    """ 
+) -> Schema50 | None:
+    """
     Args:
         user_sub (str):
         body (UpdateUserRequest | Unset):
@@ -179,13 +157,13 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema49
-     """
+        Schema50
+    """
 
-
-    return (await asyncio_detailed(
-        user_sub=user_sub,
-client=client,
-body=body,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            user_sub=user_sub,
+            client=client,
+            body=body,
+        )
+    ).parsed

@@ -1,41 +1,28 @@
 from http import HTTPStatus
-from typing import Any, cast
-from urllib.parse import quote
+from typing import Any
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
+from ...client import AuthenticatedClient, Client
 from ...models.post_teams_body import PostTeamsBody
-from ...models.schema_67 import Schema67
-from ...types import UNSET, Unset
-from typing import cast
-
+from ...models.schema_68 import Schema68
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     body: PostTeamsBody | Unset = UNSET,
-
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
-
-
-    
-
-    
 
     _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/teams",
     }
 
-    
     if not isinstance(body, Unset):
         _kwargs["json"] = body.to_dict()
-
 
     headers["Content-Type"] = "application/json"
 
@@ -43,12 +30,9 @@ def _get_kwargs(
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema67 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema68 | None:
     if response.status_code == 200:
-        response_200 = Schema67.from_dict(response.json())
-
-
+        response_200 = Schema68.from_dict(response.json())
 
         return response_200
 
@@ -58,7 +42,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema67]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema68]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -71,9 +55,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-
-) -> Response[Schema67]:
-    """ 
+) -> Response[Schema68]:
+    """
     Args:
         body (PostTeamsBody | Unset):
 
@@ -82,13 +65,11 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema67]
-     """
-
+        Response[Schema68]
+    """
 
     kwargs = _get_kwargs(
         body=body,
-
     )
 
     response = client.get_httpx_client().request(
@@ -97,13 +78,13 @@ def sync_detailed(
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-
-) -> Schema67 | None:
-    """ 
+) -> Schema68 | None:
+    """
     Args:
         body (PostTeamsBody | Unset):
 
@@ -112,23 +93,21 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema67
-     """
-
+        Schema68
+    """
 
     return sync_detailed(
         client=client,
-body=body,
-
+        body=body,
     ).parsed
+
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-
-) -> Response[Schema67]:
-    """ 
+) -> Response[Schema68]:
+    """
     Args:
         body (PostTeamsBody | Unset):
 
@@ -137,28 +116,24 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema67]
-     """
-
+        Response[Schema68]
+    """
 
     kwargs = _get_kwargs(
         body=body,
-
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-
-) -> Schema67 | None:
-    """ 
+) -> Schema68 | None:
+    """
     Args:
         body (PostTeamsBody | Unset):
 
@@ -167,12 +142,12 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema67
-     """
+        Schema68
+    """
 
-
-    return (await asyncio_detailed(
-        client=client,
-body=body,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            client=client,
+            body=body,
+        )
+    ).parsed
