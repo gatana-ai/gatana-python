@@ -158,7 +158,7 @@ class GatanaSandbox(BaseSandbox):
         """
         body = ExecCommandBody(
             command=command,
-            timeout=float(timeout) if timeout is not None else timeout,  # type: ignore[arg-type]
+            timeout=float(timeout) if timeout is not None else timeout,
         )
         resp = post_sandboxes_sandbox_id_exec.sync_detailed(
             self._sandbox_id,
