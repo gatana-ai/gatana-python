@@ -1,41 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
-  from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
-  from ..models.server_tool_dto_schema import ServerToolDtoSchema
-
-
-
+    from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
+    from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
+    from ..models.server_tool_dto_schema import ServerToolDtoSchema
 
 
 T = TypeVar("T", bound="ServerToolDto")
 
 
-
 @_attrs_define
 class ServerToolDto:
-    """ 
-        Attributes:
-            tenant_id (str):
-            server_id (float):
-            tool_name (str):
-            description (str):
-            schema (ServerToolDtoSchema):
-            output_schema (None | ServerToolDtoOutputSchemaType0):
-            annotations (None | ServerToolDtoAnnotationsType0):
-            is_enabled (bool):
-     """
+    """
+    Attributes:
+        tenant_id (str):
+        server_id (float):
+        tool_name (str):
+        description (str):
+        schema (ServerToolDtoSchema):
+        output_schema (None | ServerToolDtoOutputSchemaType0):
+        annotations (None | ServerToolDtoAnnotationsType0):
+        is_enabled (bool):
+    """
 
     tenant_id: str
     server_id: float
@@ -46,14 +37,10 @@ class ServerToolDto:
     annotations: None | ServerToolDtoAnnotationsType0
     is_enabled: bool
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
         from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
-        from ..models.server_tool_dto_schema import ServerToolDtoSchema
+
         tenant_id = self.tenant_id
 
         server_id = self.server_id
@@ -78,29 +65,29 @@ class ServerToolDto:
 
         is_enabled = self.is_enabled
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "tenantId": tenant_id,
-            "serverId": server_id,
-            "toolName": tool_name,
-            "description": description,
-            "schema": schema,
-            "outputSchema": output_schema,
-            "annotations": annotations,
-            "isEnabled": is_enabled,
-        })
+        field_dict.update(
+            {
+                "tenantId": tenant_id,
+                "serverId": server_id,
+                "toolName": tool_name,
+                "description": description,
+                "schema": schema,
+                "outputSchema": output_schema,
+                "annotations": annotations,
+                "isEnabled": is_enabled,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
         from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
         from ..models.server_tool_dto_schema import ServerToolDtoSchema
+
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
 
@@ -112,9 +99,6 @@ class ServerToolDto:
 
         schema = ServerToolDtoSchema.from_dict(d.pop("schema"))
 
-
-
-
         def _parse_output_schema(data: object) -> None | ServerToolDtoOutputSchemaType0:
             if data is None:
                 return data
@@ -123,15 +107,12 @@ class ServerToolDto:
                     raise TypeError()
                 output_schema_type_0 = ServerToolDtoOutputSchemaType0.from_dict(data)
 
-
-
                 return output_schema_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | ServerToolDtoOutputSchemaType0, data)
 
         output_schema = _parse_output_schema(d.pop("outputSchema"))
-
 
         def _parse_annotations(data: object) -> None | ServerToolDtoAnnotationsType0:
             if data is None:
@@ -141,15 +122,12 @@ class ServerToolDto:
                     raise TypeError()
                 annotations_type_0 = ServerToolDtoAnnotationsType0.from_dict(data)
 
-
-
                 return annotations_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | ServerToolDtoAnnotationsType0, data)
 
         annotations = _parse_annotations(d.pop("annotations"))
-
 
         is_enabled = d.pop("isEnabled")
 
@@ -165,4 +143,3 @@ class ServerToolDto:
         )
 
         return server_tool_dto
-

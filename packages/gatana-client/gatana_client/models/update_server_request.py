@@ -1,72 +1,71 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.hosted_transport_config import HostedTransportConfig
-  from ..models.http_streaming_transport_config import HttpStreamingTransportConfig
-  from ..models.server_authorization import ServerAuthorization
-  from ..models.sse_transport_config import SseTransportConfig
-  from ..models.stdio_transport_config import StdioTransportConfig
-  from ..models.update_server_request_oauth_client_configuration_type_0 import UpdateServerRequestOauthClientConfigurationType0
-  from ..models.update_server_request_oauth_metadata_type_0 import UpdateServerRequestOauthMetadataType0
-  from ..models.update_server_request_transport_config_type_4 import UpdateServerRequestTransportConfigType4
-
-
-
+    from ..models.hosted_transport_config import HostedTransportConfig
+    from ..models.http_streaming_transport_config import HttpStreamingTransportConfig
+    from ..models.server_authorization import ServerAuthorization
+    from ..models.sse_transport_config import SseTransportConfig
+    from ..models.stdio_transport_config import StdioTransportConfig
+    from ..models.update_server_request_oauth_client_configuration_type_0 import (
+        UpdateServerRequestOauthClientConfigurationType0,
+    )
+    from ..models.update_server_request_oauth_metadata_type_0 import UpdateServerRequestOauthMetadataType0
+    from ..models.update_server_request_transport_config_type_4 import UpdateServerRequestTransportConfigType4
 
 
 T = TypeVar("T", bound="UpdateServerRequest")
 
 
-
 @_attrs_define
 class UpdateServerRequest:
-    """ 
-        Attributes:
-            slug (str | Unset):
-            description (str | Unset):
-            logo_url (str | Unset):
-            url (str | Unset): The URL of the remote MCP server
-            authorization (ServerAuthorization | Unset):
-            transport_config (HostedTransportConfig | HttpStreamingTransportConfig | SseTransportConfig |
-                StdioTransportConfig | Unset | UpdateServerRequestTransportConfigType4):
-            oauth_metadata (None | Unset | UpdateServerRequestOauthMetadataType0):
-            oauth_client_configuration (None | Unset | UpdateServerRequestOauthClientConfigurationType0):
-     """
+    """
+    Attributes:
+        slug (str | Unset):
+        description (str | Unset):
+        logo_url (str | Unset):
+        url (str | Unset): The URL of the remote MCP server
+        authorization (ServerAuthorization | Unset):
+        transport_config (HostedTransportConfig | HttpStreamingTransportConfig | SseTransportConfig |
+            StdioTransportConfig | Unset | UpdateServerRequestTransportConfigType4):
+        oauth_metadata (None | Unset | UpdateServerRequestOauthMetadataType0):
+        oauth_client_configuration (None | Unset | UpdateServerRequestOauthClientConfigurationType0):
+    """
 
     slug: str | Unset = UNSET
     description: str | Unset = UNSET
     logo_url: str | Unset = UNSET
     url: str | Unset = UNSET
     authorization: ServerAuthorization | Unset = UNSET
-    transport_config: HostedTransportConfig | HttpStreamingTransportConfig | SseTransportConfig | StdioTransportConfig | Unset | UpdateServerRequestTransportConfigType4 = UNSET
+    transport_config: (
+        HostedTransportConfig
+        | HttpStreamingTransportConfig
+        | SseTransportConfig
+        | StdioTransportConfig
+        | Unset
+        | UpdateServerRequestTransportConfigType4
+    ) = UNSET
     oauth_metadata: None | Unset | UpdateServerRequestOauthMetadataType0 = UNSET
     oauth_client_configuration: None | Unset | UpdateServerRequestOauthClientConfigurationType0 = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         from ..models.hosted_transport_config import HostedTransportConfig
-        from ..models.stdio_transport_config import StdioTransportConfig
-        from ..models.update_server_request_oauth_client_configuration_type_0 import UpdateServerRequestOauthClientConfigurationType0
-        from ..models.server_authorization import ServerAuthorization
-        from ..models.update_server_request_transport_config_type_4 import UpdateServerRequestTransportConfigType4
         from ..models.http_streaming_transport_config import HttpStreamingTransportConfig
         from ..models.sse_transport_config import SseTransportConfig
+        from ..models.stdio_transport_config import StdioTransportConfig
+        from ..models.update_server_request_oauth_client_configuration_type_0 import (
+            UpdateServerRequestOauthClientConfigurationType0,
+        )
         from ..models.update_server_request_oauth_metadata_type_0 import UpdateServerRequestOauthMetadataType0
+
         slug = self.slug
 
         description = self.description
@@ -93,7 +92,6 @@ class UpdateServerRequest:
         else:
             transport_config = self.transport_config.to_dict()
 
-
         oauth_metadata: dict[str, Any] | None | Unset
         if isinstance(self.oauth_metadata, Unset):
             oauth_metadata = UNSET
@@ -110,11 +108,9 @@ class UpdateServerRequest:
         else:
             oauth_client_configuration = self.oauth_client_configuration
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if slug is not UNSET:
             field_dict["slug"] = slug
         if description is not UNSET:
@@ -134,8 +130,6 @@ class UpdateServerRequest:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.hosted_transport_config import HostedTransportConfig
@@ -143,9 +137,12 @@ class UpdateServerRequest:
         from ..models.server_authorization import ServerAuthorization
         from ..models.sse_transport_config import SseTransportConfig
         from ..models.stdio_transport_config import StdioTransportConfig
-        from ..models.update_server_request_oauth_client_configuration_type_0 import UpdateServerRequestOauthClientConfigurationType0
+        from ..models.update_server_request_oauth_client_configuration_type_0 import (
+            UpdateServerRequestOauthClientConfigurationType0,
+        )
         from ..models.update_server_request_oauth_metadata_type_0 import UpdateServerRequestOauthMetadataType0
         from ..models.update_server_request_transport_config_type_4 import UpdateServerRequestTransportConfigType4
+
         d = dict(src_dict)
         slug = d.pop("slug", UNSET)
 
@@ -157,23 +154,27 @@ class UpdateServerRequest:
 
         _authorization = d.pop("authorization", UNSET)
         authorization: ServerAuthorization | Unset
-        if isinstance(_authorization,  Unset):
+        if isinstance(_authorization, Unset):
             authorization = UNSET
         else:
             authorization = ServerAuthorization.from_dict(_authorization)
 
-
-
-
-        def _parse_transport_config(data: object) -> HostedTransportConfig | HttpStreamingTransportConfig | SseTransportConfig | StdioTransportConfig | Unset | UpdateServerRequestTransportConfigType4:
+        def _parse_transport_config(
+            data: object,
+        ) -> (
+            HostedTransportConfig
+            | HttpStreamingTransportConfig
+            | SseTransportConfig
+            | StdioTransportConfig
+            | Unset
+            | UpdateServerRequestTransportConfigType4
+        ):
             if isinstance(data, Unset):
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
                 transport_config_type_0 = HttpStreamingTransportConfig.from_dict(data)
-
-
 
                 return transport_config_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -183,8 +184,6 @@ class UpdateServerRequest:
                     raise TypeError()
                 transport_config_type_1 = HostedTransportConfig.from_dict(data)
 
-
-
                 return transport_config_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -192,8 +191,6 @@ class UpdateServerRequest:
                 if not isinstance(data, dict):
                     raise TypeError()
                 transport_config_type_2 = StdioTransportConfig.from_dict(data)
-
-
 
                 return transport_config_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -203,8 +200,6 @@ class UpdateServerRequest:
                     raise TypeError()
                 transport_config_type_3 = SseTransportConfig.from_dict(data)
 
-
-
                 return transport_config_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -212,12 +207,9 @@ class UpdateServerRequest:
                 raise TypeError()
             transport_config_type_4 = UpdateServerRequestTransportConfigType4.from_dict(data)
 
-
-
             return transport_config_type_4
 
         transport_config = _parse_transport_config(d.pop("transportConfig", UNSET))
-
 
         def _parse_oauth_metadata(data: object) -> None | Unset | UpdateServerRequestOauthMetadataType0:
             if data is None:
@@ -229,8 +221,6 @@ class UpdateServerRequest:
                     raise TypeError()
                 oauth_metadata_type_0 = UpdateServerRequestOauthMetadataType0.from_dict(data)
 
-
-
                 return oauth_metadata_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -238,8 +228,9 @@ class UpdateServerRequest:
 
         oauth_metadata = _parse_oauth_metadata(d.pop("oauthMetadata", UNSET))
 
-
-        def _parse_oauth_client_configuration(data: object) -> None | Unset | UpdateServerRequestOauthClientConfigurationType0:
+        def _parse_oauth_client_configuration(
+            data: object,
+        ) -> None | Unset | UpdateServerRequestOauthClientConfigurationType0:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -249,15 +240,12 @@ class UpdateServerRequest:
                     raise TypeError()
                 oauth_client_configuration_type_0 = UpdateServerRequestOauthClientConfigurationType0.from_dict(data)
 
-
-
                 return oauth_client_configuration_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | Unset | UpdateServerRequestOauthClientConfigurationType0, data)
 
         oauth_client_configuration = _parse_oauth_client_configuration(d.pop("oauthClientConfiguration", UNSET))
-
 
         update_server_request = cls(
             slug=slug,
@@ -269,7 +257,6 @@ class UpdateServerRequest:
             oauth_metadata=oauth_metadata,
             oauth_client_configuration=oauth_client_configuration,
         )
-
 
         update_server_request.additional_properties = d
         return update_server_request

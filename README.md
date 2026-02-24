@@ -1,37 +1,43 @@
 # gatana-python
 
-[![PyPI](https://img.shields.io/pypi/v/gatana)](https://pypi.org/project/gatana/)
-[![Python](https://img.shields.io/pypi/pyversions/gatana)](https://pypi.org/project/gatana/)
+[![PyPI gatana-langchain](https://img.shields.io/pypi/v/gatana-langchain?label=gatana-langchain)](https://pypi.org/project/gatana-langchain/)
+[![PyPI gatana-client](https://img.shields.io/pypi/v/gatana-client?label=gatana-client)](https://pypi.org/project/gatana-client/)
+[![Python](https://img.shields.io/pypi/pyversions/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A toolkit for building with LangChain applications with Gatana.
+A toolkit for building LangChain applications with [Gatana](https://gatana.ai).
 
-## Features
+## Packages
 
-- Built on top of [LangChain](https://python.langchain.com/)
-- Fully typed with [PEP 561](https://peps.python.org/pep-0561/) support
-- Python 3.10+
+This is a monorepo containing multiple PyPI packages:
+
+| Package | Description | PyPI |
+|---------|-------------|------|
+| [`gatana-langchain`](packages/gatana-langchain/) | LangChain integration toolkit | [![PyPI](https://img.shields.io/pypi/v/gatana-langchain)](https://pypi.org/project/gatana-langchain/) |
+| [`gatana-client`](packages/gatana-client/) | Auto-generated API client for Gatana | [![PyPI](https://img.shields.io/pypi/v/gatana-client)](https://pypi.org/project/gatana-client/) |
 
 ## Installation
 
 ```bash
-pip install gatana
+pip install gatana-langchain
 ```
 
 Or with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv add gatana
+uv add gatana-langchain
 ```
+
+This will also install `gatana-client` as a dependency.
 
 ### Optional dependencies
 
 ```bash
 # OpenAI support
-pip install gatana[openai]
+pip install gatana-langchain[openai]
 
 # Anthropic support
-pip install gatana[anthropic]
+pip install gatana-langchain[anthropic]
 ```
 
 ## Quick Start
@@ -40,6 +46,17 @@ pip install gatana[anthropic]
 import gatana
 
 print(gatana.__version__)
+```
+
+## Repository structure
+
+```
+packages/
+├── gatana-client/      # Auto-generated API SDK (from OpenAPI spec)
+│   └── gatana_client/
+└── gatana-langchain/   # LangChain integration (hand-written)
+    └── gatana/
+tests/                  # Integration tests
 ```
 
 ## Development

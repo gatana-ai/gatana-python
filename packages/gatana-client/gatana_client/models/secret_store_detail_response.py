@@ -1,44 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 from ..models.schema_75 import Schema75
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.aws_secrets_manager_configuration_output import AwsSecretsManagerConfigurationOutput
-  from ..models.azure_key_vault_configuration_output import AzureKeyVaultConfigurationOutput
-  from ..models.gcp_secret_manager_configuration_output import GcpSecretManagerConfigurationOutput
-  from ..models.hashi_corp_vault_configuration_output import HashiCorpVaultConfigurationOutput
-  from ..models.infisical_configuration_output import InfisicalConfigurationOutput
-
-
-
+    from ..models.aws_secrets_manager_configuration_output import AwsSecretsManagerConfigurationOutput
+    from ..models.azure_key_vault_configuration_output import AzureKeyVaultConfigurationOutput
+    from ..models.gcp_secret_manager_configuration_output import GcpSecretManagerConfigurationOutput
+    from ..models.hashi_corp_vault_configuration_output import HashiCorpVaultConfigurationOutput
+    from ..models.infisical_configuration_output import InfisicalConfigurationOutput
 
 
 T = TypeVar("T", bound="SecretStoreDetailResponse")
 
 
-
 @_attrs_define
 class SecretStoreDetailResponse:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            type_ (Schema75):
-            is_enabled (bool):
-            created_at (str):
-            updated_at (str):
-            configuration (AwsSecretsManagerConfigurationOutput | AzureKeyVaultConfigurationOutput |
-                GcpSecretManagerConfigurationOutput | HashiCorpVaultConfigurationOutput | InfisicalConfigurationOutput):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        type_ (Schema75):
+        is_enabled (bool):
+        created_at (str):
+        updated_at (str):
+        configuration (AwsSecretsManagerConfigurationOutput | AzureKeyVaultConfigurationOutput |
+            GcpSecretManagerConfigurationOutput | HashiCorpVaultConfigurationOutput | InfisicalConfigurationOutput):
+    """
 
     id: str
     name: str
@@ -46,18 +38,20 @@ class SecretStoreDetailResponse:
     is_enabled: bool
     created_at: str
     updated_at: str
-    configuration: AwsSecretsManagerConfigurationOutput | AzureKeyVaultConfigurationOutput | GcpSecretManagerConfigurationOutput | HashiCorpVaultConfigurationOutput | InfisicalConfigurationOutput
-
-
-
-
+    configuration: (
+        AwsSecretsManagerConfigurationOutput
+        | AzureKeyVaultConfigurationOutput
+        | GcpSecretManagerConfigurationOutput
+        | HashiCorpVaultConfigurationOutput
+        | InfisicalConfigurationOutput
+    )
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.infisical_configuration_output import InfisicalConfigurationOutput
-        from ..models.hashi_corp_vault_configuration_output import HashiCorpVaultConfigurationOutput
-        from ..models.gcp_secret_manager_configuration_output import GcpSecretManagerConfigurationOutput
-        from ..models.azure_key_vault_configuration_output import AzureKeyVaultConfigurationOutput
         from ..models.aws_secrets_manager_configuration_output import AwsSecretsManagerConfigurationOutput
+        from ..models.gcp_secret_manager_configuration_output import GcpSecretManagerConfigurationOutput
+        from ..models.hashi_corp_vault_configuration_output import HashiCorpVaultConfigurationOutput
+        from ..models.infisical_configuration_output import InfisicalConfigurationOutput
+
         id = self.id
 
         name = self.name
@@ -82,23 +76,21 @@ class SecretStoreDetailResponse:
         else:
             configuration = self.configuration.to_dict()
 
-
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "type": type_,
-            "isEnabled": is_enabled,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-            "configuration": configuration,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "type": type_,
+                "isEnabled": is_enabled,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+                "configuration": configuration,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -107,6 +99,7 @@ class SecretStoreDetailResponse:
         from ..models.gcp_secret_manager_configuration_output import GcpSecretManagerConfigurationOutput
         from ..models.hashi_corp_vault_configuration_output import HashiCorpVaultConfigurationOutput
         from ..models.infisical_configuration_output import InfisicalConfigurationOutput
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -114,22 +107,25 @@ class SecretStoreDetailResponse:
 
         type_ = Schema75(d.pop("type"))
 
-
-
-
         is_enabled = d.pop("isEnabled")
 
         created_at = d.pop("createdAt")
 
         updated_at = d.pop("updatedAt")
 
-        def _parse_configuration(data: object) -> AwsSecretsManagerConfigurationOutput | AzureKeyVaultConfigurationOutput | GcpSecretManagerConfigurationOutput | HashiCorpVaultConfigurationOutput | InfisicalConfigurationOutput:
+        def _parse_configuration(
+            data: object,
+        ) -> (
+            AwsSecretsManagerConfigurationOutput
+            | AzureKeyVaultConfigurationOutput
+            | GcpSecretManagerConfigurationOutput
+            | HashiCorpVaultConfigurationOutput
+            | InfisicalConfigurationOutput
+        ):
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
                 configuration_type_0 = AwsSecretsManagerConfigurationOutput.from_dict(data)
-
-
 
                 return configuration_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -139,8 +135,6 @@ class SecretStoreDetailResponse:
                     raise TypeError()
                 configuration_type_1 = GcpSecretManagerConfigurationOutput.from_dict(data)
 
-
-
                 return configuration_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -148,8 +142,6 @@ class SecretStoreDetailResponse:
                 if not isinstance(data, dict):
                     raise TypeError()
                 configuration_type_2 = HashiCorpVaultConfigurationOutput.from_dict(data)
-
-
 
                 return configuration_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -159,8 +151,6 @@ class SecretStoreDetailResponse:
                     raise TypeError()
                 configuration_type_3 = InfisicalConfigurationOutput.from_dict(data)
 
-
-
                 return configuration_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -168,12 +158,9 @@ class SecretStoreDetailResponse:
                 raise TypeError()
             configuration_type_4 = AzureKeyVaultConfigurationOutput.from_dict(data)
 
-
-
             return configuration_type_4
 
         configuration = _parse_configuration(d.pop("configuration"))
-
 
         secret_store_detail_response = cls(
             id=id,
@@ -186,4 +173,3 @@ class SecretStoreDetailResponse:
         )
 
         return secret_store_detail_response
-
