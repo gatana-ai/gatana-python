@@ -1,45 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.get_user_me_response_user import GetUserMeResponseUser
-  from ..models.user_identity import UserIdentity
-
-
-
+    from ..models.get_user_me_response_user import GetUserMeResponseUser
+    from ..models.user_identity import UserIdentity
 
 
 T = TypeVar("T", bound="GetUserMeResponse")
 
 
-
 @_attrs_define
 class GetUserMeResponse:
-    """ 
-        Attributes:
-            user (GetUserMeResponseUser):
-            identities (list[UserIdentity]):
-     """
+    """
+    Attributes:
+        user (GetUserMeResponseUser):
+        identities (list[UserIdentity]):
+    """
 
     user: GetUserMeResponseUser
     identities: list[UserIdentity]
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_identity import UserIdentity
-        from ..models.get_user_me_response_user import GetUserMeResponseUser
         user = self.user.to_dict()
 
         identities = []
@@ -47,39 +32,31 @@ class GetUserMeResponse:
             identities_item = identities_item_data.to_dict()
             identities.append(identities_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "user": user,
-            "identities": identities,
-        })
+        field_dict.update(
+            {
+                "user": user,
+                "identities": identities,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.get_user_me_response_user import GetUserMeResponseUser
         from ..models.user_identity import UserIdentity
+
         d = dict(src_dict)
         user = GetUserMeResponseUser.from_dict(d.pop("user"))
 
-
-
-
         identities = []
         _identities = d.pop("identities")
-        for identities_item_data in (_identities):
+        for identities_item_data in _identities:
             identities_item = UserIdentity.from_dict(identities_item_data)
 
-
-
             identities.append(identities_item)
-
 
         get_user_me_response = cls(
             user=user,
@@ -87,4 +64,3 @@ class GetUserMeResponse:
         )
 
         return get_user_me_response
-

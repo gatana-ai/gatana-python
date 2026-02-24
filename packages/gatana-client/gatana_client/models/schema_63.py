@@ -1,45 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.server_dto import ServerDto
-  from ..models.server_file import ServerFile
-
-
-
+    from ..models.server_dto import ServerDto
+    from ..models.server_file import ServerFile
 
 
 T = TypeVar("T", bound="Schema63")
 
 
-
 @_attrs_define
 class Schema63:
-    """ 
-        Attributes:
-            server (ServerDto):
-            files (list[ServerFile]):
-     """
+    """
+    Attributes:
+        server (ServerDto):
+        files (list[ServerFile]):
+    """
 
     server: ServerDto
     files: list[ServerFile]
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.server_dto import ServerDto
-        from ..models.server_file import ServerFile
         server = self.server.to_dict()
 
         files = []
@@ -47,39 +32,31 @@ class Schema63:
             files_item = files_item_data.to_dict()
             files.append(files_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "server": server,
-            "files": files,
-        })
+        field_dict.update(
+            {
+                "server": server,
+                "files": files,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.server_dto import ServerDto
         from ..models.server_file import ServerFile
+
         d = dict(src_dict)
         server = ServerDto.from_dict(d.pop("server"))
 
-
-
-
         files = []
         _files = d.pop("files")
-        for files_item_data in (_files):
+        for files_item_data in _files:
             files_item = ServerFile.from_dict(files_item_data)
 
-
-
             files.append(files_item)
-
 
         schema_63 = cls(
             server=server,
@@ -87,4 +64,3 @@ class Schema63:
         )
 
         return schema_63
-

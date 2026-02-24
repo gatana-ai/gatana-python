@@ -40,7 +40,7 @@ select = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["gatana"]
+known-first-party = ["gatana_langchain", "gatana_client"]
 
 [tool.mypy]
 python_version = "3.10"
@@ -53,7 +53,7 @@ testpaths = ["tests"]
 addopts = "-ra -q --strict-markers"
 
 [tool.coverage.run]
-source = ["gatana"]
+source = ["gatana_langchain"]
 branch = true
 
 [tool.coverage.report]

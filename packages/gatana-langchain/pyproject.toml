@@ -39,7 +39,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["gatana"]
+packages = ["gatana_langchain"]
 
 [tool.uv.sources]
 gatana-client = { workspace = true }

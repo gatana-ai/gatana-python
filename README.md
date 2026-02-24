@@ -2,7 +2,6 @@
 
 [![PyPI gatana-langchain](https://img.shields.io/pypi/v/gatana-langchain?label=gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![PyPI gatana-client](https://img.shields.io/pypi/v/gatana-client?label=gatana-client)](https://pypi.org/project/gatana-client/)
-[![Python](https://img.shields.io/pypi/pyversions/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A toolkit for building LangChain applications with [Gatana](https://gatana.ai).
@@ -43,9 +42,9 @@ pip install gatana-langchain[anthropic]
 ## Quick Start
 
 ```python
-import gatana
+import gatana_langchain
 
-print(gatana.__version__)
+print(gatana_langchain.__version__)
 ```
 
 ## Repository structure

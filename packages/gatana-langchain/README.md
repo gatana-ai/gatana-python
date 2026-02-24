@@ -37,9 +37,9 @@ pip install gatana-langchain[anthropic]
 ## Quick Start
 
 ```python
-import gatana
+import gatana_langchain
 
-print(gatana.__version__)
+print(gatana_langchain.__version__)
 ```
 
 ## Development
