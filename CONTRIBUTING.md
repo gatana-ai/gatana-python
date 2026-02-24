@@ -6,6 +6,23 @@ Thank you for your interest in contributing! This guide will help you get starte
 
 - **Python 3.10+**
 - **[uv](https://docs.astral.sh/uv/)** – fast Python package manager
+- **[just](https://just.systems/)** – command runner (recommended over `make`)
+
+## Repository structure
+
+This is a **uv workspace** monorepo with two packages under `packages/`:
+
+```
+packages/
+├── gatana-client/      # Auto-generated API SDK (from OpenAPI spec)
+│   └── gatana_client/
+└── gatana-langchain/   # LangChain integration (hand-written)
+    └── gatana/
+tests/                  # Integration / end-to-end tests
+```
+
+- **`gatana-client`** is regenerated with `just generate-sdk` — don't edit it by hand.
+- **`gatana-langchain`** is where most contributions go.
 
 ## Setup
 
@@ -19,7 +36,7 @@ Thank you for your interest in contributing! This guide will help you get starte
 2. **Install all dependencies** (including dev tools):
 
    ```bash
-   uv sync --all-groups
+   just install
    ```
 
 3. **Install pre-commit hooks**:
@@ -28,24 +45,30 @@ Thank you for your interest in contributing! This guide will help you get starte
    uv run pre-commit install
    ```
 
+Run `just` with no arguments to see all available commands.
+
 ## Development workflow
 
 | Task | Command |
 |------|---------|
-| Run tests | `make test` |
-| Run tests with coverage | `make test-cov` |
-| Lint | `make lint` |
-| Format code | `make format` |
-| Type check | `make typecheck` |
-| Build package | `make build` |
+| List all commands | `just` |
+| Install deps | `just install` |
+| Run tests | `just test` |
+| Run tests with coverage | `just test-cov` |
+| Lint | `just lint` |
+| Format code | `just format` |
+| Type check | `just typecheck` |
+| Build both packages | `just build` |
+| Regenerate SDK | `just generate-sdk` |
+| Clean artifacts | `just clean` |
 
 Or use `uv run` directly:
 
 ```bash
 uv run pytest tests/
-uv run ruff check src/ tests/
-uv run ruff format src/ tests/
-uv run mypy src/
+uv run ruff check packages/gatana-langchain/ tests/
+uv run ruff format packages/gatana-langchain/ tests/
+uv run mypy packages/gatana-langchain/
 ```
 
 ## Code style
@@ -68,7 +91,7 @@ uv run mypy src/
 3. Ensure all checks pass:
 
    ```bash
-   make lint typecheck test
+   just lint && just typecheck && just test
    ```
 
 4. Commit using clear, descriptive messages
