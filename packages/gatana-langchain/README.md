@@ -6,13 +6,15 @@ Current version: **v1.0.0**
 [![Python](https://img.shields.io/pypi/pyversions/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A toolkit for building LangChain applications with [Gatana](https://gatana.ai).
+A [LangChain sandbox backend](https://docs.langchain.com/oss/python/deepagents/sandboxes) for [Gatana](https://www.gatana.ai). Use Gatana sandboxes as isolated execution environments for LangChain [deep agents](https://docs.langchain.com/oss/python/deepagents/harness).
 
 ## Features
 
-- Built on top of [LangChain](https://python.langchain.com/)
+- Drop-in sandbox backend for LangChain's `deepagents` framework
+- Isolated command execution, file upload/download, and full filesystem tool support
+- Auto-creates and cleans up sandboxes via context manager
 - Fully typed with [PEP 561](https://peps.python.org/pep-0561/) support
-- Python 3.10+
+- Python 3.11+
 
 ## Installation
 
@@ -26,12 +28,86 @@ Or with [uv](https://docs.astral.sh/uv/):
 uv add gatana-langchain
 ```
 
-## Quick Start
+## Basic usage
+
+Create a Gatana sandbox and pass it as the `backend` to a deep agent. The agent gets filesystem tools (`ls`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`) and an `execute` tool for running shell commands — all inside the sandbox.
 
 ```python
-import gatana_langchain
+from gatana_client import AuthenticatedClient
+from langchain_anthropic import ChatAnthropic
 
-print(gatana_langchain.__version__)
+from deepagents import create_deep_agent
+from gatana_langchain import GatanaSandbox
+
+client = AuthenticatedClient(
+    base_url="https://api.gatana.ai",
+    token="your-gatana-api-key",
+)
+
+with GatanaSandbox(client=client) as backend:
+    agent = create_deep_agent(
+        model=ChatAnthropic(model="claude-sonnet-4-20250514"),
+        system_prompt="You are a coding assistant with sandbox access.",
+        backend=backend,
+    )
+
+    result = agent.invoke(
+        {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Create a Python script that prints the Fibonacci sequence and run it",
+                }
+            ]
+        }
+    )
+    print(result["messages"][-1].content)
+# Sandbox is automatically deleted when the `with` block exits.
+```
+
+### Wrapping an existing sandbox
+
+If you already have a sandbox ID (e.g. from a previous session), pass it directly. The sandbox will **not** be auto-deleted on exit:
+
+```python
+backend = GatanaSandbox(client=client, sandbox_id="existing-sandbox-id")
+result = backend.execute("echo hello from existing sandbox")
+print(result.output)
+```
+
+### Running commands directly
+
+You can call `execute()` without creating an agent:
+
+```python
+with GatanaSandbox(client=client) as backend:
+    result = backend.execute("python --version")
+    print(result.output)   # e.g. "Python 3.12.0\n"
+    print(result.exit_code)  # 0
+```
+
+### Uploading and downloading files
+
+Seed the sandbox with files before the agent runs, or retrieve artifacts afterwards:
+
+```python
+with GatanaSandbox(client=client) as backend:
+    # Upload files into the sandbox
+    backend.upload_files([
+        ("/src/main.py", b"print('Hello')\n"),
+        ("/pyproject.toml", b"[project]\nname = 'my-app'\n"),
+    ])
+
+    # Run the agent or execute commands...
+    backend.execute("cd /src && python main.py")
+
+    # Download artifacts from the sandbox
+    results = backend.download_files(["/src/main.py"])
+    for r in results:
+        if r.content is not None:
+            print(f"{r.path}: {r.content.decode()}")
+        else:
+            print(f"Failed to download {r.path}: {r.error}")
 ```
 
 ## Development
