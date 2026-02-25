@@ -2,6 +2,7 @@
 name = "gatana-langchain"
 version = "1.0.0"
 description = "A toolkit for building LangChain applications"
+readme = "README.md"
 license = "MIT"
 authors = [
     { name = "Gatana", email = "engineering@gatana.ai" },

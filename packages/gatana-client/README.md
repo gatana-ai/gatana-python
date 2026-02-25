@@ -1,5 +1,7 @@
 # gatana-client
 
+Current version: **v1.0.0**
+
 Python client for the [Gatana](https://gatana.ai) API, generated using https://github.com/openapi-generators/openapi-python-client. Sync + async, built on httpx. Requires Python 3.10+.
 
 ```bash
