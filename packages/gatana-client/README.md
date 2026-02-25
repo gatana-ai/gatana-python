@@ -10,12 +10,12 @@ pip install gatana-client
 
 ## Authentication
 
-Use your user API key or a personal access token as the `token`:
+Use your user PAT as the `token`:
 
 ```python
-from gatana_client import AuthenticatedClient
+from gatana_client import GatanaClient
 
-client = AuthenticatedClient(base_url="https://acme.gatana.ai", token="your-api-key-or-pat")
+client = GatanaClient(org_id="acme", token="gk_...")
 ```
 
 Verify the authenticated identity:

@@ -33,15 +33,15 @@ uv add gatana-langchain
 Create a Gatana sandbox and pass it as the `backend` to a deep agent. The agent gets filesystem tools (`ls`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`) and an `execute` tool for running shell commands — all inside the sandbox.
 
 ```python
-from gatana_client import AuthenticatedClient
+from gatana_client import GatanaClient
 from langchain_anthropic import ChatAnthropic
 
 from deepagents import create_deep_agent
 from gatana_langchain import GatanaSandbox
 
-client = AuthenticatedClient(
-    base_url="https://api.gatana.ai",
-    token="your-gatana-api-key",
+client = GatanaClient(
+    org_id="YOUR_ORG_ID",
+    token="your-gatana-pat",
 )
 
 with GatanaSandbox(client=client) as backend:
