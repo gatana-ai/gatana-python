@@ -1,11 +1,29 @@
 import ssl
 from typing import Any
 
-from attrs import define, field, evolve
 import httpx
+from attrs import define, evolve, field
 
 
+def GatanaClient(
+    *,
+    token: str,
+    org_id: str | None = None,
+    base_url: str | None = None,
+    **kwargs: Any,
+) -> "AuthenticatedClient":
+    """Create an authenticated Gatana API client.
 
+    Provide either ``org_id`` (resolves to ``https://{org_id}.gatana.ai/api/v1``)
+    or ``base_url`` for custom environments. If both are given, ``base_url`` wins.
+
+    All extra keyword arguments are forwarded to :class:`AuthenticatedClient`.
+    """
+    if base_url is None:
+        if org_id is None:
+            raise ValueError("Either org_id or base_url must be provided")
+        base_url = f"https://{org_id}.gatana.ai/api/v1"
+    return AuthenticatedClient(base_url=base_url, token=token, **kwargs)
 
 
 @define
@@ -36,6 +54,7 @@ class Client:
             status code that was not documented in the source OpenAPI document. Can also be provided as a keyword
             argument to the constructor.
     """
+
     raise_on_unexpected_status: bool = field(default=False, kw_only=True)
     _base_url: str = field(alias="base_url")
     _cookies: dict[str, str] = field(factory=dict, kw_only=True, alias="cookies")
@@ -268,4 +287,3 @@ class AuthenticatedClient:
     async def __aexit__(self, *args: Any, **kwargs: Any) -> None:
         """Exit a context manager for underlying httpx.AsyncClient (see httpx docs)"""
         await self.get_async_httpx_client().__aexit__(*args, **kwargs)
-
