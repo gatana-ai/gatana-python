@@ -1,6 +1,6 @@
 # gatana-langchain
 
-Current version: **v1.0.1**
+Current version: **v1.0.2**
 
 [![PyPI](https://img.shields.io/pypi/v/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
 [![Python](https://img.shields.io/pypi/pyversions/gatana-langchain)](https://pypi.org/project/gatana-langchain/)
