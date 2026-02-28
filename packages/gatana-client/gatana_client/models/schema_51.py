@@ -6,29 +6,29 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.sandbox_with_status_dto import SandboxWithStatusDto
+    from ..models.user import User
 
 
-T = TypeVar("T", bound="GetSandboxResponse")
+T = TypeVar("T", bound="Schema51")
 
 
 @_attrs_define
-class GetSandboxResponse:
+class Schema51:
     """
     Attributes:
-        sandbox (SandboxWithStatusDto):
+        user (User):
     """
 
-    sandbox: SandboxWithStatusDto
+    user: User
 
     def to_dict(self) -> dict[str, Any]:
-        sandbox = self.sandbox.to_dict()
+        user = self.user.to_dict()
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
-                "sandbox": sandbox,
+                "user": user,
             }
         )
 
@@ -36,13 +36,13 @@ class GetSandboxResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.sandbox_with_status_dto import SandboxWithStatusDto
+        from ..models.user import User
 
         d = dict(src_dict)
-        sandbox = SandboxWithStatusDto.from_dict(d.pop("sandbox"))
+        user = User.from_dict(d.pop("user"))
 
-        get_sandbox_response = cls(
-            sandbox=sandbox,
+        schema_51 = cls(
+            user=user,
         )
 
-        return get_sandbox_response
+        return schema_51

@@ -5,7 +5,7 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_67 import Schema67
+from ..models.schema_72 import Schema72
 from ..models.server_credentials_dto_type import ServerCredentialsDtoType
 
 T = TypeVar("T", bound="ServerCredentialsDto")
@@ -17,7 +17,7 @@ class ServerCredentialsDto:
     Attributes:
         id (str):
         tenant_id (str):
-        scope (Schema67):
+        scope (Schema72):
         user_id (float | None):
         profile_id (None | str):
         last_used_at (None | str):
@@ -39,7 +39,7 @@ class ServerCredentialsDto:
 
     id: str
     tenant_id: str
-    scope: Schema67
+    scope: Schema72
     user_id: float | None
     profile_id: None | str
     last_used_at: None | str
@@ -152,7 +152,7 @@ class ServerCredentialsDto:
 
         tenant_id = d.pop("tenantId")
 
-        scope = Schema67(d.pop("scope"))
+        scope = Schema72(d.pop("scope"))
 
         def _parse_user_id(data: object) -> float | None:
             if data is None:

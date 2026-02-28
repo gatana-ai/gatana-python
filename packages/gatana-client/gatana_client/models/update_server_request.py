@@ -37,6 +37,9 @@ class UpdateServerRequest:
             StdioTransportConfig | Unset | UpdateServerRequestTransportConfigType4):
         oauth_metadata (None | Unset | UpdateServerRequestOauthMetadataType0):
         oauth_client_configuration (None | Unset | UpdateServerRequestOauthClientConfigurationType0):
+        timeout_protocol (int | Unset):
+        timeout_total (int | Unset):
+        reset_timeout_on_progress_notification (bool | Unset):
     """
 
     slug: str | Unset = UNSET
@@ -54,6 +57,9 @@ class UpdateServerRequest:
     ) = UNSET
     oauth_metadata: None | Unset | UpdateServerRequestOauthMetadataType0 = UNSET
     oauth_client_configuration: None | Unset | UpdateServerRequestOauthClientConfigurationType0 = UNSET
+    timeout_protocol: int | Unset = UNSET
+    timeout_total: int | Unset = UNSET
+    reset_timeout_on_progress_notification: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -108,6 +114,12 @@ class UpdateServerRequest:
         else:
             oauth_client_configuration = self.oauth_client_configuration
 
+        timeout_protocol = self.timeout_protocol
+
+        timeout_total = self.timeout_total
+
+        reset_timeout_on_progress_notification = self.reset_timeout_on_progress_notification
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -127,6 +139,12 @@ class UpdateServerRequest:
             field_dict["oauthMetadata"] = oauth_metadata
         if oauth_client_configuration is not UNSET:
             field_dict["oauthClientConfiguration"] = oauth_client_configuration
+        if timeout_protocol is not UNSET:
+            field_dict["timeoutProtocol"] = timeout_protocol
+        if timeout_total is not UNSET:
+            field_dict["timeoutTotal"] = timeout_total
+        if reset_timeout_on_progress_notification is not UNSET:
+            field_dict["resetTimeoutOnProgressNotification"] = reset_timeout_on_progress_notification
 
         return field_dict
 
@@ -247,6 +265,12 @@ class UpdateServerRequest:
 
         oauth_client_configuration = _parse_oauth_client_configuration(d.pop("oauthClientConfiguration", UNSET))
 
+        timeout_protocol = d.pop("timeoutProtocol", UNSET)
+
+        timeout_total = d.pop("timeoutTotal", UNSET)
+
+        reset_timeout_on_progress_notification = d.pop("resetTimeoutOnProgressNotification", UNSET)
+
         update_server_request = cls(
             slug=slug,
             description=description,
@@ -256,6 +280,9 @@ class UpdateServerRequest:
             transport_config=transport_config,
             oauth_metadata=oauth_metadata,
             oauth_client_configuration=oauth_client_configuration,
+            timeout_protocol=timeout_protocol,
+            timeout_total=timeout_total,
+            reset_timeout_on_progress_notification=reset_timeout_on_progress_notification,
         )
 
         update_server_request.additional_properties = d

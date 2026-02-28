@@ -6,7 +6,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.post_teams_body import PostTeamsBody
-from ...models.schema_68 import Schema68
+from ...models.schema_74 import Schema74
 from ...types import UNSET, Response, Unset
 
 
@@ -30,9 +30,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema68 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema74 | None:
     if response.status_code == 200:
-        response_200 = Schema68.from_dict(response.json())
+        response_200 = Schema74.from_dict(response.json())
 
         return response_200
 
@@ -42,7 +42,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema68]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema74]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,7 +55,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-) -> Response[Schema68]:
+) -> Response[Schema74]:
     """
     Args:
         body (PostTeamsBody | Unset):
@@ -65,7 +65,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema68]
+        Response[Schema74]
     """
 
     kwargs = _get_kwargs(
@@ -83,7 +83,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-) -> Schema68 | None:
+) -> Schema74 | None:
     """
     Args:
         body (PostTeamsBody | Unset):
@@ -93,7 +93,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema68
+        Schema74
     """
 
     return sync_detailed(
@@ -106,7 +106,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-) -> Response[Schema68]:
+) -> Response[Schema74]:
     """
     Args:
         body (PostTeamsBody | Unset):
@@ -116,7 +116,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema68]
+        Response[Schema74]
     """
 
     kwargs = _get_kwargs(
@@ -132,7 +132,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: PostTeamsBody | Unset = UNSET,
-) -> Schema68 | None:
+) -> Schema74 | None:
     """
     Args:
         body (PostTeamsBody | Unset):
@@ -142,7 +142,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema68
+        Schema74
     """
 
     return (

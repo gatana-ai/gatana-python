@@ -6,7 +6,8 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.team_with_member_count import TeamWithMemberCount
+    from ..models.server_dto import ServerDto
+    from ..models.server_file import ServerFile
 
 
 T = TypeVar("T", bound="Schema68")
@@ -16,19 +17,27 @@ T = TypeVar("T", bound="Schema68")
 class Schema68:
     """
     Attributes:
-        team (TeamWithMemberCount):
+        server (ServerDto):
+        files (list[ServerFile]):
     """
 
-    team: TeamWithMemberCount
+    server: ServerDto
+    files: list[ServerFile]
 
     def to_dict(self) -> dict[str, Any]:
-        team = self.team.to_dict()
+        server = self.server.to_dict()
+
+        files = []
+        for files_item_data in self.files:
+            files_item = files_item_data.to_dict()
+            files.append(files_item)
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
-                "team": team,
+                "server": server,
+                "files": files,
             }
         )
 
@@ -36,13 +45,22 @@ class Schema68:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.team_with_member_count import TeamWithMemberCount
+        from ..models.server_dto import ServerDto
+        from ..models.server_file import ServerFile
 
         d = dict(src_dict)
-        team = TeamWithMemberCount.from_dict(d.pop("team"))
+        server = ServerDto.from_dict(d.pop("server"))
+
+        files = []
+        _files = d.pop("files")
+        for files_item_data in _files:
+            files_item = ServerFile.from_dict(files_item_data)
+
+            files.append(files_item)
 
         schema_68 = cls(
-            team=team,
+            server=server,
+            files=files,
         )
 
         return schema_68

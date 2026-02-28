@@ -37,9 +37,26 @@ from .delete_users_user_sub_personal_access_tokens_pat_id_response_200 import (
     DeleteUsersUserSubPersonalAccessTokensPatIdResponse200,
 )
 from .delete_users_user_sub_response_200 import DeleteUsersUserSubResponse200
+from .deployment_log_payload_type_0 import DeploymentLogPayloadType0
+from .deployment_log_payload_type_1 import DeploymentLogPayloadType1
+from .deployment_log_payload_type_2 import DeploymentLogPayloadType2
+from .deployment_log_payload_type_3 import DeploymentLogPayloadType3
+from .deployment_log_payload_type_4 import DeploymentLogPayloadType4
+from .deployment_log_payload_type_5 import DeploymentLogPayloadType5
+from .deployment_log_payload_type_6 import DeploymentLogPayloadType6
+from .deployment_log_payload_type_7 import DeploymentLogPayloadType7
+from .deployment_log_payload_type_8 import DeploymentLogPayloadType8
+from .deployment_log_payload_type_9 import DeploymentLogPayloadType9
+from .deployment_status import DeploymentStatus
+from .deployment_status_response import DeploymentStatusResponse
 from .exec_command_body import ExecCommandBody
 from .gcp_secret_manager_configuration import GcpSecretManagerConfiguration
 from .gcp_secret_manager_configuration_output import GcpSecretManagerConfigurationOutput
+from .get_credential_token_response import GetCredentialTokenResponse
+from .get_credential_token_response_type import GetCredentialTokenResponseType
+from .get_deployments_logs_previous import GetDeploymentsLogsPrevious
+from .get_deployments_logs_response_200 import GetDeploymentsLogsResponse200
+from .get_deployments_logs_response_200_logs import GetDeploymentsLogsResponse200Logs
 from .get_mcp_servers_response_200 import GetMcpServersResponse200
 from .get_mcp_servers_response_200_servers_item import GetMcpServersResponse200ServersItem
 from .get_mcp_servers_response_200_servers_item_usage import GetMcpServersResponse200ServersItemUsage
@@ -74,7 +91,6 @@ from .get_mcp_servers_server_slug_credentials_user_apikeys_response_200 import (
 from .get_mcp_servers_server_slug_credentials_user_response_200 import GetMcpServersServerSlugCredentialsUserResponse200
 from .get_mcp_servers_server_slug_files_response_200 import GetMcpServersServerSlugFilesResponse200
 from .get_mcp_servers_server_slug_oauth_discover_response_200 import GetMcpServersServerSlugOauthDiscoverResponse200
-from .get_mcp_servers_server_slug_tools_response_200 import GetMcpServersServerSlugToolsResponse200
 from .get_members_response import GetMembersResponse
 from .get_members_response_teams_item import GetMembersResponseTeamsItem
 from .get_members_response_users_item import GetMembersResponseUsersItem
@@ -83,9 +99,6 @@ from .get_profiles_profile_id_response_200 import GetProfilesProfileIdResponse20
 from .get_profiles_profile_id_tools_response_200 import GetProfilesProfileIdToolsResponse200
 from .get_profiles_profile_id_tools_response_200_tools import GetProfilesProfileIdToolsResponse200Tools
 from .get_profiles_response_200 import GetProfilesResponse200
-from .get_sandbox_id_audit_logs_id_response_200 import GetSandboxIdAuditLogsIdResponse200
-from .get_sandbox_id_audit_logs_id_response_200_pagination import GetSandboxIdAuditLogsIdResponse200Pagination
-from .get_sandbox_response import GetSandboxResponse
 from .get_subscription_response import GetSubscriptionResponse
 from .get_subscription_response_subscription_type_0 import GetSubscriptionResponseSubscriptionType0
 from .get_subscription_response_subscription_type_0_card_type_0 import GetSubscriptionResponseSubscriptionType0CardType0
@@ -113,6 +126,8 @@ from .infisical_configuration import InfisicalConfiguration
 from .infisical_configuration_output import InfisicalConfigurationOutput
 from .list_sandboxes_response import ListSandboxesResponse
 from .mcp_audit_log_verbosity import McpAuditLogVerbosity
+from .paginated_audit_log_response import PaginatedAuditLogResponse
+from .paginated_sandbox_audit_log import PaginatedSandboxAuditLog
 from .patch_secret_stores_id_body import PatchSecretStoresIdBody
 from .patch_secret_stores_store_id_mappings_mapping_name_body import PatchSecretStoresStoreIdMappingsMappingNameBody
 from .patch_users_user_sub_personal_access_tokens_pat_id_response_200 import (
@@ -123,9 +138,23 @@ from .post_mcp_servers_server_slug_credentials_copy_response_200 import (
     PostMcpServersServerSlugCredentialsCopyResponse200,
 )
 from .post_mcp_servers_server_slug_files_response_200 import PostMcpServersServerSlugFilesResponse200
+from .post_mcp_servers_server_slug_start_response_200 import PostMcpServersServerSlugStartResponse200
+from .post_mcp_servers_server_slug_stop_response_200 import PostMcpServersServerSlugStopResponse200
 from .post_mcp_servers_server_slug_tools_tool_name_call_body import PostMcpServersServerSlugToolsToolNameCallBody
 from .post_mcp_servers_server_slug_tools_tool_name_call_body_args import (
     PostMcpServersServerSlugToolsToolNameCallBodyArgs,
+)
+from .post_mcp_servers_server_slug_tools_tool_name_call_response_200 import (
+    PostMcpServersServerSlugToolsToolNameCallResponse200,
+)
+from .post_mcp_servers_server_slug_tools_tool_name_call_response_200_result import (
+    PostMcpServersServerSlugToolsToolNameCallResponse200Result,
+)
+from .post_mcp_servers_server_slug_tools_tool_name_call_response_200_result_content_item import (
+    PostMcpServersServerSlugToolsToolNameCallResponse200ResultContentItem,
+)
+from .post_mcp_servers_server_slug_tools_tool_name_call_response_200_result_structured_content import (
+    PostMcpServersServerSlugToolsToolNameCallResponse200ResultStructuredContent,
 )
 from .post_profiles_body import PostProfilesBody
 from .post_profiles_profile_id_claim_mappings_body import PostProfilesProfileIdClaimMappingsBody
@@ -190,26 +219,27 @@ from .put_users_me_response_200 import PutUsersMeResponse200
 from .sandbox_audit_log import SandboxAuditLog
 from .sandbox_audit_log_details import SandboxAuditLogDetails
 from .sandbox_dto import SandboxDto
-from .sandbox_with_status_dto import SandboxWithStatusDto
-from .sandbox_with_status_dto_status import SandboxWithStatusDtoStatus
 from .schema_0 import Schema0
 from .schema_4 import Schema4
 from .schema_11 import Schema11
 from .schema_17 import Schema17
-from .schema_25 import Schema25
+from .schema_27 import Schema27
 from .schema_29 import Schema29
 from .schema_32 import Schema32
 from .schema_35 import Schema35
 from .schema_40 import Schema40
-from .schema_50 import Schema50
-from .schema_57_type_3 import Schema57Type3
-from .schema_64 import Schema64
-from .schema_65 import Schema65
-from .schema_66 import Schema66
-from .schema_67 import Schema67
+from .schema_41 import Schema41
+from .schema_51 import Schema51
+from .schema_58_type_3 import Schema58Type3
 from .schema_68 import Schema68
 from .schema_69 import Schema69
-from .schema_76 import Schema76
+from .schema_70 import Schema70
+from .schema_71 import Schema71
+from .schema_72 import Schema72
+from .schema_73 import Schema73
+from .schema_74 import Schema74
+from .schema_75 import Schema75
+from .schema_82 import Schema82
 from .secret_mapping_list_response import SecretMappingListResponse
 from .secret_mapping_response import SecretMappingResponse
 from .secret_store_detail_response import SecretStoreDetailResponse
@@ -244,6 +274,7 @@ from .server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
 from .server_tool_dto_schema import ServerToolDtoSchema
 from .sse_transport_config import SseTransportConfig
 from .sse_transport_config_output import SseTransportConfigOutput
+from .ssh_session_response import SshSessionResponse
 from .stdio_transport_config import StdioTransportConfig
 from .stdio_transport_config_output import StdioTransportConfigOutput
 from .stdio_transport_config_output_transport import StdioTransportConfigOutputTransport
@@ -305,9 +336,26 @@ __all__ = (
     "DeleteTeamsTeamIdResponse200",
     "DeleteUsersUserSubPersonalAccessTokensPatIdResponse200",
     "DeleteUsersUserSubResponse200",
+    "DeploymentLogPayloadType0",
+    "DeploymentLogPayloadType1",
+    "DeploymentLogPayloadType2",
+    "DeploymentLogPayloadType3",
+    "DeploymentLogPayloadType4",
+    "DeploymentLogPayloadType5",
+    "DeploymentLogPayloadType6",
+    "DeploymentLogPayloadType7",
+    "DeploymentLogPayloadType8",
+    "DeploymentLogPayloadType9",
+    "DeploymentStatus",
+    "DeploymentStatusResponse",
     "ExecCommandBody",
     "GcpSecretManagerConfiguration",
     "GcpSecretManagerConfigurationOutput",
+    "GetCredentialTokenResponse",
+    "GetCredentialTokenResponseType",
+    "GetDeploymentsLogsPrevious",
+    "GetDeploymentsLogsResponse200",
+    "GetDeploymentsLogsResponse200Logs",
     "GetMcpServersResponse200",
     "GetMcpServersResponse200ServersItem",
     "GetMcpServersResponse200ServersItemUsage",
@@ -324,7 +372,6 @@ __all__ = (
     "GetMcpServersServerSlugCredentialsUserResponse200",
     "GetMcpServersServerSlugFilesResponse200",
     "GetMcpServersServerSlugOauthDiscoverResponse200",
-    "GetMcpServersServerSlugToolsResponse200",
     "GetMembersResponse",
     "GetMembersResponseTeamsItem",
     "GetMembersResponseUsersItem",
@@ -333,9 +380,6 @@ __all__ = (
     "GetProfilesProfileIdToolsResponse200",
     "GetProfilesProfileIdToolsResponse200Tools",
     "GetProfilesResponse200",
-    "GetSandboxIdAuditLogsIdResponse200",
-    "GetSandboxIdAuditLogsIdResponse200Pagination",
-    "GetSandboxResponse",
     "GetSubscriptionResponse",
     "GetSubscriptionResponseSubscriptionType0",
     "GetSubscriptionResponseSubscriptionType0CardType0",
@@ -363,14 +407,22 @@ __all__ = (
     "InfisicalConfigurationOutput",
     "ListSandboxesResponse",
     "McpAuditLogVerbosity",
+    "PaginatedAuditLogResponse",
+    "PaginatedSandboxAuditLog",
     "PatchSecretStoresIdBody",
     "PatchSecretStoresStoreIdMappingsMappingNameBody",
     "PatchUsersUserSubPersonalAccessTokensPatIdResponse200",
     "PersonalAccessToken",
     "PostMcpServersServerSlugCredentialsCopyResponse200",
     "PostMcpServersServerSlugFilesResponse200",
+    "PostMcpServersServerSlugStartResponse200",
+    "PostMcpServersServerSlugStopResponse200",
     "PostMcpServersServerSlugToolsToolNameCallBody",
     "PostMcpServersServerSlugToolsToolNameCallBodyArgs",
+    "PostMcpServersServerSlugToolsToolNameCallResponse200",
+    "PostMcpServersServerSlugToolsToolNameCallResponse200Result",
+    "PostMcpServersServerSlugToolsToolNameCallResponse200ResultContentItem",
+    "PostMcpServersServerSlugToolsToolNameCallResponse200ResultStructuredContent",
     "PostProfilesBody",
     "PostProfilesProfileIdClaimMappingsBody",
     "PostProfilesProfileIdClaimMappingsResponse200",
@@ -420,26 +472,27 @@ __all__ = (
     "SandboxAuditLog",
     "SandboxAuditLogDetails",
     "SandboxDto",
-    "SandboxWithStatusDto",
-    "SandboxWithStatusDtoStatus",
     "Schema0",
     "Schema11",
     "Schema17",
-    "Schema25",
+    "Schema27",
     "Schema29",
     "Schema32",
     "Schema35",
     "Schema4",
     "Schema40",
-    "Schema50",
-    "Schema57Type3",
-    "Schema64",
-    "Schema65",
-    "Schema66",
-    "Schema67",
+    "Schema41",
+    "Schema51",
+    "Schema58Type3",
     "Schema68",
     "Schema69",
-    "Schema76",
+    "Schema70",
+    "Schema71",
+    "Schema72",
+    "Schema73",
+    "Schema74",
+    "Schema75",
+    "Schema82",
     "SecretMappingListResponse",
     "SecretMappingResponse",
     "SecretStoreDetailResponse",
@@ -474,6 +527,7 @@ __all__ = (
     "ServerToolDtoSchema",
     "SseTransportConfig",
     "SseTransportConfigOutput",
+    "SshSessionResponse",
     "StdioTransportConfig",
     "StdioTransportConfigOutput",
     "StdioTransportConfigOutputTransport",

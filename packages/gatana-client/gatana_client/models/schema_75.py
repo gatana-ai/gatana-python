@@ -1,8 +1,7 @@
 from enum import Enum
 
 
-class Schema66(str, Enum):
-    ADMIN = "admin"
+class Schema75(str, Enum):
     MAINTAINER = "maintainer"
     MEMBER = "member"
 

@@ -10,7 +10,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.hosted_transport_config_output import HostedTransportConfigOutput
     from ..models.http_streaming_transport_config_output import HttpStreamingTransportConfigOutput
-    from ..models.schema_57_type_3 import Schema57Type3
+    from ..models.schema_58_type_3 import Schema58Type3
     from ..models.server_authorization_output import ServerAuthorizationOutput
     from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
     from ..models.server_o_auth_metadata import ServerOAuthMetadata
@@ -31,12 +31,15 @@ class ServerDto:
         name (str): DEPRECATED. Field will be removed in future versions. Please use slug instead.
         description (str):
         authorization (ServerAuthorizationOutput):
-        transport_config (HostedTransportConfigOutput | HttpStreamingTransportConfigOutput | Schema57Type3 |
+        transport_config (HostedTransportConfigOutput | HttpStreamingTransportConfigOutput | Schema58Type3 |
             SseTransportConfigOutput | StdioTransportConfigOutput):
         oauth_client_configuration (None | ServerOAuthClientConfiguration):
         oauth_metadata (None | ServerOAuthMetadata):
         is_enabled (bool):
         last_tool_refresh_at (None | str):
+        timeout_protocol (int):
+        timeout_total (int):
+        reset_timeout_on_progress_notification (bool):
         created_at (str):
         updated_at (str):
         logo_url (str | Unset):
@@ -51,7 +54,7 @@ class ServerDto:
     transport_config: (
         HostedTransportConfigOutput
         | HttpStreamingTransportConfigOutput
-        | Schema57Type3
+        | Schema58Type3
         | SseTransportConfigOutput
         | StdioTransportConfigOutput
     )
@@ -59,13 +62,16 @@ class ServerDto:
     oauth_metadata: None | ServerOAuthMetadata
     is_enabled: bool
     last_tool_refresh_at: None | str
+    timeout_protocol: int
+    timeout_total: int
+    reset_timeout_on_progress_notification: bool
     created_at: str
     updated_at: str
     logo_url: str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.http_streaming_transport_config_output import HttpStreamingTransportConfigOutput
-        from ..models.schema_57_type_3 import Schema57Type3
+        from ..models.schema_58_type_3 import Schema58Type3
         from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
         from ..models.server_o_auth_metadata import ServerOAuthMetadata
         from ..models.sse_transport_config_output import SseTransportConfigOutput
@@ -90,7 +96,7 @@ class ServerDto:
             transport_config = self.transport_config.to_dict()
         elif isinstance(self.transport_config, SseTransportConfigOutput):
             transport_config = self.transport_config.to_dict()
-        elif isinstance(self.transport_config, Schema57Type3):
+        elif isinstance(self.transport_config, Schema58Type3):
             transport_config = self.transport_config.to_dict()
         else:
             transport_config = self.transport_config.to_dict()
@@ -111,6 +117,12 @@ class ServerDto:
 
         last_tool_refresh_at: None | str
         last_tool_refresh_at = self.last_tool_refresh_at
+
+        timeout_protocol = self.timeout_protocol
+
+        timeout_total = self.timeout_total
+
+        reset_timeout_on_progress_notification = self.reset_timeout_on_progress_notification
 
         created_at = self.created_at
 
@@ -133,6 +145,9 @@ class ServerDto:
                 "oauthMetadata": oauth_metadata,
                 "isEnabled": is_enabled,
                 "lastToolRefreshAt": last_tool_refresh_at,
+                "timeoutProtocol": timeout_protocol,
+                "timeoutTotal": timeout_total,
+                "resetTimeoutOnProgressNotification": reset_timeout_on_progress_notification,
                 "createdAt": created_at,
                 "updatedAt": updated_at,
             }
@@ -146,7 +161,7 @@ class ServerDto:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.hosted_transport_config_output import HostedTransportConfigOutput
         from ..models.http_streaming_transport_config_output import HttpStreamingTransportConfigOutput
-        from ..models.schema_57_type_3 import Schema57Type3
+        from ..models.schema_58_type_3 import Schema58Type3
         from ..models.server_authorization_output import ServerAuthorizationOutput
         from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
         from ..models.server_o_auth_metadata import ServerOAuthMetadata
@@ -171,47 +186,47 @@ class ServerDto:
         ) -> (
             HostedTransportConfigOutput
             | HttpStreamingTransportConfigOutput
-            | Schema57Type3
+            | Schema58Type3
             | SseTransportConfigOutput
             | StdioTransportConfigOutput
         ):
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema57_type_0 = HttpStreamingTransportConfigOutput.from_dict(data)
+                componentsschemas_schema58_type_0 = HttpStreamingTransportConfigOutput.from_dict(data)
 
-                return componentsschemas_schema57_type_0
+                return componentsschemas_schema58_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema57_type_1 = StdioTransportConfigOutput.from_dict(data)
+                componentsschemas_schema58_type_1 = StdioTransportConfigOutput.from_dict(data)
 
-                return componentsschemas_schema57_type_1
+                return componentsschemas_schema58_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema57_type_2 = SseTransportConfigOutput.from_dict(data)
+                componentsschemas_schema58_type_2 = SseTransportConfigOutput.from_dict(data)
 
-                return componentsschemas_schema57_type_2
+                return componentsschemas_schema58_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema57_type_3 = Schema57Type3.from_dict(data)
+                componentsschemas_schema58_type_3 = Schema58Type3.from_dict(data)
 
-                return componentsschemas_schema57_type_3
+                return componentsschemas_schema58_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             if not isinstance(data, dict):
                 raise TypeError()
-            componentsschemas_schema57_type_4 = HostedTransportConfigOutput.from_dict(data)
+            componentsschemas_schema58_type_4 = HostedTransportConfigOutput.from_dict(data)
 
-            return componentsschemas_schema57_type_4
+            return componentsschemas_schema58_type_4
 
         transport_config = _parse_transport_config(d.pop("transportConfig"))
 
@@ -221,9 +236,9 @@ class ServerDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema58_type_1 = ServerOAuthClientConfiguration.from_dict(data)
+                componentsschemas_schema59_type_1 = ServerOAuthClientConfiguration.from_dict(data)
 
-                return componentsschemas_schema58_type_1
+                return componentsschemas_schema59_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | ServerOAuthClientConfiguration, data)
@@ -236,9 +251,9 @@ class ServerDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema59_type_1 = ServerOAuthMetadata.from_dict(data)
+                componentsschemas_schema60_type_1 = ServerOAuthMetadata.from_dict(data)
 
-                return componentsschemas_schema59_type_1
+                return componentsschemas_schema60_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | ServerOAuthMetadata, data)
@@ -253,6 +268,12 @@ class ServerDto:
             return cast(None | str, data)
 
         last_tool_refresh_at = _parse_last_tool_refresh_at(d.pop("lastToolRefreshAt"))
+
+        timeout_protocol = d.pop("timeoutProtocol")
+
+        timeout_total = d.pop("timeoutTotal")
+
+        reset_timeout_on_progress_notification = d.pop("resetTimeoutOnProgressNotification")
 
         created_at = d.pop("createdAt")
 
@@ -272,6 +293,9 @@ class ServerDto:
             oauth_metadata=oauth_metadata,
             is_enabled=is_enabled,
             last_tool_refresh_at=last_tool_refresh_at,
+            timeout_protocol=timeout_protocol,
+            timeout_total=timeout_total,
+            reset_timeout_on_progress_notification=reset_timeout_on_progress_notification,
             created_at=created_at,
             updated_at=updated_at,
             logo_url=logo_url,

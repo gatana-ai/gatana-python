@@ -6,29 +6,29 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.user import User
+    from ..models.team_with_member_count import TeamWithMemberCount
 
 
-T = TypeVar("T", bound="Schema50")
+T = TypeVar("T", bound="Schema74")
 
 
 @_attrs_define
-class Schema50:
+class Schema74:
     """
     Attributes:
-        user (User):
+        team (TeamWithMemberCount):
     """
 
-    user: User
+    team: TeamWithMemberCount
 
     def to_dict(self) -> dict[str, Any]:
-        user = self.user.to_dict()
+        team = self.team.to_dict()
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
-                "user": user,
+                "team": team,
             }
         )
 
@@ -36,13 +36,13 @@ class Schema50:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.user import User
+        from ..models.team_with_member_count import TeamWithMemberCount
 
         d = dict(src_dict)
-        user = User.from_dict(d.pop("user"))
+        team = TeamWithMemberCount.from_dict(d.pop("team"))
 
-        schema_50 = cls(
-            user=user,
+        schema_74 = cls(
+            team=team,
         )
 
-        return schema_50
+        return schema_74

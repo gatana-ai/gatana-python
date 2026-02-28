@@ -1,71 +1,53 @@
 # gatana-client
 
-Current version: **v1.0.2**
+Python client for the Gatana API. Automatically generated based on Gatana OpenAPI specification using [openapi-generators/openapi-python-client](https://github.com/openapi-generators/openapi-python-client)
 
-Python client for the [Gatana](https://gatana.ai) API, generated using https://github.com/openapi-generators/openapi-python-client. Sync + async, built on httpx. Requires Python 3.10+.
+## Usage
 
-```bash
-pip install gatana-client
-```
+The easiest way to get started is with `GatanaClient`, which resolves configuration automatically from explicit parameters, environment variables, or `~/.gatana.config`.
 
-## Authentication
-
-Use your user PAT as the `token`:
+More information about the `.gatana.config` file, can be found [here in the Gatana Tools CLI repository](https://github.com/gatana-ai/gatana-js/blob/main/README.md#config-file)
 
 ```python
 from gatana_client import GatanaClient
 
-client = GatanaClient(org_id="acme", token="gk_...")
+# Explicit
+client = GatanaClient(token="sk-...", org_id="my-org")
+
+# Or zero-config — picks up GATANA_API_KEY + GATANA_ORG_ID env vars,
+# or falls back to ~/.gatana.config
+client = GatanaClient()
 ```
 
-Verify the authenticated identity:
+### Configuration priority
+
+1. Explicit `token` + `org_id` (or `base_url`) passed to `GatanaClient`
+2. Environment variables: `GATANA_API_KEY`, `GATANA_ORG_ID` / `GATANA_BASE_URL`
+3. Config file: `~/.gatana.config`
+
+### Calling endpoints
+
+Each API endpoint is a Python module with sync and async variants:
 
 ```python
-from gatana_client.api.auth import get_auth_me
+from gatana_client.api.sandboxes import list_sandboxes
 
-me = get_auth_me.sync(client=client)  # returns user, tenant, quota metadata
+with client as client:
+    sandboxes = list_sandboxes.sync(client=client)
 ```
 
-## Usage
-
-Endpoints live under `gatana_client.api.<group>.<module>`. Each module exposes `sync()`, `sync_detailed()`, `asyncio()`, and `asyncio_detailed()`. The `_detailed` variants return a `Response[T]` with status, headers, and parsed body; the plain variants return `T | None`.
+Async:
 
 ```python
-from gatana_client.api.sandboxes import post_sandboxes, post_sandboxes_sandbox_id_exec, delete_sandboxes_sandbox_id
-from gatana_client.models.exec_command_body import ExecCommandBody
-
-sandbox_id = post_sandboxes.sync_detailed(client=client).parsed.sandbox.id
-result = post_sandboxes_sandbox_id_exec.sync_detailed(sandbox_id, client=client, body=ExecCommandBody(command="echo hi"))
-delete_sandboxes_sandbox_id.sync(sandbox_id, client=client)
-
-# async: await post_sandboxes.asyncio(client=client)
+async with client as client:
+    sandboxes = await list_sandboxes.asyncio(client=client)
 ```
 
-File I/O uses `gatana_client.types.File`:
+Every endpoint module exposes four functions:
 
-```python
-from gatana_client.api.sandboxes import post_sandboxes_sandbox_id_write_file, post_sandboxes_sandbox_id_read_file
-from gatana_client.types import File
-import io
-
-post_sandboxes_sandbox_id_write_file.sync(sandbox_id, client=client, body=File(payload=io.BytesIO(b"hello")), path="/tmp/f.txt")
-content = post_sandboxes_sandbox_id_read_file.sync_detailed(sandbox_id, client=client, path="/tmp/f.txt").content
-```
-
-## Client options
-
-| Parameter                    | Default | Description                                |
-| ---------------------------- | ------- | ------------------------------------------ |
-| `base_url`                   | —       | API base URL                               |
-| `token`                      | —       | API key or PAT (`AuthenticatedClient` only)|
-| `timeout`                    | `None`  | `httpx.Timeout`                            |
-| `verify_ssl`                 | `True`  | SSL verification                           |
-| `raise_on_unexpected_status` | `False` | Raise `UnexpectedStatus` on undocumented HTTP codes instead of returning `None` |
-| `headers` / `cookies`        | `{}`    | Extra headers/cookies per request          |
-| `httpx_args`                 | `{}`    | Kwargs forwarded to `httpx.Client`         |
-
-Clients support context managers and builder methods (`with_headers`, `with_cookies`, `with_timeout`).
-
-## API groups
-
-`sandboxes` · `mcp_servers` · `teams` · `users` · `profiles` · `auth` · `tenants` · `secret_stores` · `tools` · `audit_logs` · `email_verification`
+| Function | Description |
+|---|---|
+| `sync` | Blocking, returns parsed data or `None` |
+| `sync_detailed` | Blocking, returns full `Response` |
+| `asyncio` | Async version of `sync` |
+| `asyncio_detailed` | Async version of `sync_detailed` |

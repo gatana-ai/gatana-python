@@ -1,43 +1,31 @@
 from http import HTTPStatus
-from typing import Any, cast
+from typing import Any
 from urllib.parse import quote
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
-from ...models.get_mcp_servers_server_slug_tools_response_200 import GetMcpServersServerSlugToolsResponse200
-from typing import cast
-
+from ...client import AuthenticatedClient, Client
+from ...models.schema_69 import Schema69
+from ...types import Response
 
 
 def _get_kwargs(
     server_slug: str,
-
 ) -> dict[str, Any]:
-    
-
-    
-
-    
-
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/mcp-servers/{server_slug}/tools".format(server_slug=quote(str(server_slug), safe=""),),
+        "url": "/mcp-servers/{server_slug}/tools".format(
+            server_slug=quote(str(server_slug), safe=""),
+        ),
     }
-
 
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> GetMcpServersServerSlugToolsResponse200 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema69 | None:
     if response.status_code == 200:
-        response_200 = GetMcpServersServerSlugToolsResponse200.from_dict(response.json())
-
-
+        response_200 = Schema69.from_dict(response.json())
 
         return response_200
 
@@ -47,7 +35,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[GetMcpServersServerSlugToolsResponse200]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema69]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -60,9 +48,8 @@ def sync_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-
-) -> Response[GetMcpServersServerSlugToolsResponse200]:
-    """ 
+) -> Response[Schema69]:
+    """
     Args:
         server_slug (str):
 
@@ -71,13 +58,11 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetMcpServersServerSlugToolsResponse200]
-     """
-
+        Response[Schema69]
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-
     )
 
     response = client.get_httpx_client().request(
@@ -86,13 +71,13 @@ def sync_detailed(
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-
-) -> GetMcpServersServerSlugToolsResponse200 | None:
-    """ 
+) -> Schema69 | None:
+    """
     Args:
         server_slug (str):
 
@@ -101,23 +86,21 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetMcpServersServerSlugToolsResponse200
-     """
-
+        Schema69
+    """
 
     return sync_detailed(
         server_slug=server_slug,
-client=client,
-
+        client=client,
     ).parsed
+
 
 async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-
-) -> Response[GetMcpServersServerSlugToolsResponse200]:
-    """ 
+) -> Response[Schema69]:
+    """
     Args:
         server_slug (str):
 
@@ -126,28 +109,24 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetMcpServersServerSlugToolsResponse200]
-     """
-
+        Response[Schema69]
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-
-) -> GetMcpServersServerSlugToolsResponse200 | None:
-    """ 
+) -> Schema69 | None:
+    """
     Args:
         server_slug (str):
 
@@ -156,12 +135,12 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetMcpServersServerSlugToolsResponse200
-     """
+        Schema69
+    """
 
-
-    return (await asyncio_detailed(
-        server_slug=server_slug,
-client=client,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            server_slug=server_slug,
+            client=client,
+        )
+    ).parsed

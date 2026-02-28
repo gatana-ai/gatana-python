@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_67 import Schema67
+from ..models.schema_72 import Schema72
 
 if TYPE_CHECKING:
     from ..models.server_authorization_output import ServerAuthorizationOutput
@@ -23,7 +23,7 @@ class ProfileDetailsDtoServersItem:
         slug (str):
         authorization (ServerAuthorizationOutput):
         credentials_num_keys (float | None):
-        credential_scope (Schema67):
+        credential_scope (Schema72):
         credentials (None | ServerCredentialsDto):
     """
 
@@ -31,7 +31,7 @@ class ProfileDetailsDtoServersItem:
     slug: str
     authorization: ServerAuthorizationOutput
     credentials_num_keys: float | None
-    credential_scope: Schema67
+    credential_scope: Schema72
     credentials: None | ServerCredentialsDto
 
     def to_dict(self) -> dict[str, Any]:
@@ -88,7 +88,7 @@ class ProfileDetailsDtoServersItem:
 
         credentials_num_keys = _parse_credentials_num_keys(d.pop("credentialsNumKeys"))
 
-        credential_scope = Schema67(d.pop("credentialScope"))
+        credential_scope = Schema72(d.pop("credentialScope"))
 
         def _parse_credentials(data: object) -> None | ServerCredentialsDto:
             if data is None:

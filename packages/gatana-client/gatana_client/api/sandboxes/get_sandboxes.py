@@ -6,13 +6,23 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.list_sandboxes_response import ListSandboxesResponse
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
-def _get_kwargs() -> dict[str, Any]:
+def _get_kwargs(
+    *,
+    all_: str | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
+
+    params["all"] = all_
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/sandboxes",
+        "params": params,
     }
 
     return _kwargs
@@ -44,8 +54,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
+    all_: str | Unset = UNSET,
 ) -> Response[ListSandboxesResponse]:
     """
+    Args:
+        all_ (str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
@@ -54,7 +68,9 @@ def sync_detailed(
         Response[ListSandboxesResponse]
     """
 
-    kwargs = _get_kwargs()
+    kwargs = _get_kwargs(
+        all_=all_,
+    )
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -66,8 +82,12 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
+    all_: str | Unset = UNSET,
 ) -> ListSandboxesResponse | None:
     """
+    Args:
+        all_ (str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
@@ -78,14 +98,19 @@ def sync(
 
     return sync_detailed(
         client=client,
+        all_=all_,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
+    all_: str | Unset = UNSET,
 ) -> Response[ListSandboxesResponse]:
     """
+    Args:
+        all_ (str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
@@ -94,7 +119,9 @@ async def asyncio_detailed(
         Response[ListSandboxesResponse]
     """
 
-    kwargs = _get_kwargs()
+    kwargs = _get_kwargs(
+        all_=all_,
+    )
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -104,8 +131,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
+    all_: str | Unset = UNSET,
 ) -> ListSandboxesResponse | None:
     """
+    Args:
+        all_ (str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
@@ -117,5 +148,6 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
+            all_=all_,
         )
     ).parsed

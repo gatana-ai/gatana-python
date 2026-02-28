@@ -5,11 +5,11 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-T = TypeVar("T", bound="Schema65")
+T = TypeVar("T", bound="Schema70")
 
 
 @_attrs_define
-class Schema65:
+class Schema70:
     """
     Attributes:
         success (bool):
@@ -42,9 +42,9 @@ class Schema65:
 
         message = d.pop("message")
 
-        schema_65 = cls(
+        schema_70 = cls(
             success=success,
             message=message,
         )
 
-        return schema_65
+        return schema_70

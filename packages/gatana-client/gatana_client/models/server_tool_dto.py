@@ -19,31 +19,31 @@ class ServerToolDto:
     """
     Attributes:
         tenant_id (str):
-        server_id (float):
         tool_name (str):
         description (str):
         schema (ServerToolDtoSchema):
         output_schema (None | ServerToolDtoOutputSchemaType0):
         annotations (None | ServerToolDtoAnnotationsType0):
         is_enabled (bool):
+        server_slug (str):
+        universal_name (str):
     """
 
     tenant_id: str
-    server_id: float
     tool_name: str
     description: str
     schema: ServerToolDtoSchema
     output_schema: None | ServerToolDtoOutputSchemaType0
     annotations: None | ServerToolDtoAnnotationsType0
     is_enabled: bool
+    server_slug: str
+    universal_name: str
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
         from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
 
         tenant_id = self.tenant_id
-
-        server_id = self.server_id
 
         tool_name = self.tool_name
 
@@ -65,18 +65,23 @@ class ServerToolDto:
 
         is_enabled = self.is_enabled
 
+        server_slug = self.server_slug
+
+        universal_name = self.universal_name
+
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
                 "tenantId": tenant_id,
-                "serverId": server_id,
                 "toolName": tool_name,
                 "description": description,
                 "schema": schema,
                 "outputSchema": output_schema,
                 "annotations": annotations,
                 "isEnabled": is_enabled,
+                "serverSlug": server_slug,
+                "universalName": universal_name,
             }
         )
 
@@ -90,8 +95,6 @@ class ServerToolDto:
 
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
-
-        server_id = d.pop("serverId")
 
         tool_name = d.pop("toolName")
 
@@ -131,15 +134,20 @@ class ServerToolDto:
 
         is_enabled = d.pop("isEnabled")
 
+        server_slug = d.pop("serverSlug")
+
+        universal_name = d.pop("universalName")
+
         server_tool_dto = cls(
             tenant_id=tenant_id,
-            server_id=server_id,
             tool_name=tool_name,
             description=description,
             schema=schema,
             output_schema=output_schema,
             annotations=annotations,
             is_enabled=is_enabled,
+            server_slug=server_slug,
+            universal_name=universal_name,
         )
 
         return server_tool_dto

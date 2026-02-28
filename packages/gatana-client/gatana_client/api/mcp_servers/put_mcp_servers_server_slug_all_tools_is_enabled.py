@@ -6,15 +6,15 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_25 import Schema25
-from ...models.schema_65 import Schema65
+from ...models.schema_27 import Schema27
+from ...models.schema_70 import Schema70
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
     *,
-    body: Schema25 | Unset = UNSET,
+    body: Schema27 | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -34,9 +34,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema65 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema70 | None:
     if response.status_code == 200:
-        response_200 = Schema65.from_dict(response.json())
+        response_200 = Schema70.from_dict(response.json())
 
         return response_200
 
@@ -46,7 +46,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema65]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema70]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,19 +59,19 @@ def sync_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    body: Schema25 | Unset = UNSET,
-) -> Response[Schema65]:
+    body: Schema27 | Unset = UNSET,
+) -> Response[Schema70]:
     """
     Args:
         server_slug (str):
-        body (Schema25 | Unset):
+        body (Schema27 | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema65]
+        Response[Schema70]
     """
 
     kwargs = _get_kwargs(
@@ -90,19 +90,19 @@ def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    body: Schema25 | Unset = UNSET,
-) -> Schema65 | None:
+    body: Schema27 | Unset = UNSET,
+) -> Schema70 | None:
     """
     Args:
         server_slug (str):
-        body (Schema25 | Unset):
+        body (Schema27 | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema65
+        Schema70
     """
 
     return sync_detailed(
@@ -116,19 +116,19 @@ async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    body: Schema25 | Unset = UNSET,
-) -> Response[Schema65]:
+    body: Schema27 | Unset = UNSET,
+) -> Response[Schema70]:
     """
     Args:
         server_slug (str):
-        body (Schema25 | Unset):
+        body (Schema27 | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema65]
+        Response[Schema70]
     """
 
     kwargs = _get_kwargs(
@@ -145,19 +145,19 @@ async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    body: Schema25 | Unset = UNSET,
-) -> Schema65 | None:
+    body: Schema27 | Unset = UNSET,
+) -> Schema70 | None:
     """
     Args:
         server_slug (str):
-        body (Schema25 | Unset):
+        body (Schema27 | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema65
+        Schema70
     """
 
     return (

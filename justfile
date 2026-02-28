@@ -73,6 +73,13 @@ release pkg bump publish="":
     git commit -am "release({{ pkg }}): v${NEW_VERSION}"
     git tag "{{ pkg }}/v${NEW_VERSION}" -m "release: {{ pkg }} v${NEW_VERSION}"
     echo "✅ Released {{ pkg }} v${NEW_VERSION}"
+    git push && git push origin "{{ pkg }}/v${NEW_VERSION}"
+    PKG_UNDER=$(echo "{{ pkg }}" | tr '-' '_')
+    gh release create "{{ pkg }}/v${NEW_VERSION}" \
+      --title "{{ pkg }} v${NEW_VERSION}" \
+      --generate-notes \
+      --notes-start-tag "$(git tag --sort=-version:refname -l '{{ pkg }}/v*' | sed -n '2p')" \
+      dist/${PKG_UNDER}-${NEW_VERSION}*
     if [[ "{{ publish }}" == "publish" ]]; then
       echo "📦 Publishing {{ pkg }} to PyPI..."
       just publish {{ pkg }}
@@ -84,18 +91,40 @@ release-all bump publish="":
     just release gatana-langchain {{ bump }} {{ publish }}
 
 # Regenerate the Python SDK from the OpenAPI spec
-generate-sdk openapi_url="https://acme.s.gatana.ai/api/v1/openapi.json":
+generate-sdk openapi_url="https://acme.gatana.ai/api/v1/openapi.json":
     #!/usr/bin/env bash
     set -euo pipefail
+
+    DEST=packages/gatana-client
+    PKG="$DEST/gatana_client"
+    TMPDIR="$(mktemp -d)"
+    trap 'rm -rf "$TMPDIR"' EXIT
+
+    # 1. Fetch the latest OpenAPI spec
     curl -sf -o openapi.json "{{ openapi_url }}"
-    openapi-python-client generate --path openapi.json --overwrite --output-path packages/gatana-client
-    # Inject [project] table required by uv workspace (generator only emits [tool.poetry])
-    PYPROJECT=packages/gatana-client/pyproject.toml
-    if ! grep -q '^\[project\]' "$PYPROJECT"; then
+
+    # 2. Generate into a temp directory
+    openapi-python-client generate --path openapi.json --overwrite --output-path "$TMPDIR/gatana-client"
+
+    # 3. Copy generated code into the package, preserving hand-written files
+    #    Generated artefacts: api/, models/, types.py, errors.py, _base_client.py (was client.py)
+    GENPKG="$TMPDIR/gatana-client/gatana_client"
+
+    rm -rf "$PKG/api" "$PKG/models"
+    cp -R "$GENPKG/api"    "$PKG/api"
+    cp -R "$GENPKG/models" "$PKG/models"
+    cp    "$GENPKG/types.py"  "$PKG/types.py"
+    cp    "$GENPKG/errors.py" "$PKG/errors.py"
+    cp    "$GENPKG/client.py" "$PKG/_base_client.py"
+
+    # 4. pyproject.toml — keep ours, but sync if the generator added a new one
+    if [ -f "$TMPDIR/gatana-client/pyproject.toml" ] && ! grep -q '^\[project\]' "$DEST/pyproject.toml"; then
       HEADER='[project]\nname = "gatana-client"\nversion = "0.1.0"\ndescription = "A client library for accessing Gatana"\nrequires-python = ">=3.10"\ndependencies = [\n    "httpx>=0.23.0,<0.29.0",\n    "attrs>=22.2.0",\n    "python-dateutil>=2.8.0",\n]\n'
-      printf '%b\n' "$HEADER" | cat - "$PYPROJECT" > "$PYPROJECT.tmp" && mv "$PYPROJECT.tmp" "$PYPROJECT"
+      printf '%b\n' "$HEADER" | cat - "$DEST/pyproject.toml" > "$DEST/pyproject.toml.tmp" && mv "$DEST/pyproject.toml.tmp" "$DEST/pyproject.toml"
     fi
-    echo "SDK regenerated in packages/gatana-client/"
+
+    echo "✅ SDK regenerated in $PKG/"
+    echo "   Hand-written files preserved: client.py, config.py, __init__.py, py.typed"
 
 # Remove build artifacts and caches
 clean:

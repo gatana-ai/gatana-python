@@ -5,11 +5,11 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-T = TypeVar("T", bound="GetSandboxIdAuditLogsIdResponse200Pagination")
+T = TypeVar("T", bound="Schema41")
 
 
 @_attrs_define
-class GetSandboxIdAuditLogsIdResponse200Pagination:
+class Schema41:
     """
     Attributes:
         page (float):
@@ -70,7 +70,7 @@ class GetSandboxIdAuditLogsIdResponse200Pagination:
 
         has_prev = d.pop("hasPrev")
 
-        get_sandbox_id_audit_logs_id_response_200_pagination = cls(
+        schema_41 = cls(
             page=page,
             limit=limit,
             total=total,
@@ -79,4 +79,4 @@ class GetSandboxIdAuditLogsIdResponse200Pagination:
             has_prev=has_prev,
         )
 
-        return get_sandbox_id_audit_logs_id_response_200_pagination
+        return schema_41

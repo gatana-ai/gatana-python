@@ -6,24 +6,22 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.get_sandbox_id_audit_logs_id_response_200_pagination import (
-        GetSandboxIdAuditLogsIdResponse200Pagination,
-    )
     from ..models.sandbox_audit_log import SandboxAuditLog
+    from ..models.schema_41 import Schema41
 
 
-T = TypeVar("T", bound="GetSandboxIdAuditLogsIdResponse200")
+T = TypeVar("T", bound="PaginatedSandboxAuditLog")
 
 
 @_attrs_define
-class GetSandboxIdAuditLogsIdResponse200:
+class PaginatedSandboxAuditLog:
     """
     Attributes:
-        pagination (GetSandboxIdAuditLogsIdResponse200Pagination):
+        pagination (Schema41):
         data (list[SandboxAuditLog]):
     """
 
-    pagination: GetSandboxIdAuditLogsIdResponse200Pagination
+    pagination: Schema41
     data: list[SandboxAuditLog]
 
     def to_dict(self) -> dict[str, Any]:
@@ -47,13 +45,11 @@ class GetSandboxIdAuditLogsIdResponse200:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.get_sandbox_id_audit_logs_id_response_200_pagination import (
-            GetSandboxIdAuditLogsIdResponse200Pagination,
-        )
         from ..models.sandbox_audit_log import SandboxAuditLog
+        from ..models.schema_41 import Schema41
 
         d = dict(src_dict)
-        pagination = GetSandboxIdAuditLogsIdResponse200Pagination.from_dict(d.pop("pagination"))
+        pagination = Schema41.from_dict(d.pop("pagination"))
 
         data = []
         _data = d.pop("data")
@@ -62,9 +58,9 @@ class GetSandboxIdAuditLogsIdResponse200:
 
             data.append(data_item)
 
-        get_sandbox_id_audit_logs_id_response_200 = cls(
+        paginated_sandbox_audit_log = cls(
             pagination=pagination,
             data=data,
         )
 
-        return get_sandbox_id_audit_logs_id_response_200
+        return paginated_sandbox_audit_log

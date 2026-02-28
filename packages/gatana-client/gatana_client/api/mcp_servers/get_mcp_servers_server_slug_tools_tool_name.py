@@ -6,30 +6,28 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.get_sandbox_id_audit_logs_id_response_200 import GetSandboxIdAuditLogsIdResponse200
+from ...models.server_tool_dto import ServerToolDto
 from ...types import Response
 
 
 def _get_kwargs(
-    sandbox_id: str,
-    id: str,
+    server_slug: str,
+    tool_name: str,
 ) -> dict[str, Any]:
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/{sandbox_id}/audit-logs/{id}".format(
-            sandbox_id=quote(str(sandbox_id), safe=""),
-            id=quote(str(id), safe=""),
+        "url": "/mcp-servers/{server_slug}/tools/{tool_name}".format(
+            server_slug=quote(str(server_slug), safe=""),
+            tool_name=quote(str(tool_name), safe=""),
         ),
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> GetSandboxIdAuditLogsIdResponse200 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> ServerToolDto | None:
     if response.status_code == 200:
-        response_200 = GetSandboxIdAuditLogsIdResponse200.from_dict(response.json())
+        response_200 = ServerToolDto.from_dict(response.json())
 
         return response_200
 
@@ -39,9 +37,7 @@ def _parse_response(
         return None
 
 
-def _build_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[GetSandboxIdAuditLogsIdResponse200]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[ServerToolDto]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -51,27 +47,27 @@ def _build_response(
 
 
 def sync_detailed(
-    sandbox_id: str,
-    id: str,
+    server_slug: str,
+    tool_name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[GetSandboxIdAuditLogsIdResponse200]:
+) -> Response[ServerToolDto]:
     """
     Args:
-        sandbox_id (str):
-        id (str):
+        server_slug (str):
+        tool_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetSandboxIdAuditLogsIdResponse200]
+        Response[ServerToolDto]
     """
 
     kwargs = _get_kwargs(
-        sandbox_id=sandbox_id,
-        id=id,
+        server_slug=server_slug,
+        tool_name=tool_name,
     )
 
     response = client.get_httpx_client().request(
@@ -82,53 +78,53 @@ def sync_detailed(
 
 
 def sync(
-    sandbox_id: str,
-    id: str,
+    server_slug: str,
+    tool_name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> GetSandboxIdAuditLogsIdResponse200 | None:
+) -> ServerToolDto | None:
     """
     Args:
-        sandbox_id (str):
-        id (str):
+        server_slug (str):
+        tool_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetSandboxIdAuditLogsIdResponse200
+        ServerToolDto
     """
 
     return sync_detailed(
-        sandbox_id=sandbox_id,
-        id=id,
+        server_slug=server_slug,
+        tool_name=tool_name,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
-    sandbox_id: str,
-    id: str,
+    server_slug: str,
+    tool_name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[GetSandboxIdAuditLogsIdResponse200]:
+) -> Response[ServerToolDto]:
     """
     Args:
-        sandbox_id (str):
-        id (str):
+        server_slug (str):
+        tool_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GetSandboxIdAuditLogsIdResponse200]
+        Response[ServerToolDto]
     """
 
     kwargs = _get_kwargs(
-        sandbox_id=sandbox_id,
-        id=id,
+        server_slug=server_slug,
+        tool_name=tool_name,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -137,28 +133,28 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    sandbox_id: str,
-    id: str,
+    server_slug: str,
+    tool_name: str,
     *,
     client: AuthenticatedClient | Client,
-) -> GetSandboxIdAuditLogsIdResponse200 | None:
+) -> ServerToolDto | None:
     """
     Args:
-        sandbox_id (str):
-        id (str):
+        server_slug (str):
+        tool_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GetSandboxIdAuditLogsIdResponse200
+        ServerToolDto
     """
 
     return (
         await asyncio_detailed(
-            sandbox_id=sandbox_id,
-            id=id,
+            server_slug=server_slug,
+            tool_name=tool_name,
             client=client,
         )
     ).parsed

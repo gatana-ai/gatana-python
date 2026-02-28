@@ -5,31 +5,31 @@ from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-T = TypeVar("T", bound="Schema57Type3")
+T = TypeVar("T", bound="DeploymentLogPayloadType0")
 
 
 @_attrs_define
-class Schema57Type3:
+class DeploymentLogPayloadType0:
     """
     Attributes:
-        type_ (Literal['self']):
-        id (str):
+        type_ (Literal['error']):
+        message (str):
     """
 
-    type_: Literal["self"]
-    id: str
+    type_: Literal["error"]
+    message: str
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
 
-        id = self.id
+        message = self.message
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
                 "type": type_,
-                "id": id,
+                "message": message,
             }
         )
 
@@ -38,15 +38,15 @@ class Schema57Type3:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal["self"], d.pop("type"))
-        if type_ != "self":
-            raise ValueError(f"type must match const 'self', got '{type_}'")
+        type_ = cast(Literal["error"], d.pop("type"))
+        if type_ != "error":
+            raise ValueError(f"type must match const 'error', got '{type_}'")
 
-        id = d.pop("id")
+        message = d.pop("message")
 
-        schema_57_type_3 = cls(
+        deployment_log_payload_type_0 = cls(
             type_=type_,
-            id=id,
+            message=message,
         )
 
-        return schema_57_type_3
+        return deployment_log_payload_type_0

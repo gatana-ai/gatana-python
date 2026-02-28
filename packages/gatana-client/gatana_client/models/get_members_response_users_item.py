@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_66 import Schema66
+from ..models.schema_71 import Schema71
 
 T = TypeVar("T", bound="GetMembersResponseUsersItem")
 
@@ -14,13 +14,13 @@ T = TypeVar("T", bound="GetMembersResponseUsersItem")
 class GetMembersResponseUsersItem:
     """
     Attributes:
-        role (Schema66):
+        role (Schema71):
         sub (str):
         name (str):
         email (str):
     """
 
-    role: Schema66
+    role: Schema71
     sub: str
     name: str
     email: str
@@ -50,7 +50,7 @@ class GetMembersResponseUsersItem:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        role = Schema66(d.pop("role"))
+        role = Schema71(d.pop("role"))
 
         sub = d.pop("sub")
 

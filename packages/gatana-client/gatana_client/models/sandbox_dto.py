@@ -19,6 +19,7 @@ class SandboxDto:
         id (str):
         tenant_id (str):
         last_activity_at (str):
+        is_archived (bool):
         created_at (str):
         updated_at (str):
         user (UserSmallDto):
@@ -27,6 +28,7 @@ class SandboxDto:
     id: str
     tenant_id: str
     last_activity_at: str
+    is_archived: bool
     created_at: str
     updated_at: str
     user: UserSmallDto
@@ -37,6 +39,8 @@ class SandboxDto:
         tenant_id = self.tenant_id
 
         last_activity_at = self.last_activity_at
+
+        is_archived = self.is_archived
 
         created_at = self.created_at
 
@@ -51,6 +55,7 @@ class SandboxDto:
                 "id": id,
                 "tenantId": tenant_id,
                 "lastActivityAt": last_activity_at,
+                "isArchived": is_archived,
                 "createdAt": created_at,
                 "updatedAt": updated_at,
                 "user": user,
@@ -70,6 +75,8 @@ class SandboxDto:
 
         last_activity_at = d.pop("lastActivityAt")
 
+        is_archived = d.pop("isArchived")
+
         created_at = d.pop("createdAt")
 
         updated_at = d.pop("updatedAt")
@@ -80,6 +87,7 @@ class SandboxDto:
             id=id,
             tenant_id=tenant_id,
             last_activity_at=last_activity_at,
+            is_archived=is_archived,
             created_at=created_at,
             updated_at=updated_at,
             user=user,

@@ -39,10 +39,10 @@ from langchain_anthropic import ChatAnthropic
 from deepagents import create_deep_agent
 from gatana_langchain import GatanaSandbox
 
-client = GatanaClient(
-    org_id="YOUR_ORG_ID",
-    token="your-gatana-pat",
-)
+# Env variables: GATANA_API_KEY and GATANA_ORG_ID
+# Or, ~/.gatana.config
+
+client = GatanaClient()
 
 with GatanaSandbox(client=client) as backend:
     agent = create_deep_agent(
@@ -63,6 +63,12 @@ with GatanaSandbox(client=client) as backend:
     )
     print(result["messages"][-1].content)
 # Sandbox is automatically deleted when the `with` block exits.
+```
+
+See [`gatana-client` configuration docs](../gatana-client/README.md#configuration) for details on environment variables and the `~/.gatana.config` file. You can also pass credentials explicitly:
+
+```python
+client = GatanaClient(org_id="YOUR_ORG_ID", token="your-gatana-pat")
 ```
 
 ### Wrapping an existing sandbox

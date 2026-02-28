@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Schema67(str, Enum):
+class Schema72(str, Enum):
     PROFILE = "profile"
     SERVER = "server"
     USER = "user"
