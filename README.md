@@ -1,7 +1,6 @@
-# gatana-python
 <div align="center">
   <img alt="Gatana Logo" height="86" src="https://gatana.gatana.ai/favicon-prod.png" width="86">
-  <h1 align="center"><b>Gatana</b></h1>
+  <h1 align="center"><b>Gatana Python</b></h1>
   <p align="center">🚀 Python SDK & LangChain Sandbox Backend</p>
 </div>
 <br/>
