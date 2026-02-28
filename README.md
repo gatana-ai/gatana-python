@@ -21,17 +21,14 @@
   <a href="https://github.com/gatana-ai/gatana-python">JavaScript SDK & CLI tools</a>
 </p>
 
-
-A toolkit for building LangChain applications with [Gatana](https://gatana.ai).
-
 ## Packages
 
 This is a monorepo containing multiple PyPI packages:
 
 | Package | Description | PyPI |
 |---------|-------------|------|
-| [`gatana-langchain`](packages/gatana-langchain/) | LangChain integration toolkit | [![PyPI](https://img.shields.io/pypi/v/gatana-langchain)](https://pypi.org/project/gatana-langchain/) |
-| [`gatana-client`](packages/gatana-client/) | Auto-generated API client for Gatana | [![PyPI](https://img.shields.io/pypi/v/gatana-client)](https://pypi.org/project/gatana-client/) |
+| [`gatana-langchain`](packages/gatana-langchain/) | LangChain Sandbox integration toolkit | [![PyPI](https://img.shields.io/pypi/v/gatana-langchain)](https://pypi.org/project/gatana-langchain/) |
+| [`gatana-client`](packages/gatana-client/) | SDK client for Gatana | [![PyPI](https://img.shields.io/pypi/v/gatana-client)](https://pypi.org/project/gatana-client/) |
 
 ## Installation
 
