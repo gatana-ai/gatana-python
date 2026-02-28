@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://pypi.org/project/gatana-langchain/" rel="nofollow"><img src="https://img.shields.io/pypi/v/gatana-langchain?label=gatana-langchain" /></a>
-  <a href="https://pypi.org/project/gatana-client/" rel="nofollow"><img src="https://img.shields.io/pypi/v/gatana-client?label=gatana-client" />  </a>
+  <a href="https://pypi.org/project/gatana-client/" rel="nofollow"><img src="https://img.shields.io/pypi/v/gatana-client?label=gatana-client" /></a>
   <a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
 </p>
 
