@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import Literal, cast
-
-
-
-
-
-
 T = TypeVar("T", bound="HashiCorpVaultConfiguration")
-
 
 
 @_attrs_define
 class HashiCorpVaultConfiguration:
-    """ 
-        Attributes:
-            type_ (Literal['hashicorp_vault']):
-            address (str):
-            token (str):
-            namespace (str | Unset):
-            mount_path (str | Unset):  Default: 'secret'.
-     """
+    """
+    Attributes:
+        type_ (Literal['hashicorp_vault']):
+        address (str):
+        token (str):
+        namespace (str | Unset):
+        mount_path (str | Unset):
+    """
 
-    type_: Literal['hashicorp_vault']
+    type_: Literal["hashicorp_vault"]
     address: str
     token: str
     namespace: str | Unset = UNSET
-    mount_path: str | Unset = 'secret'
+    mount_path: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
@@ -53,14 +40,15 @@ class HashiCorpVaultConfiguration:
 
         mount_path = self.mount_path
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "type": type_,
-            "address": address,
-            "token": token,
-        })
+        field_dict.update(
+            {
+                "type": type_,
+                "address": address,
+                "token": token,
+            }
+        )
         if namespace is not UNSET:
             field_dict["namespace"] = namespace
         if mount_path is not UNSET:
@@ -68,13 +56,11 @@ class HashiCorpVaultConfiguration:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal['hashicorp_vault'] , d.pop("type"))
-        if type_ != 'hashicorp_vault':
+        type_ = cast(Literal["hashicorp_vault"], d.pop("type"))
+        if type_ != "hashicorp_vault":
             raise ValueError(f"type must match const 'hashicorp_vault', got '{type_}'")
 
         address = d.pop("address")
@@ -92,7 +78,6 @@ class HashiCorpVaultConfiguration:
             namespace=namespace,
             mount_path=mount_path,
         )
-
 
         hashi_corp_vault_configuration.additional_properties = d
         return hashi_corp_vault_configuration

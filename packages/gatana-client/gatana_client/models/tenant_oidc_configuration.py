@@ -1,42 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.tenant_oidc_configuration_client_auth_method import TenantOidcConfigurationClientAuthMethod
-
-
-
-
-
+from ..models.schema_292 import Schema292
 
 T = TypeVar("T", bound="TenantOidcConfiguration")
 
 
-
 @_attrs_define
 class TenantOidcConfiguration:
-    """ 
-        Attributes:
-            is_enabled (bool):
-            display_name (str):
-            issuer (str):
-            authorize_endpoint (str):
-            extra_parameters (str):
-            token_endpoint (str):
-            user_info_endpoint (str):
-            introspection_endpoint (str):
-            jwks_uri (str):
-            client_id (str):
-            client_secret (str):
-            client_auth_method (TenantOidcConfigurationClientAuthMethod):
-            scopes (str):
-     """
+    """
+    Attributes:
+        is_enabled (bool):
+        display_name (str):
+        issuer (str):
+        authorize_endpoint (str):
+        extra_parameters (str):
+        token_endpoint (str):
+        user_info_endpoint (str):
+        introspection_endpoint (str):
+        jwks_uri (str):
+        client_id (str):
+        client_secret (str):
+        client_auth_method (Schema292):
+        scopes (str):
+    """
 
     is_enabled: bool
     display_name: str
@@ -49,12 +40,8 @@ class TenantOidcConfiguration:
     jwks_uri: str
     client_id: str
     client_secret: str
-    client_auth_method: TenantOidcConfigurationClientAuthMethod
+    client_auth_method: Schema292
     scopes: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         is_enabled = self.is_enabled
@@ -83,28 +70,27 @@ class TenantOidcConfiguration:
 
         scopes = self.scopes
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "isEnabled": is_enabled,
-            "displayName": display_name,
-            "issuer": issuer,
-            "authorizeEndpoint": authorize_endpoint,
-            "extraParameters": extra_parameters,
-            "tokenEndpoint": token_endpoint,
-            "userInfoEndpoint": user_info_endpoint,
-            "introspectionEndpoint": introspection_endpoint,
-            "jwksUri": jwks_uri,
-            "clientId": client_id,
-            "clientSecret": client_secret,
-            "clientAuthMethod": client_auth_method,
-            "scopes": scopes,
-        })
+        field_dict.update(
+            {
+                "isEnabled": is_enabled,
+                "displayName": display_name,
+                "issuer": issuer,
+                "authorizeEndpoint": authorize_endpoint,
+                "extraParameters": extra_parameters,
+                "tokenEndpoint": token_endpoint,
+                "userInfoEndpoint": user_info_endpoint,
+                "introspectionEndpoint": introspection_endpoint,
+                "jwksUri": jwks_uri,
+                "clientId": client_id,
+                "clientSecret": client_secret,
+                "clientAuthMethod": client_auth_method,
+                "scopes": scopes,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -131,10 +117,7 @@ class TenantOidcConfiguration:
 
         client_secret = d.pop("clientSecret")
 
-        client_auth_method = TenantOidcConfigurationClientAuthMethod(d.pop("clientAuthMethod"))
-
-
-
+        client_auth_method = Schema292(d.pop("clientAuthMethod"))
 
         scopes = d.pop("scopes")
 
@@ -155,4 +138,3 @@ class TenantOidcConfiguration:
         )
 
         return tenant_oidc_configuration
-

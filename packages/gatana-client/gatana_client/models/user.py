@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_40 import Schema40
+from ..models.schema_116 import Schema116
 
 T = TypeVar("T", bound="User")
 
@@ -19,7 +19,7 @@ class User:
         tenant_id (str):
         name (str):
         email (str):
-        role (Schema40):
+        role (Schema116):
         is_super_administrator (bool):
         is_disabled (bool):
         is_service_account (bool):
@@ -32,7 +32,7 @@ class User:
     tenant_id: str
     name: str
     email: str
-    role: Schema40
+    role: Schema116
     is_super_administrator: bool
     is_disabled: bool
     is_service_account: bool
@@ -95,7 +95,7 @@ class User:
 
         email = d.pop("email")
 
-        role = Schema40(d.pop("role"))
+        role = Schema116(d.pop("role"))
 
         is_super_administrator = d.pop("isSuperAdministrator")
 

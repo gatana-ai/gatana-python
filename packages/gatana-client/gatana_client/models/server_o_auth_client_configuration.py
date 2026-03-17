@@ -1,46 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.server_o_auth_client_configuration_grant_type import ServerOAuthClientConfigurationGrantType
-from typing import cast
-from typing import Literal, cast
-
-
-
-
-
+from ..models.schema_193 import Schema193
 
 T = TypeVar("T", bound="ServerOAuthClientConfiguration")
 
 
-
 @_attrs_define
 class ServerOAuthClientConfiguration:
-    """ 
-        Attributes:
-            client_id (str):  Default: ''.
-            client_secret (str):  Default: ''.
-            grant_type (ServerOAuthClientConfigurationGrantType):
-            client_auth_method (Literal['client_secret_basic'] | Literal['client_secret_post'] | Literal['none'] | str):
-            scopes (str):  Default: ''.
-     """
+    """
+    Attributes:
+        client_id (str):
+        client_secret (str):
+        grant_type (Schema193):
+        client_auth_method (Literal['client_secret_basic'] | Literal['client_secret_post'] | Literal['none'] | str):
+        scopes (str):
+    """
 
-    grant_type: ServerOAuthClientConfigurationGrantType
-    client_auth_method: Literal['client_secret_basic'] | Literal['client_secret_post'] | Literal['none'] | str
-    client_id: str = ''
-    client_secret: str = ''
-    scopes: str = ''
-
-
-
-
+    client_id: str
+    client_secret: str
+    grant_type: Schema193
+    client_auth_method: Literal["client_secret_basic"] | Literal["client_secret_post"] | Literal["none"] | str
+    scopes: str
 
     def to_dict(self) -> dict[str, Any]:
         client_id = self.client_id
@@ -49,25 +34,24 @@ class ServerOAuthClientConfiguration:
 
         grant_type = self.grant_type.value
 
-        client_auth_method: Literal['client_secret_basic'] | Literal['client_secret_post'] | Literal['none'] | str
+        client_auth_method: Literal["client_secret_basic"] | Literal["client_secret_post"] | Literal["none"] | str
         client_auth_method = self.client_auth_method
 
         scopes = self.scopes
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "clientId": client_id,
-            "clientSecret": client_secret,
-            "grantType": grant_type,
-            "clientAuthMethod": client_auth_method,
-            "scopes": scopes,
-        })
+        field_dict.update(
+            {
+                "clientId": client_id,
+                "clientSecret": client_secret,
+                "grantType": grant_type,
+                "clientAuthMethod": client_auth_method,
+                "scopes": scopes,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -76,28 +60,32 @@ class ServerOAuthClientConfiguration:
 
         client_secret = d.pop("clientSecret")
 
-        grant_type = ServerOAuthClientConfigurationGrantType(d.pop("grantType"))
+        grant_type = Schema193(d.pop("grantType"))
 
-
-
-
-        def _parse_client_auth_method(data: object) -> Literal['client_secret_basic'] | Literal['client_secret_post'] | Literal['none'] | str:
-            client_auth_method_type_0 = cast(Literal['client_secret_basic'] , data)
-            if client_auth_method_type_0 != 'client_secret_basic':
-                raise ValueError(f"clientAuthMethod_type_0 must match const 'client_secret_basic', got '{client_auth_method_type_0}'")
-            return client_auth_method_type_0
-            client_auth_method_type_1 = cast(Literal['client_secret_post'] , data)
-            if client_auth_method_type_1 != 'client_secret_post':
-                raise ValueError(f"clientAuthMethod_type_1 must match const 'client_secret_post', got '{client_auth_method_type_1}'")
-            return client_auth_method_type_1
-            client_auth_method_type_2 = cast(Literal['none'] , data)
-            if client_auth_method_type_2 != 'none':
-                raise ValueError(f"clientAuthMethod_type_2 must match const 'none', got '{client_auth_method_type_2}'")
-            return client_auth_method_type_2
-            return cast(Literal['client_secret_basic'] | Literal['client_secret_post'] | Literal['none'] | str, data)
+        def _parse_client_auth_method(
+            data: object,
+        ) -> Literal["client_secret_basic"] | Literal["client_secret_post"] | Literal["none"] | str:
+            componentsschemas_schema194_type_0 = cast(Literal["client_secret_basic"], data)
+            if componentsschemas_schema194_type_0 != "client_secret_basic":
+                raise ValueError(
+                    f"/components/schemas/__schema194_type_0 must match const 'client_secret_basic', got '{componentsschemas_schema194_type_0}'"
+                )
+            return componentsschemas_schema194_type_0
+            componentsschemas_schema194_type_1 = cast(Literal["client_secret_post"], data)
+            if componentsschemas_schema194_type_1 != "client_secret_post":
+                raise ValueError(
+                    f"/components/schemas/__schema194_type_1 must match const 'client_secret_post', got '{componentsschemas_schema194_type_1}'"
+                )
+            return componentsschemas_schema194_type_1
+            componentsschemas_schema194_type_2 = cast(Literal["none"], data)
+            if componentsschemas_schema194_type_2 != "none":
+                raise ValueError(
+                    f"/components/schemas/__schema194_type_2 must match const 'none', got '{componentsschemas_schema194_type_2}'"
+                )
+            return componentsschemas_schema194_type_2
+            return cast(Literal["client_secret_basic"] | Literal["client_secret_post"] | Literal["none"] | str, data)
 
         client_auth_method = _parse_client_auth_method(d.pop("clientAuthMethod"))
-
 
         scopes = d.pop("scopes")
 
@@ -110,4 +98,3 @@ class ServerOAuthClientConfiguration:
         )
 
         return server_o_auth_client_configuration
-

@@ -1,53 +1,42 @@
 from http import HTTPStatus
-from typing import Any, cast
+from typing import Any
 from urllib.parse import quote
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
+from ...client import AuthenticatedClient, Client
 from ...models.get_mcp_servers_server_slug_credentials_response_200 import GetMcpServersServerSlugCredentialsResponse200
-from ...types import UNSET, Unset
-from typing import cast
-
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
     *,
     all_: str | Unset = UNSET,
-
 ) -> dict[str, Any]:
-    
-
-    
-
     params: dict[str, Any] = {}
 
     params["all"] = all_
 
-
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/mcp-servers/{server_slug}/credentials".format(server_slug=quote(str(server_slug), safe=""),),
+        "url": "/mcp-servers/{server_slug}/credentials".format(
+            server_slug=quote(str(server_slug), safe=""),
+        ),
         "params": params,
     }
-
 
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> GetMcpServersServerSlugCredentialsResponse200 | None:
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> GetMcpServersServerSlugCredentialsResponse200 | None:
     if response.status_code == 200:
         response_200 = GetMcpServersServerSlugCredentialsResponse200.from_dict(response.json())
-
-
 
         return response_200
 
@@ -57,7 +46,9 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[GetMcpServersServerSlugCredentialsResponse200]:
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[GetMcpServersServerSlugCredentialsResponse200]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -71,15 +62,13 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     all_: str | Unset = UNSET,
-
 ) -> Response[GetMcpServersServerSlugCredentialsResponse200]:
-    """  Get a list of all the credentials associated with the server (user-, profile-, and server-scoped
+    """Get a list of all the credentials associated with the server (user-, profile-, and default
     credentials).
 
     Args:
         server_slug (str):
-        all_ (str | Unset): If "true", retrieves credentials for all users (only available for
-            admins).
+        all_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -87,13 +76,11 @@ def sync_detailed(
 
     Returns:
         Response[GetMcpServersServerSlugCredentialsResponse200]
-     """
-
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-all_=all_,
-
+        all_=all_,
     )
 
     response = client.get_httpx_client().request(
@@ -102,20 +89,19 @@ all_=all_,
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
     all_: str | Unset = UNSET,
-
 ) -> GetMcpServersServerSlugCredentialsResponse200 | None:
-    """  Get a list of all the credentials associated with the server (user-, profile-, and server-scoped
+    """Get a list of all the credentials associated with the server (user-, profile-, and default
     credentials).
 
     Args:
         server_slug (str):
-        all_ (str | Unset): If "true", retrieves credentials for all users (only available for
-            admins).
+        all_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -123,30 +109,27 @@ def sync(
 
     Returns:
         GetMcpServersServerSlugCredentialsResponse200
-     """
-
+    """
 
     return sync_detailed(
         server_slug=server_slug,
-client=client,
-all_=all_,
-
+        client=client,
+        all_=all_,
     ).parsed
+
 
 async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
     all_: str | Unset = UNSET,
-
 ) -> Response[GetMcpServersServerSlugCredentialsResponse200]:
-    """  Get a list of all the credentials associated with the server (user-, profile-, and server-scoped
+    """Get a list of all the credentials associated with the server (user-, profile-, and default
     credentials).
 
     Args:
         server_slug (str):
-        all_ (str | Unset): If "true", retrieves credentials for all users (only available for
-            admins).
+        all_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -154,35 +137,30 @@ async def asyncio_detailed(
 
     Returns:
         Response[GetMcpServersServerSlugCredentialsResponse200]
-     """
-
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-all_=all_,
-
+        all_=all_,
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
     all_: str | Unset = UNSET,
-
 ) -> GetMcpServersServerSlugCredentialsResponse200 | None:
-    """  Get a list of all the credentials associated with the server (user-, profile-, and server-scoped
+    """Get a list of all the credentials associated with the server (user-, profile-, and default
     credentials).
 
     Args:
         server_slug (str):
-        all_ (str | Unset): If "true", retrieves credentials for all users (only available for
-            admins).
+        all_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -190,12 +168,12 @@ async def asyncio(
 
     Returns:
         GetMcpServersServerSlugCredentialsResponse200
-     """
+    """
 
-
-    return (await asyncio_detailed(
-        server_slug=server_slug,
-client=client,
-all_=all_,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            server_slug=server_slug,
+            client=client,
+            all_=all_,
+        )
+    ).parsed

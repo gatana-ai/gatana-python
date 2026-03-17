@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.sandbox_audit_log_details import SandboxAuditLogDetails
+    from ..models.schema_473 import Schema473
 
 
 T = TypeVar("T", bound="SandboxAuditLog")
@@ -20,7 +20,7 @@ class SandboxAuditLog:
         tenant_id (str):
         sandbox_id (str):
         event_name (str):
-        details (SandboxAuditLogDetails):
+        details (Schema473):
         created_at (str):
     """
 
@@ -28,7 +28,7 @@ class SandboxAuditLog:
     tenant_id: str
     sandbox_id: str
     event_name: str
-    details: SandboxAuditLogDetails
+    details: Schema473
     created_at: str
 
     def to_dict(self) -> dict[str, Any]:
@@ -61,7 +61,7 @@ class SandboxAuditLog:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.sandbox_audit_log_details import SandboxAuditLogDetails
+        from ..models.schema_473 import Schema473
 
         d = dict(src_dict)
         id = d.pop("id")
@@ -72,7 +72,7 @@ class SandboxAuditLog:
 
         event_name = d.pop("eventName")
 
-        details = SandboxAuditLogDetails.from_dict(d.pop("details"))
+        details = Schema473.from_dict(d.pop("details"))
 
         created_at = d.pop("createdAt")
 

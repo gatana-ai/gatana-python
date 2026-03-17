@@ -1,43 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_0 import Schema0
-
-
-
-
-
+from ..models.schema_5 import Schema5
 
 T = TypeVar("T", bound="UpdateUserRequest")
 
 
-
 @_attrs_define
 class UpdateUserRequest:
-    """ 
-        Attributes:
-            email (str):
-            name (str):
-            role (Schema0):
-            is_disabled (bool):
-     """
+    """
+    Attributes:
+        email (str):
+        name (str):
+        role (Schema5):
+        is_disabled (bool):
+    """
 
     email: str
     name: str
-    role: Schema0
+    role: Schema5
     is_disabled: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         email = self.email
@@ -48,19 +36,18 @@ class UpdateUserRequest:
 
         is_disabled = self.is_disabled
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "email": email,
-            "name": name,
-            "role": role,
-            "isDisabled": is_disabled,
-        })
+        field_dict.update(
+            {
+                "email": email,
+                "name": name,
+                "role": role,
+                "isDisabled": is_disabled,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -69,10 +56,7 @@ class UpdateUserRequest:
 
         name = d.pop("name")
 
-        role = Schema0(d.pop("role"))
-
-
-
+        role = Schema5(d.pop("role"))
 
         is_disabled = d.pop("isDisabled")
 
@@ -82,7 +66,6 @@ class UpdateUserRequest:
             role=role,
             is_disabled=is_disabled,
         )
-
 
         update_user_request.additional_properties = d
         return update_user_request

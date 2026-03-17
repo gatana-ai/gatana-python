@@ -1,52 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.schema_42 import Schema42
 from ..types import UNSET, Unset
-
-from ..models.schema_17 import Schema17
-from ..types import UNSET, Unset
-from typing import cast
-from typing import Literal, cast
-
-
-
-
-
 
 T = TypeVar("T", bound="PutMcpServersServerSlugConfigBodyType2")
 
 
-
 @_attrs_define
 class PutMcpServersServerSlugConfigBodyType2:
-    """ 
-        Attributes:
-            type_ (Literal['stdio'] | Unset):
-            command (str | Unset):
-            docker_image (str | Unset):
-            env (list[list[str]] | Unset):
-            transport (Schema17 | Unset):
-            http_port (float | None | Unset):
-            url_path (None | str | Unset):
-     """
+    """
+    Attributes:
+        type_ (Literal['stdio'] | Unset):
+        command (str | Unset):
+        docker_image (str | Unset):
+        env (list[list[str]] | Unset):
+        transport (Schema42 | Unset):
+        http_port (float | None | Unset):
+        url_path (None | str | Unset):
+    """
 
-    type_: Literal['stdio'] | Unset = UNSET
+    type_: Literal["stdio"] | Unset = UNSET
     command: str | Unset = UNSET
     docker_image: str | Unset = UNSET
     env: list[list[str]] | Unset = UNSET
-    transport: Schema17 | Unset = UNSET
+    transport: Schema42 | Unset = UNSET
     http_port: float | None | Unset = UNSET
     url_path: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
@@ -58,22 +44,18 @@ class PutMcpServersServerSlugConfigBodyType2:
         env: list[list[str]] | Unset = UNSET
         if not isinstance(self.env, Unset):
             env = []
-            for componentsschemas_schema16_item_data in self.env:
-                componentsschemas_schema16_item = []
-                for componentsschemas_schema16_item_item_data in componentsschemas_schema16_item_data:
-                    componentsschemas_schema16_item_item: str
-                    componentsschemas_schema16_item_item = componentsschemas_schema16_item_item_data
-                    componentsschemas_schema16_item.append(componentsschemas_schema16_item_item)
+            for componentsschemas_schema41_item_data in self.env:
+                componentsschemas_schema41_item = []
+                for componentsschemas_schema41_item_item_data in componentsschemas_schema41_item_data:
+                    componentsschemas_schema41_item_item: str
+                    componentsschemas_schema41_item_item = componentsschemas_schema41_item_item_data
+                    componentsschemas_schema41_item.append(componentsschemas_schema41_item_item)
 
-
-                env.append(componentsschemas_schema16_item)
-
-
+                env.append(componentsschemas_schema41_item)
 
         transport: str | Unset = UNSET
         if not isinstance(self.transport, Unset):
             transport = self.transport.value
-
 
         http_port: float | None | Unset
         if isinstance(self.http_port, Unset):
@@ -87,11 +69,9 @@ class PutMcpServersServerSlugConfigBodyType2:
         else:
             url_path = self.url_path
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if type_ is not UNSET:
             field_dict["type"] = type_
         if command is not UNSET:
@@ -109,13 +89,11 @@ class PutMcpServersServerSlugConfigBodyType2:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal['stdio'] | Unset , d.pop("type", UNSET))
-        if type_ != 'stdio'and not isinstance(type_, Unset):
+        type_ = cast(Literal["stdio"] | Unset, d.pop("type", UNSET))
+        if type_ != "stdio" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'stdio', got '{type_}'")
 
         command = d.pop("command", UNSET)
@@ -126,29 +104,28 @@ class PutMcpServersServerSlugConfigBodyType2:
         env: list[list[str]] | Unset = UNSET
         if _env is not UNSET:
             env = []
-            for componentsschemas_schema16_item_data in _env:
-                componentsschemas_schema16_item = []
-                _componentsschemas_schema16_item = componentsschemas_schema16_item_data
-                for componentsschemas_schema16_item_item_data in (_componentsschemas_schema16_item):
-                    def _parse_componentsschemas_schema16_item_item(data: object) -> str:
+            for componentsschemas_schema41_item_data in _env:
+                componentsschemas_schema41_item = []
+                _componentsschemas_schema41_item = componentsschemas_schema41_item_data
+                for componentsschemas_schema41_item_item_data in _componentsschemas_schema41_item:
+
+                    def _parse_componentsschemas_schema41_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema16_item_item = _parse_componentsschemas_schema16_item_item(componentsschemas_schema16_item_item_data)
+                    componentsschemas_schema41_item_item = _parse_componentsschemas_schema41_item_item(
+                        componentsschemas_schema41_item_item_data
+                    )
 
-                    componentsschemas_schema16_item.append(componentsschemas_schema16_item_item)
+                    componentsschemas_schema41_item.append(componentsschemas_schema41_item_item)
 
-                env.append(componentsschemas_schema16_item)
-
+                env.append(componentsschemas_schema41_item)
 
         _transport = d.pop("transport", UNSET)
-        transport: Schema17 | Unset
-        if isinstance(_transport,  Unset):
+        transport: Schema42 | Unset
+        if isinstance(_transport, Unset):
             transport = UNSET
         else:
-            transport = Schema17(_transport)
-
-
-
+            transport = Schema42(_transport)
 
         def _parse_http_port(data: object) -> float | None | Unset:
             if data is None:
@@ -159,7 +136,6 @@ class PutMcpServersServerSlugConfigBodyType2:
 
         http_port = _parse_http_port(d.pop("httpPort", UNSET))
 
-
         def _parse_url_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -168,7 +144,6 @@ class PutMcpServersServerSlugConfigBodyType2:
             return cast(None | str | Unset, data)
 
         url_path = _parse_url_path(d.pop("urlPath", UNSET))
-
 
         put_mcp_servers_server_slug_config_body_type_2 = cls(
             type_=type_,
@@ -179,7 +154,6 @@ class PutMcpServersServerSlugConfigBodyType2:
             http_port=http_port,
             url_path=url_path,
         )
-
 
         put_mcp_servers_server_slug_config_body_type_2.additional_properties = d
         return put_mcp_servers_server_slug_config_body_type_2

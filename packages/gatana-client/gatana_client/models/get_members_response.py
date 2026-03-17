@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.get_members_response_teams_item import GetMembersResponseTeamsItem
-    from ..models.get_members_response_users_item import GetMembersResponseUsersItem
+    from ..models.schema_243_item import Schema243Item
+    from ..models.schema_245_item import Schema245Item
 
 
 T = TypeVar("T", bound="GetMembersResponse")
@@ -17,23 +17,23 @@ T = TypeVar("T", bound="GetMembersResponse")
 class GetMembersResponse:
     """
     Attributes:
-        teams (list[GetMembersResponseTeamsItem]):
-        users (list[GetMembersResponseUsersItem]):
+        teams (list[Schema243Item]):
+        users (list[Schema245Item]):
     """
 
-    teams: list[GetMembersResponseTeamsItem]
-    users: list[GetMembersResponseUsersItem]
+    teams: list[Schema243Item]
+    users: list[Schema245Item]
 
     def to_dict(self) -> dict[str, Any]:
         teams = []
-        for teams_item_data in self.teams:
-            teams_item = teams_item_data.to_dict()
-            teams.append(teams_item)
+        for componentsschemas_schema243_item_data in self.teams:
+            componentsschemas_schema243_item = componentsschemas_schema243_item_data.to_dict()
+            teams.append(componentsschemas_schema243_item)
 
         users = []
-        for users_item_data in self.users:
-            users_item = users_item_data.to_dict()
-            users.append(users_item)
+        for componentsschemas_schema245_item_data in self.users:
+            componentsschemas_schema245_item = componentsschemas_schema245_item_data.to_dict()
+            users.append(componentsschemas_schema245_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -48,23 +48,23 @@ class GetMembersResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.get_members_response_teams_item import GetMembersResponseTeamsItem
-        from ..models.get_members_response_users_item import GetMembersResponseUsersItem
+        from ..models.schema_243_item import Schema243Item
+        from ..models.schema_245_item import Schema245Item
 
         d = dict(src_dict)
         teams = []
         _teams = d.pop("teams")
-        for teams_item_data in _teams:
-            teams_item = GetMembersResponseTeamsItem.from_dict(teams_item_data)
+        for componentsschemas_schema243_item_data in _teams:
+            componentsschemas_schema243_item = Schema243Item.from_dict(componentsschemas_schema243_item_data)
 
-            teams.append(teams_item)
+            teams.append(componentsschemas_schema243_item)
 
         users = []
         _users = d.pop("users")
-        for users_item_data in _users:
-            users_item = GetMembersResponseUsersItem.from_dict(users_item_data)
+        for componentsschemas_schema245_item_data in _users:
+            componentsschemas_schema245_item = Schema245Item.from_dict(componentsschemas_schema245_item_data)
 
-            users.append(users_item)
+            users.append(componentsschemas_schema245_item)
 
         get_members_response = cls(
             teams=teams,

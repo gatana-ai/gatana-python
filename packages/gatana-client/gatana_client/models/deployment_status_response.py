@@ -39,9 +39,9 @@ class DeploymentStatusResponse:
         is_stabilizing = self.is_stabilizing
 
         deployments = []
-        for deployments_item_data in self.deployments:
-            deployments_item = deployments_item_data.to_dict()
-            deployments.append(deployments_item)
+        for componentsschemas_schema325_item_data in self.deployments:
+            componentsschemas_schema325_item = componentsschemas_schema325_item_data.to_dict()
+            deployments.append(componentsschemas_schema325_item)
 
         current_replica_set = self.current_replica_set
 
@@ -73,10 +73,10 @@ class DeploymentStatusResponse:
 
         deployments = []
         _deployments = d.pop("deployments")
-        for deployments_item_data in _deployments:
-            deployments_item = DeploymentStatus.from_dict(deployments_item_data)
+        for componentsschemas_schema325_item_data in _deployments:
+            componentsschemas_schema325_item = DeploymentStatus.from_dict(componentsschemas_schema325_item_data)
 
-            deployments.append(deployments_item)
+            deployments.append(componentsschemas_schema325_item)
 
         current_replica_set = d.pop("currentReplicaSet", UNSET)
 

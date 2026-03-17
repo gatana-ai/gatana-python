@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.user_identity_type import UserIdentityType
-
-
-
-
-
+from ..models.schema_151 import Schema151
 
 T = TypeVar("T", bound="UserIdentity")
 
 
-
 @_attrs_define
 class UserIdentity:
-    """ 
-        Attributes:
-            tenant_id (float):
-            external_id (str):
-            user_id (float):
-            type_ (UserIdentityType):
-            created_at (str):
-            updated_at (str):
-     """
+    """
+    Attributes:
+        tenant_id (float):
+        external_id (str):
+        user_id (float):
+        type_ (Schema151):
+        created_at (str):
+        updated_at (str):
+    """
 
     tenant_id: float
     external_id: str
     user_id: float
-    type_: UserIdentityType
+    type_: Schema151
     created_at: str
     updated_at: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         tenant_id = self.tenant_id
@@ -55,21 +42,20 @@ class UserIdentity:
 
         updated_at = self.updated_at
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "tenantId": tenant_id,
-            "externalId": external_id,
-            "userId": user_id,
-            "type": type_,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-        })
+        field_dict.update(
+            {
+                "tenantId": tenant_id,
+                "externalId": external_id,
+                "userId": user_id,
+                "type": type_,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -80,10 +66,7 @@ class UserIdentity:
 
         user_id = d.pop("userId")
 
-        type_ = UserIdentityType(d.pop("type"))
-
-
-
+        type_ = Schema151(d.pop("type"))
 
         created_at = d.pop("createdAt")
 
@@ -99,4 +82,3 @@ class UserIdentity:
         )
 
         return user_identity
-

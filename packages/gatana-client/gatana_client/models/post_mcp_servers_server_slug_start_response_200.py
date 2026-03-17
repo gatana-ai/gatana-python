@@ -15,7 +15,7 @@ class PostMcpServersServerSlugStartResponse200:
     """
     Attributes:
         success (bool):
-        detail (str | Unset): Detailed information about why the server could not be started.
+        detail (str | Unset):
     """
 
     success: bool

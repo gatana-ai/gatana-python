@@ -5,8 +5,8 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_72 import Schema72
-from ..models.server_credentials_dto_type import ServerCredentialsDtoType
+from ..models.schema_248 import Schema248
+from ..models.schema_253 import Schema253
 
 T = TypeVar("T", bound="ServerCredentialsDto")
 
@@ -17,14 +17,15 @@ class ServerCredentialsDto:
     Attributes:
         id (str):
         tenant_id (str):
-        scope (Schema72):
+        scope (Schema248):
         user_id (float | None):
         profile_id (None | str):
         last_used_at (None | str):
         authorized_at (str):
-        type_ (ServerCredentialsDtoType):
+        type_ (Schema253):
         created_at (str):
         updated_at (str):
+        server_slug (str):
         user_sub (None | str):
         user_email (None | str):
         user_name (None | str):
@@ -39,14 +40,15 @@ class ServerCredentialsDto:
 
     id: str
     tenant_id: str
-    scope: Schema72
+    scope: Schema248
     user_id: float | None
     profile_id: None | str
     last_used_at: None | str
     authorized_at: str
-    type_: ServerCredentialsDtoType
+    type_: Schema253
     created_at: str
     updated_at: str
+    server_slug: str
     user_sub: None | str
     user_email: None | str
     user_name: None | str
@@ -81,6 +83,8 @@ class ServerCredentialsDto:
         created_at = self.created_at
 
         updated_at = self.updated_at
+
+        server_slug = self.server_slug
 
         user_sub: None | str
         user_sub = self.user_sub
@@ -130,6 +134,7 @@ class ServerCredentialsDto:
                 "type": type_,
                 "createdAt": created_at,
                 "updatedAt": updated_at,
+                "serverSlug": server_slug,
                 "userSub": user_sub,
                 "userEmail": user_email,
                 "userName": user_name,
@@ -152,7 +157,7 @@ class ServerCredentialsDto:
 
         tenant_id = d.pop("tenantId")
 
-        scope = Schema72(d.pop("scope"))
+        scope = Schema248(d.pop("scope"))
 
         def _parse_user_id(data: object) -> float | None:
             if data is None:
@@ -177,11 +182,13 @@ class ServerCredentialsDto:
 
         authorized_at = d.pop("authorizedAt")
 
-        type_ = ServerCredentialsDtoType(d.pop("type"))
+        type_ = Schema253(d.pop("type"))
 
         created_at = d.pop("createdAt")
 
         updated_at = d.pop("updatedAt")
+
+        server_slug = d.pop("serverSlug")
 
         def _parse_user_sub(data: object) -> None | str:
             if data is None:
@@ -217,9 +224,9 @@ class ServerCredentialsDto:
             try:
                 if not isinstance(data, list):
                     raise TypeError()
-                apikeys_present_type_0 = cast(list[str], data)
+                componentsschemas_schema261_type_0 = cast(list[str], data)
 
-                return apikeys_present_type_0
+                return componentsschemas_schema261_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(list[str] | None, data)
@@ -272,6 +279,7 @@ class ServerCredentialsDto:
             type_=type_,
             created_at=created_at,
             updated_at=updated_at,
+            server_slug=server_slug,
             user_sub=user_sub,
             user_email=user_email,
             user_name=user_name,

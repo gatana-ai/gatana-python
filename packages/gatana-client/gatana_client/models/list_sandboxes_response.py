@@ -23,9 +23,9 @@ class ListSandboxesResponse:
 
     def to_dict(self) -> dict[str, Any]:
         sandboxes = []
-        for sandboxes_item_data in self.sandboxes:
-            sandboxes_item = sandboxes_item_data.to_dict()
-            sandboxes.append(sandboxes_item)
+        for componentsschemas_schema463_item_data in self.sandboxes:
+            componentsschemas_schema463_item = componentsschemas_schema463_item_data.to_dict()
+            sandboxes.append(componentsschemas_schema463_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -44,10 +44,10 @@ class ListSandboxesResponse:
         d = dict(src_dict)
         sandboxes = []
         _sandboxes = d.pop("sandboxes")
-        for sandboxes_item_data in _sandboxes:
-            sandboxes_item = SandboxDto.from_dict(sandboxes_item_data)
+        for componentsschemas_schema463_item_data in _sandboxes:
+            componentsschemas_schema463_item = SandboxDto.from_dict(componentsschemas_schema463_item_data)
 
-            sandboxes.append(sandboxes_item)
+            sandboxes.append(componentsschemas_schema463_item)
 
         list_sandboxes_response = cls(
             sandboxes=sandboxes,

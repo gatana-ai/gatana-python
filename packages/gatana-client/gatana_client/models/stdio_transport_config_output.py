@@ -1,51 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 
+from ..models.schema_181 import Schema181
 from ..types import UNSET, Unset
-
-from ..models.stdio_transport_config_output_transport import StdioTransportConfigOutputTransport
-from ..types import UNSET, Unset
-from typing import cast
-from typing import Literal, cast
-
-
-
-
-
 
 T = TypeVar("T", bound="StdioTransportConfigOutput")
 
 
-
 @_attrs_define
 class StdioTransportConfigOutput:
-    """ 
-        Attributes:
-            type_ (Literal['stdio']):
-            command (str):
-            transport (StdioTransportConfigOutputTransport):
-            docker_image (str | Unset):
-            env (list[list[str]] | Unset):
-            http_port (float | None | Unset):
-            url_path (None | str | Unset):
-     """
+    """
+    Attributes:
+        type_ (Literal['stdio']):
+        command (str):
+        transport (Schema181):
+        docker_image (str | Unset):
+        env (list[list[str]] | Unset):
+        http_port (float | None | Unset):
+        url_path (None | str | Unset):
+    """
 
-    type_: Literal['stdio']
+    type_: Literal["stdio"]
     command: str
-    transport: StdioTransportConfigOutputTransport
+    transport: Schema181
     docker_image: str | Unset = UNSET
     env: list[list[str]] | Unset = UNSET
     http_port: float | None | Unset = UNSET
     url_path: None | str | Unset = UNSET
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
@@ -59,17 +44,14 @@ class StdioTransportConfigOutput:
         env: list[list[str]] | Unset = UNSET
         if not isinstance(self.env, Unset):
             env = []
-            for env_item_data in self.env:
-                env_item = []
-                for env_item_item_data in env_item_data:
-                    env_item_item: str
-                    env_item_item = env_item_item_data
-                    env_item.append(env_item_item)
+            for componentsschemas_schema180_item_data in self.env:
+                componentsschemas_schema180_item = []
+                for componentsschemas_schema180_item_item_data in componentsschemas_schema180_item_data:
+                    componentsschemas_schema180_item_item: str
+                    componentsschemas_schema180_item_item = componentsschemas_schema180_item_item_data
+                    componentsschemas_schema180_item.append(componentsschemas_schema180_item_item)
 
-
-                env.append(env_item)
-
-
+                env.append(componentsschemas_schema180_item)
 
         http_port: float | None | Unset
         if isinstance(self.http_port, Unset):
@@ -83,14 +65,15 @@ class StdioTransportConfigOutput:
         else:
             url_path = self.url_path
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "type": type_,
-            "command": command,
-            "transport": transport,
-        })
+        field_dict.update(
+            {
+                "type": type_,
+                "command": command,
+                "transport": transport,
+            }
+        )
         if docker_image is not UNSET:
             field_dict["dockerImage"] = docker_image
         if env is not UNSET:
@@ -102,21 +85,16 @@ class StdioTransportConfigOutput:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal['stdio'] , d.pop("type"))
-        if type_ != 'stdio':
+        type_ = cast(Literal["stdio"], d.pop("type"))
+        if type_ != "stdio":
             raise ValueError(f"type must match const 'stdio', got '{type_}'")
 
         command = d.pop("command")
 
-        transport = StdioTransportConfigOutputTransport(d.pop("transport"))
-
-
-
+        transport = Schema181(d.pop("transport"))
 
         docker_image = d.pop("dockerImage", UNSET)
 
@@ -124,19 +102,21 @@ class StdioTransportConfigOutput:
         env: list[list[str]] | Unset = UNSET
         if _env is not UNSET:
             env = []
-            for env_item_data in _env:
-                env_item = []
-                _env_item = env_item_data
-                for env_item_item_data in (_env_item):
-                    def _parse_env_item_item(data: object) -> str:
+            for componentsschemas_schema180_item_data in _env:
+                componentsschemas_schema180_item = []
+                _componentsschemas_schema180_item = componentsschemas_schema180_item_data
+                for componentsschemas_schema180_item_item_data in _componentsschemas_schema180_item:
+
+                    def _parse_componentsschemas_schema180_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    env_item_item = _parse_env_item_item(env_item_item_data)
+                    componentsschemas_schema180_item_item = _parse_componentsschemas_schema180_item_item(
+                        componentsschemas_schema180_item_item_data
+                    )
 
-                    env_item.append(env_item_item)
+                    componentsschemas_schema180_item.append(componentsschemas_schema180_item_item)
 
-                env.append(env_item)
-
+                env.append(componentsschemas_schema180_item)
 
         def _parse_http_port(data: object) -> float | None | Unset:
             if data is None:
@@ -147,7 +127,6 @@ class StdioTransportConfigOutput:
 
         http_port = _parse_http_port(d.pop("httpPort", UNSET))
 
-
         def _parse_url_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -156,7 +135,6 @@ class StdioTransportConfigOutput:
             return cast(None | str | Unset, data)
 
         url_path = _parse_url_path(d.pop("urlPath", UNSET))
-
 
         stdio_transport_config_output = cls(
             type_=type_,
@@ -169,4 +147,3 @@ class StdioTransportConfigOutput:
         )
 
         return stdio_transport_config_output
-

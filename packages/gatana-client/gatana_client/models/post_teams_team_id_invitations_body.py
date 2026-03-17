@@ -1,72 +1,55 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.schema_35 import Schema35
-
-
-
-
-
+from ..models.schema_78 import Schema78
 
 T = TypeVar("T", bound="PostTeamsTeamIdInvitationsBody")
 
 
-
 @_attrs_define
 class PostTeamsTeamIdInvitationsBody:
-    """ 
-        Attributes:
-            email (str):
-            role (Schema35):
-     """
+    """
+    Attributes:
+        email (str):
+        role (Schema78):
+    """
 
     email: str
-    role: Schema35
+    role: Schema78
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         email = self.email
 
         role = self.role.value
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "email": email,
-            "role": role,
-        })
+        field_dict.update(
+            {
+                "email": email,
+                "role": role,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         email = d.pop("email")
 
-        role = Schema35(d.pop("role"))
-
-
-
+        role = Schema78(d.pop("role"))
 
         post_teams_team_id_invitations_body = cls(
             email=email,
             role=role,
         )
-
 
         post_teams_team_id_invitations_body.additional_properties = d
         return post_teams_team_id_invitations_body

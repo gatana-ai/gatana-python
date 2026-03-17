@@ -69,8 +69,7 @@ def sync_detailed(
 
     Args:
         server_slug (str):
-        credentials_id (str | Unset): ID of a specific credential to retrieve the token for. If
-            omitted, the effective credentials for the current user are resolved automatically.
+        credentials_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -104,8 +103,7 @@ def sync(
 
     Args:
         server_slug (str):
-        credentials_id (str | Unset): ID of a specific credential to retrieve the token for. If
-            omitted, the effective credentials for the current user are resolved automatically.
+        credentials_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -134,8 +132,7 @@ async def asyncio_detailed(
 
     Args:
         server_slug (str):
-        credentials_id (str | Unset): ID of a specific credential to retrieve the token for. If
-            omitted, the effective credentials for the current user are resolved automatically.
+        credentials_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -167,8 +164,7 @@ async def asyncio(
 
     Args:
         server_slug (str):
-        credentials_id (str | Unset): ID of a specific credential to retrieve the token for. If
-            omitted, the effective credentials for the current user are resolved automatically.
+        credentials_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

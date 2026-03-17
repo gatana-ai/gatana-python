@@ -1,45 +1,41 @@
 from http import HTTPStatus
-from typing import Any, cast
+from typing import Any
 from urllib.parse import quote
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
-from ...models.put_mcp_servers_server_slug_members_member_type_member_id_body import PutMcpServersServerSlugMembersMemberTypeMemberIdBody
-from ...models.put_mcp_servers_server_slug_members_member_type_member_id_response_200 import PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200
-from ...models.schema_29 import Schema29
-from ...types import UNSET, Unset
-from typing import cast
-
+from ...client import AuthenticatedClient, Client
+from ...models.put_mcp_servers_server_slug_members_member_type_member_id_body import (
+    PutMcpServersServerSlugMembersMemberTypeMemberIdBody,
+)
+from ...models.put_mcp_servers_server_slug_members_member_type_member_id_response_200 import (
+    PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200,
+)
+from ...models.schema_64 import Schema64
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
-    member_type: Schema29,
+    member_type: Schema64,
     member_id: str,
     *,
     body: PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset = UNSET,
-
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
-
-    
-
-    
-
     _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": "/mcp-servers/{server_slug}/members/{member_type}/{member_id}".format(server_slug=quote(str(server_slug), safe=""),member_type=quote(str(member_type), safe=""),member_id=quote(str(member_id), safe=""),),
+        "url": "/mcp-servers/{server_slug}/members/{member_type}/{member_id}".format(
+            server_slug=quote(str(server_slug), safe=""),
+            member_type=quote(str(member_type), safe=""),
+            member_id=quote(str(member_id), safe=""),
+        ),
     }
 
-    
     if not isinstance(body, Unset):
         _kwargs["json"] = body.to_dict()
-
 
     headers["Content-Type"] = "application/json"
 
@@ -47,12 +43,11 @@ def _get_kwargs(
     return _kwargs
 
 
-
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200 | None:
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200 | None:
     if response.status_code == 200:
         response_200 = PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200.from_dict(response.json())
-
-
 
         return response_200
 
@@ -62,7 +57,9 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200]:
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,17 +70,16 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 def sync_detailed(
     server_slug: str,
-    member_type: Schema29,
+    member_type: Schema64,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
     body: PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset = UNSET,
-
 ) -> Response[PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200]:
-    """ 
+    """
     Args:
         server_slug (str):
-        member_type (Schema29):
+        member_type (Schema64):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -93,15 +89,13 @@ def sync_detailed(
 
     Returns:
         Response[PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200]
-     """
-
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-member_type=member_type,
-member_id=member_id,
-body=body,
-
+        member_type=member_type,
+        member_id=member_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -110,19 +104,19 @@ body=body,
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     server_slug: str,
-    member_type: Schema29,
+    member_type: Schema64,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
     body: PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset = UNSET,
-
 ) -> PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200 | None:
-    """ 
+    """
     Args:
         server_slug (str):
-        member_type (Schema29):
+        member_type (Schema64):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -132,31 +126,29 @@ def sync(
 
     Returns:
         PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200
-     """
-
+    """
 
     return sync_detailed(
         server_slug=server_slug,
-member_type=member_type,
-member_id=member_id,
-client=client,
-body=body,
-
+        member_type=member_type,
+        member_id=member_id,
+        client=client,
+        body=body,
     ).parsed
+
 
 async def asyncio_detailed(
     server_slug: str,
-    member_type: Schema29,
+    member_type: Schema64,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
     body: PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset = UNSET,
-
 ) -> Response[PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200]:
-    """ 
+    """
     Args:
         server_slug (str):
-        member_type (Schema29):
+        member_type (Schema64):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -166,36 +158,32 @@ async def asyncio_detailed(
 
     Returns:
         Response[PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200]
-     """
-
+    """
 
     kwargs = _get_kwargs(
         server_slug=server_slug,
-member_type=member_type,
-member_id=member_id,
-body=body,
-
+        member_type=member_type,
+        member_id=member_id,
+        body=body,
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
+
 async def asyncio(
     server_slug: str,
-    member_type: Schema29,
+    member_type: Schema64,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
     body: PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset = UNSET,
-
 ) -> PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200 | None:
-    """ 
+    """
     Args:
         server_slug (str):
-        member_type (Schema29):
+        member_type (Schema64):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -205,14 +193,14 @@ async def asyncio(
 
     Returns:
         PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200
-     """
+    """
 
-
-    return (await asyncio_detailed(
-        server_slug=server_slug,
-member_type=member_type,
-member_id=member_id,
-client=client,
-body=body,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            server_slug=server_slug,
+            member_type=member_type,
+            member_id=member_id,
+            client=client,
+            body=body,
+        )
+    ).parsed

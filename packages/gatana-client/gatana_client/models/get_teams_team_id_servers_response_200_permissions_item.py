@@ -6,9 +6,9 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
+    from ..models.schema_387 import Schema387
+    from ..models.schema_392 import Schema392
     from ..models.server import Server
-    from ..models.server_member_type_0 import ServerMemberType0
-    from ..models.server_member_type_1 import ServerMemberType1
 
 
 T = TypeVar("T", bound="GetTeamsTeamIdServersResponse200PermissionsItem")
@@ -18,18 +18,18 @@ T = TypeVar("T", bound="GetTeamsTeamIdServersResponse200PermissionsItem")
 class GetTeamsTeamIdServersResponse200PermissionsItem:
     """
     Attributes:
-        permission (ServerMemberType0 | ServerMemberType1):
+        permission (Schema387 | Schema392):
         server (Server):
     """
 
-    permission: ServerMemberType0 | ServerMemberType1
+    permission: Schema387 | Schema392
     server: Server
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.server_member_type_0 import ServerMemberType0
+        from ..models.schema_387 import Schema387
 
         permission: dict[str, Any]
-        if isinstance(self.permission, ServerMemberType0):
+        if isinstance(self.permission, Schema387):
             permission = self.permission.to_dict()
         else:
             permission = self.permission.to_dict()
@@ -49,24 +49,24 @@ class GetTeamsTeamIdServersResponse200PermissionsItem:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.schema_387 import Schema387
+        from ..models.schema_392 import Schema392
         from ..models.server import Server
-        from ..models.server_member_type_0 import ServerMemberType0
-        from ..models.server_member_type_1 import ServerMemberType1
 
         d = dict(src_dict)
 
-        def _parse_permission(data: object) -> ServerMemberType0 | ServerMemberType1:
+        def _parse_permission(data: object) -> Schema387 | Schema392:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_server_member_type_0 = ServerMemberType0.from_dict(data)
+                componentsschemas_server_member_type_0 = Schema387.from_dict(data)
 
                 return componentsschemas_server_member_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             if not isinstance(data, dict):
                 raise TypeError()
-            componentsschemas_server_member_type_1 = ServerMemberType1.from_dict(data)
+            componentsschemas_server_member_type_1 = Schema392.from_dict(data)
 
             return componentsschemas_server_member_type_1
 

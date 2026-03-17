@@ -6,9 +6,9 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
-    from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
-    from ..models.server_tool_dto_schema import ServerToolDtoSchema
+    from ..models.schema_236 import Schema236
+    from ..models.schema_237_type_0 import Schema237Type0
+    from ..models.schema_238_type_0 import Schema238Type0
 
 
 T = TypeVar("T", bound="ServerToolDto")
@@ -21,9 +21,9 @@ class ServerToolDto:
         tenant_id (str):
         tool_name (str):
         description (str):
-        schema (ServerToolDtoSchema):
-        output_schema (None | ServerToolDtoOutputSchemaType0):
-        annotations (None | ServerToolDtoAnnotationsType0):
+        schema (Schema236):
+        output_schema (None | Schema237Type0):
+        annotations (None | Schema238Type0):
         is_enabled (bool):
         server_slug (str):
         universal_name (str):
@@ -32,16 +32,16 @@ class ServerToolDto:
     tenant_id: str
     tool_name: str
     description: str
-    schema: ServerToolDtoSchema
-    output_schema: None | ServerToolDtoOutputSchemaType0
-    annotations: None | ServerToolDtoAnnotationsType0
+    schema: Schema236
+    output_schema: None | Schema237Type0
+    annotations: None | Schema238Type0
     is_enabled: bool
     server_slug: str
     universal_name: str
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
-        from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
+        from ..models.schema_237_type_0 import Schema237Type0
+        from ..models.schema_238_type_0 import Schema238Type0
 
         tenant_id = self.tenant_id
 
@@ -52,13 +52,13 @@ class ServerToolDto:
         schema = self.schema.to_dict()
 
         output_schema: dict[str, Any] | None
-        if isinstance(self.output_schema, ServerToolDtoOutputSchemaType0):
+        if isinstance(self.output_schema, Schema237Type0):
             output_schema = self.output_schema.to_dict()
         else:
             output_schema = self.output_schema
 
         annotations: dict[str, Any] | None
-        if isinstance(self.annotations, ServerToolDtoAnnotationsType0):
+        if isinstance(self.annotations, Schema238Type0):
             annotations = self.annotations.to_dict()
         else:
             annotations = self.annotations
@@ -89,9 +89,9 @@ class ServerToolDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.server_tool_dto_annotations_type_0 import ServerToolDtoAnnotationsType0
-        from ..models.server_tool_dto_output_schema_type_0 import ServerToolDtoOutputSchemaType0
-        from ..models.server_tool_dto_schema import ServerToolDtoSchema
+        from ..models.schema_236 import Schema236
+        from ..models.schema_237_type_0 import Schema237Type0
+        from ..models.schema_238_type_0 import Schema238Type0
 
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
@@ -100,35 +100,35 @@ class ServerToolDto:
 
         description = d.pop("description")
 
-        schema = ServerToolDtoSchema.from_dict(d.pop("schema"))
+        schema = Schema236.from_dict(d.pop("schema"))
 
-        def _parse_output_schema(data: object) -> None | ServerToolDtoOutputSchemaType0:
+        def _parse_output_schema(data: object) -> None | Schema237Type0:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                output_schema_type_0 = ServerToolDtoOutputSchemaType0.from_dict(data)
+                componentsschemas_schema237_type_0 = Schema237Type0.from_dict(data)
 
-                return output_schema_type_0
+                return componentsschemas_schema237_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ServerToolDtoOutputSchemaType0, data)
+            return cast(None | Schema237Type0, data)
 
         output_schema = _parse_output_schema(d.pop("outputSchema"))
 
-        def _parse_annotations(data: object) -> None | ServerToolDtoAnnotationsType0:
+        def _parse_annotations(data: object) -> None | Schema238Type0:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                annotations_type_0 = ServerToolDtoAnnotationsType0.from_dict(data)
+                componentsschemas_schema238_type_0 = Schema238Type0.from_dict(data)
 
-                return annotations_type_0
+                return componentsschemas_schema238_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | ServerToolDtoAnnotationsType0, data)
+            return cast(None | Schema238Type0, data)
 
         annotations = _parse_annotations(d.pop("annotations"))
 

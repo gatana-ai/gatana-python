@@ -1,41 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.profile_details_dto_servers_item import ProfileDetailsDtoServersItem
-
-
-
+    from ..models.schema_447_item import Schema447Item
 
 
 T = TypeVar("T", bound="ProfileDetailsDto")
 
 
-
 @_attrs_define
 class ProfileDetailsDto:
-    """ 
-        Attributes:
-            tenant_id (str):
-            id (str):
-            created_by (float):
-            name (str):
-            description (str):
-            is_open_to_all_users (bool):
-            is_restrictive (bool):
-            created_at (str):
-            updated_at (str):
-            servers (list[ProfileDetailsDtoServersItem]):
-     """
+    """
+    Attributes:
+        tenant_id (str):
+        id (str):
+        created_by (float):
+        name (str):
+        description (str):
+        is_open_to_all_users (bool):
+        is_restrictive (bool):
+        created_at (str):
+        updated_at (str):
+        servers (list[Schema447Item]):
+    """
 
     tenant_id: str
     id: str
@@ -46,14 +37,9 @@ class ProfileDetailsDto:
     is_restrictive: bool
     created_at: str
     updated_at: str
-    servers: list[ProfileDetailsDtoServersItem]
-
-
-
-
+    servers: list[Schema447Item]
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.profile_details_dto_servers_item import ProfileDetailsDtoServersItem
         tenant_id = self.tenant_id
 
         id = self.id
@@ -73,35 +59,33 @@ class ProfileDetailsDto:
         updated_at = self.updated_at
 
         servers = []
-        for servers_item_data in self.servers:
-            servers_item = servers_item_data.to_dict()
-            servers.append(servers_item)
-
-
-
+        for componentsschemas_schema447_item_data in self.servers:
+            componentsschemas_schema447_item = componentsschemas_schema447_item_data.to_dict()
+            servers.append(componentsschemas_schema447_item)
 
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "tenantId": tenant_id,
-            "id": id,
-            "createdBy": created_by,
-            "name": name,
-            "description": description,
-            "isOpenToAllUsers": is_open_to_all_users,
-            "isRestrictive": is_restrictive,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-            "servers": servers,
-        })
+        field_dict.update(
+            {
+                "tenantId": tenant_id,
+                "id": id,
+                "createdBy": created_by,
+                "name": name,
+                "description": description,
+                "isOpenToAllUsers": is_open_to_all_users,
+                "isRestrictive": is_restrictive,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+                "servers": servers,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.profile_details_dto_servers_item import ProfileDetailsDtoServersItem
+        from ..models.schema_447_item import Schema447Item
+
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
 
@@ -123,13 +107,10 @@ class ProfileDetailsDto:
 
         servers = []
         _servers = d.pop("servers")
-        for servers_item_data in (_servers):
-            servers_item = ProfileDetailsDtoServersItem.from_dict(servers_item_data)
+        for componentsschemas_schema447_item_data in _servers:
+            componentsschemas_schema447_item = Schema447Item.from_dict(componentsschemas_schema447_item_data)
 
-
-
-            servers.append(servers_item)
-
+            servers.append(componentsschemas_schema447_item)
 
         profile_details_dto = cls(
             tenant_id=tenant_id,
@@ -145,4 +126,3 @@ class ProfileDetailsDto:
         )
 
         return profile_details_dto
-

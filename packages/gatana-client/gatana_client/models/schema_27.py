@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..models.schema_28 import Schema28
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Schema27")
 
@@ -13,32 +16,66 @@ T = TypeVar("T", bound="Schema27")
 class Schema27:
     """
     Attributes:
-        value (bool):
+        method (Schema28):
+        credentials_scope (Literal['server'] | Literal['user']):
+        apikeys (list[str] | Unset):
     """
 
-    value: bool
+    method: Schema28
+    credentials_scope: Literal["server"] | Literal["user"]
+    apikeys: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        value = self.value
+        method = self.method.value
+
+        credentials_scope: Literal["server"] | Literal["user"]
+        credentials_scope = self.credentials_scope
+
+        apikeys: list[str] | Unset = UNSET
+        if not isinstance(self.apikeys, Unset):
+            apikeys = self.apikeys
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "value": value,
+                "method": method,
+                "credentialsScope": credentials_scope,
             }
         )
+        if apikeys is not UNSET:
+            field_dict["apikeys"] = apikeys
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        value = d.pop("value")
+        method = Schema28(d.pop("method"))
+
+        def _parse_credentials_scope(data: object) -> Literal["server"] | Literal["user"]:
+            componentsschemas_schema29_type_0 = cast(Literal["server"], data)
+            if componentsschemas_schema29_type_0 != "server":
+                raise ValueError(
+                    f"/components/schemas/__schema29_type_0 must match const 'server', got '{componentsschemas_schema29_type_0}'"
+                )
+            return componentsschemas_schema29_type_0
+            componentsschemas_schema29_type_1 = cast(Literal["user"], data)
+            if componentsschemas_schema29_type_1 != "user":
+                raise ValueError(
+                    f"/components/schemas/__schema29_type_1 must match const 'user', got '{componentsschemas_schema29_type_1}'"
+                )
+            return componentsschemas_schema29_type_1
+
+        credentials_scope = _parse_credentials_scope(d.pop("credentialsScope"))
+
+        apikeys = cast(list[str], d.pop("apikeys", UNSET))
 
         schema_27 = cls(
-            value=value,
+            method=method,
+            credentials_scope=credentials_scope,
+            apikeys=apikeys,
         )
 
         schema_27.additional_properties = d

@@ -1,93 +1,78 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.get_subscription_response_subscription_type_0 import GetSubscriptionResponseSubscriptionType0
-
-
-
+    from ..models.schema_320_type_0 import Schema320Type0
 
 
 T = TypeVar("T", bound="GetSubscriptionResponse")
 
 
-
 @_attrs_define
 class GetSubscriptionResponse:
-    """ 
-        Attributes:
-            subscription_plan (str):
-            subscription_seats (float):
-            subscription (GetSubscriptionResponseSubscriptionType0 | None):
-     """
+    """
+    Attributes:
+        subscription_plan (str):
+        subscription_seats (float):
+        subscription (None | Schema320Type0):
+    """
 
     subscription_plan: str
     subscription_seats: float
-    subscription: GetSubscriptionResponseSubscriptionType0 | None
-
-
-
-
+    subscription: None | Schema320Type0
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.get_subscription_response_subscription_type_0 import GetSubscriptionResponseSubscriptionType0
+        from ..models.schema_320_type_0 import Schema320Type0
+
         subscription_plan = self.subscription_plan
 
         subscription_seats = self.subscription_seats
 
         subscription: dict[str, Any] | None
-        if isinstance(self.subscription, GetSubscriptionResponseSubscriptionType0):
+        if isinstance(self.subscription, Schema320Type0):
             subscription = self.subscription.to_dict()
         else:
             subscription = self.subscription
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "subscriptionPlan": subscription_plan,
-            "subscriptionSeats": subscription_seats,
-            "subscription": subscription,
-        })
+        field_dict.update(
+            {
+                "subscriptionPlan": subscription_plan,
+                "subscriptionSeats": subscription_seats,
+                "subscription": subscription,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.get_subscription_response_subscription_type_0 import GetSubscriptionResponseSubscriptionType0
+        from ..models.schema_320_type_0 import Schema320Type0
+
         d = dict(src_dict)
         subscription_plan = d.pop("subscriptionPlan")
 
         subscription_seats = d.pop("subscriptionSeats")
 
-        def _parse_subscription(data: object) -> GetSubscriptionResponseSubscriptionType0 | None:
+        def _parse_subscription(data: object) -> None | Schema320Type0:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                subscription_type_0 = GetSubscriptionResponseSubscriptionType0.from_dict(data)
+                componentsschemas_schema320_type_0 = Schema320Type0.from_dict(data)
 
-
-
-                return subscription_type_0
+                return componentsschemas_schema320_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GetSubscriptionResponseSubscriptionType0 | None, data)
+            return cast(None | Schema320Type0, data)
 
         subscription = _parse_subscription(d.pop("subscription"))
-
 
         get_subscription_response = cls(
             subscription_plan=subscription_plan,
@@ -96,4 +81,3 @@ class GetSubscriptionResponse:
         )
 
         return get_subscription_response
-

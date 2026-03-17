@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class Schema71(str, Enum):
-    ADMIN = "admin"
-    MAINTAINER = "maintainer"
-    MEMBER = "member"
+    PROFILE = "profile"
+    SERVER = "server"
+    USER = "user"
 
     def __str__(self) -> str:
         return str(self.value)

@@ -6,7 +6,8 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 from attrs import define as _attrs_define
 
 from ..models.mcp_audit_log_verbosity import McpAuditLogVerbosity
-from ..models.schema_71 import Schema71
+from ..models.schema_244 import Schema244
+from ..models.schema_316 import Schema316
 
 if TYPE_CHECKING:
     from ..models.tenant_oidc_configuration import TenantOidcConfiguration
@@ -33,7 +34,10 @@ class TenantDto:
         allow_member_add_local_servers (bool):
         allow_member_add_hosted_servers (bool):
         is_google_refresh_token_saving_enabled (bool):
-        member_default_role (Literal['none'] | Schema71):
+        is_output_compression_allowed (bool):
+        is_output_compression_ai_enabled (bool):
+        output_compression_ai_model (Schema316):
+        member_default_role (Literal['none'] | Schema244):
         mcp_audit_log_level (McpAuditLogVerbosity):
     """
 
@@ -50,7 +54,10 @@ class TenantDto:
     allow_member_add_local_servers: bool
     allow_member_add_hosted_servers: bool
     is_google_refresh_token_saving_enabled: bool
-    member_default_role: Literal["none"] | Schema71
+    is_output_compression_allowed: bool
+    is_output_compression_ai_enabled: bool
+    output_compression_ai_model: Schema316
+    member_default_role: Literal["none"] | Schema244
     mcp_audit_log_level: McpAuditLogVerbosity
 
     def to_dict(self) -> dict[str, Any]:
@@ -91,8 +98,14 @@ class TenantDto:
 
         is_google_refresh_token_saving_enabled = self.is_google_refresh_token_saving_enabled
 
+        is_output_compression_allowed = self.is_output_compression_allowed
+
+        is_output_compression_ai_enabled = self.is_output_compression_ai_enabled
+
+        output_compression_ai_model = self.output_compression_ai_model.value
+
         member_default_role: Literal["none"] | str
-        if isinstance(self.member_default_role, Schema71):
+        if isinstance(self.member_default_role, Schema244):
             member_default_role = self.member_default_role.value
         else:
             member_default_role = self.member_default_role
@@ -116,6 +129,9 @@ class TenantDto:
                 "allowMemberAddLocalServers": allow_member_add_local_servers,
                 "allowMemberAddHostedServers": allow_member_add_hosted_servers,
                 "isGoogleRefreshTokenSavingEnabled": is_google_refresh_token_saving_enabled,
+                "isOutputCompressionAllowed": is_output_compression_allowed,
+                "isOutputCompressionAiEnabled": is_output_compression_ai_enabled,
+                "outputCompressionAiModel": output_compression_ai_model,
                 "memberDefaultRole": member_default_role,
                 "mcpAuditLogLevel": mcp_audit_log_level,
             }
@@ -141,9 +157,9 @@ class TenantDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                upstream_oidc_configuration_type_0 = TenantOidcConfiguration.from_dict(data)
+                componentsschemas_schema280_type_0 = TenantOidcConfiguration.from_dict(data)
 
-                return upstream_oidc_configuration_type_0
+                return componentsschemas_schema280_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | TenantOidcConfiguration, data)
@@ -156,9 +172,9 @@ class TenantDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                upstream_saml_configuration_type_0 = TenantSamlConfiguration.from_dict(data)
+                componentsschemas_schema294_type_0 = TenantSamlConfiguration.from_dict(data)
 
-                return upstream_saml_configuration_type_0
+                return componentsschemas_schema294_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | TenantSamlConfiguration, data)
@@ -181,21 +197,27 @@ class TenantDto:
 
         is_google_refresh_token_saving_enabled = d.pop("isGoogleRefreshTokenSavingEnabled")
 
-        def _parse_member_default_role(data: object) -> Literal["none"] | Schema71:
+        is_output_compression_allowed = d.pop("isOutputCompressionAllowed")
+
+        is_output_compression_ai_enabled = d.pop("isOutputCompressionAiEnabled")
+
+        output_compression_ai_model = Schema316(d.pop("outputCompressionAiModel"))
+
+        def _parse_member_default_role(data: object) -> Literal["none"] | Schema244:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                member_default_role_type_0 = Schema71(data)
+                componentsschemas_schema317_type_0 = Schema244(data)
 
-                return member_default_role_type_0
+                return componentsschemas_schema317_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            member_default_role_type_1 = cast(Literal["none"], data)
-            if member_default_role_type_1 != "none":
+            componentsschemas_schema317_type_1 = cast(Literal["none"], data)
+            if componentsschemas_schema317_type_1 != "none":
                 raise ValueError(
-                    f"memberDefaultRole_type_1 must match const 'none', got '{member_default_role_type_1}'"
+                    f"/components/schemas/__schema317_type_1 must match const 'none', got '{componentsschemas_schema317_type_1}'"
                 )
-            return member_default_role_type_1
+            return componentsschemas_schema317_type_1
 
         member_default_role = _parse_member_default_role(d.pop("memberDefaultRole"))
 
@@ -215,6 +237,9 @@ class TenantDto:
             allow_member_add_local_servers=allow_member_add_local_servers,
             allow_member_add_hosted_servers=allow_member_add_hosted_servers,
             is_google_refresh_token_saving_enabled=is_google_refresh_token_saving_enabled,
+            is_output_compression_allowed=is_output_compression_allowed,
+            is_output_compression_ai_enabled=is_output_compression_ai_enabled,
+            output_compression_ai_model=output_compression_ai_model,
             member_default_role=member_default_role,
             mcp_audit_log_level=mcp_audit_log_level,
         )
