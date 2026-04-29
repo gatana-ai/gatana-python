@@ -5,8 +5,8 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_248 import Schema248
-from ..models.schema_253 import Schema253
+from ..models.schema_267 import Schema267
+from ..models.schema_272 import Schema272
 
 T = TypeVar("T", bound="ServerCredentialsDto")
 
@@ -17,16 +17,15 @@ class ServerCredentialsDto:
     Attributes:
         id (str):
         tenant_id (str):
-        scope (Schema248):
-        user_id (float | None):
+        scope (Schema267):
+        user_id (None | str):
         profile_id (None | str):
         last_used_at (None | str):
         authorized_at (str):
-        type_ (Schema253):
+        type_ (Schema272):
         created_at (str):
         updated_at (str):
         server_slug (str):
-        user_sub (None | str):
         user_email (None | str):
         user_name (None | str):
         profile_name (None | str):
@@ -40,16 +39,15 @@ class ServerCredentialsDto:
 
     id: str
     tenant_id: str
-    scope: Schema248
-    user_id: float | None
+    scope: Schema267
+    user_id: None | str
     profile_id: None | str
     last_used_at: None | str
     authorized_at: str
-    type_: Schema253
+    type_: Schema272
     created_at: str
     updated_at: str
     server_slug: str
-    user_sub: None | str
     user_email: None | str
     user_name: None | str
     profile_name: None | str
@@ -67,7 +65,7 @@ class ServerCredentialsDto:
 
         scope = self.scope.value
 
-        user_id: float | None
+        user_id: None | str
         user_id = self.user_id
 
         profile_id: None | str
@@ -85,9 +83,6 @@ class ServerCredentialsDto:
         updated_at = self.updated_at
 
         server_slug = self.server_slug
-
-        user_sub: None | str
-        user_sub = self.user_sub
 
         user_email: None | str
         user_email = self.user_email
@@ -135,7 +130,6 @@ class ServerCredentialsDto:
                 "createdAt": created_at,
                 "updatedAt": updated_at,
                 "serverSlug": server_slug,
-                "userSub": user_sub,
                 "userEmail": user_email,
                 "userName": user_name,
                 "profileName": profile_name,
@@ -157,12 +151,12 @@ class ServerCredentialsDto:
 
         tenant_id = d.pop("tenantId")
 
-        scope = Schema248(d.pop("scope"))
+        scope = Schema267(d.pop("scope"))
 
-        def _parse_user_id(data: object) -> float | None:
+        def _parse_user_id(data: object) -> None | str:
             if data is None:
                 return data
-            return cast(float | None, data)
+            return cast(None | str, data)
 
         user_id = _parse_user_id(d.pop("userId"))
 
@@ -182,20 +176,13 @@ class ServerCredentialsDto:
 
         authorized_at = d.pop("authorizedAt")
 
-        type_ = Schema253(d.pop("type"))
+        type_ = Schema272(d.pop("type"))
 
         created_at = d.pop("createdAt")
 
         updated_at = d.pop("updatedAt")
 
         server_slug = d.pop("serverSlug")
-
-        def _parse_user_sub(data: object) -> None | str:
-            if data is None:
-                return data
-            return cast(None | str, data)
-
-        user_sub = _parse_user_sub(d.pop("userSub"))
 
         def _parse_user_email(data: object) -> None | str:
             if data is None:
@@ -224,9 +211,9 @@ class ServerCredentialsDto:
             try:
                 if not isinstance(data, list):
                     raise TypeError()
-                componentsschemas_schema261_type_0 = cast(list[str], data)
+                componentsschemas_schema279_type_0 = cast(list[str], data)
 
-                return componentsschemas_schema261_type_0
+                return componentsschemas_schema279_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(list[str] | None, data)
@@ -280,7 +267,6 @@ class ServerCredentialsDto:
             created_at=created_at,
             updated_at=updated_at,
             server_slug=server_slug,
-            user_sub=user_sub,
             user_email=user_email,
             user_name=user_name,
             profile_name=profile_name,

@@ -8,8 +8,8 @@ from attrs import define as _attrs_define
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_198 import Schema198
-    from ..models.schema_199 import Schema199
+    from ..models.schema_218 import Schema218
+    from ..models.schema_219 import Schema219
 
 
 T = TypeVar("T", bound="ServerOAuthMetadata")
@@ -20,13 +20,13 @@ class ServerOAuthMetadata:
     """
     Attributes:
         requires_authorization (bool):
-        resource (Schema198 | Unset):
-        as_ (Schema199 | Unset):
+        resource (Schema218 | Unset):
+        as_ (Schema219 | Unset):
     """
 
     requires_authorization: bool
-    resource: Schema198 | Unset = UNSET
-    as_: Schema199 | Unset = UNSET
+    resource: Schema218 | Unset = UNSET
+    as_: Schema219 | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         requires_authorization = self.requires_authorization
@@ -55,25 +55,25 @@ class ServerOAuthMetadata:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_198 import Schema198
-        from ..models.schema_199 import Schema199
+        from ..models.schema_218 import Schema218
+        from ..models.schema_219 import Schema219
 
         d = dict(src_dict)
         requires_authorization = d.pop("requiresAuthorization")
 
         _resource = d.pop("resource", UNSET)
-        resource: Schema198 | Unset
+        resource: Schema218 | Unset
         if isinstance(_resource, Unset):
             resource = UNSET
         else:
-            resource = Schema198.from_dict(_resource)
+            resource = Schema218.from_dict(_resource)
 
         _as_ = d.pop("as", UNSET)
-        as_: Schema199 | Unset
+        as_: Schema219 | Unset
         if isinstance(_as_, Unset):
             as_ = UNSET
         else:
-            as_ = Schema199.from_dict(_as_)
+            as_ = Schema219.from_dict(_as_)
 
         server_o_auth_metadata = cls(
             requires_authorization=requires_authorization,

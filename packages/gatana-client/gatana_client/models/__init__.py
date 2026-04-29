@@ -8,9 +8,11 @@ from .azure_key_vault_configuration import AzureKeyVaultConfiguration
 from .azure_key_vault_configuration_output import AzureKeyVaultConfigurationOutput
 from .create_personal_access_token_request import CreatePersonalAccessTokenRequest
 from .create_sandbox_response import CreateSandboxResponse
+from .create_scim_token_request import CreateScimTokenRequest
+from .create_scim_token_response import CreateScimTokenResponse
 from .create_server_request import CreateServerRequest
+from .create_user_profile_assignment_request import CreateUserProfileAssignmentRequest
 from .create_user_request import CreateUserRequest
-from .delete_mcp_servers_server_slug_credentials_response_200 import DeleteMcpServersServerSlugCredentialsResponse200
 from .delete_mcp_servers_server_slug_members_member_type_member_id_response_200 import (
     DeleteMcpServersServerSlugMembersMemberTypeMemberIdResponse200,
 )
@@ -19,6 +21,7 @@ from .delete_profiles_profile_id_claim_mappings_mapping_id_response_200 import (
 )
 from .delete_profiles_profile_id_response_200 import DeleteProfilesProfileIdResponse200
 from .delete_sandboxes_sandbox_id_response_200 import DeleteSandboxesSandboxIdResponse200
+from .delete_scim_config_tokens_token_id_response_200 import DeleteScimConfigTokensTokenIdResponse200
 from .delete_teams_team_id_claim_mappings_mapping_id_response_200 import (
     DeleteTeamsTeamIdClaimMappingsMappingIdResponse200,
 )
@@ -27,11 +30,13 @@ from .delete_teams_team_id_invitations_invitation_id_response_200 import (
 )
 from .delete_teams_team_id_members_user_id_response_200 import DeleteTeamsTeamIdMembersUserIdResponse200
 from .delete_teams_team_id_response_200 import DeleteTeamsTeamIdResponse200
-from .delete_users_user_sub_personal_access_tokens_pat_id_response_200 import (
-    DeleteUsersUserSubPersonalAccessTokensPatIdResponse200,
+from .delete_users_user_id_personal_access_tokens_pat_id_response_200 import (
+    DeleteUsersUserIdPersonalAccessTokensPatIdResponse200,
 )
-from .delete_users_user_sub_response_200 import DeleteUsersUserSubResponse200
+from .delete_users_user_id_profiles_profile_id_response_200 import DeleteUsersUserIdProfilesProfileIdResponse200
+from .delete_users_user_id_response_200 import DeleteUsersUserIdResponse200
 from .deployment_log_payload_pod_info import DeploymentLogPayloadPodInfo
+from .deployment_metrics_response import DeploymentMetricsResponse
 from .deployment_status import DeploymentStatus
 from .deployment_status_response import DeploymentStatusResponse
 from .exec_command_body import ExecCommandBody
@@ -41,6 +46,8 @@ from .get_credential_token_response import GetCredentialTokenResponse
 from .get_deployments_logs_previous import GetDeploymentsLogsPrevious
 from .get_deployments_logs_response_200 import GetDeploymentsLogsResponse200
 from .get_deployments_logs_response_200_logs import GetDeploymentsLogsResponse200Logs
+from .get_deployments_metrics_range import GetDeploymentsMetricsRange
+from .get_mcp_servers_access_preview_response_200 import GetMcpServersAccessPreviewResponse200
 from .get_mcp_servers_response_200 import GetMcpServersResponse200
 from .get_mcp_servers_response_200_servers_item import GetMcpServersResponse200ServersItem
 from .get_mcp_servers_response_200_servers_item_usage import GetMcpServersResponse200ServersItemUsage
@@ -62,7 +69,6 @@ from .get_mcp_servers_server_slug_credentials_profile_profile_id_apikeys_respons
 from .get_mcp_servers_server_slug_credentials_profile_response_200 import (
     GetMcpServersServerSlugCredentialsProfileResponse200,
 )
-from .get_mcp_servers_server_slug_credentials_response_200 import GetMcpServersServerSlugCredentialsResponse200
 from .get_mcp_servers_server_slug_credentials_server_apikeys_response_200 import (
     GetMcpServersServerSlugCredentialsServerApikeysResponse200,
 )
@@ -81,6 +87,8 @@ from .get_profiles_profile_id_response_200 import GetProfilesProfileIdResponse20
 from .get_profiles_profile_id_tools_response_200 import GetProfilesProfileIdToolsResponse200
 from .get_profiles_profile_id_tools_response_200_tools import GetProfilesProfileIdToolsResponse200Tools
 from .get_profiles_response_200 import GetProfilesResponse200
+from .get_scim_token_secret_response import GetScimTokenSecretResponse
+from .get_scim_tokens_response import GetScimTokensResponse
 from .get_subscription_response import GetSubscriptionResponse
 from .get_teams_response_200 import GetTeamsResponse200
 from .get_teams_team_id_claim_mappings_response_200 import GetTeamsTeamIdClaimMappingsResponse200
@@ -93,7 +101,7 @@ from .get_tenants_tenant_id_response_200 import GetTenantsTenantIdResponse200
 from .get_user_me_response import GetUserMeResponse
 from .get_users_response_200 import GetUsersResponse200
 from .get_users_type import GetUsersType
-from .get_users_user_sub_personal_access_tokens_response_200 import GetUsersUserSubPersonalAccessTokensResponse200
+from .get_users_user_id_personal_access_tokens_response_200 import GetUsersUserIdPersonalAccessTokensResponse200
 from .hashi_corp_vault_configuration import HashiCorpVaultConfiguration
 from .hashi_corp_vault_configuration_output import HashiCorpVaultConfigurationOutput
 from .hosted_transport_config import HostedTransportConfig
@@ -104,12 +112,13 @@ from .infisical_configuration import InfisicalConfiguration
 from .infisical_configuration_output import InfisicalConfigurationOutput
 from .list_sandboxes_response import ListSandboxesResponse
 from .mcp_audit_log_verbosity import McpAuditLogVerbosity
+from .metrics_time_series import MetricsTimeSeries
 from .paginated_audit_log_response import PaginatedAuditLogResponse
 from .paginated_sandbox_audit_log import PaginatedSandboxAuditLog
 from .patch_secret_stores_id_body import PatchSecretStoresIdBody
 from .patch_secret_stores_store_id_mappings_mapping_name_body import PatchSecretStoresStoreIdMappingsMappingNameBody
-from .patch_users_user_sub_personal_access_tokens_pat_id_response_200 import (
-    PatchUsersUserSubPersonalAccessTokensPatIdResponse200,
+from .patch_users_user_id_personal_access_tokens_pat_id_response_200 import (
+    PatchUsersUserIdPersonalAccessTokensPatIdResponse200,
 )
 from .personal_access_token import PersonalAccessToken
 from .post_mcp_servers_server_slug_credentials_copy_response_200 import (
@@ -149,16 +158,12 @@ from .post_teams_team_id_invitations_body import PostTeamsTeamIdInvitationsBody
 from .post_teams_team_id_invitations_response_200 import PostTeamsTeamIdInvitationsResponse200
 from .post_teams_team_id_members_body import PostTeamsTeamIdMembersBody
 from .post_teams_team_id_members_response_200 import PostTeamsTeamIdMembersResponse200
-from .post_users_user_sub_personal_access_tokens_response_200 import PostUsersUserSubPersonalAccessTokensResponse200
+from .post_users_me_request_email_verification_response_200 import PostUsersMeRequestEmailVerificationResponse200
+from .post_users_user_id_personal_access_tokens_response_200 import PostUsersUserIdPersonalAccessTokensResponse200
 from .profile import Profile
+from .profile_assignment import ProfileAssignment
 from .profile_claim_mapping import ProfileClaimMapping
 from .profile_details_dto import ProfileDetailsDto
-from .put_mcp_servers_server_slug_authorization_body import PutMcpServersServerSlugAuthorizationBody
-from .put_mcp_servers_server_slug_config_body_type_0 import PutMcpServersServerSlugConfigBodyType0
-from .put_mcp_servers_server_slug_config_body_type_1 import PutMcpServersServerSlugConfigBodyType1
-from .put_mcp_servers_server_slug_config_body_type_2 import PutMcpServersServerSlugConfigBodyType2
-from .put_mcp_servers_server_slug_config_body_type_3 import PutMcpServersServerSlugConfigBodyType3
-from .put_mcp_servers_server_slug_config_body_type_4 import PutMcpServersServerSlugConfigBodyType4
 from .put_mcp_servers_server_slug_credentials_profiles_profile_id_response_200 import (
     PutMcpServersServerSlugCredentialsProfilesProfileIdResponse200,
 )
@@ -193,83 +198,96 @@ from .put_teams_team_id_body import PutTeamsTeamIdBody
 from .put_teams_team_id_members_user_id_body import PutTeamsTeamIdMembersUserIdBody
 from .put_teams_team_id_members_user_id_response_200 import PutTeamsTeamIdMembersUserIdResponse200
 from .put_users_me_response_200 import PutUsersMeResponse200
+from .request_email_change_verification_request import RequestEmailChangeVerificationRequest
+from .resource_limits import ResourceLimits
 from .sandbox_audit_log import SandboxAuditLog
 from .sandbox_dto import SandboxDto
-from .schema_5 import Schema5
-from .schema_16 import Schema16
-from .schema_20 import Schema20
-from .schema_27 import Schema27
-from .schema_28 import Schema28
-from .schema_31_type_4 import Schema31Type4
+from .schema_7 import Schema7
+from .schema_12 import Schema12
+from .schema_25 import Schema25
+from .schema_29 import Schema29
+from .schema_35 import Schema35
 from .schema_36 import Schema36
-from .schema_42 import Schema42
-from .schema_50_type_0_as_type_0 import Schema50Type0AsType0
-from .schema_50_type_0_resource_type_0 import Schema50Type0ResourceType0
-from .schema_51_type_0 import Schema51Type0
-from .schema_51_type_0_grant_type import Schema51Type0GrantType
-from .schema_58_item import Schema58Item
-from .schema_58_item_action import Schema58ItemAction
-from .schema_59 import Schema59
-from .schema_62 import Schema62
-from .schema_64 import Schema64
-from .schema_68 import Schema68
-from .schema_71 import Schema71
+from .schema_39_type_4 import Schema39Type4
+from .schema_44 import Schema44
+from .schema_46_type_0 import Schema46Type0
+from .schema_53 import Schema53
+from .schema_56_type_0 import Schema56Type0
+from .schema_60_type_0_as_type_0 import Schema60Type0AsType0
+from .schema_60_type_0_resource_type_0 import Schema60Type0ResourceType0
+from .schema_61_type_0 import Schema61Type0
+from .schema_61_type_0_grant_type import Schema61Type0GrantType
+from .schema_68_item import Schema68Item
+from .schema_68_item_action import Schema68ItemAction
+from .schema_69 import Schema69
+from .schema_72 import Schema72
+from .schema_74 import Schema74
 from .schema_78 import Schema78
-from .schema_111 import Schema111
-from .schema_115 import Schema115
-from .schema_116 import Schema116
-from .schema_117 import Schema117
-from .schema_117_abilities import Schema117Abilities
-from .schema_119 import Schema119
-from .schema_119_enabled_servers import Schema119EnabledServers
-from .schema_135 import Schema135
-from .schema_137 import Schema137
-from .schema_151 import Schema151
-from .schema_155 import Schema155
+from .schema_81 import Schema81
+from .schema_87 import Schema87
+from .schema_120 import Schema120
+from .schema_126 import Schema126
+from .schema_127 import Schema127
+from .schema_128 import Schema128
+from .schema_128_abilities import Schema128Abilities
+from .schema_129 import Schema129
+from .schema_130 import Schema130
+from .schema_134 import Schema134
+from .schema_134_enabled_servers import Schema134EnabledServers
+from .schema_150 import Schema150
+from .schema_152 import Schema152
 from .schema_170 import Schema170
-from .schema_173_type_3 import Schema173Type3
-from .schema_181 import Schema181
+from .schema_174 import Schema174
+from .schema_175 import Schema175
 from .schema_188 import Schema188
-from .schema_193 import Schema193
-from .schema_198 import Schema198
+from .schema_191_type_3 import Schema191Type3
 from .schema_199 import Schema199
-from .schema_208_item import Schema208Item
-from .schema_208_item_action import Schema208ItemAction
-from .schema_211 import Schema211
-from .schema_232 import Schema232
-from .schema_236 import Schema236
-from .schema_237_type_0 import Schema237Type0
-from .schema_238_type_0 import Schema238Type0
-from .schema_242 import Schema242
-from .schema_243_item import Schema243Item
-from .schema_244 import Schema244
-from .schema_245_item import Schema245Item
-from .schema_248 import Schema248
-from .schema_253 import Schema253
+from .schema_202_type_0 import Schema202Type0
+from .schema_207 import Schema207
+from .schema_209_type_0 import Schema209Type0
+from .schema_213 import Schema213
+from .schema_218 import Schema218
+from .schema_219 import Schema219
+from .schema_228_item import Schema228Item
+from .schema_228_item_action import Schema228ItemAction
+from .schema_231 import Schema231
+from .schema_252 import Schema252
+from .schema_256 import Schema256
+from .schema_257_type_0 import Schema257Type0
+from .schema_258_type_0 import Schema258Type0
+from .schema_262 import Schema262
+from .schema_263_item import Schema263Item
+from .schema_264_item import Schema264Item
 from .schema_267 import Schema267
-from .schema_292 import Schema292
-from .schema_316 import Schema316
-from .schema_320_type_0_card_type_0 import Schema320Type0CardType0
-from .schema_335 import Schema335
-from .schema_341 import Schema341
-from .schema_343 import Schema343
-from .schema_345 import Schema345
-from .schema_354 import Schema354
+from .schema_272 import Schema272
+from .schema_285 import Schema285
+from .schema_310 import Schema310
+from .schema_334 import Schema334
+from .schema_337 import Schema337
+from .schema_338 import Schema338
+from .schema_341_type_0_card_type_0 import Schema341Type0CardType0
 from .schema_356 import Schema356
-from .schema_357 import Schema357
-from .schema_358 import Schema358
-from .schema_359 import Schema359
-from .schema_360 import Schema360
-from .schema_361 import Schema361
 from .schema_362 import Schema362
-from .schema_363 import Schema363
-from .schema_371 import Schema371
-from .schema_374 import Schema374
+from .schema_368 import Schema368
+from .schema_370 import Schema370
+from .schema_379 import Schema379
+from .schema_381 import Schema381
+from .schema_382 import Schema382
+from .schema_383 import Schema383
+from .schema_384 import Schema384
+from .schema_385 import Schema385
+from .schema_386 import Schema386
 from .schema_387 import Schema387
-from .schema_392 import Schema392
+from .schema_388 import Schema388
+from .schema_389 import Schema389
+from .schema_399 import Schema399
 from .schema_402 import Schema402
-from .schema_447_item import Schema447Item
-from .schema_473 import Schema473
+from .schema_415 import Schema415
+from .schema_420 import Schema420
+from .schema_430 import Schema430
+from .schema_475_item import Schema475Item
+from .schema_501 import Schema501
+from .scim_token import ScimToken
 from .secret_mapping_list_response import SecretMappingListResponse
 from .secret_mapping_response import SecretMappingResponse
 from .secret_store_detail_response import SecretStoreDetailResponse
@@ -308,6 +326,7 @@ from .test_secret_response import TestSecretResponse
 from .update_personal_access_token_request import UpdatePersonalAccessTokenRequest
 from .update_server_request import UpdateServerRequest
 from .update_user_me_request import UpdateUserMeRequest
+from .update_user_profile_assignment_request import UpdateUserProfileAssignmentRequest
 from .update_user_request import UpdateUserRequest
 from .upload_source_code_response import UploadSourceCodeResponse
 from .user import User
@@ -323,20 +342,25 @@ __all__ = (
     "AzureKeyVaultConfigurationOutput",
     "CreatePersonalAccessTokenRequest",
     "CreateSandboxResponse",
+    "CreateScimTokenRequest",
+    "CreateScimTokenResponse",
     "CreateServerRequest",
+    "CreateUserProfileAssignmentRequest",
     "CreateUserRequest",
-    "DeleteMcpServersServerSlugCredentialsResponse200",
     "DeleteMcpServersServerSlugMembersMemberTypeMemberIdResponse200",
     "DeleteProfilesProfileIdClaimMappingsMappingIdResponse200",
     "DeleteProfilesProfileIdResponse200",
     "DeleteSandboxesSandboxIdResponse200",
+    "DeleteScimConfigTokensTokenIdResponse200",
     "DeleteTeamsTeamIdClaimMappingsMappingIdResponse200",
     "DeleteTeamsTeamIdInvitationsInvitationIdResponse200",
     "DeleteTeamsTeamIdMembersUserIdResponse200",
     "DeleteTeamsTeamIdResponse200",
-    "DeleteUsersUserSubPersonalAccessTokensPatIdResponse200",
-    "DeleteUsersUserSubResponse200",
+    "DeleteUsersUserIdPersonalAccessTokensPatIdResponse200",
+    "DeleteUsersUserIdProfilesProfileIdResponse200",
+    "DeleteUsersUserIdResponse200",
     "DeploymentLogPayloadPodInfo",
+    "DeploymentMetricsResponse",
     "DeploymentStatus",
     "DeploymentStatusResponse",
     "ExecCommandBody",
@@ -346,6 +370,8 @@ __all__ = (
     "GetDeploymentsLogsPrevious",
     "GetDeploymentsLogsResponse200",
     "GetDeploymentsLogsResponse200Logs",
+    "GetDeploymentsMetricsRange",
+    "GetMcpServersAccessPreviewResponse200",
     "GetMcpServersResponse200",
     "GetMcpServersResponse200ServersItem",
     "GetMcpServersResponse200ServersItemUsage",
@@ -355,7 +381,6 @@ __all__ = (
     "GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo",
     "GetMcpServersServerSlugCredentialsProfileProfileIdApikeysResponse200",
     "GetMcpServersServerSlugCredentialsProfileResponse200",
-    "GetMcpServersServerSlugCredentialsResponse200",
     "GetMcpServersServerSlugCredentialsServerApikeysResponse200",
     "GetMcpServersServerSlugCredentialsServerResponse200",
     "GetMcpServersServerSlugCredentialsUserApikeysResponse200",
@@ -368,6 +393,8 @@ __all__ = (
     "GetProfilesProfileIdToolsResponse200",
     "GetProfilesProfileIdToolsResponse200Tools",
     "GetProfilesResponse200",
+    "GetScimTokenSecretResponse",
+    "GetScimTokensResponse",
     "GetSubscriptionResponse",
     "GetTeamsResponse200",
     "GetTeamsTeamIdClaimMappingsResponse200",
@@ -380,7 +407,7 @@ __all__ = (
     "GetUserMeResponse",
     "GetUsersResponse200",
     "GetUsersType",
-    "GetUsersUserSubPersonalAccessTokensResponse200",
+    "GetUsersUserIdPersonalAccessTokensResponse200",
     "HashiCorpVaultConfiguration",
     "HashiCorpVaultConfigurationOutput",
     "HostedTransportConfig",
@@ -391,11 +418,12 @@ __all__ = (
     "InfisicalConfigurationOutput",
     "ListSandboxesResponse",
     "McpAuditLogVerbosity",
+    "MetricsTimeSeries",
     "PaginatedAuditLogResponse",
     "PaginatedSandboxAuditLog",
     "PatchSecretStoresIdBody",
     "PatchSecretStoresStoreIdMappingsMappingNameBody",
-    "PatchUsersUserSubPersonalAccessTokensPatIdResponse200",
+    "PatchUsersUserIdPersonalAccessTokensPatIdResponse200",
     "PersonalAccessToken",
     "PostMcpServersServerSlugCredentialsCopyResponse200",
     "PostMcpServersServerSlugFilesResponse200",
@@ -422,16 +450,12 @@ __all__ = (
     "PostTeamsTeamIdInvitationsResponse200",
     "PostTeamsTeamIdMembersBody",
     "PostTeamsTeamIdMembersResponse200",
-    "PostUsersUserSubPersonalAccessTokensResponse200",
+    "PostUsersMeRequestEmailVerificationResponse200",
+    "PostUsersUserIdPersonalAccessTokensResponse200",
     "Profile",
+    "ProfileAssignment",
     "ProfileClaimMapping",
     "ProfileDetailsDto",
-    "PutMcpServersServerSlugAuthorizationBody",
-    "PutMcpServersServerSlugConfigBodyType0",
-    "PutMcpServersServerSlugConfigBodyType1",
-    "PutMcpServersServerSlugConfigBodyType2",
-    "PutMcpServersServerSlugConfigBodyType3",
-    "PutMcpServersServerSlugConfigBodyType4",
     "PutMcpServersServerSlugCredentialsProfilesProfileIdResponse200",
     "PutMcpServersServerSlugCredentialsServerResponse200",
     "PutMcpServersServerSlugCredentialsUserResponse200",
@@ -452,83 +476,96 @@ __all__ = (
     "PutTeamsTeamIdMembersUserIdBody",
     "PutTeamsTeamIdMembersUserIdResponse200",
     "PutUsersMeResponse200",
+    "RequestEmailChangeVerificationRequest",
+    "ResourceLimits",
     "SandboxAuditLog",
     "SandboxDto",
-    "Schema111",
-    "Schema115",
-    "Schema116",
-    "Schema117",
-    "Schema117Abilities",
-    "Schema119",
-    "Schema119EnabledServers",
-    "Schema135",
-    "Schema137",
-    "Schema151",
-    "Schema155",
-    "Schema16",
+    "Schema12",
+    "Schema120",
+    "Schema126",
+    "Schema127",
+    "Schema128",
+    "Schema128Abilities",
+    "Schema129",
+    "Schema130",
+    "Schema134",
+    "Schema134EnabledServers",
+    "Schema150",
+    "Schema152",
     "Schema170",
-    "Schema173Type3",
-    "Schema181",
+    "Schema174",
+    "Schema175",
     "Schema188",
-    "Schema193",
-    "Schema198",
+    "Schema191Type3",
     "Schema199",
-    "Schema20",
-    "Schema208Item",
-    "Schema208ItemAction",
-    "Schema211",
-    "Schema232",
-    "Schema236",
-    "Schema237Type0",
-    "Schema238Type0",
-    "Schema242",
-    "Schema243Item",
-    "Schema244",
-    "Schema245Item",
-    "Schema248",
-    "Schema253",
+    "Schema202Type0",
+    "Schema207",
+    "Schema209Type0",
+    "Schema213",
+    "Schema218",
+    "Schema219",
+    "Schema228Item",
+    "Schema228ItemAction",
+    "Schema231",
+    "Schema25",
+    "Schema252",
+    "Schema256",
+    "Schema257Type0",
+    "Schema258Type0",
+    "Schema262",
+    "Schema263Item",
+    "Schema264Item",
     "Schema267",
-    "Schema27",
-    "Schema28",
-    "Schema292",
-    "Schema316",
-    "Schema31Type4",
-    "Schema320Type0CardType0",
-    "Schema335",
-    "Schema341",
-    "Schema343",
-    "Schema345",
-    "Schema354",
+    "Schema272",
+    "Schema285",
+    "Schema29",
+    "Schema310",
+    "Schema334",
+    "Schema337",
+    "Schema338",
+    "Schema341Type0CardType0",
+    "Schema35",
     "Schema356",
-    "Schema357",
-    "Schema358",
-    "Schema359",
     "Schema36",
-    "Schema360",
-    "Schema361",
     "Schema362",
-    "Schema363",
-    "Schema371",
-    "Schema374",
+    "Schema368",
+    "Schema370",
+    "Schema379",
+    "Schema381",
+    "Schema382",
+    "Schema383",
+    "Schema384",
+    "Schema385",
+    "Schema386",
     "Schema387",
-    "Schema392",
+    "Schema388",
+    "Schema389",
+    "Schema399",
+    "Schema39Type4",
     "Schema402",
-    "Schema42",
-    "Schema447Item",
-    "Schema473",
-    "Schema5",
-    "Schema50Type0AsType0",
-    "Schema50Type0ResourceType0",
-    "Schema51Type0",
-    "Schema51Type0GrantType",
-    "Schema58Item",
-    "Schema58ItemAction",
-    "Schema59",
-    "Schema62",
-    "Schema64",
-    "Schema68",
-    "Schema71",
+    "Schema415",
+    "Schema420",
+    "Schema430",
+    "Schema44",
+    "Schema46Type0",
+    "Schema475Item",
+    "Schema501",
+    "Schema53",
+    "Schema56Type0",
+    "Schema60Type0AsType0",
+    "Schema60Type0ResourceType0",
+    "Schema61Type0",
+    "Schema61Type0GrantType",
+    "Schema68Item",
+    "Schema68ItemAction",
+    "Schema69",
+    "Schema7",
+    "Schema72",
+    "Schema74",
     "Schema78",
+    "Schema81",
+    "Schema87",
+    "ScimToken",
     "SecretMappingListResponse",
     "SecretMappingResponse",
     "SecretStoreDetailResponse",
@@ -567,6 +604,7 @@ __all__ = (
     "UpdatePersonalAccessTokenRequest",
     "UpdateServerRequest",
     "UpdateUserMeRequest",
+    "UpdateUserProfileAssignmentRequest",
     "UpdateUserRequest",
     "UploadSourceCodeResponse",
     "User",

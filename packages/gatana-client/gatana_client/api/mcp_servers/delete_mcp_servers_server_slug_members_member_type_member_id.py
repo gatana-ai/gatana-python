@@ -9,13 +9,13 @@ from ...client import AuthenticatedClient, Client
 from ...models.delete_mcp_servers_server_slug_members_member_type_member_id_response_200 import (
     DeleteMcpServersServerSlugMembersMemberTypeMemberIdResponse200,
 )
-from ...models.schema_64 import Schema64
+from ...models.schema_74 import Schema74
 from ...types import Response
 
 
 def _get_kwargs(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
 ) -> dict[str, Any]:
     _kwargs: dict[str, Any] = {
@@ -57,7 +57,7 @@ def _build_response(
 
 def sync_detailed(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -65,7 +65,7 @@ def sync_detailed(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
 
     Raises:
@@ -91,7 +91,7 @@ def sync_detailed(
 
 def sync(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -99,7 +99,7 @@ def sync(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
 
     Raises:
@@ -120,7 +120,7 @@ def sync(
 
 async def asyncio_detailed(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -128,7 +128,7 @@ async def asyncio_detailed(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
 
     Raises:
@@ -152,7 +152,7 @@ async def asyncio_detailed(
 
 async def asyncio(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -160,7 +160,7 @@ async def asyncio(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
 
     Raises:

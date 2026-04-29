@@ -6,7 +6,7 @@ from typing import Any, Literal, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_28 import Schema28
+from ..models.schema_36 import Schema36
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ServerAuthorization")
@@ -16,12 +16,12 @@ T = TypeVar("T", bound="ServerAuthorization")
 class ServerAuthorization:
     """
     Attributes:
-        method (Schema28):
+        method (Schema36):
         credentials_scope (Literal['server'] | Literal['user']):
         apikeys (list[str] | Unset):
     """
 
-    method: Schema28
+    method: Schema36
     credentials_scope: Literal["server"] | Literal["user"]
     apikeys: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -52,21 +52,21 @@ class ServerAuthorization:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        method = Schema28(d.pop("method"))
+        method = Schema36(d.pop("method"))
 
         def _parse_credentials_scope(data: object) -> Literal["server"] | Literal["user"]:
-            componentsschemas_schema29_type_0 = cast(Literal["server"], data)
-            if componentsschemas_schema29_type_0 != "server":
+            componentsschemas_schema37_type_0 = cast(Literal["server"], data)
+            if componentsschemas_schema37_type_0 != "server":
                 raise ValueError(
-                    f"/components/schemas/__schema29_type_0 must match const 'server', got '{componentsschemas_schema29_type_0}'"
+                    f"/components/schemas/__schema37_type_0 must match const 'server', got '{componentsschemas_schema37_type_0}'"
                 )
-            return componentsschemas_schema29_type_0
-            componentsschemas_schema29_type_1 = cast(Literal["user"], data)
-            if componentsschemas_schema29_type_1 != "user":
+            return componentsschemas_schema37_type_0
+            componentsschemas_schema37_type_1 = cast(Literal["user"], data)
+            if componentsschemas_schema37_type_1 != "user":
                 raise ValueError(
-                    f"/components/schemas/__schema29_type_1 must match const 'user', got '{componentsschemas_schema29_type_1}'"
+                    f"/components/schemas/__schema37_type_1 must match const 'user', got '{componentsschemas_schema37_type_1}'"
                 )
-            return componentsschemas_schema29_type_1
+            return componentsschemas_schema37_type_1
 
         credentials_scope = _parse_credentials_scope(d.pop("credentialsScope"))
 

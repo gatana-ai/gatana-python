@@ -6,7 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_211 import Schema211
+from ...models.schema_231 import Schema231
 from ...types import Response
 
 
@@ -23,9 +23,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema211 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema231 | None:
     if response.status_code == 200:
-        response_200 = Schema211.from_dict(response.json())
+        response_200 = Schema231.from_dict(response.json())
 
         return response_200
 
@@ -35,7 +35,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema211]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema231]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -48,7 +48,7 @@ def sync_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema211]:
+) -> Response[Schema231]:
     """
     Args:
         server_slug (str):
@@ -58,7 +58,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema211]
+        Response[Schema231]
     """
 
     kwargs = _get_kwargs(
@@ -76,7 +76,7 @@ def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Schema211 | None:
+) -> Schema231 | None:
     """
     Args:
         server_slug (str):
@@ -86,7 +86,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema211
+        Schema231
     """
 
     return sync_detailed(
@@ -99,7 +99,7 @@ async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema211]:
+) -> Response[Schema231]:
     """
     Args:
         server_slug (str):
@@ -109,7 +109,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema211]
+        Response[Schema231]
     """
 
     kwargs = _get_kwargs(
@@ -125,7 +125,7 @@ async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Schema211 | None:
+) -> Schema231 | None:
     """
     Args:
         server_slug (str):
@@ -135,7 +135,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema211
+        Schema231
     """
 
     return (

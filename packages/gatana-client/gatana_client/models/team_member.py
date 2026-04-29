@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_374 import Schema374
+from ..models.schema_402 import Schema402
 
 T = TypeVar("T", bound="TeamMember")
 
@@ -15,15 +15,15 @@ class TeamMember:
     """
     Attributes:
         team_id (str):
-        user_id (float):
-        role (Schema374):
+        user_id (str):
+        role (Schema402):
         created_at (str):
         updated_at (str):
     """
 
     team_id: str
-    user_id: float
-    role: Schema374
+    user_id: str
+    role: Schema402
     created_at: str
     updated_at: str
 
@@ -59,7 +59,7 @@ class TeamMember:
 
         user_id = d.pop("userId")
 
-        role = Schema374(d.pop("role"))
+        role = Schema402(d.pop("role"))
 
         created_at = d.pop("createdAt")
 

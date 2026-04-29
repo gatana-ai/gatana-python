@@ -6,7 +6,8 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_5 import Schema5
+from ..models.schema_12 import Schema12
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UpdateUserRequest")
 
@@ -15,16 +16,20 @@ T = TypeVar("T", bound="UpdateUserRequest")
 class UpdateUserRequest:
     """
     Attributes:
-        email (str):
-        name (str):
-        role (Schema5):
-        is_disabled (bool):
+        email (str | Unset):
+        name (str | Unset):
+        role (Schema12 | Unset):
+        is_disabled (bool | Unset):
+        is_scim_managed (bool | Unset):
+        scim_external_id (str | Unset):
     """
 
-    email: str
-    name: str
-    role: Schema5
-    is_disabled: bool
+    email: str | Unset = UNSET
+    name: str | Unset = UNSET
+    role: Schema12 | Unset = UNSET
+    is_disabled: bool | Unset = UNSET
+    is_scim_managed: bool | Unset = UNSET
+    scim_external_id: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -32,39 +37,61 @@ class UpdateUserRequest:
 
         name = self.name
 
-        role = self.role.value
+        role: str | Unset = UNSET
+        if not isinstance(self.role, Unset):
+            role = self.role.value
 
         is_disabled = self.is_disabled
 
+        is_scim_managed = self.is_scim_managed
+
+        scim_external_id = self.scim_external_id
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "email": email,
-                "name": name,
-                "role": role,
-                "isDisabled": is_disabled,
-            }
-        )
+        field_dict.update({})
+        if email is not UNSET:
+            field_dict["email"] = email
+        if name is not UNSET:
+            field_dict["name"] = name
+        if role is not UNSET:
+            field_dict["role"] = role
+        if is_disabled is not UNSET:
+            field_dict["isDisabled"] = is_disabled
+        if is_scim_managed is not UNSET:
+            field_dict["isScimManaged"] = is_scim_managed
+        if scim_external_id is not UNSET:
+            field_dict["scimExternalId"] = scim_external_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        email = d.pop("email")
+        email = d.pop("email", UNSET)
 
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        role = Schema5(d.pop("role"))
+        _role = d.pop("role", UNSET)
+        role: Schema12 | Unset
+        if isinstance(_role, Unset):
+            role = UNSET
+        else:
+            role = Schema12(_role)
 
-        is_disabled = d.pop("isDisabled")
+        is_disabled = d.pop("isDisabled", UNSET)
+
+        is_scim_managed = d.pop("isScimManaged", UNSET)
+
+        scim_external_id = d.pop("scimExternalId", UNSET)
 
         update_user_request = cls(
             email=email,
             name=name,
             role=role,
             is_disabled=is_disabled,
+            is_scim_managed=is_scim_managed,
+            scim_external_id=scim_external_id,
         )
 
         update_user_request.additional_properties = d

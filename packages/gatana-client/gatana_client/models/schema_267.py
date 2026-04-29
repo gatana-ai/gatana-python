@@ -2,8 +2,9 @@ from enum import Enum
 
 
 class Schema267(str, Enum):
-    APIKEY = "apikey"
-    OAUTH = "oauth"
+    PROFILE = "profile"
+    SERVER = "server"
+    USER = "user"
 
     def __str__(self) -> str:
         return str(self.value)

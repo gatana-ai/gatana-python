@@ -7,7 +7,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 if TYPE_CHECKING:
-    from ..models.schema_68 import Schema68
+    from ..models.schema_78 import Schema78
 
 
 T = TypeVar("T", bound="ServerCredentialsOuth")
@@ -18,11 +18,11 @@ class ServerCredentialsOuth:
     """
     Attributes:
         type_ (Literal['oauth']):
-        token_set (Schema68):
+        token_set (Schema78):
     """
 
     type_: Literal["oauth"]
-    token_set: Schema68
+    token_set: Schema78
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -43,14 +43,14 @@ class ServerCredentialsOuth:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_68 import Schema68
+        from ..models.schema_78 import Schema78
 
         d = dict(src_dict)
         type_ = cast(Literal["oauth"], d.pop("type"))
         if type_ != "oauth":
             raise ValueError(f"type must match const 'oauth', got '{type_}'")
 
-        token_set = Schema68.from_dict(d.pop("tokenSet"))
+        token_set = Schema78.from_dict(d.pop("tokenSet"))
 
         server_credentials_outh = cls(
             type_=type_,

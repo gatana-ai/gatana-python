@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_292 import Schema292
+from ..models.schema_310 import Schema310
 
 T = TypeVar("T", bound="TenantOidcConfiguration")
 
@@ -25,7 +25,7 @@ class TenantOidcConfiguration:
         jwks_uri (str):
         client_id (str):
         client_secret (str):
-        client_auth_method (Schema292):
+        client_auth_method (Schema310):
         scopes (str):
     """
 
@@ -40,7 +40,7 @@ class TenantOidcConfiguration:
     jwks_uri: str
     client_id: str
     client_secret: str
-    client_auth_method: Schema292
+    client_auth_method: Schema310
     scopes: str
 
     def to_dict(self) -> dict[str, Any]:
@@ -117,7 +117,7 @@ class TenantOidcConfiguration:
 
         client_secret = d.pop("clientSecret")
 
-        client_auth_method = Schema292(d.pop("clientAuthMethod"))
+        client_auth_method = Schema310(d.pop("clientAuthMethod"))
 
         scopes = d.pop("scopes")
 

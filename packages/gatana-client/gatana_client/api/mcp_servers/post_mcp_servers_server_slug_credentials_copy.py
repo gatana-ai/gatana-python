@@ -9,7 +9,7 @@ from ...client import AuthenticatedClient, Client
 from ...models.post_mcp_servers_server_slug_credentials_copy_response_200 import (
     PostMcpServersServerSlugCredentialsCopyResponse200,
 )
-from ...models.schema_71 import Schema71
+from ...models.schema_81 import Schema81
 from ...types import UNSET, Response, Unset
 
 
@@ -17,9 +17,9 @@ def _get_kwargs(
     server_slug: str,
     *,
     id: str,
-    to: Schema71,
+    to: Schema81,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -30,7 +30,7 @@ def _get_kwargs(
 
     params["profileId"] = profile_id
 
-    params["userSub"] = user_sub
+    params["userId"] = user_id
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -75,18 +75,18 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     id: str,
-    to: Schema71,
+    to: Schema81,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> Response[PostMcpServersServerSlugCredentialsCopyResponse200]:
     """Copy credentials to the another scope
 
     Args:
         server_slug (str):
         id (str): ID of the credentials to copy
-        to (Schema71):
+        to (Schema81):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -101,7 +101,7 @@ def sync_detailed(
         id=id,
         to=to,
         profile_id=profile_id,
-        user_sub=user_sub,
+        user_id=user_id,
     )
 
     response = client.get_httpx_client().request(
@@ -116,18 +116,18 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     id: str,
-    to: Schema71,
+    to: Schema81,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> PostMcpServersServerSlugCredentialsCopyResponse200 | None:
     """Copy credentials to the another scope
 
     Args:
         server_slug (str):
         id (str): ID of the credentials to copy
-        to (Schema71):
+        to (Schema81):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -143,7 +143,7 @@ def sync(
         id=id,
         to=to,
         profile_id=profile_id,
-        user_sub=user_sub,
+        user_id=user_id,
     ).parsed
 
 
@@ -152,18 +152,18 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     id: str,
-    to: Schema71,
+    to: Schema81,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> Response[PostMcpServersServerSlugCredentialsCopyResponse200]:
     """Copy credentials to the another scope
 
     Args:
         server_slug (str):
         id (str): ID of the credentials to copy
-        to (Schema71):
+        to (Schema81):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -178,7 +178,7 @@ async def asyncio_detailed(
         id=id,
         to=to,
         profile_id=profile_id,
-        user_sub=user_sub,
+        user_id=user_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -191,18 +191,18 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     id: str,
-    to: Schema71,
+    to: Schema81,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> PostMcpServersServerSlugCredentialsCopyResponse200 | None:
     """Copy credentials to the another scope
 
     Args:
         server_slug (str):
         id (str): ID of the credentials to copy
-        to (Schema71):
+        to (Schema81):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -219,6 +219,6 @@ async def asyncio(
             id=id,
             to=to,
             profile_id=profile_id,
-            user_sub=user_sub,
+            user_id=user_id,
         )
     ).parsed

@@ -1,35 +1,23 @@
 from http import HTTPStatus
-from typing import Any, cast
-from urllib.parse import quote
+from typing import Any
 
 import httpx
 
-from ...client import AuthenticatedClient, Client
-from ...types import Response, UNSET
 from ... import errors
-
+from ...client import AuthenticatedClient, Client
 from ...models.get_teams_response_200 import GetTeamsResponse200
-from ...types import UNSET, Unset
-from typing import cast
-
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    user_sub: str | Unset = UNSET,
-
+    user_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
-    
-
-    
-
     params: dict[str, Any] = {}
 
-    params["userSub"] = user_sub
-
+    params["userId"] = user_id
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
 
     _kwargs: dict[str, Any] = {
         "method": "get",
@@ -37,16 +25,12 @@ def _get_kwargs(
         "params": params,
     }
 
-
     return _kwargs
-
 
 
 def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> GetTeamsResponse200 | None:
     if response.status_code == 200:
         response_200 = GetTeamsResponse200.from_dict(response.json())
-
-
 
         return response_200
 
@@ -68,12 +52,11 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    user_sub: str | Unset = UNSET,
-
+    user_id: str | Unset = UNSET,
 ) -> Response[GetTeamsResponse200]:
-    """ 
+    """
     Args:
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -81,12 +64,10 @@ def sync_detailed(
 
     Returns:
         Response[GetTeamsResponse200]
-     """
-
+    """
 
     kwargs = _get_kwargs(
-        user_sub=user_sub,
-
+        user_id=user_id,
     )
 
     response = client.get_httpx_client().request(
@@ -95,15 +76,15 @@ def sync_detailed(
 
     return _build_response(client=client, response=response)
 
+
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    user_sub: str | Unset = UNSET,
-
+    user_id: str | Unset = UNSET,
 ) -> GetTeamsResponse200 | None:
-    """ 
+    """
     Args:
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -111,24 +92,22 @@ def sync(
 
     Returns:
         GetTeamsResponse200
-     """
-
+    """
 
     return sync_detailed(
         client=client,
-user_sub=user_sub,
-
+        user_id=user_id,
     ).parsed
+
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    user_sub: str | Unset = UNSET,
-
+    user_id: str | Unset = UNSET,
 ) -> Response[GetTeamsResponse200]:
-    """ 
+    """
     Args:
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -136,29 +115,25 @@ async def asyncio_detailed(
 
     Returns:
         Response[GetTeamsResponse200]
-     """
-
+    """
 
     kwargs = _get_kwargs(
-        user_sub=user_sub,
-
+        user_id=user_id,
     )
 
-    response = await client.get_async_httpx_client().request(
-        **kwargs
-    )
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
 
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    user_sub: str | Unset = UNSET,
-
+    user_id: str | Unset = UNSET,
 ) -> GetTeamsResponse200 | None:
-    """ 
+    """
     Args:
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -166,11 +141,11 @@ async def asyncio(
 
     Returns:
         GetTeamsResponse200
-     """
+    """
 
-
-    return (await asyncio_detailed(
-        client=client,
-user_sub=user_sub,
-
-    )).parsed
+    return (
+        await asyncio_detailed(
+            client=client,
+            user_id=user_id,
+        )
+    ).parsed

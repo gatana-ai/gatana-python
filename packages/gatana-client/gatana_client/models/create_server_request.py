@@ -6,8 +6,8 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_16 import Schema16
-from ..models.schema_20 import Schema20
+from ..models.schema_25 import Schema25
+from ..models.schema_29 import Schema29
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CreateServerRequest")
@@ -17,16 +17,16 @@ T = TypeVar("T", bound="CreateServerRequest")
 class CreateServerRequest:
     """
     Attributes:
-        transport_type (Schema16): Transport type: httpstreaming, sse, stdio, or hosted
+        transport_type (Schema25): Transport type: httpstreaming, sse, stdio, or hosted
         slug (str): Technical identifier.
         is_output_compression_enabled (bool | Unset):
-        visibility (Schema20 | Unset):
+        visibility (Schema29 | Unset):
     """
 
-    transport_type: Schema16
+    transport_type: Schema25
     slug: str
     is_output_compression_enabled: bool | Unset = UNSET
-    visibility: Schema20 | Unset = UNSET
+    visibility: Schema29 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -58,18 +58,18 @@ class CreateServerRequest:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        transport_type = Schema16(d.pop("transportType"))
+        transport_type = Schema25(d.pop("transportType"))
 
         slug = d.pop("slug")
 
         is_output_compression_enabled = d.pop("isOutputCompressionEnabled", UNSET)
 
         _visibility = d.pop("visibility", UNSET)
-        visibility: Schema20 | Unset
+        visibility: Schema29 | Unset
         if isinstance(_visibility, Unset):
             visibility = UNSET
         else:
-            visibility = Schema20(_visibility)
+            visibility = Schema29(_visibility)
 
         create_server_request = cls(
             transport_type=transport_type,

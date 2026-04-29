@@ -23,9 +23,9 @@ class SecretMappingListResponse:
 
     def to_dict(self) -> dict[str, Any]:
         mappings = []
-        for componentsschemas_schema430_item_data in self.mappings:
-            componentsschemas_schema430_item = componentsschemas_schema430_item_data.to_dict()
-            mappings.append(componentsschemas_schema430_item)
+        for componentsschemas_schema458_item_data in self.mappings:
+            componentsschemas_schema458_item = componentsschemas_schema458_item_data.to_dict()
+            mappings.append(componentsschemas_schema458_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -44,10 +44,10 @@ class SecretMappingListResponse:
         d = dict(src_dict)
         mappings = []
         _mappings = d.pop("mappings")
-        for componentsschemas_schema430_item_data in _mappings:
-            componentsschemas_schema430_item = SecretMappingResponse.from_dict(componentsschemas_schema430_item_data)
+        for componentsschemas_schema458_item_data in _mappings:
+            componentsschemas_schema458_item = SecretMappingResponse.from_dict(componentsschemas_schema458_item_data)
 
-            mappings.append(componentsschemas_schema430_item)
+            mappings.append(componentsschemas_schema458_item)
 
         secret_mapping_list_response = cls(
             mappings=mappings,

@@ -25,14 +25,14 @@ class ServerCredentialsApiKeys:
         type_ = self.type_
 
         apikeys = []
-        for componentsschemas_schema70_item_data in self.apikeys:
-            componentsschemas_schema70_item = []
-            for componentsschemas_schema70_item_item_data in componentsschemas_schema70_item_data:
-                componentsschemas_schema70_item_item: str
-                componentsschemas_schema70_item_item = componentsschemas_schema70_item_item_data
-                componentsschemas_schema70_item.append(componentsschemas_schema70_item_item)
+        for componentsschemas_schema80_item_data in self.apikeys:
+            componentsschemas_schema80_item = []
+            for componentsschemas_schema80_item_item_data in componentsschemas_schema80_item_data:
+                componentsschemas_schema80_item_item: str
+                componentsschemas_schema80_item_item = componentsschemas_schema80_item_item_data
+                componentsschemas_schema80_item.append(componentsschemas_schema80_item_item)
 
-            apikeys.append(componentsschemas_schema70_item)
+            apikeys.append(componentsschemas_schema80_item)
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -54,21 +54,21 @@ class ServerCredentialsApiKeys:
 
         apikeys = []
         _apikeys = d.pop("apikeys")
-        for componentsschemas_schema70_item_data in _apikeys:
-            componentsschemas_schema70_item = []
-            _componentsschemas_schema70_item = componentsschemas_schema70_item_data
-            for componentsschemas_schema70_item_item_data in _componentsschemas_schema70_item:
+        for componentsschemas_schema80_item_data in _apikeys:
+            componentsschemas_schema80_item = []
+            _componentsschemas_schema80_item = componentsschemas_schema80_item_data
+            for componentsschemas_schema80_item_item_data in _componentsschemas_schema80_item:
 
-                def _parse_componentsschemas_schema70_item_item(data: object) -> str:
+                def _parse_componentsschemas_schema80_item_item(data: object) -> str:
                     return cast(str, data)
 
-                componentsschemas_schema70_item_item = _parse_componentsschemas_schema70_item_item(
-                    componentsschemas_schema70_item_item_data
+                componentsschemas_schema80_item_item = _parse_componentsschemas_schema80_item_item(
+                    componentsschemas_schema80_item_item_data
                 )
 
-                componentsschemas_schema70_item.append(componentsschemas_schema70_item_item)
+                componentsschemas_schema80_item.append(componentsschemas_schema80_item_item)
 
-            apikeys.append(componentsschemas_schema70_item)
+            apikeys.append(componentsschemas_schema80_item)
 
         server_credentials_api_keys = cls(
             type_=type_,

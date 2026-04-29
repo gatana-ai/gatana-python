@@ -1,0 +1,146 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
+
+from attrs import define as _attrs_define
+
+from ..models.schema_127 import Schema127
+
+if TYPE_CHECKING:
+    from ..models.profile_assignment import ProfileAssignment
+
+
+T = TypeVar("T", bound="Schema152")
+
+
+@_attrs_define
+class Schema152:
+    """
+    Attributes:
+        id (str):
+        tenant_id (str):
+        name (str):
+        email (str):
+        role (Schema127):
+        is_disabled (bool):
+        is_service_account (bool):
+        profile_ids (list[ProfileAssignment]):
+        is_scim_managed (bool):
+        scim_external_id (str):
+        created_at (str):
+        updated_at (str):
+    """
+
+    id: str
+    tenant_id: str
+    name: str
+    email: str
+    role: Schema127
+    is_disabled: bool
+    is_service_account: bool
+    profile_ids: list[ProfileAssignment]
+    is_scim_managed: bool
+    scim_external_id: str
+    created_at: str
+    updated_at: str
+
+    def to_dict(self) -> dict[str, Any]:
+        id = self.id
+
+        tenant_id = self.tenant_id
+
+        name = self.name
+
+        email = self.email
+
+        role = self.role.value
+
+        is_disabled = self.is_disabled
+
+        is_service_account = self.is_service_account
+
+        profile_ids = []
+        for componentsschemas_schema159_item_data in self.profile_ids:
+            componentsschemas_schema159_item = componentsschemas_schema159_item_data.to_dict()
+            profile_ids.append(componentsschemas_schema159_item)
+
+        is_scim_managed = self.is_scim_managed
+
+        scim_external_id = self.scim_external_id
+
+        created_at = self.created_at
+
+        updated_at = self.updated_at
+
+        field_dict: dict[str, Any] = {}
+
+        field_dict.update(
+            {
+                "id": id,
+                "tenantId": tenant_id,
+                "name": name,
+                "email": email,
+                "role": role,
+                "isDisabled": is_disabled,
+                "isServiceAccount": is_service_account,
+                "profileIds": profile_ids,
+                "isScimManaged": is_scim_managed,
+                "scimExternalId": scim_external_id,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+            }
+        )
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.profile_assignment import ProfileAssignment
+
+        d = dict(src_dict)
+        id = d.pop("id")
+
+        tenant_id = d.pop("tenantId")
+
+        name = d.pop("name")
+
+        email = d.pop("email")
+
+        role = Schema127(d.pop("role"))
+
+        is_disabled = d.pop("isDisabled")
+
+        is_service_account = d.pop("isServiceAccount")
+
+        profile_ids = []
+        _profile_ids = d.pop("profileIds")
+        for componentsschemas_schema159_item_data in _profile_ids:
+            componentsschemas_schema159_item = ProfileAssignment.from_dict(componentsschemas_schema159_item_data)
+
+            profile_ids.append(componentsschemas_schema159_item)
+
+        is_scim_managed = d.pop("isScimManaged")
+
+        scim_external_id = d.pop("scimExternalId")
+
+        created_at = d.pop("createdAt")
+
+        updated_at = d.pop("updatedAt")
+
+        schema_152 = cls(
+            id=id,
+            tenant_id=tenant_id,
+            name=name,
+            email=email,
+            role=role,
+            is_disabled=is_disabled,
+            is_service_account=is_service_account,
+            profile_ids=profile_ids,
+            is_scim_managed=is_scim_managed,
+            scim_external_id=scim_external_id,
+            created_at=created_at,
+            updated_at=updated_at,
+        )
+
+        return schema_152

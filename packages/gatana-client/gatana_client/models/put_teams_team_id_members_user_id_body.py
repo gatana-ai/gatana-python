@@ -6,7 +6,7 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_78 import Schema78
+from ..models.schema_87 import Schema87
 
 T = TypeVar("T", bound="PutTeamsTeamIdMembersUserIdBody")
 
@@ -15,10 +15,10 @@ T = TypeVar("T", bound="PutTeamsTeamIdMembersUserIdBody")
 class PutTeamsTeamIdMembersUserIdBody:
     """
     Attributes:
-        role (Schema78):
+        role (Schema87):
     """
 
-    role: Schema78
+    role: Schema87
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -37,7 +37,7 @@ class PutTeamsTeamIdMembersUserIdBody:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        role = Schema78(d.pop("role"))
+        role = Schema87(d.pop("role"))
 
         put_teams_team_id_members_user_id_body = cls(
             role=role,

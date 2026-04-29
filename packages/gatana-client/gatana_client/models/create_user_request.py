@@ -6,7 +6,7 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_5 import Schema5
+from ..models.schema_7 import Schema7
 
 T = TypeVar("T", bound="CreateUserRequest")
 
@@ -17,13 +17,13 @@ class CreateUserRequest:
     Attributes:
         email (str):
         name (str):
-        role (Schema5):
+        role (Schema7):
         is_service_account (bool):
     """
 
     email: str
     name: str
-    role: Schema5
+    role: Schema7
     is_service_account: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -56,7 +56,7 @@ class CreateUserRequest:
 
         name = d.pop("name")
 
-        role = Schema5(d.pop("role"))
+        role = Schema7(d.pop("role"))
 
         is_service_account = d.pop("isServiceAccount")
 

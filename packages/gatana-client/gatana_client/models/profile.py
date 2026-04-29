@@ -1,51 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-
-
-
-
-
 
 T = TypeVar("T", bound="Profile")
 
 
-
 @_attrs_define
 class Profile:
-    """ 
-        Attributes:
-            tenant_id (str):
-            id (str):
-            created_by (float):
-            name (str):
-            description (str):
-            is_open_to_all_users (bool):
-            is_restrictive (bool):
-            created_at (str):
-            updated_at (str):
-     """
+    """
+    Attributes:
+        tenant_id (str):
+        id (str):
+        created_by (str):
+        name (str):
+        description (str):
+        is_open_to_all_users (bool):
+        is_restrictive (bool):
+        created_at (str):
+        updated_at (str):
+    """
 
     tenant_id: str
     id: str
-    created_by: float
+    created_by: str
     name: str
     description: str
     is_open_to_all_users: bool
     is_restrictive: bool
     created_at: str
     updated_at: str
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         tenant_id = self.tenant_id
@@ -66,24 +52,23 @@ class Profile:
 
         updated_at = self.updated_at
 
-
         field_dict: dict[str, Any] = {}
 
-        field_dict.update({
-            "tenantId": tenant_id,
-            "id": id,
-            "createdBy": created_by,
-            "name": name,
-            "description": description,
-            "isOpenToAllUsers": is_open_to_all_users,
-            "isRestrictive": is_restrictive,
-            "createdAt": created_at,
-            "updatedAt": updated_at,
-        })
+        field_dict.update(
+            {
+                "tenantId": tenant_id,
+                "id": id,
+                "createdBy": created_by,
+                "name": name,
+                "description": description,
+                "isOpenToAllUsers": is_open_to_all_users,
+                "isRestrictive": is_restrictive,
+                "createdAt": created_at,
+                "updatedAt": updated_at,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -119,4 +104,3 @@ class Profile:
         )
 
         return profile
-

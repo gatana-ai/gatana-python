@@ -5,7 +5,7 @@ from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_170 import Schema170
+from ..models.schema_188 import Schema188
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ServerAuthorizationOutput")
@@ -15,12 +15,12 @@ T = TypeVar("T", bound="ServerAuthorizationOutput")
 class ServerAuthorizationOutput:
     """
     Attributes:
-        method (Schema170):
+        method (Schema188):
         credentials_scope (Literal['server'] | Literal['user']):
         apikeys (list[str] | Unset):
     """
 
-    method: Schema170
+    method: Schema188
     credentials_scope: Literal["server"] | Literal["user"]
     apikeys: list[str] | Unset = UNSET
 
@@ -50,21 +50,21 @@ class ServerAuthorizationOutput:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        method = Schema170(d.pop("method"))
+        method = Schema188(d.pop("method"))
 
         def _parse_credentials_scope(data: object) -> Literal["server"] | Literal["user"]:
-            componentsschemas_schema171_type_0 = cast(Literal["server"], data)
-            if componentsschemas_schema171_type_0 != "server":
+            componentsschemas_schema189_type_0 = cast(Literal["server"], data)
+            if componentsschemas_schema189_type_0 != "server":
                 raise ValueError(
-                    f"/components/schemas/__schema171_type_0 must match const 'server', got '{componentsschemas_schema171_type_0}'"
+                    f"/components/schemas/__schema189_type_0 must match const 'server', got '{componentsschemas_schema189_type_0}'"
                 )
-            return componentsschemas_schema171_type_0
-            componentsschemas_schema171_type_1 = cast(Literal["user"], data)
-            if componentsschemas_schema171_type_1 != "user":
+            return componentsschemas_schema189_type_0
+            componentsschemas_schema189_type_1 = cast(Literal["user"], data)
+            if componentsschemas_schema189_type_1 != "user":
                 raise ValueError(
-                    f"/components/schemas/__schema171_type_1 must match const 'user', got '{componentsschemas_schema171_type_1}'"
+                    f"/components/schemas/__schema189_type_1 must match const 'user', got '{componentsschemas_schema189_type_1}'"
                 )
-            return componentsschemas_schema171_type_1
+            return componentsschemas_schema189_type_1
 
         credentials_scope = _parse_credentials_scope(d.pop("credentialsScope"))
 

@@ -12,13 +12,13 @@ from ...models.put_mcp_servers_server_slug_members_member_type_member_id_body im
 from ...models.put_mcp_servers_server_slug_members_member_type_member_id_response_200 import (
     PutMcpServersServerSlugMembersMemberTypeMemberIdResponse200,
 )
-from ...models.schema_64 import Schema64
+from ...models.schema_74 import Schema74
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     body: PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset = UNSET,
@@ -70,7 +70,7 @@ def _build_response(
 
 def sync_detailed(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -79,7 +79,7 @@ def sync_detailed(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -107,7 +107,7 @@ def sync_detailed(
 
 def sync(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -116,7 +116,7 @@ def sync(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -139,7 +139,7 @@ def sync(
 
 async def asyncio_detailed(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -148,7 +148,7 @@ async def asyncio_detailed(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 
@@ -174,7 +174,7 @@ async def asyncio_detailed(
 
 async def asyncio(
     server_slug: str,
-    member_type: Schema64,
+    member_type: Schema74,
     member_id: str,
     *,
     client: AuthenticatedClient | Client,
@@ -183,7 +183,7 @@ async def asyncio(
     """
     Args:
         server_slug (str):
-        member_type (Schema64):
+        member_type (Schema74):
         member_id (str):
         body (PutMcpServersServerSlugMembersMemberTypeMemberIdBody | Unset):
 

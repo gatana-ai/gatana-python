@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.schema_447_item import Schema447Item
+    from ..models.schema_475_item import Schema475Item
 
 
 T = TypeVar("T", bound="ProfileDetailsDto")
@@ -18,26 +18,26 @@ class ProfileDetailsDto:
     Attributes:
         tenant_id (str):
         id (str):
-        created_by (float):
+        created_by (str):
         name (str):
         description (str):
         is_open_to_all_users (bool):
         is_restrictive (bool):
         created_at (str):
         updated_at (str):
-        servers (list[Schema447Item]):
+        servers (list[Schema475Item]):
     """
 
     tenant_id: str
     id: str
-    created_by: float
+    created_by: str
     name: str
     description: str
     is_open_to_all_users: bool
     is_restrictive: bool
     created_at: str
     updated_at: str
-    servers: list[Schema447Item]
+    servers: list[Schema475Item]
 
     def to_dict(self) -> dict[str, Any]:
         tenant_id = self.tenant_id
@@ -59,9 +59,9 @@ class ProfileDetailsDto:
         updated_at = self.updated_at
 
         servers = []
-        for componentsschemas_schema447_item_data in self.servers:
-            componentsschemas_schema447_item = componentsschemas_schema447_item_data.to_dict()
-            servers.append(componentsschemas_schema447_item)
+        for componentsschemas_schema475_item_data in self.servers:
+            componentsschemas_schema475_item = componentsschemas_schema475_item_data.to_dict()
+            servers.append(componentsschemas_schema475_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -84,7 +84,7 @@ class ProfileDetailsDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_447_item import Schema447Item
+        from ..models.schema_475_item import Schema475Item
 
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
@@ -107,10 +107,10 @@ class ProfileDetailsDto:
 
         servers = []
         _servers = d.pop("servers")
-        for componentsschemas_schema447_item_data in _servers:
-            componentsschemas_schema447_item = Schema447Item.from_dict(componentsschemas_schema447_item_data)
+        for componentsschemas_schema475_item_data in _servers:
+            componentsschemas_schema475_item = Schema475Item.from_dict(componentsschemas_schema475_item_data)
 
-            servers.append(componentsschemas_schema447_item)
+            servers.append(componentsschemas_schema475_item)
 
         profile_details_dto = cls(
             tenant_id=tenant_id,

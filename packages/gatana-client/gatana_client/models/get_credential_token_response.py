@@ -5,7 +5,7 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_267 import Schema267
+from ..models.schema_285 import Schema285
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="GetCredentialTokenResponse")
@@ -15,13 +15,13 @@ T = TypeVar("T", bound="GetCredentialTokenResponse")
 class GetCredentialTokenResponse:
     """
     Attributes:
-        type_ (Schema267):
+        type_ (Schema285):
         access_token (str | Unset):
         expires_at (float | Unset):
         apikeys (list[list[str]] | Unset):
     """
 
-    type_: Schema267
+    type_: Schema285
     access_token: str | Unset = UNSET
     expires_at: float | Unset = UNSET
     apikeys: list[list[str]] | Unset = UNSET
@@ -36,14 +36,14 @@ class GetCredentialTokenResponse:
         apikeys: list[list[str]] | Unset = UNSET
         if not isinstance(self.apikeys, Unset):
             apikeys = []
-            for componentsschemas_schema272_item_data in self.apikeys:
-                componentsschemas_schema272_item = []
-                for componentsschemas_schema272_item_item_data in componentsschemas_schema272_item_data:
-                    componentsschemas_schema272_item_item: str
-                    componentsschemas_schema272_item_item = componentsschemas_schema272_item_item_data
-                    componentsschemas_schema272_item.append(componentsschemas_schema272_item_item)
+            for componentsschemas_schema290_item_data in self.apikeys:
+                componentsschemas_schema290_item = []
+                for componentsschemas_schema290_item_item_data in componentsschemas_schema290_item_data:
+                    componentsschemas_schema290_item_item: str
+                    componentsschemas_schema290_item_item = componentsschemas_schema290_item_item_data
+                    componentsschemas_schema290_item.append(componentsschemas_schema290_item_item)
 
-                apikeys.append(componentsschemas_schema272_item)
+                apikeys.append(componentsschemas_schema290_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -64,7 +64,7 @@ class GetCredentialTokenResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = Schema267(d.pop("type"))
+        type_ = Schema285(d.pop("type"))
 
         access_token = d.pop("accessToken", UNSET)
 
@@ -74,21 +74,21 @@ class GetCredentialTokenResponse:
         apikeys: list[list[str]] | Unset = UNSET
         if _apikeys is not UNSET:
             apikeys = []
-            for componentsschemas_schema272_item_data in _apikeys:
-                componentsschemas_schema272_item = []
-                _componentsschemas_schema272_item = componentsschemas_schema272_item_data
-                for componentsschemas_schema272_item_item_data in _componentsschemas_schema272_item:
+            for componentsschemas_schema290_item_data in _apikeys:
+                componentsschemas_schema290_item = []
+                _componentsschemas_schema290_item = componentsschemas_schema290_item_data
+                for componentsschemas_schema290_item_item_data in _componentsschemas_schema290_item:
 
-                    def _parse_componentsschemas_schema272_item_item(data: object) -> str:
+                    def _parse_componentsschemas_schema290_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema272_item_item = _parse_componentsschemas_schema272_item_item(
-                        componentsschemas_schema272_item_item_data
+                    componentsschemas_schema290_item_item = _parse_componentsschemas_schema290_item_item(
+                        componentsschemas_schema290_item_item_data
                     )
 
-                    componentsschemas_schema272_item.append(componentsschemas_schema272_item_item)
+                    componentsschemas_schema290_item.append(componentsschemas_schema290_item_item)
 
-                apikeys.append(componentsschemas_schema272_item)
+                apikeys.append(componentsschemas_schema290_item)
 
         get_credential_token_response = cls(
             type_=type_,

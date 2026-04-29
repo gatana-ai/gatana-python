@@ -8,8 +8,8 @@ from attrs import define as _attrs_define
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_335 import Schema335
-    from ..models.schema_341 import Schema341
+    from ..models.schema_356 import Schema356
+    from ..models.schema_362 import Schema362
 
 
 T = TypeVar("T", bound="DeploymentStatus")
@@ -24,11 +24,11 @@ class DeploymentStatus:
         crash (bool):
         restart_count (float):
         has_previous_failure (bool):
-        last_fail_condition (None | Schema335):
+        last_fail_condition (None | Schema356):
         phase (str | Unset):
         reason (str | Unset):
         created_at (str | Unset):
-        last_failure (Schema341 | Unset):
+        last_failure (Schema362 | Unset):
         waiting_reason (str | Unset):
     """
 
@@ -37,15 +37,15 @@ class DeploymentStatus:
     crash: bool
     restart_count: float
     has_previous_failure: bool
-    last_fail_condition: None | Schema335
+    last_fail_condition: None | Schema356
     phase: str | Unset = UNSET
     reason: str | Unset = UNSET
     created_at: str | Unset = UNSET
-    last_failure: Schema341 | Unset = UNSET
+    last_failure: Schema362 | Unset = UNSET
     waiting_reason: str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_335 import Schema335
+        from ..models.schema_356 import Schema356
 
         name = self.name
 
@@ -58,7 +58,7 @@ class DeploymentStatus:
         has_previous_failure = self.has_previous_failure
 
         last_fail_condition: dict[str, Any] | None
-        if isinstance(self.last_fail_condition, Schema335):
+        if isinstance(self.last_fail_condition, Schema356):
             last_fail_condition = self.last_fail_condition.to_dict()
         else:
             last_fail_condition = self.last_fail_condition
@@ -102,8 +102,8 @@ class DeploymentStatus:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_335 import Schema335
-        from ..models.schema_341 import Schema341
+        from ..models.schema_356 import Schema356
+        from ..models.schema_362 import Schema362
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -116,18 +116,18 @@ class DeploymentStatus:
 
         has_previous_failure = d.pop("hasPreviousFailure")
 
-        def _parse_last_fail_condition(data: object) -> None | Schema335:
+        def _parse_last_fail_condition(data: object) -> None | Schema356:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema334_type_0 = Schema335.from_dict(data)
+                componentsschemas_schema355_type_0 = Schema356.from_dict(data)
 
-                return componentsschemas_schema334_type_0
+                return componentsschemas_schema355_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema335, data)
+            return cast(None | Schema356, data)
 
         last_fail_condition = _parse_last_fail_condition(d.pop("lastFailCondition"))
 
@@ -138,11 +138,11 @@ class DeploymentStatus:
         created_at = d.pop("createdAt", UNSET)
 
         _last_failure = d.pop("lastFailure", UNSET)
-        last_failure: Schema341 | Unset
+        last_failure: Schema362 | Unset
         if isinstance(_last_failure, Unset):
             last_failure = UNSET
         else:
-            last_failure = Schema341.from_dict(_last_failure)
+            last_failure = Schema362.from_dict(_last_failure)
 
         waiting_reason = d.pop("waitingReason", UNSET)
 

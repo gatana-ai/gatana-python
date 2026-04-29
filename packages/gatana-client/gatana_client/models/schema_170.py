@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class Schema170(str, Enum):
-    APIKEY = "apikey"
-    NONE = "none"
-    OAUTH = "oauth"
+    EXTERNAL_OIDC = "external-oidc"
+    EXTERNAL_SAML = "external-saml"
+    NATIVE = "native"
 
     def __str__(self) -> str:
         return str(self.value)

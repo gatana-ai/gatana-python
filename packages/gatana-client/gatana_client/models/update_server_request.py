@@ -6,17 +6,17 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_59 import Schema59
+from ..models.schema_69 import Schema69
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.hosted_transport_config import HostedTransportConfig
     from ..models.http_streaming_transport_config import HttpStreamingTransportConfig
-    from ..models.schema_27 import Schema27
-    from ..models.schema_31_type_4 import Schema31Type4
-    from ..models.schema_50_type_0 import Schema50Type0
-    from ..models.schema_51_type_0 import Schema51Type0
-    from ..models.schema_58_item import Schema58Item
+    from ..models.schema_35 import Schema35
+    from ..models.schema_39_type_4 import Schema39Type4
+    from ..models.schema_60_type_0 import Schema60Type0
+    from ..models.schema_61_type_0 import Schema61Type0
+    from ..models.schema_68_item import Schema68Item
     from ..models.sse_transport_config import SseTransportConfig
     from ..models.stdio_transport_config import StdioTransportConfig
 
@@ -30,61 +30,57 @@ class UpdateServerRequest:
     Attributes:
         slug (str | Unset):
         description (str | Unset):
-        logo_url (str | Unset):
         url (str | Unset):
-        authorization (Schema27 | Unset):
-        transport_config (HostedTransportConfig | HttpStreamingTransportConfig | Schema31Type4 | SseTransportConfig |
+        authorization (Schema35 | Unset):
+        transport_config (HostedTransportConfig | HttpStreamingTransportConfig | Schema39Type4 | SseTransportConfig |
             StdioTransportConfig | Unset):
-        oauth_metadata (None | Schema50Type0 | Unset):
-        oauth_client_configuration (None | Schema51Type0 | Unset):
+        oauth_metadata (None | Schema60Type0 | Unset):
+        oauth_client_configuration (None | Schema61Type0 | Unset):
         timeout_protocol (int | Unset):
         timeout_total (int | Unset):
         reset_timeout_on_progress_notification (bool | Unset):
         is_output_compression_enabled (bool | Unset):
         is_output_compression_transform_enabled (bool | Unset):
         output_compression_threshold_bytes (int | Unset):
-        firewall_rules (list[Schema58Item] | Unset):
-        visibility (Schema59 | Unset):
+        firewall_rules (list[Schema68Item] | Unset):
+        visibility (Schema69 | Unset):
     """
 
     slug: str | Unset = UNSET
     description: str | Unset = UNSET
-    logo_url: str | Unset = UNSET
     url: str | Unset = UNSET
-    authorization: Schema27 | Unset = UNSET
+    authorization: Schema35 | Unset = UNSET
     transport_config: (
         HostedTransportConfig
         | HttpStreamingTransportConfig
-        | Schema31Type4
+        | Schema39Type4
         | SseTransportConfig
         | StdioTransportConfig
         | Unset
     ) = UNSET
-    oauth_metadata: None | Schema50Type0 | Unset = UNSET
-    oauth_client_configuration: None | Schema51Type0 | Unset = UNSET
+    oauth_metadata: None | Schema60Type0 | Unset = UNSET
+    oauth_client_configuration: None | Schema61Type0 | Unset = UNSET
     timeout_protocol: int | Unset = UNSET
     timeout_total: int | Unset = UNSET
     reset_timeout_on_progress_notification: bool | Unset = UNSET
     is_output_compression_enabled: bool | Unset = UNSET
     is_output_compression_transform_enabled: bool | Unset = UNSET
     output_compression_threshold_bytes: int | Unset = UNSET
-    firewall_rules: list[Schema58Item] | Unset = UNSET
-    visibility: Schema59 | Unset = UNSET
+    firewall_rules: list[Schema68Item] | Unset = UNSET
+    visibility: Schema69 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.hosted_transport_config import HostedTransportConfig
         from ..models.http_streaming_transport_config import HttpStreamingTransportConfig
-        from ..models.schema_50_type_0 import Schema50Type0
-        from ..models.schema_51_type_0 import Schema51Type0
+        from ..models.schema_60_type_0 import Schema60Type0
+        from ..models.schema_61_type_0 import Schema61Type0
         from ..models.sse_transport_config import SseTransportConfig
         from ..models.stdio_transport_config import StdioTransportConfig
 
         slug = self.slug
 
         description = self.description
-
-        logo_url = self.logo_url
 
         url = self.url
 
@@ -109,7 +105,7 @@ class UpdateServerRequest:
         oauth_metadata: dict[str, Any] | None | Unset
         if isinstance(self.oauth_metadata, Unset):
             oauth_metadata = UNSET
-        elif isinstance(self.oauth_metadata, Schema50Type0):
+        elif isinstance(self.oauth_metadata, Schema60Type0):
             oauth_metadata = self.oauth_metadata.to_dict()
         else:
             oauth_metadata = self.oauth_metadata
@@ -117,7 +113,7 @@ class UpdateServerRequest:
         oauth_client_configuration: dict[str, Any] | None | Unset
         if isinstance(self.oauth_client_configuration, Unset):
             oauth_client_configuration = UNSET
-        elif isinstance(self.oauth_client_configuration, Schema51Type0):
+        elif isinstance(self.oauth_client_configuration, Schema61Type0):
             oauth_client_configuration = self.oauth_client_configuration.to_dict()
         else:
             oauth_client_configuration = self.oauth_client_configuration
@@ -137,9 +133,9 @@ class UpdateServerRequest:
         firewall_rules: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.firewall_rules, Unset):
             firewall_rules = []
-            for componentsschemas_schema58_item_data in self.firewall_rules:
-                componentsschemas_schema58_item = componentsschemas_schema58_item_data.to_dict()
-                firewall_rules.append(componentsschemas_schema58_item)
+            for componentsschemas_schema68_item_data in self.firewall_rules:
+                componentsschemas_schema68_item = componentsschemas_schema68_item_data.to_dict()
+                firewall_rules.append(componentsschemas_schema68_item)
 
         visibility: str | Unset = UNSET
         if not isinstance(self.visibility, Unset):
@@ -152,8 +148,6 @@ class UpdateServerRequest:
             field_dict["slug"] = slug
         if description is not UNSET:
             field_dict["description"] = description
-        if logo_url is not UNSET:
-            field_dict["logoUrl"] = logo_url
         if url is not UNSET:
             field_dict["url"] = url
         if authorization is not UNSET:
@@ -187,11 +181,11 @@ class UpdateServerRequest:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.hosted_transport_config import HostedTransportConfig
         from ..models.http_streaming_transport_config import HttpStreamingTransportConfig
-        from ..models.schema_27 import Schema27
-        from ..models.schema_31_type_4 import Schema31Type4
-        from ..models.schema_50_type_0 import Schema50Type0
-        from ..models.schema_51_type_0 import Schema51Type0
-        from ..models.schema_58_item import Schema58Item
+        from ..models.schema_35 import Schema35
+        from ..models.schema_39_type_4 import Schema39Type4
+        from ..models.schema_60_type_0 import Schema60Type0
+        from ..models.schema_61_type_0 import Schema61Type0
+        from ..models.schema_68_item import Schema68Item
         from ..models.sse_transport_config import SseTransportConfig
         from ..models.stdio_transport_config import StdioTransportConfig
 
@@ -200,23 +194,21 @@ class UpdateServerRequest:
 
         description = d.pop("description", UNSET)
 
-        logo_url = d.pop("logoUrl", UNSET)
-
         url = d.pop("url", UNSET)
 
         _authorization = d.pop("authorization", UNSET)
-        authorization: Schema27 | Unset
+        authorization: Schema35 | Unset
         if isinstance(_authorization, Unset):
             authorization = UNSET
         else:
-            authorization = Schema27.from_dict(_authorization)
+            authorization = Schema35.from_dict(_authorization)
 
         def _parse_transport_config(
             data: object,
         ) -> (
             HostedTransportConfig
             | HttpStreamingTransportConfig
-            | Schema31Type4
+            | Schema39Type4
             | SseTransportConfig
             | StdioTransportConfig
             | Unset
@@ -226,44 +218,44 @@ class UpdateServerRequest:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema31_type_0 = HttpStreamingTransportConfig.from_dict(data)
+                componentsschemas_schema39_type_0 = HttpStreamingTransportConfig.from_dict(data)
 
-                return componentsschemas_schema31_type_0
+                return componentsschemas_schema39_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema31_type_1 = HostedTransportConfig.from_dict(data)
+                componentsschemas_schema39_type_1 = HostedTransportConfig.from_dict(data)
 
-                return componentsschemas_schema31_type_1
+                return componentsschemas_schema39_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema31_type_2 = StdioTransportConfig.from_dict(data)
+                componentsschemas_schema39_type_2 = StdioTransportConfig.from_dict(data)
 
-                return componentsschemas_schema31_type_2
+                return componentsschemas_schema39_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema31_type_3 = SseTransportConfig.from_dict(data)
+                componentsschemas_schema39_type_3 = SseTransportConfig.from_dict(data)
 
-                return componentsschemas_schema31_type_3
+                return componentsschemas_schema39_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             if not isinstance(data, dict):
                 raise TypeError()
-            componentsschemas_schema31_type_4 = Schema31Type4.from_dict(data)
+            componentsschemas_schema39_type_4 = Schema39Type4.from_dict(data)
 
-            return componentsschemas_schema31_type_4
+            return componentsschemas_schema39_type_4
 
         transport_config = _parse_transport_config(d.pop("transportConfig", UNSET))
 
-        def _parse_oauth_metadata(data: object) -> None | Schema50Type0 | Unset:
+        def _parse_oauth_metadata(data: object) -> None | Schema60Type0 | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -271,16 +263,16 @@ class UpdateServerRequest:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema50_type_0 = Schema50Type0.from_dict(data)
+                componentsschemas_schema60_type_0 = Schema60Type0.from_dict(data)
 
-                return componentsschemas_schema50_type_0
+                return componentsschemas_schema60_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema50Type0 | Unset, data)
+            return cast(None | Schema60Type0 | Unset, data)
 
         oauth_metadata = _parse_oauth_metadata(d.pop("oauthMetadata", UNSET))
 
-        def _parse_oauth_client_configuration(data: object) -> None | Schema51Type0 | Unset:
+        def _parse_oauth_client_configuration(data: object) -> None | Schema61Type0 | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -288,12 +280,12 @@ class UpdateServerRequest:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema51_type_0 = Schema51Type0.from_dict(data)
+                componentsschemas_schema61_type_0 = Schema61Type0.from_dict(data)
 
-                return componentsschemas_schema51_type_0
+                return componentsschemas_schema61_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema51Type0 | Unset, data)
+            return cast(None | Schema61Type0 | Unset, data)
 
         oauth_client_configuration = _parse_oauth_client_configuration(d.pop("oauthClientConfiguration", UNSET))
 
@@ -310,25 +302,24 @@ class UpdateServerRequest:
         output_compression_threshold_bytes = d.pop("outputCompressionThresholdBytes", UNSET)
 
         _firewall_rules = d.pop("firewallRules", UNSET)
-        firewall_rules: list[Schema58Item] | Unset = UNSET
+        firewall_rules: list[Schema68Item] | Unset = UNSET
         if _firewall_rules is not UNSET:
             firewall_rules = []
-            for componentsschemas_schema58_item_data in _firewall_rules:
-                componentsschemas_schema58_item = Schema58Item.from_dict(componentsschemas_schema58_item_data)
+            for componentsschemas_schema68_item_data in _firewall_rules:
+                componentsschemas_schema68_item = Schema68Item.from_dict(componentsschemas_schema68_item_data)
 
-                firewall_rules.append(componentsschemas_schema58_item)
+                firewall_rules.append(componentsschemas_schema68_item)
 
         _visibility = d.pop("visibility", UNSET)
-        visibility: Schema59 | Unset
+        visibility: Schema69 | Unset
         if isinstance(_visibility, Unset):
             visibility = UNSET
         else:
-            visibility = Schema59(_visibility)
+            visibility = Schema69(_visibility)
 
         update_server_request = cls(
             slug=slug,
             description=description,
-            logo_url=logo_url,
             url=url,
             authorization=authorization,
             transport_config=transport_config,

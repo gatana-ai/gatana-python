@@ -5,12 +5,13 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_345 import Schema345
+from ..models.schema_370 import Schema370
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_335 import Schema335
-    from ..models.schema_354 import Schema354
+    from ..models.schema_356 import Schema356
+    from ..models.schema_379 import Schema379
+    from ..models.schema_381 import Schema381
 
 
 T = TypeVar("T", bound="DeploymentLogPayloadPodInfo")
@@ -21,7 +22,7 @@ class DeploymentLogPayloadPodInfo:
     """
     Attributes:
         type_ (Literal['podInfo']):
-        status (Schema345):
+        status (Schema370):
         created_at (str):
         pod (str):
         init_containers (list[str]):
@@ -29,13 +30,14 @@ class DeploymentLogPayloadPodInfo:
         waiting_reason (None | str):
         restart_count (float):
         has_previous_failure (bool):
-        last_fail_condition (None | Schema335):
+        last_fail_condition (None | Schema356):
         is_sandbox (bool):
-        last_failure (Schema354 | Unset):
+        resource_limits (Schema381):
+        last_failure (Schema379 | Unset):
     """
 
     type_: Literal["podInfo"]
-    status: Schema345
+    status: Schema370
     created_at: str
     pod: str
     init_containers: list[str]
@@ -43,12 +45,13 @@ class DeploymentLogPayloadPodInfo:
     waiting_reason: None | str
     restart_count: float
     has_previous_failure: bool
-    last_fail_condition: None | Schema335
+    last_fail_condition: None | Schema356
     is_sandbox: bool
-    last_failure: Schema354 | Unset = UNSET
+    resource_limits: Schema381
+    last_failure: Schema379 | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_335 import Schema335
+        from ..models.schema_356 import Schema356
 
         type_ = self.type_
 
@@ -70,12 +73,14 @@ class DeploymentLogPayloadPodInfo:
         has_previous_failure = self.has_previous_failure
 
         last_fail_condition: dict[str, Any] | None
-        if isinstance(self.last_fail_condition, Schema335):
+        if isinstance(self.last_fail_condition, Schema356):
             last_fail_condition = self.last_fail_condition.to_dict()
         else:
             last_fail_condition = self.last_fail_condition
 
         is_sandbox = self.is_sandbox
+
+        resource_limits = self.resource_limits.to_dict()
 
         last_failure: dict[str, Any] | Unset = UNSET
         if not isinstance(self.last_failure, Unset):
@@ -96,6 +101,7 @@ class DeploymentLogPayloadPodInfo:
                 "hasPreviousFailure": has_previous_failure,
                 "lastFailCondition": last_fail_condition,
                 "isSandbox": is_sandbox,
+                "resourceLimits": resource_limits,
             }
         )
         if last_failure is not UNSET:
@@ -105,15 +111,16 @@ class DeploymentLogPayloadPodInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_335 import Schema335
-        from ..models.schema_354 import Schema354
+        from ..models.schema_356 import Schema356
+        from ..models.schema_379 import Schema379
+        from ..models.schema_381 import Schema381
 
         d = dict(src_dict)
         type_ = cast(Literal["podInfo"], d.pop("type"))
         if type_ != "podInfo":
             raise ValueError(f"type must match const 'podInfo', got '{type_}'")
 
-        status = Schema345(d.pop("status"))
+        status = Schema370(d.pop("status"))
 
         created_at = d.pop("createdAt")
 
@@ -134,29 +141,31 @@ class DeploymentLogPayloadPodInfo:
 
         has_previous_failure = d.pop("hasPreviousFailure")
 
-        def _parse_last_fail_condition(data: object) -> None | Schema335:
+        def _parse_last_fail_condition(data: object) -> None | Schema356:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema353_type_0 = Schema335.from_dict(data)
+                componentsschemas_schema378_type_0 = Schema356.from_dict(data)
 
-                return componentsschemas_schema353_type_0
+                return componentsschemas_schema378_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema335, data)
+            return cast(None | Schema356, data)
 
         last_fail_condition = _parse_last_fail_condition(d.pop("lastFailCondition"))
 
         is_sandbox = d.pop("isSandbox")
 
+        resource_limits = Schema381.from_dict(d.pop("resourceLimits"))
+
         _last_failure = d.pop("lastFailure", UNSET)
-        last_failure: Schema354 | Unset
+        last_failure: Schema379 | Unset
         if isinstance(_last_failure, Unset):
             last_failure = UNSET
         else:
-            last_failure = Schema354.from_dict(_last_failure)
+            last_failure = Schema379.from_dict(_last_failure)
 
         deployment_log_payload_pod_info = cls(
             type_=type_,
@@ -170,6 +179,7 @@ class DeploymentLogPayloadPodInfo:
             has_previous_failure=has_previous_failure,
             last_fail_condition=last_fail_condition,
             is_sandbox=is_sandbox,
+            resource_limits=resource_limits,
             last_failure=last_failure,
         )
 

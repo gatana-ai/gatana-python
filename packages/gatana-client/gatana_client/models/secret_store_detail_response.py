@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_402 import Schema402
+from ..models.schema_430 import Schema430
 
 if TYPE_CHECKING:
     from ..models.aws_secrets_manager_configuration_output import AwsSecretsManagerConfigurationOutput
@@ -24,7 +24,7 @@ class SecretStoreDetailResponse:
     Attributes:
         id (str):
         name (str):
-        type_ (Schema402):
+        type_ (Schema430):
         is_enabled (bool):
         created_at (str):
         updated_at (str):
@@ -34,7 +34,7 @@ class SecretStoreDetailResponse:
 
     id: str
     name: str
-    type_: Schema402
+    type_: Schema430
     is_enabled: bool
     created_at: str
     updated_at: str
@@ -105,7 +105,7 @@ class SecretStoreDetailResponse:
 
         name = d.pop("name")
 
-        type_ = Schema402(d.pop("type"))
+        type_ = Schema430(d.pop("type"))
 
         is_enabled = d.pop("isEnabled")
 
@@ -125,40 +125,40 @@ class SecretStoreDetailResponse:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema406_type_0 = AwsSecretsManagerConfigurationOutput.from_dict(data)
+                componentsschemas_schema434_type_0 = AwsSecretsManagerConfigurationOutput.from_dict(data)
 
-                return componentsschemas_schema406_type_0
+                return componentsschemas_schema434_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema406_type_1 = GcpSecretManagerConfigurationOutput.from_dict(data)
+                componentsschemas_schema434_type_1 = GcpSecretManagerConfigurationOutput.from_dict(data)
 
-                return componentsschemas_schema406_type_1
+                return componentsschemas_schema434_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema406_type_2 = HashiCorpVaultConfigurationOutput.from_dict(data)
+                componentsschemas_schema434_type_2 = HashiCorpVaultConfigurationOutput.from_dict(data)
 
-                return componentsschemas_schema406_type_2
+                return componentsschemas_schema434_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema406_type_3 = InfisicalConfigurationOutput.from_dict(data)
+                componentsschemas_schema434_type_3 = InfisicalConfigurationOutput.from_dict(data)
 
-                return componentsschemas_schema406_type_3
+                return componentsschemas_schema434_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             if not isinstance(data, dict):
                 raise TypeError()
-            componentsschemas_schema406_type_4 = AzureKeyVaultConfigurationOutput.from_dict(data)
+            componentsschemas_schema434_type_4 = AzureKeyVaultConfigurationOutput.from_dict(data)
 
-            return componentsschemas_schema406_type_4
+            return componentsschemas_schema434_type_4
 
         configuration = _parse_configuration(d.pop("configuration"))
 

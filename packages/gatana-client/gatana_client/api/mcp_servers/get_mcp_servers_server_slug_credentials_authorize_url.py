@@ -15,18 +15,18 @@ from ...models.get_mcp_servers_server_slug_credentials_authorize_url_response_20
 from ...models.get_mcp_servers_server_slug_credentials_authorize_url_return_to import (
     GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo,
 )
-from ...models.schema_71 import Schema71
+from ...models.schema_81 import Schema81
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
     *,
-    scope: Schema71 | Unset = UNSET,
+    scope: Schema81 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -50,7 +50,7 @@ def _get_kwargs(
 
     params["profileId"] = profile_id
 
-    params["userSub"] = user_sub
+    params["userId"] = user_id
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -94,11 +94,11 @@ def sync_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema71 | Unset = UNSET,
+    scope: Schema81 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> Response[GetMcpServersServerSlugCredentialsAuthorizeUrlResponse200]:
     """Get an out-of-band OAuth URL which can be opened in any browser on any device to provide
     authorization credentials for this request's authenticated user. The generated URL will not require
@@ -107,11 +107,11 @@ def sync_detailed(
 
     Args:
         server_slug (str):
-        scope (Schema71 | Unset):
+        scope (Schema81 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -127,7 +127,7 @@ def sync_detailed(
         redirect=redirect,
         return_to=return_to,
         profile_id=profile_id,
-        user_sub=user_sub,
+        user_id=user_id,
     )
 
     response = client.get_httpx_client().request(
@@ -141,11 +141,11 @@ def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema71 | Unset = UNSET,
+    scope: Schema81 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> GetMcpServersServerSlugCredentialsAuthorizeUrlResponse200 | None:
     """Get an out-of-band OAuth URL which can be opened in any browser on any device to provide
     authorization credentials for this request's authenticated user. The generated URL will not require
@@ -154,11 +154,11 @@ def sync(
 
     Args:
         server_slug (str):
-        scope (Schema71 | Unset):
+        scope (Schema81 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -175,7 +175,7 @@ def sync(
         redirect=redirect,
         return_to=return_to,
         profile_id=profile_id,
-        user_sub=user_sub,
+        user_id=user_id,
     ).parsed
 
 
@@ -183,11 +183,11 @@ async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema71 | Unset = UNSET,
+    scope: Schema81 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> Response[GetMcpServersServerSlugCredentialsAuthorizeUrlResponse200]:
     """Get an out-of-band OAuth URL which can be opened in any browser on any device to provide
     authorization credentials for this request's authenticated user. The generated URL will not require
@@ -196,11 +196,11 @@ async def asyncio_detailed(
 
     Args:
         server_slug (str):
-        scope (Schema71 | Unset):
+        scope (Schema81 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -216,7 +216,7 @@ async def asyncio_detailed(
         redirect=redirect,
         return_to=return_to,
         profile_id=profile_id,
-        user_sub=user_sub,
+        user_id=user_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -228,11 +228,11 @@ async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema71 | Unset = UNSET,
+    scope: Schema81 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
-    user_sub: str | Unset = UNSET,
+    user_id: str | Unset = UNSET,
 ) -> GetMcpServersServerSlugCredentialsAuthorizeUrlResponse200 | None:
     """Get an out-of-band OAuth URL which can be opened in any browser on any device to provide
     authorization credentials for this request's authenticated user. The generated URL will not require
@@ -241,11 +241,11 @@ async def asyncio(
 
     Args:
         server_slug (str):
-        scope (Schema71 | Unset):
+        scope (Schema81 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
-        user_sub (str | Unset):
+        user_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -263,6 +263,6 @@ async def asyncio(
             redirect=redirect,
             return_to=return_to,
             profile_id=profile_id,
-            user_sub=user_sub,
+            user_id=user_id,
         )
     ).parsed
