@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_127 import Schema127
+from ..models.schema_128 import Schema128
 
 if TYPE_CHECKING:
     from ..models.profile_assignment import ProfileAssignment
@@ -22,7 +22,7 @@ class User:
         tenant_id (str):
         name (str):
         email (str):
-        role (Schema127):
+        role (Schema128):
         is_super_administrator (bool):
         is_disabled (bool):
         is_service_account (bool):
@@ -37,7 +37,7 @@ class User:
     tenant_id: str
     name: str
     email: str
-    role: Schema127
+    role: Schema128
     is_super_administrator: bool
     is_disabled: bool
     is_service_account: bool
@@ -65,9 +65,9 @@ class User:
         is_service_account = self.is_service_account
 
         profile_ids = []
-        for componentsschemas_schema159_item_data in self.profile_ids:
-            componentsschemas_schema159_item = componentsschemas_schema159_item_data.to_dict()
-            profile_ids.append(componentsschemas_schema159_item)
+        for componentsschemas_schema160_item_data in self.profile_ids:
+            componentsschemas_schema160_item = componentsschemas_schema160_item_data.to_dict()
+            profile_ids.append(componentsschemas_schema160_item)
 
         is_scim_managed = self.is_scim_managed
 
@@ -112,7 +112,7 @@ class User:
 
         email = d.pop("email")
 
-        role = Schema127(d.pop("role"))
+        role = Schema128(d.pop("role"))
 
         is_super_administrator = d.pop("isSuperAdministrator")
 
@@ -122,10 +122,10 @@ class User:
 
         profile_ids = []
         _profile_ids = d.pop("profileIds")
-        for componentsschemas_schema159_item_data in _profile_ids:
-            componentsschemas_schema159_item = ProfileAssignment.from_dict(componentsschemas_schema159_item_data)
+        for componentsschemas_schema160_item_data in _profile_ids:
+            componentsschemas_schema160_item = ProfileAssignment.from_dict(componentsschemas_schema160_item_data)
 
-            profile_ids.append(componentsschemas_schema159_item)
+            profile_ids.append(componentsschemas_schema160_item)
 
         is_scim_managed = d.pop("isScimManaged")
 

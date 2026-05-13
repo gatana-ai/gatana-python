@@ -12,19 +12,24 @@ T = TypeVar("T", bound="Schema389")
 class Schema389:
     """
     Attributes:
-        type_ (Literal['done']):
+        type_ (Literal['mainContainerWaiting']):
+        reason (str):
     """
 
-    type_: Literal["done"]
+    type_: Literal["mainContainerWaiting"]
+    reason: str
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
+
+        reason = self.reason
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
                 "type": type_,
+                "reason": reason,
             }
         )
 
@@ -33,12 +38,15 @@ class Schema389:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal["done"], d.pop("type"))
-        if type_ != "done":
-            raise ValueError(f"type must match const 'done', got '{type_}'")
+        type_ = cast(Literal["mainContainerWaiting"], d.pop("type"))
+        if type_ != "mainContainerWaiting":
+            raise ValueError(f"type must match const 'mainContainerWaiting', got '{type_}'")
+
+        reason = d.pop("reason")
 
         schema_389 = cls(
             type_=type_,
+            reason=reason,
         )
 
         return schema_389

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, Literal, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,19 +12,26 @@ T = TypeVar("T", bound="Schema386")
 class Schema386:
     """
     Attributes:
-        type_ (Literal['mainContainerRunning']):
+        cpu_cores (float | None):
+        memory_bytes (float | None):
     """
 
-    type_: Literal["mainContainerRunning"]
+    cpu_cores: float | None
+    memory_bytes: float | None
 
     def to_dict(self) -> dict[str, Any]:
-        type_ = self.type_
+        cpu_cores: float | None
+        cpu_cores = self.cpu_cores
+
+        memory_bytes: float | None
+        memory_bytes = self.memory_bytes
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
-                "type": type_,
+                "cpuCores": cpu_cores,
+                "memoryBytes": memory_bytes,
             }
         )
 
@@ -33,12 +40,24 @@ class Schema386:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal["mainContainerRunning"], d.pop("type"))
-        if type_ != "mainContainerRunning":
-            raise ValueError(f"type must match const 'mainContainerRunning', got '{type_}'")
+
+        def _parse_cpu_cores(data: object) -> float | None:
+            if data is None:
+                return data
+            return cast(float | None, data)
+
+        cpu_cores = _parse_cpu_cores(d.pop("cpuCores"))
+
+        def _parse_memory_bytes(data: object) -> float | None:
+            if data is None:
+                return data
+            return cast(float | None, data)
+
+        memory_bytes = _parse_memory_bytes(d.pop("memoryBytes"))
 
         schema_386 = cls(
-            type_=type_,
+            cpu_cores=cpu_cores,
+            memory_bytes=memory_bytes,
         )
 
         return schema_386

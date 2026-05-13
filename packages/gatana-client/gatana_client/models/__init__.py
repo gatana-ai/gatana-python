@@ -162,6 +162,7 @@ from .post_users_me_request_email_verification_response_200 import PostUsersMeRe
 from .post_users_user_id_personal_access_tokens_response_200 import PostUsersUserIdPersonalAccessTokensResponse200
 from .profile import Profile
 from .profile_assignment import ProfileAssignment
+from .profile_assignments_response import ProfileAssignmentsResponse
 from .profile_claim_mapping import ProfileClaimMapping
 from .profile_details_dto import ProfileDetailsDto
 from .put_mcp_servers_server_slug_credentials_profiles_profile_id_response_200 import (
@@ -212,81 +213,84 @@ from .schema_39_type_4 import Schema39Type4
 from .schema_44 import Schema44
 from .schema_46_type_0 import Schema46Type0
 from .schema_53 import Schema53
-from .schema_56_type_0 import Schema56Type0
-from .schema_60_type_0_as_type_0 import Schema60Type0AsType0
-from .schema_60_type_0_resource_type_0 import Schema60Type0ResourceType0
-from .schema_61_type_0 import Schema61Type0
-from .schema_61_type_0_grant_type import Schema61Type0GrantType
-from .schema_68_item import Schema68Item
-from .schema_68_item_action import Schema68ItemAction
-from .schema_69 import Schema69
-from .schema_72 import Schema72
-from .schema_74 import Schema74
-from .schema_78 import Schema78
-from .schema_81 import Schema81
-from .schema_87 import Schema87
-from .schema_120 import Schema120
-from .schema_126 import Schema126
+from .schema_56 import Schema56
+from .schema_57_type_0 import Schema57Type0
+from .schema_61_type_0_as_type_0 import Schema61Type0AsType0
+from .schema_61_type_0_resource_type_0 import Schema61Type0ResourceType0
+from .schema_62_type_0 import Schema62Type0
+from .schema_62_type_0_grant_type import Schema62Type0GrantType
+from .schema_69_item import Schema69Item
+from .schema_69_item_action import Schema69ItemAction
+from .schema_70 import Schema70
+from .schema_73 import Schema73
+from .schema_75 import Schema75
+from .schema_79 import Schema79
+from .schema_82 import Schema82
+from .schema_88 import Schema88
+from .schema_121 import Schema121
 from .schema_127 import Schema127
 from .schema_128 import Schema128
-from .schema_128_abilities import Schema128Abilities
 from .schema_129 import Schema129
+from .schema_129_abilities import Schema129Abilities
 from .schema_130 import Schema130
-from .schema_134 import Schema134
-from .schema_134_enabled_servers import Schema134EnabledServers
-from .schema_150 import Schema150
-from .schema_152 import Schema152
-from .schema_170 import Schema170
-from .schema_174 import Schema174
+from .schema_131 import Schema131
+from .schema_135 import Schema135
+from .schema_135_enabled_servers import Schema135EnabledServers
+from .schema_151 import Schema151
+from .schema_153 import Schema153
 from .schema_175 import Schema175
-from .schema_188 import Schema188
-from .schema_191_type_3 import Schema191Type3
-from .schema_199 import Schema199
-from .schema_202_type_0 import Schema202Type0
+from .schema_179 import Schema179
+from .schema_180 import Schema180
+from .schema_193 import Schema193
+from .schema_196_type_3 import Schema196Type3
+from .schema_204 import Schema204
 from .schema_207 import Schema207
-from .schema_209_type_0 import Schema209Type0
+from .schema_208_type_0 import Schema208Type0
 from .schema_213 import Schema213
-from .schema_218 import Schema218
+from .schema_215_type_0 import Schema215Type0
 from .schema_219 import Schema219
-from .schema_228_item import Schema228Item
-from .schema_228_item_action import Schema228ItemAction
-from .schema_231 import Schema231
-from .schema_252 import Schema252
-from .schema_256 import Schema256
-from .schema_257_type_0 import Schema257Type0
-from .schema_258_type_0 import Schema258Type0
-from .schema_262 import Schema262
-from .schema_263_item import Schema263Item
-from .schema_264_item import Schema264Item
+from .schema_223 import Schema223
+from .schema_224 import Schema224
+from .schema_233_item import Schema233Item
+from .schema_233_item_action import Schema233ItemAction
+from .schema_236 import Schema236
+from .schema_257 import Schema257
+from .schema_261 import Schema261
+from .schema_262_type_0 import Schema262Type0
+from .schema_263_type_0 import Schema263Type0
 from .schema_267 import Schema267
+from .schema_268_item import Schema268Item
+from .schema_269_item import Schema269Item
 from .schema_272 import Schema272
-from .schema_285 import Schema285
-from .schema_310 import Schema310
-from .schema_334 import Schema334
-from .schema_337 import Schema337
-from .schema_338 import Schema338
-from .schema_341_type_0_card_type_0 import Schema341Type0CardType0
-from .schema_356 import Schema356
-from .schema_362 import Schema362
-from .schema_368 import Schema368
-from .schema_370 import Schema370
-from .schema_379 import Schema379
-from .schema_381 import Schema381
-from .schema_382 import Schema382
-from .schema_383 import Schema383
+from .schema_277 import Schema277
+from .schema_290 import Schema290
+from .schema_315 import Schema315
+from .schema_339 import Schema339
+from .schema_342 import Schema342
+from .schema_343 import Schema343
+from .schema_346_type_0_card_type_0 import Schema346Type0CardType0
+from .schema_361 import Schema361
+from .schema_367 import Schema367
+from .schema_373 import Schema373
+from .schema_375 import Schema375
 from .schema_384 import Schema384
-from .schema_385 import Schema385
 from .schema_386 import Schema386
 from .schema_387 import Schema387
 from .schema_388 import Schema388
 from .schema_389 import Schema389
-from .schema_399 import Schema399
-from .schema_402 import Schema402
-from .schema_415 import Schema415
+from .schema_390 import Schema390
+from .schema_391 import Schema391
+from .schema_392 import Schema392
+from .schema_393 import Schema393
+from .schema_394 import Schema394
+from .schema_404 import Schema404
+from .schema_407 import Schema407
 from .schema_420 import Schema420
-from .schema_430 import Schema430
-from .schema_475_item import Schema475Item
-from .schema_501 import Schema501
+from .schema_425 import Schema425
+from .schema_435 import Schema435
+from .schema_480_item import Schema480Item
+from .schema_487_item import Schema487Item
+from .schema_507 import Schema507
 from .scim_token import ScimToken
 from .secret_mapping_list_response import SecretMappingListResponse
 from .secret_mapping_response import SecretMappingResponse
@@ -454,6 +458,7 @@ __all__ = (
     "PostUsersUserIdPersonalAccessTokensResponse200",
     "Profile",
     "ProfileAssignment",
+    "ProfileAssignmentsResponse",
     "ProfileClaimMapping",
     "ProfileDetailsDto",
     "PutMcpServersServerSlugCredentialsProfilesProfileIdResponse200",
@@ -481,90 +486,93 @@ __all__ = (
     "SandboxAuditLog",
     "SandboxDto",
     "Schema12",
-    "Schema120",
-    "Schema126",
+    "Schema121",
     "Schema127",
     "Schema128",
-    "Schema128Abilities",
     "Schema129",
+    "Schema129Abilities",
     "Schema130",
-    "Schema134",
-    "Schema134EnabledServers",
-    "Schema150",
-    "Schema152",
-    "Schema170",
-    "Schema174",
+    "Schema131",
+    "Schema135",
+    "Schema135EnabledServers",
+    "Schema151",
+    "Schema153",
     "Schema175",
-    "Schema188",
-    "Schema191Type3",
-    "Schema199",
-    "Schema202Type0",
+    "Schema179",
+    "Schema180",
+    "Schema193",
+    "Schema196Type3",
+    "Schema204",
     "Schema207",
-    "Schema209Type0",
+    "Schema208Type0",
     "Schema213",
-    "Schema218",
+    "Schema215Type0",
     "Schema219",
-    "Schema228Item",
-    "Schema228ItemAction",
-    "Schema231",
+    "Schema223",
+    "Schema224",
+    "Schema233Item",
+    "Schema233ItemAction",
+    "Schema236",
     "Schema25",
-    "Schema252",
-    "Schema256",
-    "Schema257Type0",
-    "Schema258Type0",
-    "Schema262",
-    "Schema263Item",
-    "Schema264Item",
+    "Schema257",
+    "Schema261",
+    "Schema262Type0",
+    "Schema263Type0",
     "Schema267",
+    "Schema268Item",
+    "Schema269Item",
     "Schema272",
-    "Schema285",
+    "Schema277",
     "Schema29",
-    "Schema310",
-    "Schema334",
-    "Schema337",
-    "Schema338",
-    "Schema341Type0CardType0",
+    "Schema290",
+    "Schema315",
+    "Schema339",
+    "Schema342",
+    "Schema343",
+    "Schema346Type0CardType0",
     "Schema35",
-    "Schema356",
     "Schema36",
-    "Schema362",
-    "Schema368",
-    "Schema370",
-    "Schema379",
-    "Schema381",
-    "Schema382",
-    "Schema383",
+    "Schema361",
+    "Schema367",
+    "Schema373",
+    "Schema375",
     "Schema384",
-    "Schema385",
     "Schema386",
     "Schema387",
     "Schema388",
     "Schema389",
-    "Schema399",
+    "Schema390",
+    "Schema391",
+    "Schema392",
+    "Schema393",
+    "Schema394",
     "Schema39Type4",
-    "Schema402",
-    "Schema415",
+    "Schema404",
+    "Schema407",
     "Schema420",
-    "Schema430",
+    "Schema425",
+    "Schema435",
     "Schema44",
     "Schema46Type0",
-    "Schema475Item",
-    "Schema501",
+    "Schema480Item",
+    "Schema487Item",
+    "Schema507",
     "Schema53",
-    "Schema56Type0",
-    "Schema60Type0AsType0",
-    "Schema60Type0ResourceType0",
-    "Schema61Type0",
-    "Schema61Type0GrantType",
-    "Schema68Item",
-    "Schema68ItemAction",
-    "Schema69",
+    "Schema56",
+    "Schema57Type0",
+    "Schema61Type0AsType0",
+    "Schema61Type0ResourceType0",
+    "Schema62Type0",
+    "Schema62Type0GrantType",
+    "Schema69Item",
+    "Schema69ItemAction",
     "Schema7",
-    "Schema72",
-    "Schema74",
-    "Schema78",
-    "Schema81",
-    "Schema87",
+    "Schema70",
+    "Schema73",
+    "Schema75",
+    "Schema79",
+    "Schema82",
+    "Schema88",
     "ScimToken",
     "SecretMappingListResponse",
     "SecretMappingResponse",

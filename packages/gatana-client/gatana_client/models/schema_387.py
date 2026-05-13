@@ -12,19 +12,24 @@ T = TypeVar("T", bound="Schema387")
 class Schema387:
     """
     Attributes:
-        type_ (Literal['mainContainerReady']):
+        type_ (Literal['initContainerRunning']):
+        name (str):
     """
 
-    type_: Literal["mainContainerReady"]
+    type_: Literal["initContainerRunning"]
+    name: str
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
+
+        name = self.name
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
                 "type": type_,
+                "name": name,
             }
         )
 
@@ -33,12 +38,15 @@ class Schema387:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal["mainContainerReady"], d.pop("type"))
-        if type_ != "mainContainerReady":
-            raise ValueError(f"type must match const 'mainContainerReady', got '{type_}'")
+        type_ = cast(Literal["initContainerRunning"], d.pop("type"))
+        if type_ != "initContainerRunning":
+            raise ValueError(f"type must match const 'initContainerRunning', got '{type_}'")
+
+        name = d.pop("name")
 
         schema_387 = cls(
             type_=type_,
+            name=name,
         )
 
         return schema_387

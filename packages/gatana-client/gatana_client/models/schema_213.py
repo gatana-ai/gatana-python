@@ -2,8 +2,7 @@ from enum import Enum
 
 
 class Schema213(str, Enum):
-    AUTHORIZATION_CODE = "authorization_code"
-    DEVICE_CODE = "device_code"
+    NODE24 = "node24"
 
     def __str__(self) -> str:
         return str(self.value)

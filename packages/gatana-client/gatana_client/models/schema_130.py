@@ -1,50 +1,10 @@
-from __future__ import annotations
-
-from collections.abc import Mapping
-from typing import Any, TypeVar
-
-from attrs import define as _attrs_define
-
-T = TypeVar("T", bound="Schema130")
+from enum import Enum
 
 
-@_attrs_define
-class Schema130:
-    """
-    Attributes:
-        cpu (str):
-        memory (str):
-    """
+class Schema130(str, Enum):
+    ADMIN = "admin"
+    MAINTAINER = "maintainer"
+    MEMBER = "member"
 
-    cpu: str
-    memory: str
-
-    def to_dict(self) -> dict[str, Any]:
-        cpu = self.cpu
-
-        memory = self.memory
-
-        field_dict: dict[str, Any] = {}
-
-        field_dict.update(
-            {
-                "cpu": cpu,
-                "memory": memory,
-            }
-        )
-
-        return field_dict
-
-    @classmethod
-    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        d = dict(src_dict)
-        cpu = d.pop("cpu")
-
-        memory = d.pop("memory")
-
-        schema_130 = cls(
-            cpu=cpu,
-            memory=memory,
-        )
-
-        return schema_130
+    def __str__(self) -> str:
+        return str(self.value)

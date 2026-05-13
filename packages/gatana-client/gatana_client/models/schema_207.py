@@ -1,8 +1,92 @@
-from enum import Enum
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+
+from attrs import define as _attrs_define
+
+T = TypeVar("T", bound="Schema207")
 
 
-class Schema207(str, Enum):
-    NODE24 = "node24"
+@_attrs_define
+class Schema207:
+    """
+    Attributes:
+        enabled (bool):
+        url (str):  Default: ''.
+        delay_seconds (int | None):
+        interval_seconds (int | None):
+        failure_threshold (int | None):
+    """
 
-    def __str__(self) -> str:
-        return str(self.value)
+    enabled: bool
+    delay_seconds: int | None
+    interval_seconds: int | None
+    failure_threshold: int | None
+    url: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        enabled = self.enabled
+
+        url = self.url
+
+        delay_seconds: int | None
+        delay_seconds = self.delay_seconds
+
+        interval_seconds: int | None
+        interval_seconds = self.interval_seconds
+
+        failure_threshold: int | None
+        failure_threshold = self.failure_threshold
+
+        field_dict: dict[str, Any] = {}
+
+        field_dict.update(
+            {
+                "enabled": enabled,
+                "url": url,
+                "delaySeconds": delay_seconds,
+                "intervalSeconds": interval_seconds,
+                "failureThreshold": failure_threshold,
+            }
+        )
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        enabled = d.pop("enabled")
+
+        url = d.pop("url")
+
+        def _parse_delay_seconds(data: object) -> int | None:
+            if data is None:
+                return data
+            return cast(int | None, data)
+
+        delay_seconds = _parse_delay_seconds(d.pop("delaySeconds"))
+
+        def _parse_interval_seconds(data: object) -> int | None:
+            if data is None:
+                return data
+            return cast(int | None, data)
+
+        interval_seconds = _parse_interval_seconds(d.pop("intervalSeconds"))
+
+        def _parse_failure_threshold(data: object) -> int | None:
+            if data is None:
+                return data
+            return cast(int | None, data)
+
+        failure_threshold = _parse_failure_threshold(d.pop("failureThreshold"))
+
+        schema_207 = cls(
+            enabled=enabled,
+            url=url,
+            delay_seconds=delay_seconds,
+            interval_seconds=interval_seconds,
+            failure_threshold=failure_threshold,
+        )
+
+        return schema_207

@@ -6,7 +6,7 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_87 import Schema87
+from ..models.schema_88 import Schema88
 
 T = TypeVar("T", bound="PostTeamsTeamIdInvitationsBody")
 
@@ -16,11 +16,11 @@ class PostTeamsTeamIdInvitationsBody:
     """
     Attributes:
         email (str):
-        role (Schema87):
+        role (Schema88):
     """
 
     email: str
-    role: Schema87
+    role: Schema88
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -44,7 +44,7 @@ class PostTeamsTeamIdInvitationsBody:
         d = dict(src_dict)
         email = d.pop("email")
 
-        role = Schema87(d.pop("role"))
+        role = Schema88(d.pop("role"))
 
         post_teams_team_id_invitations_body = cls(
             email=email,

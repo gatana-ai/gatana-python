@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_170 import Schema170
+from ..models.schema_175 import Schema175
 
 T = TypeVar("T", bound="UserIdentity")
 
@@ -17,7 +17,7 @@ class UserIdentity:
         tenant_id (float):
         external_id (str):
         user_id (str):
-        type_ (Schema170):
+        type_ (Schema175):
         created_at (str):
         updated_at (str):
     """
@@ -25,7 +25,7 @@ class UserIdentity:
     tenant_id: float
     external_id: str
     user_id: str
-    type_: Schema170
+    type_: Schema175
     created_at: str
     updated_at: str
 
@@ -66,7 +66,7 @@ class UserIdentity:
 
         user_id = d.pop("userId")
 
-        type_ = Schema170(d.pop("type"))
+        type_ = Schema175(d.pop("type"))
 
         created_at = d.pop("createdAt")
 

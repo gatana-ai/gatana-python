@@ -33,14 +33,14 @@ class SseTransportConfig:
         headers: list[list[str]] | Unset = UNSET
         if not isinstance(self.headers, Unset):
             headers = []
-            for componentsschemas_schema59_item_data in self.headers:
-                componentsschemas_schema59_item = []
-                for componentsschemas_schema59_item_item_data in componentsschemas_schema59_item_data:
-                    componentsschemas_schema59_item_item: str
-                    componentsschemas_schema59_item_item = componentsschemas_schema59_item_item_data
-                    componentsschemas_schema59_item.append(componentsschemas_schema59_item_item)
+            for componentsschemas_schema60_item_data in self.headers:
+                componentsschemas_schema60_item = []
+                for componentsschemas_schema60_item_item_data in componentsschemas_schema60_item_data:
+                    componentsschemas_schema60_item_item: str
+                    componentsschemas_schema60_item_item = componentsschemas_schema60_item_item_data
+                    componentsschemas_schema60_item.append(componentsschemas_schema60_item_item)
 
-                headers.append(componentsschemas_schema59_item)
+                headers.append(componentsschemas_schema60_item)
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -68,21 +68,21 @@ class SseTransportConfig:
         headers: list[list[str]] | Unset = UNSET
         if _headers is not UNSET:
             headers = []
-            for componentsschemas_schema59_item_data in _headers:
-                componentsschemas_schema59_item = []
-                _componentsschemas_schema59_item = componentsschemas_schema59_item_data
-                for componentsschemas_schema59_item_item_data in _componentsschemas_schema59_item:
+            for componentsschemas_schema60_item_data in _headers:
+                componentsschemas_schema60_item = []
+                _componentsschemas_schema60_item = componentsschemas_schema60_item_data
+                for componentsschemas_schema60_item_item_data in _componentsschemas_schema60_item:
 
-                    def _parse_componentsschemas_schema59_item_item(data: object) -> str:
+                    def _parse_componentsschemas_schema60_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema59_item_item = _parse_componentsschemas_schema59_item_item(
-                        componentsschemas_schema59_item_item_data
+                    componentsschemas_schema60_item_item = _parse_componentsschemas_schema60_item_item(
+                        componentsschemas_schema60_item_item_data
                     )
 
-                    componentsschemas_schema59_item.append(componentsschemas_schema59_item_item)
+                    componentsschemas_schema60_item.append(componentsschemas_schema60_item_item)
 
-                headers.append(componentsschemas_schema59_item)
+                headers.append(componentsschemas_schema60_item)
 
         sse_transport_config = cls(
             type_=type_,

@@ -15,14 +15,14 @@ from ...models.get_mcp_servers_server_slug_credentials_authorize_url_response_20
 from ...models.get_mcp_servers_server_slug_credentials_authorize_url_return_to import (
     GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo,
 )
-from ...models.schema_81 import Schema81
+from ...models.schema_82 import Schema82
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     server_slug: str,
     *,
-    scope: Schema81 | Unset = UNSET,
+    scope: Schema82 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
@@ -94,7 +94,7 @@ def sync_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema81 | Unset = UNSET,
+    scope: Schema82 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
@@ -107,7 +107,7 @@ def sync_detailed(
 
     Args:
         server_slug (str):
-        scope (Schema81 | Unset):
+        scope (Schema82 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
@@ -141,7 +141,7 @@ def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema81 | Unset = UNSET,
+    scope: Schema82 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
@@ -154,7 +154,7 @@ def sync(
 
     Args:
         server_slug (str):
-        scope (Schema81 | Unset):
+        scope (Schema82 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
@@ -183,7 +183,7 @@ async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema81 | Unset = UNSET,
+    scope: Schema82 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
@@ -196,7 +196,7 @@ async def asyncio_detailed(
 
     Args:
         server_slug (str):
-        scope (Schema81 | Unset):
+        scope (Schema82 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):
@@ -228,7 +228,7 @@ async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-    scope: Schema81 | Unset = UNSET,
+    scope: Schema82 | Unset = UNSET,
     redirect: GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset = UNSET,
     return_to: GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset = UNSET,
     profile_id: str | Unset = UNSET,
@@ -241,7 +241,7 @@ async def asyncio(
 
     Args:
         server_slug (str):
-        scope (Schema81 | Unset):
+        scope (Schema82 | Unset):
         redirect (GetMcpServersServerSlugCredentialsAuthorizeUrlRedirect | Unset):
         return_to (GetMcpServersServerSlugCredentialsAuthorizeUrlReturnTo | Unset):
         profile_id (str | Unset):

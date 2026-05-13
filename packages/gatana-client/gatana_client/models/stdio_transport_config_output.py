@@ -5,11 +5,12 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_199 import Schema199
+from ..models.schema_204 import Schema204
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_202_type_0 import Schema202Type0
+    from ..models.schema_207 import Schema207
+    from ..models.schema_208_type_0 import Schema208Type0
 
 
 T = TypeVar("T", bound="StdioTransportConfigOutput")
@@ -21,25 +22,27 @@ class StdioTransportConfigOutput:
     Attributes:
         type_ (Literal['stdio']):
         command (str):
-        transport (Schema199):
+        transport (Schema204):
         docker_image (str | Unset):
         env (list[list[str]] | Unset):
         http_port (float | None | Unset):
         url_path (None | str | Unset):
-        limits (None | Schema202Type0 | Unset):
+        health_check (Schema207 | Unset):
+        limits (None | Schema208Type0 | Unset):
     """
 
     type_: Literal["stdio"]
     command: str
-    transport: Schema199
+    transport: Schema204
     docker_image: str | Unset = UNSET
     env: list[list[str]] | Unset = UNSET
     http_port: float | None | Unset = UNSET
     url_path: None | str | Unset = UNSET
-    limits: None | Schema202Type0 | Unset = UNSET
+    health_check: Schema207 | Unset = UNSET
+    limits: None | Schema208Type0 | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_202_type_0 import Schema202Type0
+        from ..models.schema_208_type_0 import Schema208Type0
 
         type_ = self.type_
 
@@ -52,14 +55,14 @@ class StdioTransportConfigOutput:
         env: list[list[str]] | Unset = UNSET
         if not isinstance(self.env, Unset):
             env = []
-            for componentsschemas_schema198_item_data in self.env:
-                componentsschemas_schema198_item = []
-                for componentsschemas_schema198_item_item_data in componentsschemas_schema198_item_data:
-                    componentsschemas_schema198_item_item: str
-                    componentsschemas_schema198_item_item = componentsschemas_schema198_item_item_data
-                    componentsschemas_schema198_item.append(componentsschemas_schema198_item_item)
+            for componentsschemas_schema203_item_data in self.env:
+                componentsschemas_schema203_item = []
+                for componentsschemas_schema203_item_item_data in componentsschemas_schema203_item_data:
+                    componentsschemas_schema203_item_item: str
+                    componentsschemas_schema203_item_item = componentsschemas_schema203_item_item_data
+                    componentsschemas_schema203_item.append(componentsschemas_schema203_item_item)
 
-                env.append(componentsschemas_schema198_item)
+                env.append(componentsschemas_schema203_item)
 
         http_port: float | None | Unset
         if isinstance(self.http_port, Unset):
@@ -73,10 +76,14 @@ class StdioTransportConfigOutput:
         else:
             url_path = self.url_path
 
+        health_check: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.health_check, Unset):
+            health_check = self.health_check.to_dict()
+
         limits: dict[str, Any] | None | Unset
         if isinstance(self.limits, Unset):
             limits = UNSET
-        elif isinstance(self.limits, Schema202Type0):
+        elif isinstance(self.limits, Schema208Type0):
             limits = self.limits.to_dict()
         else:
             limits = self.limits
@@ -98,6 +105,8 @@ class StdioTransportConfigOutput:
             field_dict["httpPort"] = http_port
         if url_path is not UNSET:
             field_dict["urlPath"] = url_path
+        if health_check is not UNSET:
+            field_dict["healthCheck"] = health_check
         if limits is not UNSET:
             field_dict["limits"] = limits
 
@@ -105,7 +114,8 @@ class StdioTransportConfigOutput:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_202_type_0 import Schema202Type0
+        from ..models.schema_207 import Schema207
+        from ..models.schema_208_type_0 import Schema208Type0
 
         d = dict(src_dict)
         type_ = cast(Literal["stdio"], d.pop("type"))
@@ -114,7 +124,7 @@ class StdioTransportConfigOutput:
 
         command = d.pop("command")
 
-        transport = Schema199(d.pop("transport"))
+        transport = Schema204(d.pop("transport"))
 
         docker_image = d.pop("dockerImage", UNSET)
 
@@ -122,21 +132,21 @@ class StdioTransportConfigOutput:
         env: list[list[str]] | Unset = UNSET
         if _env is not UNSET:
             env = []
-            for componentsschemas_schema198_item_data in _env:
-                componentsschemas_schema198_item = []
-                _componentsschemas_schema198_item = componentsschemas_schema198_item_data
-                for componentsschemas_schema198_item_item_data in _componentsschemas_schema198_item:
+            for componentsschemas_schema203_item_data in _env:
+                componentsschemas_schema203_item = []
+                _componentsschemas_schema203_item = componentsschemas_schema203_item_data
+                for componentsschemas_schema203_item_item_data in _componentsschemas_schema203_item:
 
-                    def _parse_componentsschemas_schema198_item_item(data: object) -> str:
+                    def _parse_componentsschemas_schema203_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema198_item_item = _parse_componentsschemas_schema198_item_item(
-                        componentsschemas_schema198_item_item_data
+                    componentsschemas_schema203_item_item = _parse_componentsschemas_schema203_item_item(
+                        componentsschemas_schema203_item_item_data
                     )
 
-                    componentsschemas_schema198_item.append(componentsschemas_schema198_item_item)
+                    componentsschemas_schema203_item.append(componentsschemas_schema203_item_item)
 
-                env.append(componentsschemas_schema198_item)
+                env.append(componentsschemas_schema203_item)
 
         def _parse_http_port(data: object) -> float | None | Unset:
             if data is None:
@@ -156,7 +166,14 @@ class StdioTransportConfigOutput:
 
         url_path = _parse_url_path(d.pop("urlPath", UNSET))
 
-        def _parse_limits(data: object) -> None | Schema202Type0 | Unset:
+        _health_check = d.pop("healthCheck", UNSET)
+        health_check: Schema207 | Unset
+        if isinstance(_health_check, Unset):
+            health_check = UNSET
+        else:
+            health_check = Schema207.from_dict(_health_check)
+
+        def _parse_limits(data: object) -> None | Schema208Type0 | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -164,12 +181,12 @@ class StdioTransportConfigOutput:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema202_type_0 = Schema202Type0.from_dict(data)
+                componentsschemas_schema208_type_0 = Schema208Type0.from_dict(data)
 
-                return componentsschemas_schema202_type_0
+                return componentsschemas_schema208_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema202Type0 | Unset, data)
+            return cast(None | Schema208Type0 | Unset, data)
 
         limits = _parse_limits(d.pop("limits", UNSET))
 
@@ -181,6 +198,7 @@ class StdioTransportConfigOutput:
             env=env,
             http_port=http_port,
             url_path=url_path,
+            health_check=health_check,
             limits=limits,
         )
 

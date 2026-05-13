@@ -5,11 +5,11 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_207 import Schema207
+from ..models.schema_213 import Schema213
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_209_type_0 import Schema209Type0
+    from ..models.schema_215_type_0 import Schema215Type0
 
 
 T = TypeVar("T", bound="HostedTransportConfigOutput")
@@ -20,18 +20,18 @@ class HostedTransportConfigOutput:
     """
     Attributes:
         type_ (Literal['hosted']):
-        runtime (Schema207):
+        runtime (Schema213):
         env (list[list[str]] | Unset):
-        limits (None | Schema209Type0 | Unset):
+        limits (None | Schema215Type0 | Unset):
     """
 
     type_: Literal["hosted"]
-    runtime: Schema207
+    runtime: Schema213
     env: list[list[str]] | Unset = UNSET
-    limits: None | Schema209Type0 | Unset = UNSET
+    limits: None | Schema215Type0 | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_209_type_0 import Schema209Type0
+        from ..models.schema_215_type_0 import Schema215Type0
 
         type_ = self.type_
 
@@ -40,19 +40,19 @@ class HostedTransportConfigOutput:
         env: list[list[str]] | Unset = UNSET
         if not isinstance(self.env, Unset):
             env = []
-            for componentsschemas_schema208_item_data in self.env:
-                componentsschemas_schema208_item = []
-                for componentsschemas_schema208_item_item_data in componentsschemas_schema208_item_data:
-                    componentsschemas_schema208_item_item: str
-                    componentsschemas_schema208_item_item = componentsschemas_schema208_item_item_data
-                    componentsschemas_schema208_item.append(componentsschemas_schema208_item_item)
+            for componentsschemas_schema214_item_data in self.env:
+                componentsschemas_schema214_item = []
+                for componentsschemas_schema214_item_item_data in componentsschemas_schema214_item_data:
+                    componentsschemas_schema214_item_item: str
+                    componentsschemas_schema214_item_item = componentsschemas_schema214_item_item_data
+                    componentsschemas_schema214_item.append(componentsschemas_schema214_item_item)
 
-                env.append(componentsschemas_schema208_item)
+                env.append(componentsschemas_schema214_item)
 
         limits: dict[str, Any] | None | Unset
         if isinstance(self.limits, Unset):
             limits = UNSET
-        elif isinstance(self.limits, Schema209Type0):
+        elif isinstance(self.limits, Schema215Type0):
             limits = self.limits.to_dict()
         else:
             limits = self.limits
@@ -74,36 +74,36 @@ class HostedTransportConfigOutput:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_209_type_0 import Schema209Type0
+        from ..models.schema_215_type_0 import Schema215Type0
 
         d = dict(src_dict)
         type_ = cast(Literal["hosted"], d.pop("type"))
         if type_ != "hosted":
             raise ValueError(f"type must match const 'hosted', got '{type_}'")
 
-        runtime = Schema207(d.pop("runtime"))
+        runtime = Schema213(d.pop("runtime"))
 
         _env = d.pop("env", UNSET)
         env: list[list[str]] | Unset = UNSET
         if _env is not UNSET:
             env = []
-            for componentsschemas_schema208_item_data in _env:
-                componentsschemas_schema208_item = []
-                _componentsschemas_schema208_item = componentsschemas_schema208_item_data
-                for componentsschemas_schema208_item_item_data in _componentsschemas_schema208_item:
+            for componentsschemas_schema214_item_data in _env:
+                componentsschemas_schema214_item = []
+                _componentsschemas_schema214_item = componentsschemas_schema214_item_data
+                for componentsschemas_schema214_item_item_data in _componentsschemas_schema214_item:
 
-                    def _parse_componentsschemas_schema208_item_item(data: object) -> str:
+                    def _parse_componentsschemas_schema214_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema208_item_item = _parse_componentsschemas_schema208_item_item(
-                        componentsschemas_schema208_item_item_data
+                    componentsschemas_schema214_item_item = _parse_componentsschemas_schema214_item_item(
+                        componentsschemas_schema214_item_item_data
                     )
 
-                    componentsschemas_schema208_item.append(componentsschemas_schema208_item_item)
+                    componentsschemas_schema214_item.append(componentsschemas_schema214_item_item)
 
-                env.append(componentsschemas_schema208_item)
+                env.append(componentsschemas_schema214_item)
 
-        def _parse_limits(data: object) -> None | Schema209Type0 | Unset:
+        def _parse_limits(data: object) -> None | Schema215Type0 | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -111,12 +111,12 @@ class HostedTransportConfigOutput:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema209_type_0 = Schema209Type0.from_dict(data)
+                componentsschemas_schema215_type_0 = Schema215Type0.from_dict(data)
 
-                return componentsschemas_schema209_type_0
+                return componentsschemas_schema215_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema209Type0 | Unset, data)
+            return cast(None | Schema215Type0 | Unset, data)
 
         limits = _parse_limits(d.pop("limits", UNSET))
 

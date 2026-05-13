@@ -5,7 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_252 import Schema252
+from ...models.schema_257 import Schema257
 from ...types import Response
 
 
@@ -18,9 +18,9 @@ def _get_kwargs() -> dict[str, Any]:
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema252 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema257 | None:
     if response.status_code == 200:
-        response_200 = Schema252.from_dict(response.json())
+        response_200 = Schema257.from_dict(response.json())
 
         return response_200
 
@@ -30,7 +30,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema252]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema257]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -42,14 +42,14 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema252]:
+) -> Response[Schema257]:
     """
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema252]
+        Response[Schema257]
     """
 
     kwargs = _get_kwargs()
@@ -64,14 +64,14 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> Schema252 | None:
+) -> Schema257 | None:
     """
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema252
+        Schema257
     """
 
     return sync_detailed(
@@ -82,14 +82,14 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema252]:
+) -> Response[Schema257]:
     """
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema252]
+        Response[Schema257]
     """
 
     kwargs = _get_kwargs()
@@ -102,14 +102,14 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> Schema252 | None:
+) -> Schema257 | None:
     """
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema252
+        Schema257
     """
 
     return (

@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.schema_341_type_0 import Schema341Type0
+    from ..models.schema_346_type_0 import Schema346Type0
 
 
 T = TypeVar("T", bound="GetSubscriptionResponse")
@@ -18,22 +18,22 @@ class GetSubscriptionResponse:
     Attributes:
         subscription_plan (str):
         subscription_seats (float):
-        subscription (None | Schema341Type0):
+        subscription (None | Schema346Type0):
     """
 
     subscription_plan: str
     subscription_seats: float
-    subscription: None | Schema341Type0
+    subscription: None | Schema346Type0
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_341_type_0 import Schema341Type0
+        from ..models.schema_346_type_0 import Schema346Type0
 
         subscription_plan = self.subscription_plan
 
         subscription_seats = self.subscription_seats
 
         subscription: dict[str, Any] | None
-        if isinstance(self.subscription, Schema341Type0):
+        if isinstance(self.subscription, Schema346Type0):
             subscription = self.subscription.to_dict()
         else:
             subscription = self.subscription
@@ -52,25 +52,25 @@ class GetSubscriptionResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_341_type_0 import Schema341Type0
+        from ..models.schema_346_type_0 import Schema346Type0
 
         d = dict(src_dict)
         subscription_plan = d.pop("subscriptionPlan")
 
         subscription_seats = d.pop("subscriptionSeats")
 
-        def _parse_subscription(data: object) -> None | Schema341Type0:
+        def _parse_subscription(data: object) -> None | Schema346Type0:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema341_type_0 = Schema341Type0.from_dict(data)
+                componentsschemas_schema346_type_0 = Schema346Type0.from_dict(data)
 
-                return componentsschemas_schema341_type_0
+                return componentsschemas_schema346_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema341Type0, data)
+            return cast(None | Schema346Type0, data)
 
         subscription = _parse_subscription(d.pop("subscription"))
 

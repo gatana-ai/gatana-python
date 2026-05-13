@@ -5,8 +5,8 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_267 import Schema267
 from ..models.schema_272 import Schema272
+from ..models.schema_277 import Schema277
 
 T = TypeVar("T", bound="ServerCredentialsDto")
 
@@ -17,12 +17,12 @@ class ServerCredentialsDto:
     Attributes:
         id (str):
         tenant_id (str):
-        scope (Schema267):
+        scope (Schema272):
         user_id (None | str):
         profile_id (None | str):
         last_used_at (None | str):
         authorized_at (str):
-        type_ (Schema272):
+        type_ (Schema277):
         created_at (str):
         updated_at (str):
         server_slug (str):
@@ -39,12 +39,12 @@ class ServerCredentialsDto:
 
     id: str
     tenant_id: str
-    scope: Schema267
+    scope: Schema272
     user_id: None | str
     profile_id: None | str
     last_used_at: None | str
     authorized_at: str
-    type_: Schema272
+    type_: Schema277
     created_at: str
     updated_at: str
     server_slug: str
@@ -151,7 +151,7 @@ class ServerCredentialsDto:
 
         tenant_id = d.pop("tenantId")
 
-        scope = Schema267(d.pop("scope"))
+        scope = Schema272(d.pop("scope"))
 
         def _parse_user_id(data: object) -> None | str:
             if data is None:
@@ -176,7 +176,7 @@ class ServerCredentialsDto:
 
         authorized_at = d.pop("authorizedAt")
 
-        type_ = Schema272(d.pop("type"))
+        type_ = Schema277(d.pop("type"))
 
         created_at = d.pop("createdAt")
 
@@ -211,9 +211,9 @@ class ServerCredentialsDto:
             try:
                 if not isinstance(data, list):
                     raise TypeError()
-                componentsschemas_schema279_type_0 = cast(list[str], data)
+                componentsschemas_schema284_type_0 = cast(list[str], data)
 
-                return componentsschemas_schema279_type_0
+                return componentsschemas_schema284_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(list[str] | None, data)

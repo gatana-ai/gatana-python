@@ -6,7 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_174 import Schema174
+from ...models.schema_179 import Schema179
 from ...models.update_user_request import UpdateUserRequest
 from ...types import UNSET, Response, Unset
 
@@ -34,9 +34,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema174 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema179 | None:
     if response.status_code == 200:
-        response_200 = Schema174.from_dict(response.json())
+        response_200 = Schema179.from_dict(response.json())
 
         return response_200
 
@@ -46,7 +46,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema174]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema179]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -60,7 +60,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-) -> Response[Schema174]:
+) -> Response[Schema179]:
     """
     Args:
         user_id (str):
@@ -71,7 +71,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema174]
+        Response[Schema179]
     """
 
     kwargs = _get_kwargs(
@@ -91,7 +91,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-) -> Schema174 | None:
+) -> Schema179 | None:
     """
     Args:
         user_id (str):
@@ -102,7 +102,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema174
+        Schema179
     """
 
     return sync_detailed(
@@ -117,7 +117,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-) -> Response[Schema174]:
+) -> Response[Schema179]:
     """
     Args:
         user_id (str):
@@ -128,7 +128,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema174]
+        Response[Schema179]
     """
 
     kwargs = _get_kwargs(
@@ -146,7 +146,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: UpdateUserRequest | Unset = UNSET,
-) -> Schema174 | None:
+) -> Schema179 | None:
     """
     Args:
         user_id (str):
@@ -157,7 +157,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema174
+        Schema179
     """
 
     return (

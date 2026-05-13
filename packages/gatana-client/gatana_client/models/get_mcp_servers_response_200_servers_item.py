@@ -11,8 +11,8 @@ if TYPE_CHECKING:
     from ..models.get_mcp_servers_response_200_servers_item_usage import GetMcpServersResponse200ServersItemUsage
     from ..models.hosted_transport_config_output import HostedTransportConfigOutput
     from ..models.http_streaming_transport_config_output import HttpStreamingTransportConfigOutput
-    from ..models.schema_191_type_3 import Schema191Type3
-    from ..models.schema_228_item import Schema228Item
+    from ..models.schema_196_type_3 import Schema196Type3
+    from ..models.schema_233_item import Schema233Item
     from ..models.server_authorization_output import ServerAuthorizationOutput
     from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
     from ..models.server_o_auth_metadata import ServerOAuthMetadata
@@ -32,7 +32,7 @@ class GetMcpServersResponse200ServersItem:
         tenant_id (str):
         description (str):
         authorization (ServerAuthorizationOutput):
-        transport_config (HostedTransportConfigOutput | HttpStreamingTransportConfigOutput | Schema191Type3 |
+        transport_config (HostedTransportConfigOutput | HttpStreamingTransportConfigOutput | Schema196Type3 |
             SseTransportConfigOutput | StdioTransportConfigOutput):
         oauth_client_configuration (None | ServerOAuthClientConfiguration):
         oauth_metadata (None | ServerOAuthMetadata):
@@ -45,7 +45,7 @@ class GetMcpServersResponse200ServersItem:
         is_output_compression_enabled (bool):
         is_output_compression_transform_enabled (bool):
         output_compression_threshold_bytes (int):
-        firewall_rules (list[Schema228Item]):
+        firewall_rules (list[Schema233Item]):
         created_at (str):
         updated_at (str):
         usage (GetMcpServersResponse200ServersItemUsage):
@@ -59,7 +59,7 @@ class GetMcpServersResponse200ServersItem:
     transport_config: (
         HostedTransportConfigOutput
         | HttpStreamingTransportConfigOutput
-        | Schema191Type3
+        | Schema196Type3
         | SseTransportConfigOutput
         | StdioTransportConfigOutput
     )
@@ -74,14 +74,14 @@ class GetMcpServersResponse200ServersItem:
     is_output_compression_enabled: bool
     is_output_compression_transform_enabled: bool
     output_compression_threshold_bytes: int
-    firewall_rules: list[Schema228Item]
+    firewall_rules: list[Schema233Item]
     created_at: str
     updated_at: str
     usage: GetMcpServersResponse200ServersItemUsage
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.http_streaming_transport_config_output import HttpStreamingTransportConfigOutput
-        from ..models.schema_191_type_3 import Schema191Type3
+        from ..models.schema_196_type_3 import Schema196Type3
         from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
         from ..models.server_o_auth_metadata import ServerOAuthMetadata
         from ..models.sse_transport_config_output import SseTransportConfigOutput
@@ -104,7 +104,7 @@ class GetMcpServersResponse200ServersItem:
             transport_config = self.transport_config.to_dict()
         elif isinstance(self.transport_config, SseTransportConfigOutput):
             transport_config = self.transport_config.to_dict()
-        elif isinstance(self.transport_config, Schema191Type3):
+        elif isinstance(self.transport_config, Schema196Type3):
             transport_config = self.transport_config.to_dict()
         else:
             transport_config = self.transport_config.to_dict()
@@ -141,9 +141,9 @@ class GetMcpServersResponse200ServersItem:
         output_compression_threshold_bytes = self.output_compression_threshold_bytes
 
         firewall_rules = []
-        for componentsschemas_schema228_item_data in self.firewall_rules:
-            componentsschemas_schema228_item = componentsschemas_schema228_item_data.to_dict()
-            firewall_rules.append(componentsschemas_schema228_item)
+        for componentsschemas_schema233_item_data in self.firewall_rules:
+            componentsschemas_schema233_item = componentsschemas_schema233_item_data.to_dict()
+            firewall_rules.append(componentsschemas_schema233_item)
 
         created_at = self.created_at
 
@@ -186,8 +186,8 @@ class GetMcpServersResponse200ServersItem:
         from ..models.get_mcp_servers_response_200_servers_item_usage import GetMcpServersResponse200ServersItemUsage
         from ..models.hosted_transport_config_output import HostedTransportConfigOutput
         from ..models.http_streaming_transport_config_output import HttpStreamingTransportConfigOutput
-        from ..models.schema_191_type_3 import Schema191Type3
-        from ..models.schema_228_item import Schema228Item
+        from ..models.schema_196_type_3 import Schema196Type3
+        from ..models.schema_233_item import Schema233Item
         from ..models.server_authorization_output import ServerAuthorizationOutput
         from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
         from ..models.server_o_auth_metadata import ServerOAuthMetadata
@@ -210,47 +210,47 @@ class GetMcpServersResponse200ServersItem:
         ) -> (
             HostedTransportConfigOutput
             | HttpStreamingTransportConfigOutput
-            | Schema191Type3
+            | Schema196Type3
             | SseTransportConfigOutput
             | StdioTransportConfigOutput
         ):
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema191_type_0 = HttpStreamingTransportConfigOutput.from_dict(data)
+                componentsschemas_schema196_type_0 = HttpStreamingTransportConfigOutput.from_dict(data)
 
-                return componentsschemas_schema191_type_0
+                return componentsschemas_schema196_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema191_type_1 = StdioTransportConfigOutput.from_dict(data)
+                componentsschemas_schema196_type_1 = StdioTransportConfigOutput.from_dict(data)
 
-                return componentsschemas_schema191_type_1
+                return componentsschemas_schema196_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema191_type_2 = SseTransportConfigOutput.from_dict(data)
+                componentsschemas_schema196_type_2 = SseTransportConfigOutput.from_dict(data)
 
-                return componentsschemas_schema191_type_2
+                return componentsschemas_schema196_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema191_type_3 = Schema191Type3.from_dict(data)
+                componentsschemas_schema196_type_3 = Schema196Type3.from_dict(data)
 
-                return componentsschemas_schema191_type_3
+                return componentsschemas_schema196_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             if not isinstance(data, dict):
                 raise TypeError()
-            componentsschemas_schema191_type_4 = HostedTransportConfigOutput.from_dict(data)
+            componentsschemas_schema196_type_4 = HostedTransportConfigOutput.from_dict(data)
 
-            return componentsschemas_schema191_type_4
+            return componentsschemas_schema196_type_4
 
         transport_config = _parse_transport_config(d.pop("transportConfig"))
 
@@ -260,9 +260,9 @@ class GetMcpServersResponse200ServersItem:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema210_type_1 = ServerOAuthClientConfiguration.from_dict(data)
+                componentsschemas_schema216_type_1 = ServerOAuthClientConfiguration.from_dict(data)
 
-                return componentsschemas_schema210_type_1
+                return componentsschemas_schema216_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | ServerOAuthClientConfiguration, data)
@@ -275,9 +275,9 @@ class GetMcpServersResponse200ServersItem:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema216_type_1 = ServerOAuthMetadata.from_dict(data)
+                componentsschemas_schema222_type_1 = ServerOAuthMetadata.from_dict(data)
 
-                return componentsschemas_schema216_type_1
+                return componentsschemas_schema222_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | ServerOAuthMetadata, data)
@@ -309,10 +309,10 @@ class GetMcpServersResponse200ServersItem:
 
         firewall_rules = []
         _firewall_rules = d.pop("firewallRules")
-        for componentsschemas_schema228_item_data in _firewall_rules:
-            componentsschemas_schema228_item = Schema228Item.from_dict(componentsschemas_schema228_item_data)
+        for componentsschemas_schema233_item_data in _firewall_rules:
+            componentsschemas_schema233_item = Schema233Item.from_dict(componentsschemas_schema233_item_data)
 
-            firewall_rules.append(componentsschemas_schema228_item)
+            firewall_rules.append(componentsschemas_schema233_item)
 
         created_at = d.pop("createdAt")
 

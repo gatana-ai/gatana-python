@@ -6,15 +6,15 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.deployment_log_payload_pod_info import DeploymentLogPayloadPodInfo
-from ...models.schema_368 import Schema368
-from ...models.schema_382 import Schema382
-from ...models.schema_383 import Schema383
-from ...models.schema_384 import Schema384
-from ...models.schema_385 import Schema385
-from ...models.schema_386 import Schema386
+from ...models.schema_373 import Schema373
 from ...models.schema_387 import Schema387
 from ...models.schema_388 import Schema388
 from ...models.schema_389 import Schema389
+from ...models.schema_390 import Schema390
+from ...models.schema_391 import Schema391
+from ...models.schema_392 import Schema392
+from ...models.schema_393 import Schema393
+from ...models.schema_394 import Schema394
 from ...types import UNSET, Response, Unset
 
 
@@ -47,15 +47,15 @@ def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> (
     DeploymentLogPayloadPodInfo
-    | Schema368
-    | Schema382
-    | Schema383
-    | Schema384
-    | Schema385
-    | Schema386
+    | Schema373
     | Schema387
     | Schema388
     | Schema389
+    | Schema390
+    | Schema391
+    | Schema392
+    | Schema393
+    | Schema394
     | None
 ):
     if response.status_code == 200:
@@ -64,20 +64,20 @@ def _parse_response(
             data: object,
         ) -> (
             DeploymentLogPayloadPodInfo
-            | Schema368
-            | Schema382
-            | Schema383
-            | Schema384
-            | Schema385
-            | Schema386
+            | Schema373
             | Schema387
             | Schema388
             | Schema389
+            | Schema390
+            | Schema391
+            | Schema392
+            | Schema393
+            | Schema394
         ):
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_0 = Schema368.from_dict(data)
+                componentsschemas_deployment_log_payload_type_0 = Schema373.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -93,7 +93,7 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_2 = Schema382.from_dict(data)
+                componentsschemas_deployment_log_payload_type_2 = Schema387.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_2
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -101,7 +101,7 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_3 = Schema383.from_dict(data)
+                componentsschemas_deployment_log_payload_type_3 = Schema388.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_3
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -109,7 +109,7 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_4 = Schema384.from_dict(data)
+                componentsschemas_deployment_log_payload_type_4 = Schema389.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_4
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -117,7 +117,7 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_5 = Schema385.from_dict(data)
+                componentsschemas_deployment_log_payload_type_5 = Schema390.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_5
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -125,7 +125,7 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_6 = Schema386.from_dict(data)
+                componentsschemas_deployment_log_payload_type_6 = Schema391.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_6
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -133,7 +133,7 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_7 = Schema387.from_dict(data)
+                componentsschemas_deployment_log_payload_type_7 = Schema392.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_7
             except (TypeError, ValueError, AttributeError, KeyError):
@@ -141,14 +141,14 @@ def _parse_response(
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_deployment_log_payload_type_8 = Schema388.from_dict(data)
+                componentsschemas_deployment_log_payload_type_8 = Schema393.from_dict(data)
 
                 return componentsschemas_deployment_log_payload_type_8
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             if not isinstance(data, dict):
                 raise TypeError()
-            componentsschemas_deployment_log_payload_type_9 = Schema389.from_dict(data)
+            componentsschemas_deployment_log_payload_type_9 = Schema394.from_dict(data)
 
             return componentsschemas_deployment_log_payload_type_9
 
@@ -166,15 +166,15 @@ def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[
     DeploymentLogPayloadPodInfo
-    | Schema368
-    | Schema382
-    | Schema383
-    | Schema384
-    | Schema385
-    | Schema386
+    | Schema373
     | Schema387
     | Schema388
     | Schema389
+    | Schema390
+    | Schema391
+    | Schema392
+    | Schema393
+    | Schema394
 ]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -192,15 +192,15 @@ def sync_detailed(
     pod_name: str | Unset = UNSET,
 ) -> Response[
     DeploymentLogPayloadPodInfo
-    | Schema368
-    | Schema382
-    | Schema383
-    | Schema384
-    | Schema385
-    | Schema386
+    | Schema373
     | Schema387
     | Schema388
     | Schema389
+    | Schema390
+    | Schema391
+    | Schema392
+    | Schema393
+    | Schema394
 ]:
     """
     Args:
@@ -213,7 +213,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DeploymentLogPayloadPodInfo | Schema368 | Schema382 | Schema383 | Schema384 | Schema385 | Schema386 | Schema387 | Schema388 | Schema389]
+        Response[DeploymentLogPayloadPodInfo | Schema373 | Schema387 | Schema388 | Schema389 | Schema390 | Schema391 | Schema392 | Schema393 | Schema394]
     """
 
     kwargs = _get_kwargs(
@@ -237,15 +237,15 @@ def sync(
     pod_name: str | Unset = UNSET,
 ) -> (
     DeploymentLogPayloadPodInfo
-    | Schema368
-    | Schema382
-    | Schema383
-    | Schema384
-    | Schema385
-    | Schema386
+    | Schema373
     | Schema387
     | Schema388
     | Schema389
+    | Schema390
+    | Schema391
+    | Schema392
+    | Schema393
+    | Schema394
     | None
 ):
     """
@@ -259,7 +259,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DeploymentLogPayloadPodInfo | Schema368 | Schema382 | Schema383 | Schema384 | Schema385 | Schema386 | Schema387 | Schema388 | Schema389
+        DeploymentLogPayloadPodInfo | Schema373 | Schema387 | Schema388 | Schema389 | Schema390 | Schema391 | Schema392 | Schema393 | Schema394
     """
 
     return sync_detailed(
@@ -278,15 +278,15 @@ async def asyncio_detailed(
     pod_name: str | Unset = UNSET,
 ) -> Response[
     DeploymentLogPayloadPodInfo
-    | Schema368
-    | Schema382
-    | Schema383
-    | Schema384
-    | Schema385
-    | Schema386
+    | Schema373
     | Schema387
     | Schema388
     | Schema389
+    | Schema390
+    | Schema391
+    | Schema392
+    | Schema393
+    | Schema394
 ]:
     """
     Args:
@@ -299,7 +299,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DeploymentLogPayloadPodInfo | Schema368 | Schema382 | Schema383 | Schema384 | Schema385 | Schema386 | Schema387 | Schema388 | Schema389]
+        Response[DeploymentLogPayloadPodInfo | Schema373 | Schema387 | Schema388 | Schema389 | Schema390 | Schema391 | Schema392 | Schema393 | Schema394]
     """
 
     kwargs = _get_kwargs(
@@ -321,15 +321,15 @@ async def asyncio(
     pod_name: str | Unset = UNSET,
 ) -> (
     DeploymentLogPayloadPodInfo
-    | Schema368
-    | Schema382
-    | Schema383
-    | Schema384
-    | Schema385
-    | Schema386
+    | Schema373
     | Schema387
     | Schema388
     | Schema389
+    | Schema390
+    | Schema391
+    | Schema392
+    | Schema393
+    | Schema394
     | None
 ):
     """
@@ -343,7 +343,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DeploymentLogPayloadPodInfo | Schema368 | Schema382 | Schema383 | Schema384 | Schema385 | Schema386 | Schema387 | Schema388 | Schema389
+        DeploymentLogPayloadPodInfo | Schema373 | Schema387 | Schema388 | Schema389 | Schema390 | Schema391 | Schema392 | Schema393 | Schema394
     """
 
     return (

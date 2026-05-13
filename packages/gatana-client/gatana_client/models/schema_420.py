@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_129 import Schema129
+from ..models.schema_130 import Schema130
 
 T = TypeVar("T", bound="Schema420")
 
@@ -16,20 +16,20 @@ class Schema420:
     Attributes:
         tenant_id (str):
         server_id (str):
-        role (Schema129):
+        role (Schema130):
         created_at (str):
         updated_at (str):
-        user_id (None):
-        team_id (str):
+        user_id (str):
+        team_id (None):
     """
 
     tenant_id: str
     server_id: str
-    role: Schema129
+    role: Schema130
     created_at: str
     updated_at: str
-    user_id: None
-    team_id: str
+    user_id: str
+    team_id: None
 
     def to_dict(self) -> dict[str, Any]:
         tenant_id = self.tenant_id
@@ -69,7 +69,7 @@ class Schema420:
 
         server_id = d.pop("serverId")
 
-        role = Schema129(d.pop("role"))
+        role = Schema130(d.pop("role"))
 
         created_at = d.pop("createdAt")
 

@@ -10,7 +10,8 @@ from ..models.schema_53 import Schema53
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_56_type_0 import Schema56Type0
+    from ..models.schema_56 import Schema56
+    from ..models.schema_57_type_0 import Schema57Type0
 
 
 T = TypeVar("T", bound="StdioTransportConfig")
@@ -27,7 +28,8 @@ class StdioTransportConfig:
         env (list[list[str]] | Unset):
         http_port (float | None | Unset):
         url_path (None | str | Unset):
-        limits (None | Schema56Type0 | Unset):
+        health_check (Schema56 | Unset):
+        limits (None | Schema57Type0 | Unset):
     """
 
     type_: Literal["stdio"]
@@ -37,11 +39,12 @@ class StdioTransportConfig:
     env: list[list[str]] | Unset = UNSET
     http_port: float | None | Unset = UNSET
     url_path: None | str | Unset = UNSET
-    limits: None | Schema56Type0 | Unset = UNSET
+    health_check: Schema56 | Unset = UNSET
+    limits: None | Schema57Type0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_56_type_0 import Schema56Type0
+        from ..models.schema_57_type_0 import Schema57Type0
 
         type_ = self.type_
 
@@ -75,10 +78,14 @@ class StdioTransportConfig:
         else:
             url_path = self.url_path
 
+        health_check: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.health_check, Unset):
+            health_check = self.health_check.to_dict()
+
         limits: dict[str, Any] | None | Unset
         if isinstance(self.limits, Unset):
             limits = UNSET
-        elif isinstance(self.limits, Schema56Type0):
+        elif isinstance(self.limits, Schema57Type0):
             limits = self.limits.to_dict()
         else:
             limits = self.limits
@@ -100,6 +107,8 @@ class StdioTransportConfig:
             field_dict["httpPort"] = http_port
         if url_path is not UNSET:
             field_dict["urlPath"] = url_path
+        if health_check is not UNSET:
+            field_dict["healthCheck"] = health_check
         if limits is not UNSET:
             field_dict["limits"] = limits
 
@@ -107,7 +116,8 @@ class StdioTransportConfig:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_56_type_0 import Schema56Type0
+        from ..models.schema_56 import Schema56
+        from ..models.schema_57_type_0 import Schema57Type0
 
         d = dict(src_dict)
         type_ = cast(Literal["stdio"], d.pop("type"))
@@ -158,7 +168,14 @@ class StdioTransportConfig:
 
         url_path = _parse_url_path(d.pop("urlPath", UNSET))
 
-        def _parse_limits(data: object) -> None | Schema56Type0 | Unset:
+        _health_check = d.pop("healthCheck", UNSET)
+        health_check: Schema56 | Unset
+        if isinstance(_health_check, Unset):
+            health_check = UNSET
+        else:
+            health_check = Schema56.from_dict(_health_check)
+
+        def _parse_limits(data: object) -> None | Schema57Type0 | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -166,12 +183,12 @@ class StdioTransportConfig:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema56_type_0 = Schema56Type0.from_dict(data)
+                componentsschemas_schema57_type_0 = Schema57Type0.from_dict(data)
 
-                return componentsschemas_schema56_type_0
+                return componentsschemas_schema57_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema56Type0 | Unset, data)
+            return cast(None | Schema57Type0 | Unset, data)
 
         limits = _parse_limits(d.pop("limits", UNSET))
 
@@ -183,6 +200,7 @@ class StdioTransportConfig:
             env=env,
             http_port=http_port,
             url_path=url_path,
+            health_check=health_check,
             limits=limits,
         )
 

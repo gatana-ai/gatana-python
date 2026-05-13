@@ -14,14 +14,16 @@ T = TypeVar("T", bound="Schema388")
 class Schema388:
     """
     Attributes:
-        type_ (Literal['mainContainerCrashed']):
+        type_ (Literal['initContainerTerminated']):
+        name (str):
         exit_code (float):
         started_at (str):
         finished_at (str):
         reason (str | Unset):
     """
 
-    type_: Literal["mainContainerCrashed"]
+    type_: Literal["initContainerTerminated"]
+    name: str
     exit_code: float
     started_at: str
     finished_at: str
@@ -29,6 +31,8 @@ class Schema388:
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
+
+        name = self.name
 
         exit_code = self.exit_code
 
@@ -43,6 +47,7 @@ class Schema388:
         field_dict.update(
             {
                 "type": type_,
+                "name": name,
                 "exitCode": exit_code,
                 "startedAt": started_at,
                 "finishedAt": finished_at,
@@ -56,9 +61,11 @@ class Schema388:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal["mainContainerCrashed"], d.pop("type"))
-        if type_ != "mainContainerCrashed":
-            raise ValueError(f"type must match const 'mainContainerCrashed', got '{type_}'")
+        type_ = cast(Literal["initContainerTerminated"], d.pop("type"))
+        if type_ != "initContainerTerminated":
+            raise ValueError(f"type must match const 'initContainerTerminated', got '{type_}'")
+
+        name = d.pop("name")
 
         exit_code = d.pop("exitCode")
 
@@ -70,6 +77,7 @@ class Schema388:
 
         schema_388 = cls(
             type_=type_,
+            name=name,
             exit_code=exit_code,
             started_at=started_at,
             finished_at=finished_at,
