@@ -8,7 +8,6 @@ from attrs import define as _attrs_define
 if TYPE_CHECKING:
     from ..models.schema_420 import Schema420
     from ..models.schema_425 import Schema425
-    from ..models.server import Server
 
 
 T = TypeVar("T", bound="GetTeamsTeamIdServersResponse200PermissionsItem")
@@ -19,11 +18,11 @@ class GetTeamsTeamIdServersResponse200PermissionsItem:
     """
     Attributes:
         permission (Schema420 | Schema425):
-        server (Server):
+        server_slug (str):
     """
 
     permission: Schema420 | Schema425
-    server: Server
+    server_slug: str
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.schema_420 import Schema420
@@ -34,14 +33,14 @@ class GetTeamsTeamIdServersResponse200PermissionsItem:
         else:
             permission = self.permission.to_dict()
 
-        server = self.server.to_dict()
+        server_slug = self.server_slug
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
                 "permission": permission,
-                "server": server,
+                "serverSlug": server_slug,
             }
         )
 
@@ -51,7 +50,6 @@ class GetTeamsTeamIdServersResponse200PermissionsItem:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.schema_420 import Schema420
         from ..models.schema_425 import Schema425
-        from ..models.server import Server
 
         d = dict(src_dict)
 
@@ -72,11 +70,11 @@ class GetTeamsTeamIdServersResponse200PermissionsItem:
 
         permission = _parse_permission(d.pop("permission"))
 
-        server = Server.from_dict(d.pop("server"))
+        server_slug = d.pop("serverSlug")
 
         get_teams_team_id_servers_response_200_permissions_item = cls(
             permission=permission,
-            server=server,
+            server_slug=server_slug,
         )
 
         return get_teams_team_id_servers_response_200_permissions_item

@@ -299,7 +299,6 @@ from .secret_store_list_response import SecretStoreListResponse
 from .secret_store_response import SecretStoreResponse
 from .send_verification_code_request import SendVerificationCodeRequest
 from .send_verification_code_response import SendVerificationCodeResponse
-from .server import Server
 from .server_authorization import ServerAuthorization
 from .server_authorization_output import ServerAuthorizationOutput
 from .server_credentials_api_keys import ServerCredentialsApiKeys
@@ -581,7 +580,6 @@ __all__ = (
     "SecretStoreResponse",
     "SendVerificationCodeRequest",
     "SendVerificationCodeResponse",
-    "Server",
     "ServerAuthorization",
     "ServerAuthorizationOutput",
     "ServerCredentialsApiKeys",
