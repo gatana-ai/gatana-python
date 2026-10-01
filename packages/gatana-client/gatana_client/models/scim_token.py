@@ -14,13 +14,13 @@ T = TypeVar("T", bound="ScimToken")
 class ScimToken:
     """
     Attributes:
-        id (str):
-        tenant_id (str):
-        name (str):
-        last_used_at (None | str):
-        token_hash (str):
-        created_at (str):
-        updated_at (str):
+        id (str): Unique ID of the token
+        tenant_id (str): ID of the tenant that owns the token
+        name (str): Display name of the token
+        last_used_at (None | str): Time when the token was last used, or null if never used
+        token_hash (str): Hash of the token secret
+        created_at (str): Time when the token was created
+        updated_at (str): Time when the token was last updated
         token (str | Unset):
     """
 

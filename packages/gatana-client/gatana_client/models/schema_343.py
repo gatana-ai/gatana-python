@@ -2,9 +2,8 @@ from enum import Enum
 
 
 class Schema343(str, Enum):
-    DELETE = "delete"
-    DISABLE = "disable"
-    KEEP = "keep"
+    ORGANIZATION = "organization"
+    PRIVATE = "private"
 
     def __str__(self) -> str:
         return str(self.value)

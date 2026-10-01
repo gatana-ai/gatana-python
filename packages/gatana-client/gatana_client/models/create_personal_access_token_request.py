@@ -15,7 +15,7 @@ T = TypeVar("T", bound="CreatePersonalAccessTokenRequest")
 class CreatePersonalAccessTokenRequest:
     """
     Attributes:
-        name (str):
+        name (str): Display name of the token
         profile_ids (list[str] | Unset):
     """
 

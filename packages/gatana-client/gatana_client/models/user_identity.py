@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_175 import Schema175
+from ..models.schema_442 import Schema442
 
 T = TypeVar("T", bound="UserIdentity")
 
@@ -14,18 +14,18 @@ T = TypeVar("T", bound="UserIdentity")
 class UserIdentity:
     """
     Attributes:
-        tenant_id (float):
-        external_id (str):
-        user_id (str):
-        type_ (Schema175):
-        created_at (str):
-        updated_at (str):
+        tenant_id (float): ID of the tenant that owns the identity
+        external_id (str): Identifier of the user at the identity provider
+        user_id (str): ID of the user the identity belongs to
+        type_ (Schema442): Type of the identity: external-oidc, external-saml, or native
+        created_at (str): Time when the identity was created
+        updated_at (str): Time when the identity was last updated
     """
 
     tenant_id: float
     external_id: str
     user_id: str
-    type_: Schema175
+    type_: Schema442
     created_at: str
     updated_at: str
 
@@ -66,7 +66,7 @@ class UserIdentity:
 
         user_id = d.pop("userId")
 
-        type_ = Schema175(d.pop("type"))
+        type_ = Schema442(d.pop("type"))
 
         created_at = d.pop("createdAt")
 

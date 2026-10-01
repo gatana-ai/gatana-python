@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.scim_token import ScimToken
+    from ..models.schema_1061 import Schema1061
 
 
 T = TypeVar("T", bound="CreateScimTokenResponse")
@@ -16,11 +16,11 @@ T = TypeVar("T", bound="CreateScimTokenResponse")
 class CreateScimTokenResponse:
     """
     Attributes:
-        token (ScimToken):
-        raw_token (str):
+        token (Schema1061):
+        raw_token (str): Raw token secret to configure in the identity provider
     """
 
-    token: ScimToken
+    token: Schema1061
     raw_token: str
 
     def to_dict(self) -> dict[str, Any]:
@@ -41,10 +41,10 @@ class CreateScimTokenResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.scim_token import ScimToken
+        from ..models.schema_1061 import Schema1061
 
         d = dict(src_dict)
-        token = ScimToken.from_dict(d.pop("token"))
+        token = Schema1061.from_dict(d.pop("token"))
 
         raw_token = d.pop("rawToken")
 

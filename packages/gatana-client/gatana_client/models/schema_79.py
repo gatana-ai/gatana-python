@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,59 +15,83 @@ T = TypeVar("T", bound="Schema79")
 class Schema79:
     """
     Attributes:
-        access_token (str):
-        access_token_expires_at (float | Unset):
-        id_token (str | Unset):
-        refresh_token (str | Unset):
+        enabled (bool): Whether the health check is active
+        delay_seconds (int | None): Seconds to wait before the first health check
+        interval_seconds (int | None): Seconds between health checks
+        failure_threshold (int | None): Number of consecutive failures before the process counts as unhealthy
+        url (str | Unset):
     """
 
-    access_token: str
-    access_token_expires_at: float | Unset = UNSET
-    id_token: str | Unset = UNSET
-    refresh_token: str | Unset = UNSET
+    enabled: bool
+    delay_seconds: int | None
+    interval_seconds: int | None
+    failure_threshold: int | None
+    url: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        access_token = self.access_token
+        enabled = self.enabled
 
-        access_token_expires_at = self.access_token_expires_at
+        delay_seconds: int | None
+        delay_seconds = self.delay_seconds
 
-        id_token = self.id_token
+        interval_seconds: int | None
+        interval_seconds = self.interval_seconds
 
-        refresh_token = self.refresh_token
+        failure_threshold: int | None
+        failure_threshold = self.failure_threshold
+
+        url = self.url
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "accessToken": access_token,
+                "enabled": enabled,
+                "delaySeconds": delay_seconds,
+                "intervalSeconds": interval_seconds,
+                "failureThreshold": failure_threshold,
             }
         )
-        if access_token_expires_at is not UNSET:
-            field_dict["accessTokenExpiresAt"] = access_token_expires_at
-        if id_token is not UNSET:
-            field_dict["idToken"] = id_token
-        if refresh_token is not UNSET:
-            field_dict["refreshToken"] = refresh_token
+        if url is not UNSET:
+            field_dict["url"] = url
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        access_token = d.pop("accessToken")
+        enabled = d.pop("enabled")
 
-        access_token_expires_at = d.pop("accessTokenExpiresAt", UNSET)
+        def _parse_delay_seconds(data: object) -> int | None:
+            if data is None:
+                return data
+            return cast(int | None, data)
 
-        id_token = d.pop("idToken", UNSET)
+        delay_seconds = _parse_delay_seconds(d.pop("delaySeconds"))
 
-        refresh_token = d.pop("refreshToken", UNSET)
+        def _parse_interval_seconds(data: object) -> int | None:
+            if data is None:
+                return data
+            return cast(int | None, data)
+
+        interval_seconds = _parse_interval_seconds(d.pop("intervalSeconds"))
+
+        def _parse_failure_threshold(data: object) -> int | None:
+            if data is None:
+                return data
+            return cast(int | None, data)
+
+        failure_threshold = _parse_failure_threshold(d.pop("failureThreshold"))
+
+        url = d.pop("url", UNSET)
 
         schema_79 = cls(
-            access_token=access_token,
-            access_token_expires_at=access_token_expires_at,
-            id_token=id_token,
-            refresh_token=refresh_token,
+            enabled=enabled,
+            delay_seconds=delay_seconds,
+            interval_seconds=interval_seconds,
+            failure_threshold=failure_threshold,
+            url=url,
         )
 
         schema_79.additional_properties = d

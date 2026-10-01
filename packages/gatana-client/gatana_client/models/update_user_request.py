@@ -6,7 +6,7 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_12 import Schema12
+from ..models.schema_23 import Schema23
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UpdateUserRequest")
@@ -18,7 +18,7 @@ class UpdateUserRequest:
     Attributes:
         email (str | Unset):
         name (str | Unset):
-        role (Schema12 | Unset):
+        role (Schema23 | Unset):
         is_disabled (bool | Unset):
         is_scim_managed (bool | Unset):
         scim_external_id (str | Unset):
@@ -26,7 +26,7 @@ class UpdateUserRequest:
 
     email: str | Unset = UNSET
     name: str | Unset = UNSET
-    role: Schema12 | Unset = UNSET
+    role: Schema23 | Unset = UNSET
     is_disabled: bool | Unset = UNSET
     is_scim_managed: bool | Unset = UNSET
     scim_external_id: str | Unset = UNSET
@@ -73,11 +73,11 @@ class UpdateUserRequest:
         name = d.pop("name", UNSET)
 
         _role = d.pop("role", UNSET)
-        role: Schema12 | Unset
+        role: Schema23 | Unset
         if isinstance(_role, Unset):
             role = UNSET
         else:
-            role = Schema12(_role)
+            role = Schema23(_role)
 
         is_disabled = d.pop("isDisabled", UNSET)
 

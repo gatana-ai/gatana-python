@@ -12,12 +12,13 @@ T = TypeVar("T", bound="ProfileAssignment")
 class ProfileAssignment:
     """
     Attributes:
-        tenant_id (str):
-        user_id (str):
-        profile_id (str):
-        is_locked_by_org_owner (bool):
-        created_at (str):
-        updated_at (str):
+        tenant_id (str): ID of the tenant that owns the assignment
+        user_id (str): ID of the assigned user
+        profile_id (str): ID of the assigned profile
+        is_locked_by_org_owner (bool): Whether an organization owner locked the assignment; locked assignments take
+            priority when the active profile is resolved
+        created_at (str): Time when the assignment was created
+        updated_at (str): Time when the assignment was last updated
     """
 
     tenant_id: str

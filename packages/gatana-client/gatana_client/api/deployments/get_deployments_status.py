@@ -62,7 +62,9 @@ def sync_detailed(
     sandbox_id: str | Unset = UNSET,
     server_slug: str | Unset = UNSET,
 ) -> Response[DeploymentStatusResponse]:
-    """
+    """Get the deployment status of an MCP server or a sandbox. Provide either serverSlug or sandboxId;
+    requires read permission on the server
+
     Args:
         sandbox_id (str | Unset):
         server_slug (str | Unset):
@@ -93,7 +95,9 @@ def sync(
     sandbox_id: str | Unset = UNSET,
     server_slug: str | Unset = UNSET,
 ) -> DeploymentStatusResponse | None:
-    """
+    """Get the deployment status of an MCP server or a sandbox. Provide either serverSlug or sandboxId;
+    requires read permission on the server
+
     Args:
         sandbox_id (str | Unset):
         server_slug (str | Unset):
@@ -119,7 +123,9 @@ async def asyncio_detailed(
     sandbox_id: str | Unset = UNSET,
     server_slug: str | Unset = UNSET,
 ) -> Response[DeploymentStatusResponse]:
-    """
+    """Get the deployment status of an MCP server or a sandbox. Provide either serverSlug or sandboxId;
+    requires read permission on the server
+
     Args:
         sandbox_id (str | Unset):
         server_slug (str | Unset):
@@ -148,7 +154,9 @@ async def asyncio(
     sandbox_id: str | Unset = UNSET,
     server_slug: str | Unset = UNSET,
 ) -> DeploymentStatusResponse | None:
-    """
+    """Get the deployment status of an MCP server or a sandbox. Provide either serverSlug or sandboxId;
+    requires read permission on the server
+
     Args:
         sandbox_id (str | Unset):
         server_slug (str | Unset):

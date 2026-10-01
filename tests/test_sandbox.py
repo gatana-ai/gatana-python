@@ -10,8 +10,8 @@ import pytest
 
 from gatana_client import AuthenticatedClient
 from gatana_client.models.create_sandbox_response import CreateSandboxResponse
-from gatana_client.models.post_sandboxes_sandbox_id_write_file_response_200 import (
-    PostSandboxesSandboxIdWriteFileResponse200,
+from gatana_client.models.create_sandbox_write_file_response_200 import (
+    CreateSandboxWriteFileResponse200,
 )
 from gatana_client.models.sandbox_dto import SandboxDto
 from gatana_client.models.user_small_dto import UserSmallDto
@@ -116,7 +116,7 @@ class TestParseNdjson:
 
 
 class TestSandboxLifecycle:
-    @patch("gatana_langchain.sandbox.post_sandboxes")
+    @patch("gatana_langchain.sandbox.create_sandbox")
     def test_create_new_sandbox(
         self, mock_post: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -131,7 +131,7 @@ class TestSandboxLifecycle:
         assert sb.id == "sb-existing"
         assert sb._owns_sandbox is False
 
-    @patch("gatana_langchain.sandbox.post_sandboxes")
+    @patch("gatana_langchain.sandbox.create_sandbox")
     def test_create_fails_raises(
         self, mock_post: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -144,8 +144,8 @@ class TestSandboxLifecycle:
         with pytest.raises(RuntimeError, match="HTTP 500"):
             GatanaSandbox(client=mock_client)
 
-    @patch("gatana_langchain.sandbox.delete_sandboxes_sandbox_id")
-    @patch("gatana_langchain.sandbox.post_sandboxes")
+    @patch("gatana_langchain.sandbox.delete_sandbox")
+    @patch("gatana_langchain.sandbox.create_sandbox")
     def test_context_manager_deletes_owned(
         self,
         mock_post: MagicMock,
@@ -157,7 +157,7 @@ class TestSandboxLifecycle:
             assert sb.id == "sb-ctx"
         mock_delete.sync.assert_called_once_with("sb-ctx", client=mock_client)
 
-    @patch("gatana_langchain.sandbox.delete_sandboxes_sandbox_id")
+    @patch("gatana_langchain.sandbox.delete_sandbox")
     def test_context_manager_no_delete_for_wrapped(
         self,
         mock_delete: MagicMock,
@@ -167,8 +167,8 @@ class TestSandboxLifecycle:
             pass
         mock_delete.sync.assert_not_called()
 
-    @patch("gatana_langchain.sandbox.delete_sandboxes_sandbox_id")
-    @patch("gatana_langchain.sandbox.post_sandboxes")
+    @patch("gatana_langchain.sandbox.delete_sandbox")
+    @patch("gatana_langchain.sandbox.create_sandbox")
     def test_double_close_is_safe(
         self,
         mock_post: MagicMock,
@@ -188,7 +188,7 @@ class TestSandboxLifecycle:
 
 
 class TestExecute:
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_exec")
+    @patch("gatana_langchain.sandbox.exec_sandbox")
     def test_execute_basic(
         self, mock_exec: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -210,7 +210,7 @@ class TestExecute:
         assert call_args.args[0] == "sb-1"
         assert call_args.kwargs["body"].command == "echo hello world"
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_exec")
+    @patch("gatana_langchain.sandbox.exec_sandbox")
     def test_execute_with_timeout(
         self, mock_exec: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -226,7 +226,7 @@ class TestExecute:
         body = mock_exec.sync_detailed.call_args.kwargs["body"]
         assert body.timeout == 5.0
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_exec")
+    @patch("gatana_langchain.sandbox.exec_sandbox")
     def test_execute_nonzero_exit(
         self, mock_exec: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -251,31 +251,27 @@ class TestExecute:
 
 
 class TestFileOperations:
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_write_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_write_file")
     def test_upload_files_success(
         self, mock_write: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
-        mock_write.sync.return_value = PostSandboxesSandboxIdWriteFileResponse200(
-            success=True
-        )
+        mock_write.sync.return_value = CreateSandboxWriteFileResponse200(success=True)
         sb = GatanaSandbox(client=mock_client, sandbox_id="sb-1")
         results = sb.upload_files([("/app/test.txt", b"hello")])
         assert len(results) == 1
         assert results[0].path == "/app/test.txt"
         assert results[0].error is None
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_write_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_write_file")
     def test_upload_files_failure(
         self, mock_write: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
-        mock_write.sync.return_value = PostSandboxesSandboxIdWriteFileResponse200(
-            success=False
-        )
+        mock_write.sync.return_value = CreateSandboxWriteFileResponse200(success=False)
         sb = GatanaSandbox(client=mock_client, sandbox_id="sb-1")
         results = sb.upload_files([("/readonly/file.txt", b"data")])
         assert results[0].error == "permission_denied"
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_write_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_write_file")
     def test_upload_files_exception(
         self, mock_write: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -284,7 +280,7 @@ class TestFileOperations:
         results = sb.upload_files([("/app/fail.txt", b"data")])
         assert results[0].error == "permission_denied"
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_read_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_read_file")
     def test_download_files_success(
         self, mock_read: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -301,7 +297,7 @@ class TestFileOperations:
         assert results[0].content == b"file content here"
         assert results[0].error is None
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_read_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_read_file")
     def test_download_files_not_found(
         self, mock_read: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -316,7 +312,7 @@ class TestFileOperations:
         assert results[0].error == "file_not_found"
         assert results[0].content is None
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_read_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_read_file")
     def test_download_files_exception(
         self, mock_read: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
@@ -325,13 +321,11 @@ class TestFileOperations:
         results = sb.download_files(["/app/fail.txt"])
         assert results[0].error == "file_not_found"
 
-    @patch("gatana_langchain.sandbox.post_sandboxes_sandbox_id_write_file")
+    @patch("gatana_langchain.sandbox.create_sandbox_write_file")
     def test_upload_multiple_files(
         self, mock_write: MagicMock, mock_client: AuthenticatedClient
     ) -> None:
-        mock_write.sync.return_value = PostSandboxesSandboxIdWriteFileResponse200(
-            success=True
-        )
+        mock_write.sync.return_value = CreateSandboxWriteFileResponse200(success=True)
         sb = GatanaSandbox(client=mock_client, sandbox_id="sb-1")
         files = [
             ("/app/a.txt", b"aaa"),

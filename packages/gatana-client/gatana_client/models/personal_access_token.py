@@ -12,14 +12,14 @@ T = TypeVar("T", bound="PersonalAccessToken")
 class PersonalAccessToken:
     """
     Attributes:
-        tenant_id (str):
-        user_id (str):
-        id (str):
-        name (str):
-        api_key (str):
-        profile_ids (list[str]):
-        created_at (str):
-        last_used_at (None | str):
+        tenant_id (str): ID of the tenant that owns the token
+        user_id (str): ID of the user the token belongs to
+        id (str): Unique ID of the token
+        name (str): Display name of the token
+        api_key (str): API key of the token
+        profile_ids (list[str]): IDs of the profiles the token uses
+        created_at (str): Time when the token was created
+        last_used_at (None | str): Time when the token was last used, or null if never used
     """
 
     tenant_id: str

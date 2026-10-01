@@ -13,7 +13,7 @@ T = TypeVar("T", bound="UpdateUserProfileAssignmentRequest")
 class UpdateUserProfileAssignmentRequest:
     """
     Attributes:
-        is_locked_by_org_owner (bool):
+        is_locked_by_org_owner (bool): Whether an organization owner locks the assignment
     """
 
     is_locked_by_org_owner: bool

@@ -8,8 +8,8 @@ from attrs import define as _attrs_define
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.schema_361 import Schema361
-    from ..models.schema_367 import Schema367
+    from ..models.schema_770 import Schema770
+    from ..models.schema_776 import Schema776
 
 
 T = TypeVar("T", bound="DeploymentStatus")
@@ -19,16 +19,16 @@ T = TypeVar("T", bound="DeploymentStatus")
 class DeploymentStatus:
     """
     Attributes:
-        name (str):
-        ready (bool):
-        crash (bool):
-        restart_count (float):
-        has_previous_failure (bool):
-        last_fail_condition (None | Schema361):
+        name (str): Name of the pod
+        ready (bool): Whether all containers of the pod are ready
+        crash (bool): Whether a container is crash-looping or terminated with an error
+        restart_count (float): Number of container restarts
+        has_previous_failure (bool): Whether a previous container instance failed
+        last_fail_condition (None | Schema770): Pod condition of the last failure, or null
         phase (str | Unset):
         reason (str | Unset):
         created_at (str | Unset):
-        last_failure (Schema367 | Unset):
+        last_failure (Schema776 | Unset):
         waiting_reason (str | Unset):
     """
 
@@ -37,15 +37,15 @@ class DeploymentStatus:
     crash: bool
     restart_count: float
     has_previous_failure: bool
-    last_fail_condition: None | Schema361
+    last_fail_condition: None | Schema770
     phase: str | Unset = UNSET
     reason: str | Unset = UNSET
     created_at: str | Unset = UNSET
-    last_failure: Schema367 | Unset = UNSET
+    last_failure: Schema776 | Unset = UNSET
     waiting_reason: str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_361 import Schema361
+        from ..models.schema_770 import Schema770
 
         name = self.name
 
@@ -58,7 +58,7 @@ class DeploymentStatus:
         has_previous_failure = self.has_previous_failure
 
         last_fail_condition: dict[str, Any] | None
-        if isinstance(self.last_fail_condition, Schema361):
+        if isinstance(self.last_fail_condition, Schema770):
             last_fail_condition = self.last_fail_condition.to_dict()
         else:
             last_fail_condition = self.last_fail_condition
@@ -102,8 +102,8 @@ class DeploymentStatus:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_361 import Schema361
-        from ..models.schema_367 import Schema367
+        from ..models.schema_770 import Schema770
+        from ..models.schema_776 import Schema776
 
         d = dict(src_dict)
         name = d.pop("name")
@@ -116,18 +116,18 @@ class DeploymentStatus:
 
         has_previous_failure = d.pop("hasPreviousFailure")
 
-        def _parse_last_fail_condition(data: object) -> None | Schema361:
+        def _parse_last_fail_condition(data: object) -> None | Schema770:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema360_type_0 = Schema361.from_dict(data)
+                componentsschemas_schema769_type_0 = Schema770.from_dict(data)
 
-                return componentsschemas_schema360_type_0
+                return componentsschemas_schema769_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema361, data)
+            return cast(None | Schema770, data)
 
         last_fail_condition = _parse_last_fail_condition(d.pop("lastFailCondition"))
 
@@ -138,11 +138,11 @@ class DeploymentStatus:
         created_at = d.pop("createdAt", UNSET)
 
         _last_failure = d.pop("lastFailure", UNSET)
-        last_failure: Schema367 | Unset
+        last_failure: Schema776 | Unset
         if isinstance(_last_failure, Unset):
             last_failure = UNSET
         else:
-            last_failure = Schema367.from_dict(_last_failure)
+            last_failure = Schema776.from_dict(_last_failure)
 
         waiting_reason = d.pop("waitingReason", UNSET)
 

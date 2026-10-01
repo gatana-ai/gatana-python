@@ -12,8 +12,8 @@ T = TypeVar("T", bound="ResourceLimits")
 class ResourceLimits:
     """
     Attributes:
-        cpu_cores (float | None):
-        memory_bytes (float | None):
+        cpu_cores (float | None): CPU reserved for the deployment in cores (its guaranteed minimum under load), or null
+        memory_bytes (float | None): Memory reserved for the deployment in bytes (also its hard ceiling), or null
     """
 
     cpu_cores: float | None

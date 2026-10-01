@@ -2,9 +2,8 @@ from enum import Enum
 
 
 class Schema175(str, Enum):
-    EXTERNAL_OIDC = "external-oidc"
-    EXTERNAL_SAML = "external-saml"
-    NATIVE = "native"
+    TEAMS = "teams"
+    USERS = "users"
 
     def __str__(self) -> str:
         return str(self.value)

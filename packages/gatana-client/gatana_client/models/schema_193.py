@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class Schema193(str, Enum):
-    APIKEY = "apikey"
-    NONE = "none"
-    OAUTH = "oauth"
+    PROFILE = "profile"
+    SERVER = "server"
+    USER = "user"
 
     def __str__(self) -> str:
         return str(self.value)

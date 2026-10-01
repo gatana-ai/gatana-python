@@ -15,8 +15,8 @@ T = TypeVar("T", bound="HttpStreamingTransportConfig")
 class HttpStreamingTransportConfig:
     """
     Attributes:
-        type_ (Literal['httpstreaming']):
-        url (str):
+        type_ (Literal['httpstreaming']): Transport type discriminator, always "httpstreaming"
+        url (str): URL of the MCP streamable HTTP endpoint
         headers (list[list[str]] | Unset):
     """
 
@@ -33,14 +33,14 @@ class HttpStreamingTransportConfig:
         headers: list[list[str]] | Unset = UNSET
         if not isinstance(self.headers, Unset):
             headers = []
-            for componentsschemas_schema42_item_data in self.headers:
-                componentsschemas_schema42_item = []
-                for componentsschemas_schema42_item_item_data in componentsschemas_schema42_item_data:
-                    componentsschemas_schema42_item_item: str
-                    componentsschemas_schema42_item_item = componentsschemas_schema42_item_item_data
-                    componentsschemas_schema42_item.append(componentsschemas_schema42_item_item)
+            for componentsschemas_schema65_item_data in self.headers:
+                componentsschemas_schema65_item = []
+                for componentsschemas_schema65_item_item_data in componentsschemas_schema65_item_data:
+                    componentsschemas_schema65_item_item: str
+                    componentsschemas_schema65_item_item = componentsschemas_schema65_item_item_data
+                    componentsschemas_schema65_item.append(componentsschemas_schema65_item_item)
 
-                headers.append(componentsschemas_schema42_item)
+                headers.append(componentsschemas_schema65_item)
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -68,21 +68,21 @@ class HttpStreamingTransportConfig:
         headers: list[list[str]] | Unset = UNSET
         if _headers is not UNSET:
             headers = []
-            for componentsschemas_schema42_item_data in _headers:
-                componentsschemas_schema42_item = []
-                _componentsschemas_schema42_item = componentsschemas_schema42_item_data
-                for componentsschemas_schema42_item_item_data in _componentsschemas_schema42_item:
+            for componentsschemas_schema65_item_data in _headers:
+                componentsschemas_schema65_item = []
+                _componentsschemas_schema65_item = componentsschemas_schema65_item_data
+                for componentsschemas_schema65_item_item_data in _componentsschemas_schema65_item:
 
-                    def _parse_componentsschemas_schema42_item_item(data: object) -> str:
+                    def _parse_componentsschemas_schema65_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema42_item_item = _parse_componentsschemas_schema42_item_item(
-                        componentsschemas_schema42_item_item_data
+                    componentsschemas_schema65_item_item = _parse_componentsschemas_schema65_item_item(
+                        componentsschemas_schema65_item_item_data
                     )
 
-                    componentsschemas_schema42_item.append(componentsschemas_schema42_item_item)
+                    componentsschemas_schema65_item.append(componentsschemas_schema65_item_item)
 
-                headers.append(componentsschemas_schema42_item)
+                headers.append(componentsschemas_schema65_item)
 
         http_streaming_transport_config = cls(
             type_=type_,

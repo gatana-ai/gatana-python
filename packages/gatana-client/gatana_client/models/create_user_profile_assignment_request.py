@@ -15,7 +15,7 @@ T = TypeVar("T", bound="CreateUserProfileAssignmentRequest")
 class CreateUserProfileAssignmentRequest:
     """
     Attributes:
-        profile_id (str):
+        profile_id (str): ID of the profile to assign
         is_locked_by_org_owner (bool | Unset):
     """
 

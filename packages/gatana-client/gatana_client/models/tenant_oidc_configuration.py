@@ -5,7 +5,7 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_315 import Schema315
+from ..models.schema_679 import Schema679
 
 T = TypeVar("T", bound="TenantOidcConfiguration")
 
@@ -14,19 +14,19 @@ T = TypeVar("T", bound="TenantOidcConfiguration")
 class TenantOidcConfiguration:
     """
     Attributes:
-        is_enabled (bool):
-        display_name (str):
-        issuer (str):
-        authorize_endpoint (str):
-        extra_parameters (str):
-        token_endpoint (str):
-        user_info_endpoint (str):
-        introspection_endpoint (str):
-        jwks_uri (str):
-        client_id (str):
-        client_secret (str):
-        client_auth_method (Schema315):
-        scopes (str):
+        is_enabled (bool): Whether sign-in through the OIDC provider is enabled
+        display_name (str): Display name of the identity provider shown on the sign-in page
+        issuer (str): Issuer identifier of the OIDC provider
+        authorize_endpoint (str): URL of the authorization endpoint
+        extra_parameters (str): Extra query parameters to add to the authorization request
+        token_endpoint (str): URL of the token endpoint
+        user_info_endpoint (str): URL of the userinfo endpoint
+        introspection_endpoint (str): URL of the token introspection endpoint
+        jwks_uri (str): URL of the JSON Web Key Set
+        client_id (str): OAuth client ID
+        client_secret (str): OAuth client secret
+        client_auth_method (Schema679): Client authentication method used at the token endpoint
+        scopes (str): Space-separated OAuth scopes to request
     """
 
     is_enabled: bool
@@ -40,7 +40,7 @@ class TenantOidcConfiguration:
     jwks_uri: str
     client_id: str
     client_secret: str
-    client_auth_method: Schema315
+    client_auth_method: Schema679
     scopes: str
 
     def to_dict(self) -> dict[str, Any]:
@@ -117,7 +117,7 @@ class TenantOidcConfiguration:
 
         client_secret = d.pop("clientSecret")
 
-        client_auth_method = Schema315(d.pop("clientAuthMethod"))
+        client_auth_method = Schema679(d.pop("clientAuthMethod"))
 
         scopes = d.pop("scopes")
 

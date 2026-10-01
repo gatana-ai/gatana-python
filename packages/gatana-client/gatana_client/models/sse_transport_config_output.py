@@ -14,8 +14,8 @@ T = TypeVar("T", bound="SseTransportConfigOutput")
 class SseTransportConfigOutput:
     """
     Attributes:
-        type_ (Literal['sse']):
-        url (str):
+        type_ (Literal['sse']): Transport type discriminator, always "sse"
+        url (str): URL of the MCP SSE endpoint
         headers (list[list[str]] | Unset):
     """
 
@@ -31,14 +31,14 @@ class SseTransportConfigOutput:
         headers: list[list[str]] | Unset = UNSET
         if not isinstance(self.headers, Unset):
             headers = []
-            for componentsschemas_schema211_item_data in self.headers:
-                componentsschemas_schema211_item = []
-                for componentsschemas_schema211_item_item_data in componentsschemas_schema211_item_data:
-                    componentsschemas_schema211_item_item: str
-                    componentsschemas_schema211_item_item = componentsschemas_schema211_item_item_data
-                    componentsschemas_schema211_item.append(componentsschemas_schema211_item_item)
+            for componentsschemas_schema501_item_data in self.headers:
+                componentsschemas_schema501_item = []
+                for componentsschemas_schema501_item_item_data in componentsschemas_schema501_item_data:
+                    componentsschemas_schema501_item_item: str
+                    componentsschemas_schema501_item_item = componentsschemas_schema501_item_item_data
+                    componentsschemas_schema501_item.append(componentsschemas_schema501_item_item)
 
-                headers.append(componentsschemas_schema211_item)
+                headers.append(componentsschemas_schema501_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -66,21 +66,21 @@ class SseTransportConfigOutput:
         headers: list[list[str]] | Unset = UNSET
         if _headers is not UNSET:
             headers = []
-            for componentsschemas_schema211_item_data in _headers:
-                componentsschemas_schema211_item = []
-                _componentsschemas_schema211_item = componentsschemas_schema211_item_data
-                for componentsschemas_schema211_item_item_data in _componentsschemas_schema211_item:
+            for componentsschemas_schema501_item_data in _headers:
+                componentsschemas_schema501_item = []
+                _componentsschemas_schema501_item = componentsschemas_schema501_item_data
+                for componentsschemas_schema501_item_item_data in _componentsschemas_schema501_item:
 
-                    def _parse_componentsschemas_schema211_item_item(data: object) -> str:
+                    def _parse_componentsschemas_schema501_item_item(data: object) -> str:
                         return cast(str, data)
 
-                    componentsschemas_schema211_item_item = _parse_componentsschemas_schema211_item_item(
-                        componentsschemas_schema211_item_item_data
+                    componentsschemas_schema501_item_item = _parse_componentsschemas_schema501_item_item(
+                        componentsschemas_schema501_item_item_data
                     )
 
-                    componentsschemas_schema211_item.append(componentsschemas_schema211_item_item)
+                    componentsschemas_schema501_item.append(componentsschemas_schema501_item_item)
 
-                headers.append(componentsschemas_schema211_item)
+                headers.append(componentsschemas_schema501_item)
 
         sse_transport_config_output = cls(
             type_=type_,

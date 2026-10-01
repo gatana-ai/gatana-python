@@ -12,7 +12,7 @@ T = TypeVar("T", bound="GetScimTokenSecretResponse")
 class GetScimTokenSecretResponse:
     """
     Attributes:
-        raw_token (str):
+        raw_token (str): Raw token secret
     """
 
     raw_token: str

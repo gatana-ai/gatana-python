@@ -12,9 +12,9 @@ T = TypeVar("T", bound="UserSmallDto")
 class UserSmallDto:
     """
     Attributes:
-        id (str):
-        email (str):
-        name (str):
+        id (str): Unique ID of the user
+        email (str): Email address of the user
+        name (str): Display name of the user
     """
 
     id: str

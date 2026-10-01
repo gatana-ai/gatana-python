@@ -13,8 +13,8 @@ T = TypeVar("T", bound="ServerCredentialsApiKeys")
 class ServerCredentialsApiKeys:
     """
     Attributes:
-        type_ (Literal['apikey']):
-        apikeys (list[list[str]]):
+        type_ (Literal['apikey']): Credential type discriminator, always "apikey"
+        apikeys (list[list[str]]): API keys as [name, value] pairs
     """
 
     type_: Literal["apikey"]
@@ -25,14 +25,14 @@ class ServerCredentialsApiKeys:
         type_ = self.type_
 
         apikeys = []
-        for componentsschemas_schema81_item_data in self.apikeys:
-            componentsschemas_schema81_item = []
-            for componentsschemas_schema81_item_item_data in componentsschemas_schema81_item_data:
-                componentsschemas_schema81_item_item: str
-                componentsschemas_schema81_item_item = componentsschemas_schema81_item_item_data
-                componentsschemas_schema81_item.append(componentsschemas_schema81_item_item)
+        for componentsschemas_schema178_item_data in self.apikeys:
+            componentsschemas_schema178_item = []
+            for componentsschemas_schema179_item_data in componentsschemas_schema178_item_data:
+                componentsschemas_schema179_item: str
+                componentsschemas_schema179_item = componentsschemas_schema179_item_data
+                componentsschemas_schema178_item.append(componentsschemas_schema179_item)
 
-            apikeys.append(componentsschemas_schema81_item)
+            apikeys.append(componentsschemas_schema178_item)
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -54,21 +54,21 @@ class ServerCredentialsApiKeys:
 
         apikeys = []
         _apikeys = d.pop("apikeys")
-        for componentsschemas_schema81_item_data in _apikeys:
-            componentsschemas_schema81_item = []
-            _componentsschemas_schema81_item = componentsschemas_schema81_item_data
-            for componentsschemas_schema81_item_item_data in _componentsschemas_schema81_item:
+        for componentsschemas_schema178_item_data in _apikeys:
+            componentsschemas_schema178_item = []
+            _componentsschemas_schema178_item = componentsschemas_schema178_item_data
+            for componentsschemas_schema179_item_data in _componentsschemas_schema178_item:
 
-                def _parse_componentsschemas_schema81_item_item(data: object) -> str:
+                def _parse_componentsschemas_schema179_item(data: object) -> str:
                     return cast(str, data)
 
-                componentsschemas_schema81_item_item = _parse_componentsschemas_schema81_item_item(
-                    componentsschemas_schema81_item_item_data
+                componentsschemas_schema179_item = _parse_componentsschemas_schema179_item(
+                    componentsschemas_schema179_item_data
                 )
 
-                componentsschemas_schema81_item.append(componentsschemas_schema81_item_item)
+                componentsschemas_schema178_item.append(componentsschemas_schema179_item)
 
-            apikeys.append(componentsschemas_schema81_item)
+            apikeys.append(componentsschemas_schema178_item)
 
         server_credentials_api_keys = cls(
             type_=type_,

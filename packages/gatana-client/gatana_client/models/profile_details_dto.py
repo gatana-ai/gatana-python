@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.schema_480_item import Schema480Item
+    from ..models.schema_1006 import Schema1006
 
 
 T = TypeVar("T", bound="ProfileDetailsDto")
@@ -16,16 +16,18 @@ T = TypeVar("T", bound="ProfileDetailsDto")
 class ProfileDetailsDto:
     """
     Attributes:
-        tenant_id (str):
-        id (str):
-        created_by (str):
-        name (str):
-        description (str):
-        is_open_to_all_users (bool):
-        is_restrictive (bool):
-        created_at (str):
-        updated_at (str):
-        servers (list[Schema480Item]):
+        tenant_id (str): ID of the tenant that owns the profile
+        id (str): Unique ID of the profile
+        created_by (str): ID of the user who created the profile
+        name (str): Display name of the profile
+        description (str): Human-readable description of the profile
+        is_open_to_all_users (bool): Whether all users in the tenant can use the profile without an explicit assignment
+        is_restrictive (bool): Whether the profile restricts its users to only the servers in the profile; applies even
+            to tenant owners
+        is_code_mode_forced (bool): Whether MCP sessions that use the profile are forced into code mode
+        created_at (str): Time when the profile was created
+        updated_at (str): Time when the profile was last updated
+        servers (list[Schema1006]): Servers included in the profile
     """
 
     tenant_id: str
@@ -35,9 +37,10 @@ class ProfileDetailsDto:
     description: str
     is_open_to_all_users: bool
     is_restrictive: bool
+    is_code_mode_forced: bool
     created_at: str
     updated_at: str
-    servers: list[Schema480Item]
+    servers: list[Schema1006]
 
     def to_dict(self) -> dict[str, Any]:
         tenant_id = self.tenant_id
@@ -54,14 +57,16 @@ class ProfileDetailsDto:
 
         is_restrictive = self.is_restrictive
 
+        is_code_mode_forced = self.is_code_mode_forced
+
         created_at = self.created_at
 
         updated_at = self.updated_at
 
         servers = []
-        for componentsschemas_schema480_item_data in self.servers:
-            componentsschemas_schema480_item = componentsschemas_schema480_item_data.to_dict()
-            servers.append(componentsschemas_schema480_item)
+        for componentsschemas_schema1005_item_data in self.servers:
+            componentsschemas_schema1005_item = componentsschemas_schema1005_item_data.to_dict()
+            servers.append(componentsschemas_schema1005_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -74,6 +79,7 @@ class ProfileDetailsDto:
                 "description": description,
                 "isOpenToAllUsers": is_open_to_all_users,
                 "isRestrictive": is_restrictive,
+                "isCodeModeForced": is_code_mode_forced,
                 "createdAt": created_at,
                 "updatedAt": updated_at,
                 "servers": servers,
@@ -84,7 +90,7 @@ class ProfileDetailsDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_480_item import Schema480Item
+        from ..models.schema_1006 import Schema1006
 
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
@@ -101,16 +107,18 @@ class ProfileDetailsDto:
 
         is_restrictive = d.pop("isRestrictive")
 
+        is_code_mode_forced = d.pop("isCodeModeForced")
+
         created_at = d.pop("createdAt")
 
         updated_at = d.pop("updatedAt")
 
         servers = []
         _servers = d.pop("servers")
-        for componentsschemas_schema480_item_data in _servers:
-            componentsschemas_schema480_item = Schema480Item.from_dict(componentsschemas_schema480_item_data)
+        for componentsschemas_schema1005_item_data in _servers:
+            componentsschemas_schema1005_item = Schema1006.from_dict(componentsschemas_schema1005_item_data)
 
-            servers.append(componentsschemas_schema480_item)
+            servers.append(componentsschemas_schema1005_item)
 
         profile_details_dto = cls(
             tenant_id=tenant_id,
@@ -120,6 +128,7 @@ class ProfileDetailsDto:
             description=description,
             is_open_to_all_users=is_open_to_all_users,
             is_restrictive=is_restrictive,
+            is_code_mode_forced=is_code_mode_forced,
             created_at=created_at,
             updated_at=updated_at,
             servers=servers,

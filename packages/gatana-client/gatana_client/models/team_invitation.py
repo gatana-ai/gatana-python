@@ -5,7 +5,7 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_407 import Schema407
+from ..models.schema_888 import Schema888
 
 T = TypeVar("T", bound="TeamInvitation")
 
@@ -14,25 +14,25 @@ T = TypeVar("T", bound="TeamInvitation")
 class TeamInvitation:
     """
     Attributes:
-        id (str):
-        team_id (str):
-        tenant_id (str):
-        inviter_user_id (float | None):
-        email (str):
-        role (Schema407):
-        token (str):
-        expires_at (str):
-        accepted_at (None | str):
-        created_at (str):
-        updated_at (str):
+        id (str): Unique ID of the invitation
+        team_id (str): ID of the team the invitation is for
+        tenant_id (str): ID of the tenant that owns the invitation
+        inviter_user_id (None | str): ID of the user who sent the invitation, or null
+        email (str): Email address the invitation was sent to
+        role (Schema888):
+        token (str): Token used to accept the invitation
+        expires_at (str): Time when the invitation expires
+        accepted_at (None | str): Time when the invitation was accepted, or null
+        created_at (str): Time when the invitation was created
+        updated_at (str): Time when the invitation was last updated
     """
 
     id: str
     team_id: str
     tenant_id: str
-    inviter_user_id: float | None
+    inviter_user_id: None | str
     email: str
-    role: Schema407
+    role: Schema888
     token: str
     expires_at: str
     accepted_at: None | str
@@ -46,7 +46,7 @@ class TeamInvitation:
 
         tenant_id = self.tenant_id
 
-        inviter_user_id: float | None
+        inviter_user_id: None | str
         inviter_user_id = self.inviter_user_id
 
         email = self.email
@@ -93,16 +93,16 @@ class TeamInvitation:
 
         tenant_id = d.pop("tenantId")
 
-        def _parse_inviter_user_id(data: object) -> float | None:
+        def _parse_inviter_user_id(data: object) -> None | str:
             if data is None:
                 return data
-            return cast(float | None, data)
+            return cast(None | str, data)
 
         inviter_user_id = _parse_inviter_user_id(d.pop("inviterUserId"))
 
         email = d.pop("email")
 
-        role = Schema407(d.pop("role"))
+        role = Schema888(d.pop("role"))
 
         token = d.pop("token")
 

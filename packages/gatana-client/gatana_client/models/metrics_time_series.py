@@ -12,8 +12,8 @@ T = TypeVar("T", bound="MetricsTimeSeries")
 class MetricsTimeSeries:
     """
     Attributes:
-        timestamps (list[float]):
-        values (list[float]):
+        timestamps (list[float]): Sample times as Unix epoch timestamps in seconds
+        values (list[float]): Sampled values, aligned with timestamps
     """
 
     timestamps: list[float]

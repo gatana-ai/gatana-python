@@ -5,8 +5,8 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_272 import Schema272
-from ..models.schema_277 import Schema277
+from ..models.schema_629 import Schema629
+from ..models.schema_638 import Schema638
 
 T = TypeVar("T", bound="ServerCredentialsDto")
 
@@ -15,36 +15,34 @@ T = TypeVar("T", bound="ServerCredentialsDto")
 class ServerCredentialsDto:
     """
     Attributes:
-        id (str):
-        tenant_id (str):
-        scope (Schema272):
-        user_id (None | str):
-        profile_id (None | str):
-        last_used_at (None | str):
-        authorized_at (str):
-        type_ (Schema277):
-        created_at (str):
-        updated_at (str):
-        server_slug (str):
-        user_email (None | str):
-        user_name (None | str):
-        profile_name (None | str):
-        apikeys_present (list[str] | None):
-        has_access_token (bool | None):
-        access_token_expiry (None | str):
-        has_refresh_token (bool | None):
-        subject (None | str):
-        email (None | str):
+        id (str): Unique ID of the credential record
+        tenant_id (str): ID of the tenant that owns the credential
+        scope (Schema629):
+        user_id (None | str): ID of the owning user, or null
+        profile_id (None | str): ID of the owning profile when scope is "profile", otherwise null
+        last_used_at (None | str): Time when the credential was last used, or null if never used
+        authorized_at (str): Time when the credential was authorized
+        type_ (Schema638): Authorization method that the credential was created with
+        created_at (str): Time when the credential record was created
+        updated_at (str): Time when the credential record was last updated
+        server_slug (str): Slug of the server that the credential authorizes access to
+        user_email (None | str): Email address of the owning user, or null
+        user_name (None | str): Display name of the owning user, or null
+        profile_name (None | str): Name of the owning profile, or null
+        apikeys_present (list[str] | None): Names of the API keys that have a stored value, or null for OAuth
+            credentials
+        subject (None | str): Subject claim from the OAuth ID token, or null
+        email (None | str): Email claim from the OAuth ID token, or null
     """
 
     id: str
     tenant_id: str
-    scope: Schema272
+    scope: Schema629
     user_id: None | str
     profile_id: None | str
     last_used_at: None | str
     authorized_at: str
-    type_: Schema277
+    type_: Schema638
     created_at: str
     updated_at: str
     server_slug: str
@@ -52,9 +50,6 @@ class ServerCredentialsDto:
     user_name: None | str
     profile_name: None | str
     apikeys_present: list[str] | None
-    has_access_token: bool | None
-    access_token_expiry: None | str
-    has_refresh_token: bool | None
     subject: None | str
     email: None | str
 
@@ -100,15 +95,6 @@ class ServerCredentialsDto:
         else:
             apikeys_present = self.apikeys_present
 
-        has_access_token: bool | None
-        has_access_token = self.has_access_token
-
-        access_token_expiry: None | str
-        access_token_expiry = self.access_token_expiry
-
-        has_refresh_token: bool | None
-        has_refresh_token = self.has_refresh_token
-
         subject: None | str
         subject = self.subject
 
@@ -134,9 +120,6 @@ class ServerCredentialsDto:
                 "userName": user_name,
                 "profileName": profile_name,
                 "apikeysPresent": apikeys_present,
-                "hasAccessToken": has_access_token,
-                "accessTokenExpiry": access_token_expiry,
-                "hasRefreshToken": has_refresh_token,
                 "subject": subject,
                 "email": email,
             }
@@ -151,7 +134,7 @@ class ServerCredentialsDto:
 
         tenant_id = d.pop("tenantId")
 
-        scope = Schema272(d.pop("scope"))
+        scope = Schema629(d.pop("scope"))
 
         def _parse_user_id(data: object) -> None | str:
             if data is None:
@@ -176,7 +159,7 @@ class ServerCredentialsDto:
 
         authorized_at = d.pop("authorizedAt")
 
-        type_ = Schema277(d.pop("type"))
+        type_ = Schema638(d.pop("type"))
 
         created_at = d.pop("createdAt")
 
@@ -211,35 +194,14 @@ class ServerCredentialsDto:
             try:
                 if not isinstance(data, list):
                     raise TypeError()
-                componentsschemas_schema284_type_0 = cast(list[str], data)
+                componentsschemas_schema648_type_0 = cast(list[str], data)
 
-                return componentsschemas_schema284_type_0
+                return componentsschemas_schema648_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(list[str] | None, data)
 
         apikeys_present = _parse_apikeys_present(d.pop("apikeysPresent"))
-
-        def _parse_has_access_token(data: object) -> bool | None:
-            if data is None:
-                return data
-            return cast(bool | None, data)
-
-        has_access_token = _parse_has_access_token(d.pop("hasAccessToken"))
-
-        def _parse_access_token_expiry(data: object) -> None | str:
-            if data is None:
-                return data
-            return cast(None | str, data)
-
-        access_token_expiry = _parse_access_token_expiry(d.pop("accessTokenExpiry"))
-
-        def _parse_has_refresh_token(data: object) -> bool | None:
-            if data is None:
-                return data
-            return cast(bool | None, data)
-
-        has_refresh_token = _parse_has_refresh_token(d.pop("hasRefreshToken"))
 
         def _parse_subject(data: object) -> None | str:
             if data is None:
@@ -271,9 +233,6 @@ class ServerCredentialsDto:
             user_name=user_name,
             profile_name=profile_name,
             apikeys_present=apikeys_present,
-            has_access_token=has_access_token,
-            access_token_expiry=access_token_expiry,
-            has_refresh_token=has_refresh_token,
             subject=subject,
             email=email,
         )

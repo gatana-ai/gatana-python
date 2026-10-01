@@ -12,23 +12,24 @@ T = TypeVar("T", bound="ServerFile")
 class ServerFile:
     """
     Attributes:
-        tenant_id (str):
-        server_id (str):
-        id (str):
-        filename (str):
-        source_type (Literal['aws-secrets-manager'] | Literal['aws-ssm'] | Literal['gcs']):
-        source_id (str):
-        size (float | None):
-        credential_id (None | str):
-        created_at (str):
-        updated_at (str):
+        tenant_id (str): ID of the tenant that owns the file
+        server_id (str): ID of the server that the file belongs to
+        id (str): Unique ID of the file record
+        filename (str): Name of the file as exposed to the server
+        source_type (Literal['aws-secrets-manager'] | Literal['aws-ssm'] | Literal['gcs'] | Literal['s3']): Backing
+            store that holds the file content
+        source_id (str): Identifier of the file in the backing store
+        size (float | None): File size in bytes, or null if unknown
+        credential_id (None | str): ID of the credential used to read the file, or null
+        created_at (str): Time when the file record was created
+        updated_at (str): Time when the file record was last updated
     """
 
     tenant_id: str
     server_id: str
     id: str
     filename: str
-    source_type: Literal["aws-secrets-manager"] | Literal["aws-ssm"] | Literal["gcs"]
+    source_type: Literal["aws-secrets-manager"] | Literal["aws-ssm"] | Literal["gcs"] | Literal["s3"]
     source_id: str
     size: float | None
     credential_id: None | str
@@ -44,7 +45,7 @@ class ServerFile:
 
         filename = self.filename
 
-        source_type: Literal["aws-secrets-manager"] | Literal["aws-ssm"] | Literal["gcs"]
+        source_type: Literal["aws-secrets-manager"] | Literal["aws-ssm"] | Literal["gcs"] | Literal["s3"]
         source_type = self.source_type
 
         source_id = self.source_id
@@ -89,25 +90,33 @@ class ServerFile:
 
         filename = d.pop("filename")
 
-        def _parse_source_type(data: object) -> Literal["aws-secrets-manager"] | Literal["aws-ssm"] | Literal["gcs"]:
-            componentsschemas_schema241_type_0 = cast(Literal["gcs"], data)
-            if componentsschemas_schema241_type_0 != "gcs":
+        def _parse_source_type(
+            data: object,
+        ) -> Literal["aws-secrets-manager"] | Literal["aws-ssm"] | Literal["gcs"] | Literal["s3"]:
+            componentsschemas_schema580_type_0 = cast(Literal["gcs"], data)
+            if componentsschemas_schema580_type_0 != "gcs":
                 raise ValueError(
-                    f"/components/schemas/__schema241_type_0 must match const 'gcs', got '{componentsschemas_schema241_type_0}'"
+                    f"/components/schemas/__schema580_type_0 must match const 'gcs', got '{componentsschemas_schema580_type_0}'"
                 )
-            return componentsschemas_schema241_type_0
-            componentsschemas_schema241_type_1 = cast(Literal["aws-ssm"], data)
-            if componentsschemas_schema241_type_1 != "aws-ssm":
+            return componentsschemas_schema580_type_0
+            componentsschemas_schema580_type_1 = cast(Literal["s3"], data)
+            if componentsschemas_schema580_type_1 != "s3":
                 raise ValueError(
-                    f"/components/schemas/__schema241_type_1 must match const 'aws-ssm', got '{componentsschemas_schema241_type_1}'"
+                    f"/components/schemas/__schema580_type_1 must match const 's3', got '{componentsschemas_schema580_type_1}'"
                 )
-            return componentsschemas_schema241_type_1
-            componentsschemas_schema241_type_2 = cast(Literal["aws-secrets-manager"], data)
-            if componentsschemas_schema241_type_2 != "aws-secrets-manager":
+            return componentsschemas_schema580_type_1
+            componentsschemas_schema580_type_2 = cast(Literal["aws-ssm"], data)
+            if componentsschemas_schema580_type_2 != "aws-ssm":
                 raise ValueError(
-                    f"/components/schemas/__schema241_type_2 must match const 'aws-secrets-manager', got '{componentsschemas_schema241_type_2}'"
+                    f"/components/schemas/__schema580_type_2 must match const 'aws-ssm', got '{componentsschemas_schema580_type_2}'"
                 )
-            return componentsschemas_schema241_type_2
+            return componentsschemas_schema580_type_2
+            componentsschemas_schema580_type_3 = cast(Literal["aws-secrets-manager"], data)
+            if componentsschemas_schema580_type_3 != "aws-secrets-manager":
+                raise ValueError(
+                    f"/components/schemas/__schema580_type_3 must match const 'aws-secrets-manager', got '{componentsschemas_schema580_type_3}'"
+                )
+            return componentsschemas_schema580_type_3
 
         source_type = _parse_source_type(d.pop("sourceType"))
 

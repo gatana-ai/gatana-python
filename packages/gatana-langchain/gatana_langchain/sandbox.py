@@ -16,11 +16,11 @@ from deepagents.backends.sandbox import BaseSandbox
 
 from gatana_client import AuthenticatedClient
 from gatana_client.api.sandboxes import (
-    delete_sandboxes_sandbox_id,
-    post_sandboxes,
-    post_sandboxes_sandbox_id_exec,
-    post_sandboxes_sandbox_id_read_file,
-    post_sandboxes_sandbox_id_write_file,
+    create_sandbox,
+    create_sandbox_read_file,
+    create_sandbox_write_file,
+    delete_sandbox,
+    exec_sandbox,
 )
 from gatana_client.models.exec_command_body import ExecCommandBody
 from gatana_client.types import File
@@ -119,7 +119,7 @@ class GatanaSandbox(BaseSandbox):
             self._sandbox_id = sandbox_id
             self._owns_sandbox = False
         else:
-            resp = post_sandboxes.sync_detailed(client=self._client)
+            resp = create_sandbox.sync_detailed(client=self._client)
             if resp.parsed is None:
                 body_text = resp.content.decode(errors="replace")
                 raise RuntimeError(
@@ -160,7 +160,7 @@ class GatanaSandbox(BaseSandbox):
             command=command,
             timeout=float(timeout) if timeout is not None else timeout,
         )
-        resp = post_sandboxes_sandbox_id_exec.sync_detailed(
+        resp = exec_sandbox.sync_detailed(
             self._sandbox_id,
             client=self._client,
             body=body,
@@ -189,7 +189,7 @@ class GatanaSandbox(BaseSandbox):
         for path, content in files:
             try:
                 file_obj = File(payload=io.BytesIO(content))
-                result = post_sandboxes_sandbox_id_write_file.sync(
+                result = create_sandbox_write_file.sync(
                     self._sandbox_id,
                     client=self._client,
                     body=file_obj,
@@ -224,7 +224,7 @@ class GatanaSandbox(BaseSandbox):
         responses: list[FileDownloadResponse] = []
         for path in paths:
             try:
-                resp = post_sandboxes_sandbox_id_read_file.sync_detailed(
+                resp = create_sandbox_read_file.sync_detailed(
                     self._sandbox_id,
                     client=self._client,
                     path=path,
@@ -263,7 +263,7 @@ class GatanaSandbox(BaseSandbox):
         self._closed = True
         if self._owns_sandbox:
             try:
-                delete_sandboxes_sandbox_id.sync(self._sandbox_id, client=self._client)
+                delete_sandbox.sync(self._sandbox_id, client=self._client)
             except Exception:
                 logger.exception("Failed to delete sandbox %s", self._sandbox_id)
 

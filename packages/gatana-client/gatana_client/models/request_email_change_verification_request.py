@@ -13,7 +13,7 @@ T = TypeVar("T", bound="RequestEmailChangeVerificationRequest")
 class RequestEmailChangeVerificationRequest:
     """
     Attributes:
-        email (str):
+        email (str): New email address to verify
     """
 
     email: str

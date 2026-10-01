@@ -6,7 +6,8 @@ from typing import Any, Literal, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.schema_36 import Schema36
+from ..models.schema_55 import Schema55
+from ..models.tool_refresh_credential_policy import ToolRefreshCredentialPolicy
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ServerAuthorization")
@@ -16,14 +17,17 @@ T = TypeVar("T", bound="ServerAuthorization")
 class ServerAuthorization:
     """
     Attributes:
-        method (Schema36):
-        credentials_scope (Literal['server'] | Literal['user']):
+        method (Schema55): Authorization method that the server uses
+        credentials_scope (Literal['server'] | Literal['user']): Whether credentials are shared for the whole server or
+            stored per user
         apikeys (list[str] | Unset):
+        tool_refresh_credential_policy (ToolRefreshCredentialPolicy | Unset):
     """
 
-    method: Schema36
+    method: Schema55
     credentials_scope: Literal["server"] | Literal["user"]
     apikeys: list[str] | Unset = UNSET
+    tool_refresh_credential_policy: ToolRefreshCredentialPolicy | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -36,6 +40,10 @@ class ServerAuthorization:
         if not isinstance(self.apikeys, Unset):
             apikeys = self.apikeys
 
+        tool_refresh_credential_policy: str | Unset = UNSET
+        if not isinstance(self.tool_refresh_credential_policy, Unset):
+            tool_refresh_credential_policy = self.tool_refresh_credential_policy.value
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -46,36 +54,46 @@ class ServerAuthorization:
         )
         if apikeys is not UNSET:
             field_dict["apikeys"] = apikeys
+        if tool_refresh_credential_policy is not UNSET:
+            field_dict["toolRefreshCredentialPolicy"] = tool_refresh_credential_policy
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        method = Schema36(d.pop("method"))
+        method = Schema55(d.pop("method"))
 
         def _parse_credentials_scope(data: object) -> Literal["server"] | Literal["user"]:
-            componentsschemas_schema37_type_0 = cast(Literal["server"], data)
-            if componentsschemas_schema37_type_0 != "server":
+            componentsschemas_schema56_type_0 = cast(Literal["server"], data)
+            if componentsschemas_schema56_type_0 != "server":
                 raise ValueError(
-                    f"/components/schemas/__schema37_type_0 must match const 'server', got '{componentsschemas_schema37_type_0}'"
+                    f"/components/schemas/__schema56_type_0 must match const 'server', got '{componentsschemas_schema56_type_0}'"
                 )
-            return componentsschemas_schema37_type_0
-            componentsschemas_schema37_type_1 = cast(Literal["user"], data)
-            if componentsschemas_schema37_type_1 != "user":
+            return componentsschemas_schema56_type_0
+            componentsschemas_schema56_type_1 = cast(Literal["user"], data)
+            if componentsschemas_schema56_type_1 != "user":
                 raise ValueError(
-                    f"/components/schemas/__schema37_type_1 must match const 'user', got '{componentsschemas_schema37_type_1}'"
+                    f"/components/schemas/__schema56_type_1 must match const 'user', got '{componentsschemas_schema56_type_1}'"
                 )
-            return componentsschemas_schema37_type_1
+            return componentsschemas_schema56_type_1
 
         credentials_scope = _parse_credentials_scope(d.pop("credentialsScope"))
 
         apikeys = cast(list[str], d.pop("apikeys", UNSET))
 
+        _tool_refresh_credential_policy = d.pop("toolRefreshCredentialPolicy", UNSET)
+        tool_refresh_credential_policy: ToolRefreshCredentialPolicy | Unset
+        if isinstance(_tool_refresh_credential_policy, Unset):
+            tool_refresh_credential_policy = UNSET
+        else:
+            tool_refresh_credential_policy = ToolRefreshCredentialPolicy(_tool_refresh_credential_policy)
+
         server_authorization = cls(
             method=method,
             credentials_scope=credentials_scope,
             apikeys=apikeys,
+            tool_refresh_credential_policy=tool_refresh_credential_policy,
         )
 
         server_authorization.additional_properties = d

@@ -7,7 +7,7 @@ from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
     from ..models.audit_log_response import AuditLogResponse
-    from ..models.schema_151 import Schema151
+    from ..models.schema_410 import Schema410
 
 
 T = TypeVar("T", bound="PaginatedAuditLogResponse")
@@ -17,20 +17,20 @@ T = TypeVar("T", bound="PaginatedAuditLogResponse")
 class PaginatedAuditLogResponse:
     """
     Attributes:
-        pagination (Schema151):
-        data (list[AuditLogResponse]):
+        pagination (Schema410): Pagination metadata
+        data (list[AuditLogResponse]): Items on the current page
     """
 
-    pagination: Schema151
+    pagination: Schema410
     data: list[AuditLogResponse]
 
     def to_dict(self) -> dict[str, Any]:
         pagination = self.pagination.to_dict()
 
         data = []
-        for componentsschemas_schema152_item_data in self.data:
-            componentsschemas_schema152_item = componentsschemas_schema152_item_data.to_dict()
-            data.append(componentsschemas_schema152_item)
+        for componentsschemas_schema417_item_data in self.data:
+            componentsschemas_schema417_item = componentsschemas_schema417_item_data.to_dict()
+            data.append(componentsschemas_schema417_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -46,17 +46,17 @@ class PaginatedAuditLogResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.audit_log_response import AuditLogResponse
-        from ..models.schema_151 import Schema151
+        from ..models.schema_410 import Schema410
 
         d = dict(src_dict)
-        pagination = Schema151.from_dict(d.pop("pagination"))
+        pagination = Schema410.from_dict(d.pop("pagination"))
 
         data = []
         _data = d.pop("data")
-        for componentsschemas_schema152_item_data in _data:
-            componentsschemas_schema152_item = AuditLogResponse.from_dict(componentsschemas_schema152_item_data)
+        for componentsschemas_schema417_item_data in _data:
+            componentsschemas_schema417_item = AuditLogResponse.from_dict(componentsschemas_schema417_item_data)
 
-            data.append(componentsschemas_schema152_item)
+            data.append(componentsschemas_schema417_item)
 
         paginated_audit_log_response = cls(
             pagination=pagination,

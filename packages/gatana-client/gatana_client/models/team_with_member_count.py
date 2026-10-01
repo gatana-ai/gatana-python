@@ -12,15 +12,16 @@ T = TypeVar("T", bound="TeamWithMemberCount")
 class TeamWithMemberCount:
     """
     Attributes:
-        id (str):
-        tenant_id (str):
-        name (str):
-        description (str):
-        is_scim_managed (bool):
-        scim_external_id (str):
-        created_at (str):
-        updated_at (str):
-        member_count (float):
+        id (str): Unique ID of the team
+        tenant_id (str): ID of the tenant that owns the team
+        name (str): Display name of the team, unique in the organization
+        description (str): Human-readable description of the team
+        is_scim_managed (bool): Whether the team is managed through SCIM provisioning
+        scim_external_id (str): SCIM external ID of the team
+        created_at (str): Time when the team was created
+        updated_at (str): Time when the team was last updated
+        member_count (float): Number of members in the team
+        has_profile_attached (bool): Whether at least one profile is assigned to the team
     """
 
     id: str
@@ -32,6 +33,7 @@ class TeamWithMemberCount:
     created_at: str
     updated_at: str
     member_count: float
+    has_profile_attached: bool
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -52,6 +54,8 @@ class TeamWithMemberCount:
 
         member_count = self.member_count
 
+        has_profile_attached = self.has_profile_attached
+
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -65,6 +69,7 @@ class TeamWithMemberCount:
                 "createdAt": created_at,
                 "updatedAt": updated_at,
                 "memberCount": member_count,
+                "hasProfileAttached": has_profile_attached,
             }
         )
 
@@ -91,6 +96,8 @@ class TeamWithMemberCount:
 
         member_count = d.pop("memberCount")
 
+        has_profile_attached = d.pop("hasProfileAttached")
+
         team_with_member_count = cls(
             id=id,
             tenant_id=tenant_id,
@@ -101,6 +108,7 @@ class TeamWithMemberCount:
             created_at=created_at,
             updated_at=updated_at,
             member_count=member_count,
+            has_profile_attached=has_profile_attached,
         )
 
         return team_with_member_count

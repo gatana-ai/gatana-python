@@ -62,7 +62,7 @@ def sync_detailed(
     user_id: str | Unset = UNSET,
     team_id: str | Unset = UNSET,
 ) -> Response[GetMcpServersAccessPreviewResponse200]:
-    """Preview which servers a specific user or team can access.
+    """Preview which servers a specific user or team can access
 
     Args:
         user_id (str | Unset):
@@ -94,7 +94,7 @@ def sync(
     user_id: str | Unset = UNSET,
     team_id: str | Unset = UNSET,
 ) -> GetMcpServersAccessPreviewResponse200 | None:
-    """Preview which servers a specific user or team can access.
+    """Preview which servers a specific user or team can access
 
     Args:
         user_id (str | Unset):
@@ -121,7 +121,7 @@ async def asyncio_detailed(
     user_id: str | Unset = UNSET,
     team_id: str | Unset = UNSET,
 ) -> Response[GetMcpServersAccessPreviewResponse200]:
-    """Preview which servers a specific user or team can access.
+    """Preview which servers a specific user or team can access
 
     Args:
         user_id (str | Unset):
@@ -151,7 +151,7 @@ async def asyncio(
     user_id: str | Unset = UNSET,
     team_id: str | Unset = UNSET,
 ) -> GetMcpServersAccessPreviewResponse200 | None:
-    """Preview which servers a specific user or team can access.
+    """Preview which servers a specific user or team can access
 
     Args:
         user_id (str | Unset):

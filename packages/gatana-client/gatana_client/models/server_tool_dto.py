@@ -6,9 +6,10 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 
 if TYPE_CHECKING:
-    from ..models.schema_261 import Schema261
-    from ..models.schema_262_type_0 import Schema262Type0
-    from ..models.schema_263_type_0 import Schema263Type0
+    from ..models.schema_608 import Schema608
+    from ..models.schema_610 import Schema610
+    from ..models.schema_612 import Schema612
+    from ..models.schema_616 import Schema616
 
 
 T = TypeVar("T", bound="ServerToolDto")
@@ -18,13 +19,19 @@ T = TypeVar("T", bound="ServerToolDto")
 class ServerToolDto:
     """
     Attributes:
-        tenant_id (str):
-        tool_name (str):
-        description (str):
-        schema (Schema261):
-        output_schema (None | Schema262Type0):
-        annotations (None | Schema263Type0):
-        is_enabled (bool):
+        tenant_id (str): ID of the tenant that owns the tool
+        tool_name (str): Tool name as reported by the MCP server
+        description (str): Tool description as reported by the MCP server
+        schema (Schema608): JSON schema for the tool input
+        output_schema (None | Schema610): JSON schema for the tool output, or null if the server does not provide one
+        annotations (None | Schema612): Tool annotations as reported by the MCP server, or null if none
+        is_enabled (bool): Whether the tool is enabled and exposed to clients
+        tool_name_override (str): Replacement tool name, applied when overrideToolName is true
+        description_override (str): Replacement description, applied when overrideDescription is true
+        input_schema_override (Schema616): Replacement input schema, applied when overrideInputSchema is true
+        override_tool_name (bool): Whether toolNameOverride replaces the original tool name
+        override_description (bool): Whether descriptionOverride replaces the original description
+        override_input_schema (bool | None): Whether inputSchemaOverride replaces the original input schema
         server_slug (str):
         universal_name (str):
     """
@@ -32,16 +39,22 @@ class ServerToolDto:
     tenant_id: str
     tool_name: str
     description: str
-    schema: Schema261
-    output_schema: None | Schema262Type0
-    annotations: None | Schema263Type0
+    schema: Schema608
+    output_schema: None | Schema610
+    annotations: None | Schema612
     is_enabled: bool
+    tool_name_override: str
+    description_override: str
+    input_schema_override: Schema616
+    override_tool_name: bool
+    override_description: bool
+    override_input_schema: bool | None
     server_slug: str
     universal_name: str
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.schema_262_type_0 import Schema262Type0
-        from ..models.schema_263_type_0 import Schema263Type0
+        from ..models.schema_610 import Schema610
+        from ..models.schema_612 import Schema612
 
         tenant_id = self.tenant_id
 
@@ -52,18 +65,31 @@ class ServerToolDto:
         schema = self.schema.to_dict()
 
         output_schema: dict[str, Any] | None
-        if isinstance(self.output_schema, Schema262Type0):
+        if isinstance(self.output_schema, Schema610):
             output_schema = self.output_schema.to_dict()
         else:
             output_schema = self.output_schema
 
         annotations: dict[str, Any] | None
-        if isinstance(self.annotations, Schema263Type0):
+        if isinstance(self.annotations, Schema612):
             annotations = self.annotations.to_dict()
         else:
             annotations = self.annotations
 
         is_enabled = self.is_enabled
+
+        tool_name_override = self.tool_name_override
+
+        description_override = self.description_override
+
+        input_schema_override = self.input_schema_override.to_dict()
+
+        override_tool_name = self.override_tool_name
+
+        override_description = self.override_description
+
+        override_input_schema: bool | None
+        override_input_schema = self.override_input_schema
 
         server_slug = self.server_slug
 
@@ -80,6 +106,12 @@ class ServerToolDto:
                 "outputSchema": output_schema,
                 "annotations": annotations,
                 "isEnabled": is_enabled,
+                "toolNameOverride": tool_name_override,
+                "descriptionOverride": description_override,
+                "inputSchemaOverride": input_schema_override,
+                "overrideToolName": override_tool_name,
+                "overrideDescription": override_description,
+                "overrideInputSchema": override_input_schema,
                 "serverSlug": server_slug,
                 "universalName": universal_name,
             }
@@ -89,9 +121,10 @@ class ServerToolDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.schema_261 import Schema261
-        from ..models.schema_262_type_0 import Schema262Type0
-        from ..models.schema_263_type_0 import Schema263Type0
+        from ..models.schema_608 import Schema608
+        from ..models.schema_610 import Schema610
+        from ..models.schema_612 import Schema612
+        from ..models.schema_616 import Schema616
 
         d = dict(src_dict)
         tenant_id = d.pop("tenantId")
@@ -100,39 +133,56 @@ class ServerToolDto:
 
         description = d.pop("description")
 
-        schema = Schema261.from_dict(d.pop("schema"))
+        schema = Schema608.from_dict(d.pop("schema"))
 
-        def _parse_output_schema(data: object) -> None | Schema262Type0:
+        def _parse_output_schema(data: object) -> None | Schema610:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema262_type_0 = Schema262Type0.from_dict(data)
+                componentsschemas_schema609_type_0 = Schema610.from_dict(data)
 
-                return componentsschemas_schema262_type_0
+                return componentsschemas_schema609_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema262Type0, data)
+            return cast(None | Schema610, data)
 
         output_schema = _parse_output_schema(d.pop("outputSchema"))
 
-        def _parse_annotations(data: object) -> None | Schema263Type0:
+        def _parse_annotations(data: object) -> None | Schema612:
             if data is None:
                 return data
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema263_type_0 = Schema263Type0.from_dict(data)
+                componentsschemas_schema611_type_0 = Schema612.from_dict(data)
 
-                return componentsschemas_schema263_type_0
+                return componentsschemas_schema611_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(None | Schema263Type0, data)
+            return cast(None | Schema612, data)
 
         annotations = _parse_annotations(d.pop("annotations"))
 
         is_enabled = d.pop("isEnabled")
+
+        tool_name_override = d.pop("toolNameOverride")
+
+        description_override = d.pop("descriptionOverride")
+
+        input_schema_override = Schema616.from_dict(d.pop("inputSchemaOverride"))
+
+        override_tool_name = d.pop("overrideToolName")
+
+        override_description = d.pop("overrideDescription")
+
+        def _parse_override_input_schema(data: object) -> bool | None:
+            if data is None:
+                return data
+            return cast(bool | None, data)
+
+        override_input_schema = _parse_override_input_schema(d.pop("overrideInputSchema"))
 
         server_slug = d.pop("serverSlug")
 
@@ -146,6 +196,12 @@ class ServerToolDto:
             output_schema=output_schema,
             annotations=annotations,
             is_enabled=is_enabled,
+            tool_name_override=tool_name_override,
+            description_override=description_override,
+            input_schema_override=input_schema_override,
+            override_tool_name=override_tool_name,
+            override_description=override_description,
+            override_input_schema=override_input_schema,
             server_slug=server_slug,
             universal_name=universal_name,
         )
