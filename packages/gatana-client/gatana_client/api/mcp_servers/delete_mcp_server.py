@@ -6,7 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_575 import Schema575
+from ...models.schema_578 import Schema578
 from ...types import Response
 
 
@@ -23,9 +23,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema575 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema578 | None:
     if response.status_code == 200:
-        response_200 = Schema575.from_dict(response.json())
+        response_200 = Schema578.from_dict(response.json())
 
         return response_200
 
@@ -35,7 +35,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema575]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema578]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -48,7 +48,7 @@ def sync_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema575]:
+) -> Response[Schema578]:
     """Delete an MCP server
 
     Args:
@@ -59,7 +59,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema575]
+        Response[Schema578]
     """
 
     kwargs = _get_kwargs(
@@ -77,7 +77,7 @@ def sync(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Schema575 | None:
+) -> Schema578 | None:
     """Delete an MCP server
 
     Args:
@@ -88,7 +88,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema575
+        Schema578
     """
 
     return sync_detailed(
@@ -101,7 +101,7 @@ async def asyncio_detailed(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema575]:
+) -> Response[Schema578]:
     """Delete an MCP server
 
     Args:
@@ -112,7 +112,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema575]
+        Response[Schema578]
     """
 
     kwargs = _get_kwargs(
@@ -128,7 +128,7 @@ async def asyncio(
     server_slug: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Schema575 | None:
+) -> Schema578 | None:
     """Delete an MCP server
 
     Args:
@@ -139,7 +139,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema575
+        Schema578
     """
 
     return (

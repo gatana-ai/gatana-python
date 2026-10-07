@@ -12,10 +12,10 @@ T = TypeVar("T", bound="Schema863")
 class Schema863:
     """
     Attributes:
-        type_ (Literal['done']): Event type discriminator, always "done"
+        type_ (Literal['mainContainerRunning']): Event type discriminator, always "mainContainerRunning"
     """
 
-    type_: Literal["done"]
+    type_: Literal["mainContainerRunning"]
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
@@ -33,9 +33,9 @@ class Schema863:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Literal["done"], d.pop("type"))
-        if type_ != "done":
-            raise ValueError(f"type must match const 'done', got '{type_}'")
+        type_ = cast(Literal["mainContainerRunning"], d.pop("type"))
+        if type_ != "mainContainerRunning":
+            raise ValueError(f"type must match const 'mainContainerRunning', got '{type_}'")
 
         schema_863 = cls(
             type_=type_,

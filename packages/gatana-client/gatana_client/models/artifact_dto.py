@@ -5,8 +5,8 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_1086 import Schema1086
-from ..models.schema_1087 import Schema1087
+from ..models.schema_1090 import Schema1090
+from ..models.schema_1091 import Schema1091
 
 T = TypeVar("T", bound="ArtifactDto")
 
@@ -20,8 +20,8 @@ class ArtifactDto:
         created_by_user_id (str):
         created_by_user_name (str): Display name of the creator, empty when no name is set
         created_by_user_email (str): Email of the creator
-        visibility (Schema1086):
-        theme (Schema1087):
+        visibility (Schema1090):
+        theme (Schema1091):
         current_version (float):
         shared_with_user_ids (list[str]): IDs of the users the artifact is shared with
         shared_with_team_ids (list[str]): IDs of the teams the artifact is shared with
@@ -35,8 +35,8 @@ class ArtifactDto:
     created_by_user_id: str
     created_by_user_name: str
     created_by_user_email: str
-    visibility: Schema1086
-    theme: Schema1087
+    visibility: Schema1090
+    theme: Schema1091
     current_version: float
     shared_with_user_ids: list[str]
     shared_with_team_ids: list[str]
@@ -106,9 +106,9 @@ class ArtifactDto:
 
         created_by_user_email = d.pop("createdByUserEmail")
 
-        visibility = Schema1086(d.pop("visibility"))
+        visibility = Schema1090(d.pop("visibility"))
 
-        theme = Schema1087(d.pop("theme"))
+        theme = Schema1091(d.pop("theme"))
 
         current_version = d.pop("currentVersion")
 

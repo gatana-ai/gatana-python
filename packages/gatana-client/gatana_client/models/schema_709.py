@@ -2,11 +2,8 @@ from enum import Enum
 
 
 class Schema709(str, Enum):
-    DETAILED = "detailed"
-    DETAILED_WITH_ERROR = "detailed-with-error"
-    OFF = "off"
-    TERSE = "terse"
-    VERBOSE = "verbose"
+    ENGLISH = "english"
+    MULTILINGUAL = "multilingual"
 
     def __str__(self) -> str:
         return str(self.value)

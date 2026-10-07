@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from ..models.open_api_transport_config_output import OpenApiTransportConfigOutput
     from ..models.schema_462 import Schema462
     from ..models.schema_503 import Schema503
-    from ..models.schema_572 import Schema572
+    from ..models.schema_575 import Schema575
     from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
     from ..models.server_o_auth_metadata import ServerOAuthMetadata
     from ..models.sse_transport_config_output import SseTransportConfigOutput
@@ -42,6 +42,8 @@ class ListMcpServersResponse200ServersItem:
         visibility (Schema561):
         is_enabled (bool): Whether the server is enabled
         last_tool_refresh_at (None | str): Time of the last tool refresh, or null if tools were never refreshed
+        mcp_protocol_version (str): MCP protocol version the server was last seen to speak, or empty if not yet detected
+        mcp_protocol_detected_at (None | str): Time when the protocol version was last detected, or null if never
         timeout_protocol (int): Timeout in seconds for a single protocol request to the server
         timeout_total (int): Total timeout in seconds for a tool call, including progress notifications
         reset_timeout_on_progress_notification (bool): Whether a progress notification resets the protocol timeout
@@ -50,7 +52,7 @@ class ListMcpServersResponse200ServersItem:
         is_output_compression_transform_enabled (bool): Whether the compression transform step is applied to tool
             outputs
         output_compression_threshold_bytes (int): Minimum output size in bytes before compression is applied
-        firewall_rules (list[Schema572]): Firewall rules evaluated against tool calls to the server
+        firewall_rules (list[Schema575]): Firewall rules evaluated against tool calls to the server
         created_at (str): Time when the server was created
         updated_at (str): Time when the server was last updated
         usage (ListMcpServersResponse200ServersItemUsage):
@@ -74,13 +76,15 @@ class ListMcpServersResponse200ServersItem:
     visibility: Schema561
     is_enabled: bool
     last_tool_refresh_at: None | str
+    mcp_protocol_version: str
+    mcp_protocol_detected_at: None | str
     timeout_protocol: int
     timeout_total: int
     reset_timeout_on_progress_notification: bool
     is_output_compression_enabled: bool
     is_output_compression_transform_enabled: bool
     output_compression_threshold_bytes: int
-    firewall_rules: list[Schema572]
+    firewall_rules: list[Schema575]
     created_at: str
     updated_at: str
     usage: ListMcpServersResponse200ServersItemUsage
@@ -137,6 +141,11 @@ class ListMcpServersResponse200ServersItem:
         last_tool_refresh_at: None | str
         last_tool_refresh_at = self.last_tool_refresh_at
 
+        mcp_protocol_version = self.mcp_protocol_version
+
+        mcp_protocol_detected_at: None | str
+        mcp_protocol_detected_at = self.mcp_protocol_detected_at
+
         timeout_protocol = self.timeout_protocol
 
         timeout_total = self.timeout_total
@@ -150,9 +159,9 @@ class ListMcpServersResponse200ServersItem:
         output_compression_threshold_bytes = self.output_compression_threshold_bytes
 
         firewall_rules = []
-        for componentsschemas_schema571_item_data in self.firewall_rules:
-            componentsschemas_schema571_item = componentsschemas_schema571_item_data.to_dict()
-            firewall_rules.append(componentsschemas_schema571_item)
+        for componentsschemas_schema574_item_data in self.firewall_rules:
+            componentsschemas_schema574_item = componentsschemas_schema574_item_data.to_dict()
+            firewall_rules.append(componentsschemas_schema574_item)
 
         created_at = self.created_at
 
@@ -175,6 +184,8 @@ class ListMcpServersResponse200ServersItem:
                 "visibility": visibility,
                 "isEnabled": is_enabled,
                 "lastToolRefreshAt": last_tool_refresh_at,
+                "mcpProtocolVersion": mcp_protocol_version,
+                "mcpProtocolDetectedAt": mcp_protocol_detected_at,
                 "timeoutProtocol": timeout_protocol,
                 "timeoutTotal": timeout_total,
                 "resetTimeoutOnProgressNotification": reset_timeout_on_progress_notification,
@@ -198,7 +209,7 @@ class ListMcpServersResponse200ServersItem:
         from ..models.open_api_transport_config_output import OpenApiTransportConfigOutput
         from ..models.schema_462 import Schema462
         from ..models.schema_503 import Schema503
-        from ..models.schema_572 import Schema572
+        from ..models.schema_575 import Schema575
         from ..models.server_o_auth_client_configuration import ServerOAuthClientConfiguration
         from ..models.server_o_auth_metadata import ServerOAuthMetadata
         from ..models.sse_transport_config_output import SseTransportConfigOutput
@@ -314,6 +325,15 @@ class ListMcpServersResponse200ServersItem:
 
         last_tool_refresh_at = _parse_last_tool_refresh_at(d.pop("lastToolRefreshAt"))
 
+        mcp_protocol_version = d.pop("mcpProtocolVersion")
+
+        def _parse_mcp_protocol_detected_at(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        mcp_protocol_detected_at = _parse_mcp_protocol_detected_at(d.pop("mcpProtocolDetectedAt"))
+
         timeout_protocol = d.pop("timeoutProtocol")
 
         timeout_total = d.pop("timeoutTotal")
@@ -328,10 +348,10 @@ class ListMcpServersResponse200ServersItem:
 
         firewall_rules = []
         _firewall_rules = d.pop("firewallRules")
-        for componentsschemas_schema571_item_data in _firewall_rules:
-            componentsschemas_schema571_item = Schema572.from_dict(componentsschemas_schema571_item_data)
+        for componentsschemas_schema574_item_data in _firewall_rules:
+            componentsschemas_schema574_item = Schema575.from_dict(componentsschemas_schema574_item_data)
 
-            firewall_rules.append(componentsschemas_schema571_item)
+            firewall_rules.append(componentsschemas_schema574_item)
 
         created_at = d.pop("createdAt")
 
@@ -351,6 +371,8 @@ class ListMcpServersResponse200ServersItem:
             visibility=visibility,
             is_enabled=is_enabled,
             last_tool_refresh_at=last_tool_refresh_at,
+            mcp_protocol_version=mcp_protocol_version,
+            mcp_protocol_detected_at=mcp_protocol_detected_at,
             timeout_protocol=timeout_protocol,
             timeout_total=timeout_total,
             reset_timeout_on_progress_notification=reset_timeout_on_progress_notification,

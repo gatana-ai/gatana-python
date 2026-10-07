@@ -5,9 +5,9 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-from ..models.schema_1086 import Schema1086
-from ..models.schema_1087 import Schema1087
-from ..models.schema_1107 import Schema1107
+from ..models.schema_1090 import Schema1090
+from ..models.schema_1091 import Schema1091
+from ..models.schema_1111 import Schema1111
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ArtifactContentResponse")
@@ -19,20 +19,20 @@ class ArtifactContentResponse:
     Attributes:
         html (str): The served document: rendered to HTML when the version is Markdown, with the theme stylesheet linked
             in, as the content frame serves it
-        content_type (Schema1107):
+        content_type (Schema1111):
         version (float):
         title (str):
-        visibility (Schema1086):
-        theme (Schema1087):
+        visibility (Schema1090):
+        theme (Schema1091):
         source (str | Unset):
     """
 
     html: str
-    content_type: Schema1107
+    content_type: Schema1111
     version: float
     title: str
-    visibility: Schema1086
-    theme: Schema1087
+    visibility: Schema1090
+    theme: Schema1091
     source: str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
@@ -72,15 +72,15 @@ class ArtifactContentResponse:
         d = dict(src_dict)
         html = d.pop("html")
 
-        content_type = Schema1107(d.pop("contentType"))
+        content_type = Schema1111(d.pop("contentType"))
 
         version = d.pop("version")
 
         title = d.pop("title")
 
-        visibility = Schema1086(d.pop("visibility"))
+        visibility = Schema1090(d.pop("visibility"))
 
-        theme = Schema1087(d.pop("theme"))
+        theme = Schema1091(d.pop("theme"))
 
         source = d.pop("source", UNSET)
 

@@ -5,7 +5,7 @@ from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
-from ..models.schema_963 import Schema963
+from ..models.schema_967 import Schema967
 
 T = TypeVar("T", bound="SiemDestinationResponse")
 
@@ -20,7 +20,7 @@ class SiemDestinationResponse:
         auth_header_name (None | str): Name of the custom auth header, or null when none is configured
         has_auth_header_value (bool): Whether a custom auth header value is stored. The value itself is never returned
         is_enabled (bool): The tenant admin's on/off switch
-        status (Schema963): Delivery status, maintained by the export job
+        status (Schema967): Delivery status, maintained by the export job
         export_audit_logs (bool): Whether audit log events are streamed
         export_credential_audit_logs (bool): Whether credential audit log events are streamed
         consecutive_failures (float): Number of delivery attempts that failed in a row
@@ -39,7 +39,7 @@ class SiemDestinationResponse:
     auth_header_name: None | str
     has_auth_header_value: bool
     is_enabled: bool
-    status: Schema963
+    status: Schema967
     export_audit_logs: bool
     export_credential_audit_logs: bool
     consecutive_failures: float
@@ -138,7 +138,7 @@ class SiemDestinationResponse:
 
         is_enabled = d.pop("isEnabled")
 
-        status = Schema963(d.pop("status"))
+        status = Schema967(d.pop("status"))
 
         export_audit_logs = d.pop("exportAuditLogs")
 

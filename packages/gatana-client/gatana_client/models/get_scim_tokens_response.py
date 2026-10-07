@@ -23,9 +23,9 @@ class GetScimTokensResponse:
 
     def to_dict(self) -> dict[str, Any]:
         tokens = []
-        for componentsschemas_schema1050_item_data in self.tokens:
-            componentsschemas_schema1050_item = componentsschemas_schema1050_item_data.to_dict()
-            tokens.append(componentsschemas_schema1050_item)
+        for componentsschemas_schema1054_item_data in self.tokens:
+            componentsschemas_schema1054_item = componentsschemas_schema1054_item_data.to_dict()
+            tokens.append(componentsschemas_schema1054_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -44,10 +44,10 @@ class GetScimTokensResponse:
         d = dict(src_dict)
         tokens = []
         _tokens = d.pop("tokens")
-        for componentsschemas_schema1050_item_data in _tokens:
-            componentsschemas_schema1050_item = ScimToken.from_dict(componentsschemas_schema1050_item_data)
+        for componentsschemas_schema1054_item_data in _tokens:
+            componentsschemas_schema1054_item = ScimToken.from_dict(componentsschemas_schema1054_item_data)
 
-            tokens.append(componentsschemas_schema1050_item)
+            tokens.append(componentsschemas_schema1054_item)
 
         get_scim_tokens_response = cls(
             tokens=tokens,

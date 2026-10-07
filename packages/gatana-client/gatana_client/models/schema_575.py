@@ -1,14 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
-if TYPE_CHECKING:
-    from ..models.server_dto import ServerDto
-    from ..models.server_file import ServerFile
-
+from ..models.schema_575_action import Schema575Action
 
 T = TypeVar("T", bound="Schema575")
 
@@ -17,27 +14,24 @@ T = TypeVar("T", bound="Schema575")
 class Schema575:
     """
     Attributes:
-        server (ServerDto):
-        files (list[ServerFile]):
+        condition (str): CEL representing the condition
+        action (Schema575Action): Action to take when the condition matches
     """
 
-    server: ServerDto
-    files: list[ServerFile]
+    condition: str
+    action: Schema575Action
 
     def to_dict(self) -> dict[str, Any]:
-        server = self.server.to_dict()
+        condition = self.condition
 
-        files = []
-        for files_item_data in self.files:
-            files_item = files_item_data.to_dict()
-            files.append(files_item)
+        action = self.action.value
 
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
             {
-                "server": server,
-                "files": files,
+                "condition": condition,
+                "action": action,
             }
         )
 
@@ -45,22 +39,14 @@ class Schema575:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.server_dto import ServerDto
-        from ..models.server_file import ServerFile
-
         d = dict(src_dict)
-        server = ServerDto.from_dict(d.pop("server"))
+        condition = d.pop("condition")
 
-        files = []
-        _files = d.pop("files")
-        for files_item_data in _files:
-            files_item = ServerFile.from_dict(files_item_data)
-
-            files.append(files_item)
+        action = Schema575Action(d.pop("action"))
 
         schema_575 = cls(
-            server=server,
-            files=files,
+            condition=condition,
+            action=action,
         )
 
         return schema_575

@@ -28,9 +28,9 @@ class PaginatedSandboxAuditLog:
         pagination = self.pagination.to_dict()
 
         data = []
-        for componentsschemas_schema1042_item_data in self.data:
-            componentsschemas_schema1042_item = componentsschemas_schema1042_item_data.to_dict()
-            data.append(componentsschemas_schema1042_item)
+        for componentsschemas_schema1046_item_data in self.data:
+            componentsschemas_schema1046_item = componentsschemas_schema1046_item_data.to_dict()
+            data.append(componentsschemas_schema1046_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -53,10 +53,10 @@ class PaginatedSandboxAuditLog:
 
         data = []
         _data = d.pop("data")
-        for componentsschemas_schema1042_item_data in _data:
-            componentsschemas_schema1042_item = SandboxAuditLog.from_dict(componentsschemas_schema1042_item_data)
+        for componentsschemas_schema1046_item_data in _data:
+            componentsschemas_schema1046_item = SandboxAuditLog.from_dict(componentsschemas_schema1046_item_data)
 
-            data.append(componentsschemas_schema1042_item)
+            data.append(componentsschemas_schema1046_item)
 
         paginated_sandbox_audit_log = cls(
             pagination=pagination,

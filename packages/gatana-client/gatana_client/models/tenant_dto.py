@@ -6,16 +6,16 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 from attrs import define as _attrs_define
 
 from ..models.schema_353 import Schema353
-from ..models.schema_706 import Schema706
 from ..models.schema_709 import Schema709
-from ..models.schema_729 import Schema729
-from ..models.schema_730 import Schema730
+from ..models.schema_713 import Schema713
+from ..models.schema_733 import Schema733
+from ..models.schema_734 import Schema734
 
 if TYPE_CHECKING:
     from ..models.assistant_llm_configuration_status import AssistantLlmConfigurationStatus
-    from ..models.schema_711 import Schema711
-    from ..models.schema_712 import Schema712
-    from ..models.schema_713 import Schema713
+    from ..models.schema_715 import Schema715
+    from ..models.schema_716 import Schema716
+    from ..models.schema_717 import Schema717
     from ..models.tenant_oidc_configuration import TenantOidcConfiguration
     from ..models.tenant_saml_configuration import TenantSamlConfiguration
 
@@ -50,14 +50,16 @@ class TenantDto:
             the threshold
         code_mode_auto_trigger_threshold (int | None): Number of tools above which code mode is enabled automatically,
             or null for the default
-        output_compression_ai_model (Schema706): Model variant used for AI-based output compression
+        output_compression_ai_model (Schema709): Model variant used for AI-based output compression
         member_default_role (Literal['none'] | Schema353): Default server role for members, or "none" for no default
             access
-        mcp_audit_log_level (Schema709):
+        is_owner_all_tools_over_mcp_enabled (bool): Whether an owner is offered every tool of the organization over MCP.
+            When false, an owner gets the tools of the servers they hold a grant on, the way a member does
+        mcp_audit_log_level (Schema713):
         mcp_audit_logging_include_protocol_messages (bool): Whether MCP audit log entries include the protocol messages
-        default_resource_limits (Schema711):
-        default_resource_requests (Schema712):
-        deployment_resource_limits (Schema713):
+        default_resource_limits (Schema715):
+        default_resource_requests (Schema716):
+        deployment_resource_limits (Schema717):
         deployment_storage_quota (str): Total size of persistent volumes the organization may claim across its
             deployments, in Kubernetes quantity format (e.g. "20Gi"). This caps what may be claimed/allocated and not what
             is written/used.
@@ -77,8 +79,8 @@ class TenantDto:
         assistant_daily_token_limit (int | None): Maximum number of AI assistant tokens the tenant may spend per day, or
             null for the default
         is_scim_enabled (bool): Whether SCIM provisioning is enabled
-        scim_group_delete_behavior (Schema729): What happens to a team when its SCIM group is deleted
-        scim_user_delete_behavior (Schema730): What happens to a user when it is deleted through SCIM
+        scim_group_delete_behavior (Schema733): What happens to a team when its SCIM group is deleted
+        scim_user_delete_behavior (Schema734): What happens to a user when it is deleted through SCIM
         assistant_llm_configuration_status (AssistantLlmConfigurationStatus | None): The organization's own model
             endpoint for the assistant without its credentials, or null when none is stored
     """
@@ -100,13 +102,14 @@ class TenantDto:
     is_output_compression_ai_enabled: bool
     is_code_mode_auto_trigger_enabled: bool
     code_mode_auto_trigger_threshold: int | None
-    output_compression_ai_model: Schema706
+    output_compression_ai_model: Schema709
     member_default_role: Literal["none"] | Schema353
-    mcp_audit_log_level: Schema709
+    is_owner_all_tools_over_mcp_enabled: bool
+    mcp_audit_log_level: Schema713
     mcp_audit_logging_include_protocol_messages: bool
-    default_resource_limits: Schema711
-    default_resource_requests: Schema712
-    deployment_resource_limits: Schema713
+    default_resource_limits: Schema715
+    default_resource_requests: Schema716
+    deployment_resource_limits: Schema717
     deployment_storage_quota: str
     is_assistant_enabled: bool
     is_assistant_byok_enabled: bool
@@ -117,8 +120,8 @@ class TenantDto:
     assistant_conversation_sharing_accepted_by: None | str
     assistant_daily_token_limit: int | None
     is_scim_enabled: bool
-    scim_group_delete_behavior: Schema729
-    scim_user_delete_behavior: Schema730
+    scim_group_delete_behavior: Schema733
+    scim_user_delete_behavior: Schema734
     assistant_llm_configuration_status: AssistantLlmConfigurationStatus | None
 
     def to_dict(self) -> dict[str, Any]:
@@ -176,6 +179,8 @@ class TenantDto:
             member_default_role = self.member_default_role.value
         else:
             member_default_role = self.member_default_role
+
+        is_owner_all_tools_over_mcp_enabled = self.is_owner_all_tools_over_mcp_enabled
 
         mcp_audit_log_level = self.mcp_audit_log_level.value
 
@@ -245,6 +250,7 @@ class TenantDto:
                 "codeModeAutoTriggerThreshold": code_mode_auto_trigger_threshold,
                 "outputCompressionAiModel": output_compression_ai_model,
                 "memberDefaultRole": member_default_role,
+                "isOwnerAllToolsOverMcpEnabled": is_owner_all_tools_over_mcp_enabled,
                 "mcpAuditLogLevel": mcp_audit_log_level,
                 "mcpAuditLoggingIncludeProtocolMessages": mcp_audit_logging_include_protocol_messages,
                 "defaultResourceLimits": default_resource_limits,
@@ -271,9 +277,9 @@ class TenantDto:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.assistant_llm_configuration_status import AssistantLlmConfigurationStatus
-        from ..models.schema_711 import Schema711
-        from ..models.schema_712 import Schema712
-        from ..models.schema_713 import Schema713
+        from ..models.schema_715 import Schema715
+        from ..models.schema_716 import Schema716
+        from ..models.schema_717 import Schema717
         from ..models.tenant_oidc_configuration import TenantOidcConfiguration
         from ..models.tenant_saml_configuration import TenantSamlConfiguration
 
@@ -290,9 +296,9 @@ class TenantDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema667_type_0 = TenantOidcConfiguration.from_dict(data)
+                componentsschemas_schema670_type_0 = TenantOidcConfiguration.from_dict(data)
 
-                return componentsschemas_schema667_type_0
+                return componentsschemas_schema670_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | TenantOidcConfiguration, data)
@@ -305,9 +311,9 @@ class TenantDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema681_type_0 = TenantSamlConfiguration.from_dict(data)
+                componentsschemas_schema684_type_0 = TenantSamlConfiguration.from_dict(data)
 
-                return componentsschemas_schema681_type_0
+                return componentsschemas_schema684_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | TenantSamlConfiguration, data)
@@ -345,35 +351,37 @@ class TenantDto:
             d.pop("codeModeAutoTriggerThreshold")
         )
 
-        output_compression_ai_model = Schema706(d.pop("outputCompressionAiModel"))
+        output_compression_ai_model = Schema709(d.pop("outputCompressionAiModel"))
 
         def _parse_member_default_role(data: object) -> Literal["none"] | Schema353:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                componentsschemas_schema707_type_0 = Schema353(data)
+                componentsschemas_schema710_type_0 = Schema353(data)
 
-                return componentsschemas_schema707_type_0
+                return componentsschemas_schema710_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            componentsschemas_schema707_type_1 = cast(Literal["none"], data)
-            if componentsschemas_schema707_type_1 != "none":
+            componentsschemas_schema710_type_1 = cast(Literal["none"], data)
+            if componentsschemas_schema710_type_1 != "none":
                 raise ValueError(
-                    f"/components/schemas/__schema707_type_1 must match const 'none', got '{componentsschemas_schema707_type_1}'"
+                    f"/components/schemas/__schema710_type_1 must match const 'none', got '{componentsschemas_schema710_type_1}'"
                 )
-            return componentsschemas_schema707_type_1
+            return componentsschemas_schema710_type_1
 
         member_default_role = _parse_member_default_role(d.pop("memberDefaultRole"))
 
-        mcp_audit_log_level = Schema709(d.pop("mcpAuditLogLevel"))
+        is_owner_all_tools_over_mcp_enabled = d.pop("isOwnerAllToolsOverMcpEnabled")
+
+        mcp_audit_log_level = Schema713(d.pop("mcpAuditLogLevel"))
 
         mcp_audit_logging_include_protocol_messages = d.pop("mcpAuditLoggingIncludeProtocolMessages")
 
-        default_resource_limits = Schema711.from_dict(d.pop("defaultResourceLimits"))
+        default_resource_limits = Schema715.from_dict(d.pop("defaultResourceLimits"))
 
-        default_resource_requests = Schema712.from_dict(d.pop("defaultResourceRequests"))
+        default_resource_requests = Schema716.from_dict(d.pop("defaultResourceRequests"))
 
-        deployment_resource_limits = Schema713.from_dict(d.pop("deploymentResourceLimits"))
+        deployment_resource_limits = Schema717.from_dict(d.pop("deploymentResourceLimits"))
 
         deployment_storage_quota = d.pop("deploymentStorageQuota")
 
@@ -428,9 +436,9 @@ class TenantDto:
 
         is_scim_enabled = d.pop("isScimEnabled")
 
-        scim_group_delete_behavior = Schema729(d.pop("scimGroupDeleteBehavior"))
+        scim_group_delete_behavior = Schema733(d.pop("scimGroupDeleteBehavior"))
 
-        scim_user_delete_behavior = Schema730(d.pop("scimUserDeleteBehavior"))
+        scim_user_delete_behavior = Schema734(d.pop("scimUserDeleteBehavior"))
 
         def _parse_assistant_llm_configuration_status(data: object) -> AssistantLlmConfigurationStatus | None:
             if data is None:
@@ -438,9 +446,9 @@ class TenantDto:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                componentsschemas_schema731_type_0 = AssistantLlmConfigurationStatus.from_dict(data)
+                componentsschemas_schema735_type_0 = AssistantLlmConfigurationStatus.from_dict(data)
 
-                return componentsschemas_schema731_type_0
+                return componentsschemas_schema735_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(AssistantLlmConfigurationStatus | None, data)
@@ -469,6 +477,7 @@ class TenantDto:
             code_mode_auto_trigger_threshold=code_mode_auto_trigger_threshold,
             output_compression_ai_model=output_compression_ai_model,
             member_default_role=member_default_role,
+            is_owner_all_tools_over_mcp_enabled=is_owner_all_tools_over_mcp_enabled,
             mcp_audit_log_level=mcp_audit_log_level,
             mcp_audit_logging_include_protocol_messages=mcp_audit_logging_include_protocol_messages,
             default_resource_limits=default_resource_limits,

@@ -6,7 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.schema_909 import Schema909
+from ...models.schema_913 import Schema913
 from ...types import Response
 
 
@@ -23,9 +23,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema909 | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Schema913 | None:
     if response.status_code == 200:
-        response_200 = Schema909.from_dict(response.json())
+        response_200 = Schema913.from_dict(response.json())
 
         return response_200
 
@@ -35,7 +35,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema909]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Schema913]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -48,7 +48,7 @@ def sync_detailed(
     team_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema909]:
+) -> Response[Schema913]:
     """List the profiles assigned to a team
 
     Args:
@@ -59,7 +59,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema909]
+        Response[Schema913]
     """
 
     kwargs = _get_kwargs(
@@ -77,7 +77,7 @@ def sync(
     team_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Schema909 | None:
+) -> Schema913 | None:
     """List the profiles assigned to a team
 
     Args:
@@ -88,7 +88,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema909
+        Schema913
     """
 
     return sync_detailed(
@@ -101,7 +101,7 @@ async def asyncio_detailed(
     team_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[Schema909]:
+) -> Response[Schema913]:
     """List the profiles assigned to a team
 
     Args:
@@ -112,7 +112,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Schema909]
+        Response[Schema913]
     """
 
     kwargs = _get_kwargs(
@@ -128,7 +128,7 @@ async def asyncio(
     team_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Schema909 | None:
+) -> Schema913 | None:
     """List the profiles assigned to a team
 
     Args:
@@ -139,7 +139,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Schema909
+        Schema913
     """
 
     return (
