@@ -1,3 +1,5 @@
+ℹ️ MOVED TO https://github.com/gatana-ai/gatana
+
 <div align="center">
   <img alt="Gatana Logo" height="86" src="https://gatana.gatana.ai/favicon-prod.png" width="86">
   <h1 align="center"><b>Gatana Python</b></h1>
